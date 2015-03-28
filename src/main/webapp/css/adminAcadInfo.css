@@ -1,0 +1,18 @@
+#classAndTeam {
+border:1px solid #fff;
+ background-color:#FFFFCC; 
+width:500px;
+height:auto;
+position:absolute;
+top:230px;
+left:540px;
+z-index:2;
+border-radius: 10px;
+}
+#classAndTeam ol li{
+	display:inline;
+	padding-right:5px;
+}
+.buttonGroup{
+	float:right;
+}
