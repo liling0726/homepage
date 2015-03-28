@@ -51,7 +51,7 @@ public class Config extends JFinalConfig {
 
 	@Override
 	public void configRoute(Routes a) {
-		a.add("/", IndexController.class);
+		a.add("/index", IndexController.class);
 	}
 	
 	/**

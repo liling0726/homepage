@@ -6,72 +6,64 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Optional;
+import java.util.Random;
 
 public class GenData {
-	public static void main(String[] args) throws ClassNotFoundException, SQLException {
-		Class.forName("com.mysql.jdbc.Driver");
-		String from = "jdbc:mysql://localhost:3306/nsims?characterEncoding=UTF-8";
-		String to = "jdbc:mysql://localhost:3306/homepage?characterEncoding=UTF-8";
-		String username = "root";
-		String pwd = "5555";
-		
-		Connection connFrom =
-				DriverManager.getConnection(from, username, pwd);
-		Statement stmt = connFrom.createStatement();
-		
-		String querySql = "select `tea_name`, `tea_num` from teacher";
-		ResultSet rs = stmt.executeQuery(querySql);
-		List<Tuple2<String, String>> res = new ArrayList<>();
-		while(rs.next()) {
-			res.add(new Tuple2<String, String>(rs.getString("tea_name")
-							, rs.getString("tea_num")));
-			
-		}
-		
-		rs.close(); stmt.close(); connFrom.close();
-		
-		Connection connTo =
-				DriverManager.getConnection(to, username, pwd);
-		String sql = "insert into user(user_name, user_num, user_dept_id) values(?, ?, ?)";
-		PreparedStatement ps = connTo.prepareStatement(sql);
-		for (Tuple2<String, String> t: res) {
-			ps.setString(1, t.getFirst());
-			ps.setString(2, t.getSecond());
-			ps.setInt(3, 1);
-			ps.execute();
-		}
-		ps.close(); connTo.close();
-		System.out.println("success");
-	}
-}
+	public static void main(String[] args) throws SQLException, ClassNotFoundException, ParseException {
+        Class.forName("com.mysql.jdbc.Driver");
+        String url = "jdbc:mysql://localhost:3306/nsims?characterEncoding=UTF-8&user=root&password=5555";
+        String url2 = "jdbc:mysql://localhost:3306/homepage?characterEncoding=UTF-8&user=root&password=5555";
+        Connection conn = openMySqlConn(url).get();
+        Connection conn2 = openMySqlConn(url2).get();
 
-class Tuple2<T, K> {
-	private T first;
-	private K second;
-	
-	Tuple2(T t, K k) {
-		first = t;
-		second = k;
-	}
-	void setFirst(T t) {
-		first = t;
-	}
-	
-	T getFirst() {
-		return first;
-	}
-	
-	void setSecond(K k) {
-		second = k;
-	}
-	
-	K getSecond() {
-		return second;
-	}
-	
-	@Override public String toString() {
-		return first.toString() + "##" + second.toString();
-	}
+//        String start = "2015-1-21 12:55:33", end = "2015-3-25 20:34:12";
+
+        Statement st = conn2.createStatement();
+        ResultSet rs = st.executeQuery("select user_id from user");
+        PreparedStatement ps = conn2.prepareStatement("update user set user_count=? where user_id=?");
+
+        Random r = new Random();
+        while (rs.next()) {
+            ps.setInt(1, r.nextInt(2500));
+            ps.setInt(2, rs.getInt("user_id"));
+            ps.execute();
+        }
+        conn.close(); conn2.close();
+        System.out.println("success");
+
+    }
+
+    static Optional<Connection> openMySqlConn(String url) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            return Optional.of(DriverManager.getConnection(url));
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+        return Optional.<Connection>empty();
+    }
+
+    static String randomDatetime(String beginDate, String endDate) throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        Date start = format.parse(beginDate);
+        Date end = format.parse(endDate);
+
+        if (start.getTime() >= end.getTime())
+            return null;
+
+        long date = random(start.getTime(), end.getTime());
+        return format.format(new Date(date));
+    }
+
+    static long random(long begin, long end) {
+        long res;
+        do {
+           res = begin + (long)(Math.random() * (end - begin));
+        } while (res == begin || res == end);
+        return res;
+    }
 }
