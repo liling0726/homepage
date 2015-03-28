@@ -3,9 +3,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
-<script type="text/javascript" src="../js/bootstrap.js"></script>
-<script type="text/javascript" src="../js/adminCommon.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="../css/common.css" />
 <link rel="stylesheet" type="text/css" href="../css/adminAcadInfo.css" />
@@ -15,7 +12,7 @@
 	 <div id="top"></div> 
 	<div class="container">
 	<ol class="breadcrumb">
-  <li><a href="#">当前页：</a></li>
+  <li><a href="#">当前页面：</a></li>
   <li><a href="#">学院管理</a></li>
  
 </ol>
@@ -102,31 +99,36 @@
 	</div>
  <div id="footer">
 </div> 
-<div id="classAndTeam">
-系：
+<div class="classAndTeam">
+<div class="groups">
+<span id="classes">系别：</span>
 <div class="buttonGroup">
-<span>添加</span>
-<span >修改</span>
-<span>删除</span>
+<button class="btn btn-primary btn-xs">添加</button>
+<button class="btn btn-success btn-xs">修改</button>
+<button class="btn btn-info btn-xs">删除</button>
+</div>
 </div>
 <ol id="classInfo">
 <li><a>计算机科学与技术</a></li>
 <li><a>软件工程</a></li>
 <li><a>信息安全</a></li>
 </ol> 
-
-团队：
+<div class="groups"><span id="teams">团队：</span>
 <div class="buttonGroup">
-<span>添加</span>
-<span>修改</span>
-<span>删除</span>
-</div><ol id="teamInfo">
-<li>计算机科学与技术</li>
-<li>软件工程</li>
-<li>信息安全</li>
-</ol>
-
+<button class="btn btn-danger btn-xs">添加</button>
+<button class="btn btn-info btn-xs">修改</button>
+<button class="btn btn-warning btn-xs">删除</button>
 </div>
-
+</div>
+<ol id="teamInfo">
+<li><a>计算机科学与技术</a></li>
+<li><a>软件工程</a></li>
+<li><a>信息安全</a></li>
+</ol>
+</div>
+<script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="../js/bootstrap.js"></script>
+<script type="text/javascript" src="../js/adminCommon.js"></script>
+<script type="text/javascript" src="../js/adminAcadInfo.js"></script>
 </body>
 </html>

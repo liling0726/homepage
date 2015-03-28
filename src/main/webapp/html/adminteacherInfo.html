@@ -35,35 +35,40 @@
 	<table class="table table-bordered table-hover">
 	
 	<tr>
-	<th>序号</th>
+	<th>全选<input type="checkbox"></th>
+	<th>工号</th>
 	<th>姓名</th>
 	<th>学院</th>
 	<th>系别 / 团队</th>
 	<th>标记为管理员</th>
 	</tr>
 	<tr>
-	<td>1</td>
+	<td><input type="checkbox"></td>
+	<td>1020010065</td>
 	<td>杨春明</td>
 	<td>计算机科学与技术</td>
 	<td>计算机科学与技术</td>
 	<td><button class="btn btn-default">是</button></td>
 	</tr>
 	<tr>
-	<td>2</td>
+	<td><input type="checkbox"></td>
+	<td>1020010065</td>
 	<td>李波</td>
 	<td>计算机科学与技术</td>
 	<td>信息安全</td>
 <td><button class="btn btn-default">是</button></td>
 	</tr>
 		<tr>
-	<td>3</td>
+	<td><input type="checkbox"></td>
+	<td>1020010065</td>
 	<td>马力平</td>
 	<td>计算机科学与技术</td>
 	<td>计算机科学与技术</td>
 	<td><button class="btn btn-default">是</button></td>
 	</tr>
 		<tr>
-	<td>4</td>
+	<td><input type="checkbox"></td>
+	<td>1020010065</td>
 	<td>毕国堂</td>
 	<td>计算机科学与技术</td>
 	<td>软件工程</td>
@@ -106,16 +111,28 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">添加老师</h4>
       </div>
       <div class="modal-body">
-   工号：<input type="text">
-      姓名：<input type="text">
-      姓名：<input type="text">
+  <p> 工        号：<input type="text" style="width:300px;height:30px;"></p>
+      <p>姓        名：<input type="text" style="width:300px;height:30px;"></p>
+   <p>学       院：<select style="width:auto;height:30px;">
+   <option>计算机科学与技术</option>
+   <option>信息学院</option>
+   <option>制造学院</option>
+      </select></p>
+      <p>系别/团队：<select style="width:auto;height:30px;">
+   <option>计算机科学与技术</option>
+   <option>信息学院</option>
+   <option>制造学院</option>
+      </select></p>
+      管   理   员：<input type="radio" name="admin">是
+       <input type="radio" name="admin">否
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+      <button type="button" class="btn btn-primary">添加</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        
       </div>
     </div>
   </div>
@@ -126,14 +143,28 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">修改老师</h4>
       </div>
       <div class="modal-body">
-        ...
+       <p> 工        号：<input type="text" style="width:300px;height:30px;"></p>
+      <p>姓        名：<input type="text" style="width:300px;height:30px;"></p>
+   <p>学       院：<select style="width:auto;height:30px;">
+   <option>计算机科学与技术</option>
+   <option>信息学院</option>
+   <option>制造学院</option>
+      </select></p>
+      <p>系别/团队：<select style="width:auto;height:30px;">
+   <option>计算机科学与技术</option>
+   <option>信息学院</option>
+   <option>制造学院</option>
+      </select></p>
+      管   理   员：<input type="radio" name="admin">是
+       <input type="radio" name="admin">否
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-primary">保存</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+
       </div>
     </div>
   </div>
