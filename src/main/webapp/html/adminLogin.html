@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>管理登录</title>
+<script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="../js/bootstrap.js"></script>
+<script type="text/javascript" src="../js/adminLogin.js"></script>
+<link type="text/css" rel="stylesheet" href="../css/bootstrap.css">
+<link type="text/css" rel="stylesheet" href="../css/adminLogin.css">
+</head>
+<body>
+<div id="Layer1"
+		style="position:fixed; width:100%; height:100%; z-index:-1">
+		<img src="../img/51.jpg" height="100%" width="100%"  />
+	</div>
+	<div class="container">
+	 
+		<form class="form-signin" role="form" action="acadInfoMore.html">
+			<h2 class="form-signin-heading">管理登陆</h2>
+			<input type="text" class="form-control" placeholder="用户名"
+				id="username" required autofocus> <input type="password"
+				class="form-control" id="password" placeholder="密码" required>
+			<input type="text" class="form-control" placeholder="验证码"
+				id="authcode" required> <br /> <img
+				id="imgcode" src="checkcode.jsp" alt="验证码"> <span>看不清？<a
+				href="javascript:void(0)" class="changeOne">换一张</a></span> <label
+				id="authcode_succeed" class="blank invisible"></label> <label
+				id="authcode_error" class="hide"></label>
+			<button class="btn btn-lg btn-info btn-block" type="submit"
+				id="loginbut">登录</button>
+		</form>
+	</div>
+</body>
+
+</html>
