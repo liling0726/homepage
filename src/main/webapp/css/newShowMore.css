@@ -1,0 +1,15 @@
+.newUl{
+	list-style-type:none;
+	
+}
+.newUl li{
+	margin-top:8px;
+}
+.newUl li a:hover,.newUl li a:active{
+	color:gray;
+	text-decoration:none;
+}
+.newUl li span{
+	float:right;
+	
+}

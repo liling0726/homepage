@@ -1,0 +1,189 @@
+body{
+	overflow:scroll;
+	overflow-y:hidden;
+	/* overflow:scroll;
+	overflow-x:hidden; */
+}
+.bodyBackgroundImage {
+	color: white;
+}
+
+.topDiv {
+	width: 100%;
+	height: 30px;
+}
+.putThemUp{
+	width:800px;
+	height:500px;
+	margin-left:auto;
+	margin-right:auto;
+}
+.meddleBigDiv{
+	padding-top:40px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 800px;
+	height: 365px;
+}
+.meddleDiv {
+	margin-left: 150px;
+	margin-right: auto;
+	width: 475px;
+	height: 300px;
+	background-color: rgba(135,206,250,0.4);
+	/* filter:alpha(opacity:50); 
+    opacity:0.5; */
+	border: 5px solid rgba(48, 113, 116, 1);
+	border-radius: 40px;
+	float:left;
+}
+
+input {
+	margin-bottom: 3px;
+	padding-left: 15px;
+}
+select{
+	padding-left:15px;
+}
+
+.bodyBigDiv {
+	 /*  background-size: 100% 100%; */
+	background-image: url("../img/back11.jpg");
+	/*  background-position: 100% 100%;  */
+	/* background:rgb(27,24,41);*/
+	width:100%;
+	height: 
+}
+/*以下是专用login模板*/
+.inputBigDiv {
+	width: 404px;
+	height: 276px;
+	font-size: 17px;
+	margin-left:55px;
+	margin-right: auto;
+}
+
+.inputOnfocus{
+	width: 272px;
+	height: 44px;
+	border-width: 1px;
+	border-radius: 10px;
+	border-color:OrangeRed;
+	margin-top: 10px;
+	background-color: rgba(0, 0, 0, 0.4);
+}
+.inputOnblur{
+	width: 272px;
+	height: 44px;
+	border-width: 1px;
+	border-radius: 10px;
+	border-color:rgb(135,206,250);
+	margin-top: 10px;
+	background-color: rgba(0, 0, 0, 0.2);
+}
+.inputCodeOnfocus{
+	width: 172px;
+	height: 44px;
+	border-width: 1px;
+	border-radius: 10px;
+	border-color:OrangeRed;
+	margin-top: 10px;
+	background-color: rgba(0, 0, 0, 0.4);
+}
+.inputCodeOnblur{
+	width: 172px;
+	height: 44px;
+	border-width: 1px;
+	border-radius: 10px;
+	border-color:rgb(135,206,250);
+	margin-top: 10px;
+	background-color: rgba(0, 0, 0, 0.2);
+}
+.checkPicture {
+	width: 90px;
+	height: 35px;
+	position: relative;
+}
+
+.submit_button {
+	width: 346px;
+	height: 44px;
+	border-width: 1px;
+	background: Blue;
+	margin-top: 10px;
+	border-radius: 10px;
+	font-size: 24px;
+	font-weight: bold;
+	filter: alpha(opacity = 50); /*IE滤镜，透明度50%*/
+	-moz-opacity: 0.5; /*Firefox私有，透明度50%*/
+	opacity: 0.5; /*其他，透明度50%*/
+}
+
+.inputUernameDiv {
+	width: 350px;
+	height: 54px;
+	backgroung: red;
+}
+
+input:-moz-placeholder {
+	color: DarkGray !important; /* Mozilla Firefox 4 to 18 */
+}
+
+input::-moz-placeholder {
+	color: DarkGray !important; /* Mozilla Firefox 19+ */
+}
+
+input:-ms-input-placeholder {
+	color: DarkGray !important; /* Internet Explorer 10+ */
+	font-size: 14px;
+}
+/*以下是其他部分 */
+.overInputBigDiv {
+	width: 100%;
+	height: 135px;
+}
+
+.downInputBigDiv {
+	width: 100%;
+	height: 200px;
+}
+
+.huiZhangPicture {
+	width: 100%;
+	height: 100%;
+}
+
+.teacherTextPicture {
+	width: 400px;
+	height: 100px;
+}
+
+.useFloatPic1 {
+	margin-left:28px;
+	width: 125px;
+	height: 125px;
+	float: left;
+}
+
+.useFloatPic2 {
+	width: 400px;
+	height: 100px;
+	float: left;
+	margin-top: 30px;
+	margin-left: 30px;
+}
+.picPicDiv{
+	width:130px;
+	height:230px;
+	float:left;
+	margin-top:60px;
+	margin-left:10px;
+}
+.picPicture{
+	width:100%;
+	height:100%;
+}
+.footerP{
+	text-align:center;
+	margin-top:120px;
+}

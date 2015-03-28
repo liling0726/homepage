@@ -1,0 +1,70 @@
+*{
+	margin:0px;
+	padding:0px;
+}
+body{
+background:url(../img/background.jpg) no-repeat;
+
+}
+
+/* .homePage-nav{
+	background-color:gray;
+	height:40px;
+	
+}
+.homePage-nav a{
+	padding:10px;
+	color:#FFF;
+}
+.homePage-nav a:hover,.homePage-nav a:active{
+	color:#000333;
+} */
+table tr td{
+	padding:7px;
+	padding-right:15px;
+	
+}
+
+.sousuo{
+	margin-top:40px;
+	
+}
+.panel-heading>a{
+float:right;
+color:gray;
+}
+ ul{
+	
+	list-style-type:none;
+}
+.panel-body .newUl li{
+	padding-top:7px;
+}
+.panel-body .newUl li span{
+	float:right;
+}
+.panel-body .news span{
+	float:right;
+}
+.addBorder{
+	border:1px red solid;
+} 
+a:link,a:visited{
+	text-decoration: none;
+}
+a:hover,a:active{
+	color:gray;
+}
+.ulStyle li a{
+	padding:0px 0px 7px 0;
+}
+.panel-heading label{
+	font-size:14px;
+	font-weight: bold;
+}
+.personName{
+margin-top:-10px;
+/* background-color:#666; */
+height:30px;
+text-align: center;
+}
