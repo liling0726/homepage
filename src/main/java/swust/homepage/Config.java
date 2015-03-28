@@ -1,5 +1,6 @@
 package swust.homepage;
 
+import swust.homepage.controller.AcadInfoMoreController;
 import swust.homepage.controller.IndexController;
 import swust.homepage.model.Acad;
 import swust.homepage.model.Admin;
@@ -37,7 +38,7 @@ public class Config extends JFinalConfig {
 
 	@Override
 	public void configPlugin(Plugins a) {
-		C3p0Plugin c3p0Plugin = new C3p0Plugin("jdbc:mysql://127.0.0.1:3306/homepage?characterEncoding=UTF-8", "root", "123456");
+		C3p0Plugin c3p0Plugin = new C3p0Plugin("jdbc:mysql://127.0.0.1:3306/homepage?characterEncoding=UTF-8", "root", "150801");
 		a.add(c3p0Plugin);
 		ActiveRecordPlugin arp = new ActiveRecordPlugin(c3p0Plugin);
 		a.add(arp);
@@ -52,6 +53,7 @@ public class Config extends JFinalConfig {
 	@Override
 	public void configRoute(Routes a) {
 		a.add("/index", IndexController.class);
+		a.add("/acadInfoMore", AcadInfoMoreController.class);
 	}
 	
 	/**
