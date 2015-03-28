@@ -25,7 +25,7 @@ public class IndexController extends Controller {
 	 * ZengDan
 	 */
 	public void acadName(){
-		List<Acad> list = Acad.dao.find("select acad_name from acad");
+		List<Acad> list = Acad.dao.find("select * from acad");
 		renderJson("acad", list);
 	}
 }
