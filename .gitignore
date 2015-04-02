@@ -1,2 +1,6 @@
 /target/
 /homepage.log
+/.settings/
+/.classpath
+/.project
+/src/main/java/swust/homepage/Config.java
