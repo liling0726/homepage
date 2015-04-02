@@ -15,8 +15,8 @@ import java.util.Random;
 public class GenData {
 	public static void main(String[] args) throws SQLException, ClassNotFoundException, ParseException {
         Class.forName("com.mysql.jdbc.Driver");
-        String url = "jdbc:mysql://localhost:3306/nsims?characterEncoding=UTF-8&user=root&password=5555";
-        String url2 = "jdbc:mysql://localhost:3306/homepage?characterEncoding=UTF-8&user=root&password=5555";
+        String url = "jdbc:mysql://localhost:3306/nsims?characterEncoding=UTF-8&user=root&password=150801";
+        String url2 = "jdbc:mysql://localhost:3306/homepage?characterEncoding=UTF-8&user=root&password=150801";
         Connection conn = openMySqlConn(url).get();
         Connection conn2 = openMySqlConn(url2).get();
 
