@@ -6,6 +6,32 @@ padding:0px;
 	margin:10px 0px;
 	
 }
+a:link {
+	color: gray;
+	text-decoration: none;
+}
+a:visited {
+	color: gray;
+	text-decoration: none;
+}
+a:hover {
+	color: green;
+	text-decoration: none;
+}
+a:active {
+	color: white;
+	text-decoration: none;
+}
+.thumbnail {
+	background: lightblue;
+}
+
+.col-md-2
+{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+/*made by cz*/
 #footer{
 	
 background:gray;
