@@ -23,7 +23,7 @@ public class IndexController extends Controller {
 	public void random() {
 		List<Record> result = Db.find(
 				"select user_name, user_url, user_img "
-				+ "from user order by rand() limit 10");
+				+ "from user order by rand() limit 12");
 		renderJson("user", result);
 	}
 	
