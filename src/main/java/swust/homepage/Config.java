@@ -25,6 +25,7 @@ public class Config extends JFinalConfig {
 
 	@Override
 	public void configConstant(Constants a) {
+		loadPropertyFile("DbInfo.txt");
 		a.setDevMode(true);
 		a.setViewType(ViewType.FREE_MARKER);
 	}
@@ -39,7 +40,8 @@ public class Config extends JFinalConfig {
 
 	@Override
 	public void configPlugin(Plugins a) {
-		C3p0Plugin c3p0Plugin = new C3p0Plugin("jdbc:mysql://127.0.0.1:3306/homepage?characterEncoding=UTF-8", "root", "150801");
+		C3p0Plugin c3p0Plugin = new C3p0Plugin(getProperty("jdbcUrl"),
+				getProperty("user"), getProperty("password"));
 		a.add(c3p0Plugin);
 		ActiveRecordPlugin arp = new ActiveRecordPlugin(c3p0Plugin);
 		a.add(arp);

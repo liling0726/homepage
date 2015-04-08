@@ -17,9 +17,13 @@ public class IndexController extends Controller {
 		render("/html/homePage.html");
 	}
 	
+	/**
+	 * @author jinlong
+	 */
 	public void random() {
 		List<Record> result = Db.find(
-				"select user_name, user_url, user_img from user order by rand() limit 10");
+				"select user_name, user_url, user_img "
+				+ "from user order by rand() limit 10");
 		renderJson("user", result);
 	}
 	
