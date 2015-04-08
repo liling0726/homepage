@@ -6,20 +6,22 @@
 <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="../css/common.css" />
 <link rel="stylesheet" type="text/css" href="../css/adminAcadInfo.css" />
-<title>院系详细信息</title>
+<title>学院信息</title>
 </head>
 <body>
 	 <div id="top"></div> 
-	<div class="container">
-	<ol class="breadcrumb">
-  <li><a href="#">当前页面：</a></li>
+	 <ol class="breadcrumb">
+<li>当前页面</li>
+  <li><a href="#">首页</a></li>
   <li><a href="#">学院管理</a></li>
  
 </ol>
+	<div class="container">
+	
 	<div class="row">
 	<div class="col-md-offset-1 col-md-4" >
 	<div class="input-group search">
-      <input type="text" class="form-control" placeholder="输入学院名称">
+      <input type="text" class="form-control" placeholder="输入学院/系别名称">
       <span class="input-group-btn" >
         <button class="btn btn-info" type="button">搜索</button>
       </span>
@@ -29,45 +31,122 @@
 	<table class="table table-bordered table-hover">
 	
 	<tr>
-	<th>全选<input type="checkbox"></th>
+	<th>序号</th>
 	<th>学院</th>
-	<th>备注</th>
+	<th>系别</th>
 	</tr>
 	<tr>
-	<td><input type="checkbox"></td>
-	<td><a href="#">计算机科学与技术</a></td>
-	<td></td>
+	<td>1</td>
+	<td>计算机科学与技术</td>
+	<td><ul class="classInfo">
+<li><input type="checkbox">&nbsp;&nbsp;<a>计算机工程系</a></li>
+<li><input type="checkbox">&nbsp;&nbsp;<a>软件工程系</a></li>
+<li><input type="checkbox">&nbsp;&nbsp;<a>信息安全系</a></li>
+<li><input type="checkbox">&nbsp;&nbsp;<a>医学影像系</a></li>
+<li><input type="checkbox">&nbsp;&nbsp;<a>信息与多媒体系</a></li>
+<li><input type="checkbox">&nbsp;&nbsp;<a>计算机基础系</a></li>
+<li><input type="checkbox">&nbsp;&nbsp;<a>计算机基础系</a></li>
+</ul>
+<div class="buttonGroup">
+<button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#insertModal">添加</button>
+<!-- <button class="btn btn-success btn-xs">修改</button> -->
+<button class="btn btn-info btn-xs">删除</button>
+</div>
+ </td>
 	</tr>
 	<tr>
-	<td><input type="checkbox"></td>
+	<td>2</td>
 	<td>计算机科学与技术</td>
-	<td></td>
+	<td><ul class="classInfo">
+<li><input type="checkbox">&nbsp;&nbsp;<a>计算机科学与技术</a></li>
+<li><input type="checkbox">&nbsp;&nbsp;<a>软件工程</a></li>
+<li><input type="checkbox">&nbsp;&nbsp;<a>信息安全</a></li>
+</ul>
+<div class="buttonGroup">
+<button class="btn btn-danger btn-xs">添加</button>
+<!-- <button class="btn btn-success btn-xs">修改</button> -->
+<button class="btn btn-info btn-xs">删除</button>
+</div>
+ </td>
 	</tr>
 		<tr>
-	<td><input type="checkbox"></td>
+	<td>3</td>
 	<td>计算机科学与技术</td>
-	<td></td>
-	</tr>
-		<tr>
-	<td><input type="checkbox"></td>
-	<td>计算机科学与技术</td>
-	<td></td>
-	</tr>
-		<tr>
-	<td><input type="checkbox"></td>
-	<td>计算机科学与技术</td>
-	<td></td>
-	</tr>
-		<tr>
-	<td><input type="checkbox"></td>
-	<td>计算机科学与技术</td>
-	<td></td>
-	</tr>	<tr>
-	<td><input type="checkbox"></td>
-	<td>计算机科学与技术</td>
-	<td></td>
+	<td><ul class="classInfo">
+<li><input type="checkbox">&nbsp;&nbsp;<a>计算机科学与技术</a></li>
+<li><input type="checkbox">&nbsp;&nbsp;<a>软件工程</a></li>
+<li><input type="checkbox">&nbsp;&nbsp;<a>信息安全</a></li>
+</ul>
+<div class="buttonGroup">
+<button class="btn btn-danger btn-xs">添加</button>
+<!-- <button class="btn btn-success btn-xs">修改</button> -->
+<button class="btn btn-info btn-xs">删除</button>
+</div>
+ </td>
 	</tr>
 	
+	<td>4</td>
+	<td>计算机科学与技术</td>
+	<td><ul class="classInfo">
+<li><input type="checkbox">&nbsp;&nbsp;<a>计算机工程系</a></li>
+<li><input type="checkbox">&nbsp;&nbsp;<a>软件工程系</a></li>
+<li><input type="checkbox">&nbsp;&nbsp;<a>信息安全系</a></li>
+<li><input type="checkbox">&nbsp;&nbsp;<a>医学影像系</a></li>
+<li><input type="checkbox">&nbsp;&nbsp;<a>信息与多媒体系</a></li>
+<li><input type="checkbox">&nbsp;&nbsp;<a>计算机基础系</a></li>
+</ul>
+<div class="buttonGroup">
+<button class="btn btn-danger btn-xs">添加</button>
+<!-- <button class="btn btn-success btn-xs">修改</button> -->
+<button class="btn btn-info btn-xs">删除</button>
+</div>
+ </td>
+	</tr>
+		<tr>
+	<td>5</td>
+	<td>计算机科学与技术</td>
+	<td><ul class="classInfo">
+<li><input type="checkbox">&nbsp;&nbsp;<a>计算机科学与技术</a></li>
+<li><input type="checkbox">&nbsp;&nbsp;<a>软件工程</a></li>
+<li><input type="checkbox">&nbsp;&nbsp;<a>信息安全</a></li>
+</ul>
+<div class="buttonGroup">
+<button class="btn btn-danger btn-xs">添加</button>
+<!-- <button class="btn btn-success btn-xs">修改</button> -->
+<button class="btn btn-info btn-xs">删除</button>
+</div>
+ </td>
+	</tr>	<tr>
+	<td>6</td>
+	<td>计算机科学与技术</td>
+	<td><ul class="classInfo">
+<li><input type="checkbox">&nbsp;&nbsp;<a>计算机科学与技术</a></li>
+<li><input type="checkbox">&nbsp;&nbsp;<a>软件工程</a></li>
+<li><input type="checkbox">&nbsp;&nbsp;<a>信息安全</a></li>
+</ul>
+<div class="buttonGroup">
+<button class="btn btn-danger btn-xs">添加</button>
+<!-- <button class="btn btn-success btn-xs">修改</button> -->
+<button class="btn btn-info btn-xs">删除</button>
+</div>
+ </td>
+	</tr>
+		<tr>
+	<td>6</td>
+	<td>计算机科学与技术</td>
+	<td><ul class="classInfo">
+<li><input type="checkbox">&nbsp;&nbsp;<a>计算机科学与技术</a></li>
+<li><input type="checkbox">&nbsp;&nbsp;<a>软件工程</a></li>
+<li><input type="checkbox">&nbsp;&nbsp;<a>信息安全</a></li>
+</ul>
+<div class="buttonGroup">
+<button class="btn btn-danger btn-xs">添加</button>
+<!-- <button class="btn btn-success btn-xs">修改</button> -->
+<button class="btn btn-info btn-xs">删除</button>
+</div>
+ </td>
+	</tr>
+		<tr>
 	</table>
 	</div>
 	<div class="col-md-offset-2">
@@ -99,32 +178,38 @@
 	</div>
  <div id="footer">
 </div> 
-<div class="classAndTeam">
+<!-- <div class="classAndTeam">
 <div class="groups">
 <span id="classes">系别：</span>
 <div class="buttonGroup">
-<button class="btn btn-primary btn-xs">添加</button>
+<button class="btn btn-danger btn-xs">添加</button>
 <button class="btn btn-success btn-xs">修改</button>
 <button class="btn btn-info btn-xs">删除</button>
 </div>
 </div>
 <ol id="classInfo">
-<li><a>计算机科学与技术</a></li>
-<li><a>软件工程</a></li>
-<li><a>信息安全</a></li>
+<li><input type="checkbox">&nbsp;&nbsp;<a>计算机科学与技术</a></li>
+<li><input type="checkbox">&nbsp;&nbsp;<a>软件工程</a></li>
+<li><input type="checkbox">&nbsp;&nbsp;<a>信息安全</a></li>
 </ol> 
-<div class="groups"><span id="teams">团队：</span>
-<div class="buttonGroup">
-<button class="btn btn-danger btn-xs">添加</button>
-<button class="btn btn-info btn-xs">修改</button>
-<button class="btn btn-warning btn-xs">删除</button>
-</div>
-</div>
-<ol id="teamInfo">
-<li><a>计算机科学与技术</a></li>
-<li><a>软件工程</a></li>
-<li><a>信息安全</a></li>
-</ol>
+</div> -->
+<!--添加模态框  -->
+<div class="modal fade" id="insertModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">添加系别</h4>
+      </div>
+      <div class="modal-body">
+  <p> 系别：<input type="text" style="width:200px;height:30px;"></p>
+      <div class="modal-footer">
+      <button type="button" class="btn btn-primary">添加</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        
+      </div>
+    </div>
+  </div>
 </div>
 <script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
 <script type="text/javascript" src="../js/bootstrap.js"></script>

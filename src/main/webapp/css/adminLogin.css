@@ -1,0 +1,57 @@
+*{
+	padding:0px;
+	margin:0px;
+}
+
+/* body {
+  margin-top: 40px;
+  padding-bottom: 40px;
+  background-color: #eee;
+  background:url(../img/51.jpg)
+} */
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+  margin-top:50px;
+}
+.form-signin .form-signin-heading
+{
+color:orange;
+font-weight:bold;
+}
+
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+
+.form-signin input {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+#authcode{
+	margin-bottom: 0px;
+}
+#imgcode{
+	display:inline;
+	cursor: pointer; 
+	width: 100px; 
+	height: 33px;
+}
+.form-signin span{
+	padding-left:50px;
+}
+#loginbut{
+	margin-top:5px;
+}

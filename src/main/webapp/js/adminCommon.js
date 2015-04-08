@@ -15,6 +15,7 @@ $(function(){
 					 +' </div>'
 					 +'<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">'
 					 +'<ul class="nav navbar-nav navbar-right">'
+					 +' <li><a href="adminHomePage.html">首页</a></li>'
 					 +' <li><a href="adminteacherInfo.html">老师管理</a></li>'
 					 +' <li><a href="adminAcadInfo.html">学院管理</a></li>'
 					 +' <li><a href="adminAdminInfo.html">管理员管理</a></li>'
