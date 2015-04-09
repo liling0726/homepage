@@ -14,6 +14,7 @@ public class IndexController extends Controller {
 	@ActionKey("/")
 	public void index() {
 		setAttr("topUserCount", User.dao.topUserCount(9));//刘杰：我就测试一下返回的list对不对
+		setAttr("acadName", Acad.dao.acad());
 		render("/html/homePage.html");
 	}
 	
@@ -31,8 +32,7 @@ public class IndexController extends Controller {
 	 * ZengDan
 	 */
 	public void acadName(){
-		List<Acad> list = Acad.dao.find("select * from acad");
-		renderJson("acad", list);
+		renderJson("acadName", Acad.dao.acad());
 	}
 	
 	/**

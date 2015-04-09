@@ -32,4 +32,5 @@ public class User extends Model<User> {
 				+ "	`user`.user_dept_id = dept.dept_id\n"
 				+ "AND dept.dept_acad_id = acad.acad_id");
 	}
+	
 }
