@@ -4,6 +4,7 @@ import java.util.List;
 
 import swust.homepage.model.Acad;
 import swust.homepage.model.User;
+import swust.homepage.service.LoginService;
 
 import com.jfinal.core.ActionKey;
 import com.jfinal.core.Controller;
@@ -13,14 +14,12 @@ import com.jfinal.plugin.activerecord.Record;
 public class IndexController extends Controller {
 	@ActionKey("/")
 	public void index() {
-		setAttr("topUserCount", User.dao.topUserCount(9));//刘杰：我就测试一下返回的list对不对
-		setAttr("acadName", Acad.dao.acad());
-		render("/html/homePage.html");
+//		setAttr("topUserCount", User.dao.topUserCount(9));//刘杰：我就测试一下返回的list对不对
+//		setAttr("acadName", Acad.dao.acad());
+		redirect("/html/homePage.html");
 	}
 	
-	/**
-	 * @author jinlong
-	 */
+	/** @author jinlong */
 	public void random() {
 		List<Record> result = Db.find(
 				"select user_name, user_url, user_img "
@@ -40,5 +39,11 @@ public class IndexController extends Controller {
 	 */
 	public void topUserCount(){
 		renderJson("topUserCount", User.dao.topUserCount(9));//liujie
+	}
+	
+	/** @author jinlong */
+	public void loginCheck() {
+		LoginService s = LoginService.I.get();
+		renderJson(s.loginCheck(getPara("user_num")));
 	}
 }
