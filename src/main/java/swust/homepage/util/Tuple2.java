@@ -1,9 +1,7 @@
 package swust.homepage.util;
 
 /**
- * 
  * @author jinlong
- *
  */
 public class Tuple2<A, B> {
 	private A _1;

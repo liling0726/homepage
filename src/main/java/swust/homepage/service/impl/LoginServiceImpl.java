@@ -1,13 +1,13 @@
 package swust.homepage.service.impl;
 
 import swust.homepage.model.User;
-import swust.homepage.service.SLogin;
+import swust.homepage.service.LoginService;
 import swust.homepage.util.Tuple2;
 
 /**
  * @author jinlong
  */
-public class LoginService implements SLogin {
+public class LoginServiceImpl implements LoginService {
 
 	@Override
 	public Tuple2<Boolean, String> loginCheck(String userNum) {

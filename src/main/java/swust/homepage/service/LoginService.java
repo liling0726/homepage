@@ -1,17 +1,17 @@
 package swust.homepage.service;
 
-import swust.homepage.service.impl.LoginService;
+import swust.homepage.service.impl.LoginServiceImpl;
 import swust.homepage.util.Tuple2;
 
 /**
  * @author jinlong
  */
-public interface SLogin {
+public interface LoginService {
 	Tuple2<Boolean, String> loginCheck(String userNum);
 	
 	static class I {
-		public static SLogin get() {
-			return new LoginService();
+		public static LoginService get() {
+			return new LoginServiceImpl();
 		}
 	}
 }
