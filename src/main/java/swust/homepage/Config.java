@@ -2,6 +2,7 @@ package swust.homepage;
 
 import swust.homepage.controller.AcadInfoMoreController;
 import swust.homepage.controller.AdminAdminInfoController;
+import swust.homepage.controller.AdminLoginController;
 import swust.homepage.controller.AdminTeacherInfoController;
 import swust.homepage.controller.IndexController;
 import swust.homepage.model.Acad;
@@ -60,7 +61,8 @@ public class Config extends JFinalConfig {
 		a.add("/acadInfoMore", AcadInfoMoreController.class);
 		a.add("/adminAdminInfo", AdminAdminInfoController.class);
 		a.add("/adminTeacherInfo", AdminTeacherInfoController.class);
-	}
+		a.add("/adminLogin", AdminLoginController.class);
+	}	
 	
 	/**
 	 * 建议使用 JFinal 手册推荐的方式启动项目

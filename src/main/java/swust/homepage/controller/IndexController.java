@@ -1,6 +1,9 @@
 package swust.homepage.controller;
 
 import java.util.List;
+import java.util.Optional;
+
+import javax.servlet.http.HttpSession;
 
 import swust.homepage.model.Acad;
 import swust.homepage.model.User;
@@ -41,9 +44,29 @@ public class IndexController extends Controller {
 		renderJson("topUserCount", User.dao.topUserCount(9));//liujie
 	}
 	
-	/** @author jinlong */
-	public void loginCheck() {
+	/**
+	 * 老师登录验证
+	 * @author jinlong
+	 */
+	public void login() {
+		// 检查验证码
+		HttpSession session = getSession();
+		if (session == null) {
+			renderJson("result", "请输入验证码");
+			return;
+		}
+		String checkCode = (String)session.getAttribute("checkCode");
+		if (!checkCode.equals(getPara("checkCode"))) {
+			renderJson("result", "验证码错误");
+			return;
+		}
+		
+		// 验证用户身份
 		LoginService s = LoginService.I.get();
-		renderJson(s.loginCheck(getPara("user_num")));
+		Optional<User> someTeacher = s.checkTeacher(getPara("admin_num"), getPara("pwd"));
+		if (someTeacher.isPresent())
+			renderJson("result", someTeacher.get());
+		else
+			renderJson("result", "第一次登录");
 	}
 }

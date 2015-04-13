@@ -1,13 +1,15 @@
 package swust.homepage.service;
 
-import swust.homepage.service.impl.LoginServiceImpl;
-import swust.homepage.util.Tuple2;
+import java.util.Optional;
 
-/**
- * @author jinlong
- */
+import swust.homepage.model.Admin;
+import swust.homepage.model.User;
+import swust.homepage.service.impl.LoginServiceImpl;
+
+/** @author jinlong */
 public interface LoginService {
-	Tuple2<Boolean, String> loginCheck(String userNum);
+	Optional<Admin> checkAdmin(String adminNum, String pwd);
+	Optional<User> checkTeacher(String userNum, String pwd);
 	
 	static class I {
 		public static LoginService get() {
