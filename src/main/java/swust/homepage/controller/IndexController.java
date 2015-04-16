@@ -41,7 +41,7 @@ public class IndexController extends Controller {
 	 * liujie
 	 */
 	public void topUserCount(){
-		renderJson("topUserCount", User.dao.topUserCount(9));//liujie
+		renderJson("topUserCount", User.dao.topUserCount(12));//liujie
 	}
 	
 	/**

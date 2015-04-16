@@ -1,3 +1,7 @@
+table th{
+	text-align:center;
+}
+
 .classAndTeam {
 border:2px solid #fff;
  background-color:#F0F8FF; 
@@ -26,10 +30,8 @@ padding-left:10px;
 	display:inline;
 	margin-right:10px;
 }
-.buttonGroup{
-	display:inline;
-	float:right;
-margin-right:5px;
+.buttonGroup button{
+	margin-left:2px;
 }
 #classes,#teams{
 	display:inline-block;

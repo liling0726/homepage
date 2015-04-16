@@ -41,10 +41,16 @@ color:gray;
 	padding-top:7px;
 }
 .panel-body .newUl li span{
+	
 	float:right;
+	
 }
-.panel-body .news span{
-	float:right;
+#news li a {
+	display:block;
+}
+#news li a span{
+
+float:right;
 }
 .addBorder{
 	border:1px red solid;
