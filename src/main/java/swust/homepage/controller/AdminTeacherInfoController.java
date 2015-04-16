@@ -31,6 +31,7 @@ public class AdminTeacherInfoController extends Controller {
 	}
 	
 	public void edit(){
-		setAttr("user",User.dao.findById(getParaToInt()));
+		//setAttr("user",User.dao.findById(getParaToInt()));
+		renderJson("user",User.dao.findById(getParaToInt()));
 	}
 }
