@@ -69,4 +69,14 @@ public class IndexController extends Controller {
 		else
 			renderJson("result", "第一次登录");
 	}
+	/**
+	 * @author chendekai
+	 */
+	public void searchFlesh()
+	{
+		
+		renderJson("Searchs",User.dao.userFlesh());
+		
+		
+	}
 }
