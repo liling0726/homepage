@@ -1,0 +1,30 @@
+ul li{
+	list-style:none;
+	margin-top:7px;
+	margin-left:20px;
+}
+ul li span{
+	float:right;
+	padding-right:5px;
+	
+}
+.panel-heading{
+	font-weight:bold;
+	text-align:center;
+}
+.buttoncenter{
+	height:50px;
+	width:110px;
+	padding-top:7px;
+	margin-left:auto;
+	margin-right:auto;
+}
+.delete×{
+	height:12px;
+	width:12px;
+	vertical-align: baseline;
+}
+.takesomeroom{
+	width:30px;
+	height:12px;
+}
