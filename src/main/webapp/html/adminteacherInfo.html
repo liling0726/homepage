@@ -32,8 +32,8 @@
 			<button class="btn btn-danger" style="margin-top: 10px;"
 				data-toggle="modal" data-target="#insertModal">添加</button>
 			<button class="btn btn-warning" style="margin-top: 10px;"
-				data-toggle="modal" data-target="#updateModal">修改</button>
-			<button class="btn btn-success" style="margin-top: 10px;">删除</button>
+				data-toggle="modal" data-target="#updateModal" id="userUpdateById">修改</button>
+			<button class="btn btn-success" style="margin-top: 10px;" id="userDeleteByIds">删除</button>
 
 			<div class="col-md-10 col-md-offset-1">
 				<table class="table table-bordered table-hover" id="teacherShow">
@@ -142,7 +142,7 @@
 						姓 名：<input type="text" style="width: 300px; height: 30px;" id="userName">
 					</p>
 					<p>
-						学 院：<select style="width: auto; height: 30px;" id="acadName">
+						学 院：<select style="width: auto; height: 30px;" id="userAcadName">
 							<option>计算机科学与技术</option>
 							<option>信息学院</option>
 							<option>制造学院</option>
@@ -155,8 +155,8 @@
 							<option value="6">制造学院</option>
 						</select>
 					</p>
-					管 理 员：<input type="radio" name="admin">是 <input
-						type="radio" name="admin">否
+					管 理 员：<input type="radio" name="admin" value="1">是 <input
+						type="radio" name="admin" value="0">否
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary" id="add">添加</button>
@@ -180,10 +180,10 @@
 				</div>
 				<div class="modal-body">
 					<p>
-						工 号：<input type="text" style="width: 300px; height: 30px;">
+						工 号：<input type="text" style="width: 300px; height: 30px;" id="upUserNum">
 					</p>
 					<p>
-						姓 名：<input type="text" style="width: 300px; height: 30px;">
+						姓 名：<input type="text" style="width: 300px; height: 30px;" id="upUserName">
 					</p>
 					<p>
 						学 院：<select style="width: auto; height: 30px;">
@@ -193,17 +193,17 @@
 						</select>
 					</p>
 					<p>
-						系别/团队：<select style="width: auto; height: 30px;">
-							<option>计算机科学与技术</option>
-							<option>信息学院</option>
-							<option>制造学院</option>
+						系别/团队：<select style="width: auto; height: 30px;" id="upUserDeptName">
+							<option value="9">计算机科学与技术</option>
+							<option value="8">信息学院</option>
+							<option value="6">制造学院</option>
 						</select>
 					</p>
 					管 理 员：<input type="radio" name="admin">是 <input
 						type="radio" name="admin">否
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">保存</button>
+					<button type="button" class="btn btn-primary" id="upUserInfo">保存</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
 
 				</div>
