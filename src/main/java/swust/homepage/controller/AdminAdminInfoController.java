@@ -20,13 +20,11 @@ public class AdminAdminInfoController extends Controller{
 		}else {
 			renderJson("result", "添加失败");
 		}
-		System.out.println("save()");
 	}
 	
 	//查用户想要修改的内容，并返回给前端
 	public void edit() throws Exception{
 		String id = getPara("ID");
-		System.out.println(Admin.dao.findById(id));
 		if(Admin.dao.findById((getParaToInt(id))) != null){
 			renderJson("result", "存在此管理员");
 		}else {
