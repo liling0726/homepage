@@ -76,4 +76,22 @@ $.ajax({
 	}
 	
 });
+/*
+ * 教师个人主页的首页--最近更新的显示,显示12位老师
+*/
+$.ajax({
+	type:"post",
+	content:"application/x-www-form-urlencoded;charset=UFT-8",
+	url:"/index/searchFlesh",
+	async:false,
+	success:function(result){
+		var data=result.Searchs,html="";
+		for(var i=0;i<data.length;i++){
+		html+="<li><a id="+data[i].user_id+" class='col-md-4' href="+data[i].user_ur+">"+data[i].user_name+"</a></li>" 	
+		}
+		
+		$("#recentUpUser").append(html);
+	}
+	
+});
 })
