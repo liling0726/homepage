@@ -9,7 +9,7 @@
 <script type="text/javascript" src="../js/adminTeacherInfo.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="../css/common.css" />
-<title>院系详细信息</title>
+<title>老师详细信息</title>
 </head>
 <body>
 	<div id="top"></div>
@@ -136,23 +136,23 @@
 				</div>
 				<div class="modal-body">
 					<p>
-						工 号：<input type="text" style="width: 300px; height: 30px;">
+						工 号：<input type="text" style="width: 300px; height: 30px;" id="userNum">
 					</p>
 					<p>
-						姓 名：<input type="text" style="width: 300px; height: 30px;">
+						姓 名：<input type="text" style="width: 300px; height: 30px;" id="userName">
 					</p>
 					<p>
-						学 院：<select style="width: auto; height: 30px;">
+						学 院：<select style="width: auto; height: 30px;" id="acadName">
 							<option>计算机科学与技术</option>
 							<option>信息学院</option>
 							<option>制造学院</option>
 						</select>
 					</p>
 					<p>
-						系别/团队：<select style="width: auto; height: 30px;">
-							<option>计算机科学与技术</option>
-							<option>信息学院</option>
-							<option>制造学院</option>
+						系别/团队：<select style="width: auto; height: 30px;" id="userDeptName">
+							<option value="9">计算机科学与技术</option>
+							<option value="8">信息学院</option>
+							<option value="6">制造学院</option>
 						</select>
 					</p>
 					管 理 员：<input type="radio" name="admin">是 <input

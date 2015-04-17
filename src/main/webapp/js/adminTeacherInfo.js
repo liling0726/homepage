@@ -13,9 +13,27 @@ $(function(){
 		}
 	});
 /*功能：添加
- * 后台参数：user.user_id,user.user_num,user.user_name,user.acad_name
+ * 后台参数：user.user_num,user.user_name,user.acad_dept_id
 	*/
-	$("#add").click(function(){});
+	$("#add").click(function(){
+		var userNum=$("#userNum").val(),
+		    userName=$("#userName").val(),
+		    userDeptId=$("#userDeptName").val();
+		$.ajax({
+			type:"post",
+			content:"application/x-www-form-urlencoded;charset=UTF-8",
+			dataType:"json",
+			data:{
+				user.user_num:userNum,
+				user.user_name:userName,
+				user.acad_dept_id:userDeptId
+			},
+			success:function(result){
+				alert();
+			}
+		})
+		
+	});
 //跳转
 $("#goto").bind("click",function(){
 	var gotopage=$("#gotopage").val();
@@ -97,7 +115,7 @@ function initial(){
 	    	 $("#totalPage").append(data.totalPage);
 	    },
 	    error:function(e){
-	    	consol.log("错误："+e);
+	    	consol.log("错误："+e.message);
 	    }
 	});
 	
