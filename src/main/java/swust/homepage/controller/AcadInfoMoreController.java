@@ -1,7 +1,8 @@
 package swust.homepage.controller;
 
-import com.jfinal.core.Controller;
 import swust.homepage.model.Acad;
+
+import com.jfinal.core.Controller;
 
 /**
  * ZengDan
