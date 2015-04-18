@@ -39,7 +39,7 @@ public class User extends Model<User> {
 	 */
 	public List<User> userFlesh()
 	{
-		String sql="select *from user ORDER by user_update_time DESC  limit 12";
+		String sql="select *from user ORDER by user_update_time DESC  limit 10";
 		List<User> list=User.dao.find(sql);
 		System.out.println(list.size());
 		return list;
