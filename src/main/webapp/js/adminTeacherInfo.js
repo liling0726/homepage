@@ -3,12 +3,22 @@
 */
 var userData,//初始化的时候所有老师信息
 currentPage,//当前页
-totalNum;//查询总条数
+totalNum,//查询总条数
+maxPage;//最大页数
+
 $(function(){
 	 currentPage=$("#currentPage").val();
+	 maxPage=$("#max").val();
+	 //alert(maxPage);
 	 if(currentPage=="undefined"||currentPage=="")
 		 currentPage=1;
-//初始化
+	 //添加模态框的根据学院id显示院系
+	 var acadId=$("#userAcadName").val();
+     selectDeptByAcadId($("#userDeptName"),acadId);//添加模态框中根据学院Id显示院系
+   //修改模态框的根据学院id显示院系
+     var upacadId=$("#upUserAcadName").val();
+     selectDeptByAcadId($("#upUserDeptName"),upacadId);//修改模态框中根据学院Id显示院系
+	 //初始化
 	initial();
 	//全选，取消全选
 	$("#selectAll").click(function(){
@@ -153,6 +163,7 @@ $("#goto").bind("click",function(){
 	if(gotopage<1||gotopage>totalNum)
 	{
 		alert("超出总页数！");
+		return false;
 	}
 	else
 	{
@@ -194,6 +205,7 @@ $("#firstPage").bind("click",function(){
 	if(currentPage==1)
 		{
 		alert("已经第一页了");
+		return false;
 		}
 	else{
 	currentPage=1;
@@ -205,11 +217,34 @@ $("#lastPage").bind("click",function(){
 	if(currentPage==totalNum)
 		{
 		alert("已经是最后页了");
+		return false;
 		}
 	else{
 	currentPage=totalNum;
 	initial();
 	}
+});
+//每页显示页数
+$("#max").bind("change",function(){
+	 maxPage=$("#max").val();
+	 //alert(maxPage);
+	 initial();
+});
+/*
+ * 添加模态框中的学院对应相应院系
+ * 后台参数：学院Id
+*/
+$("#userAcadName").bind("change",function(){
+	var acadId1=$(this).val();
+	selectDeptByAcadId($("#userDeptName"),acadId1);//添加模态框中根据学院Id显示院系
+});
+/*
+ * 修改模态框中的学院对应相应院系
+ * 后台参数：学院Id
+*/
+$("#upUserAcadName").bind("change",function(){
+	var acadId2=$(this).val();
+	selectDeptByAcadId($("#upUserDeptName"),acadId2);//添加模态框中根据学院Id显示院系
 });
 });
 
@@ -224,7 +259,7 @@ function initial(){
 		type:"post",
 		content:"application/x-www-form-urlencoded;charset=UTF-8",
 	    dataType:"json",
-	    url:"/adminTeacherInfo/"+currentPage,
+	    url:"/adminTeacherInfo/"+currentPage+"-"+maxPage,
 	    async:"false",
 	    success:function(result){
 	    	var html="";
@@ -241,7 +276,7 @@ function initial(){
 	    		       +"<td><button class='btn btn-default'>是</td></tr>"
 	    		      
 	    		 }
-	    	 $("#teacherShow").html(html);
+	    	 $("#teacherShow").append(html);
 	    	 $("#currentPage").html(userData.pageNumber);
 	    	 $("#totalPage").html(totalNum);
 	    },
@@ -250,4 +285,27 @@ function initial(){
 	    }
 	});
 	
+}
+//根据学院Id查找相应专业
+function selectDeptByAcadId(obj,acadId)
+{ var deptInfo="";
+$.ajax({
+	type:"post",
+	content:"application/x-www-form-urlencoded;charset=UTF-8",
+    dataType:"json",
+    url:"/adminTeacherInfo/findDeptByAcadId/"+acadId,
+    async:"false",
+    success:function(result){
+     var data=result.deptList;
+     for(var i=0;i<data.length;i++)
+    	 {
+    	 deptInfo+="<option id='"+data[i].dept_id+"'>"+data[i].dept_name+"</option>"
+    	 }
+     obj.html(deptInfo);//添加模态框中根据学院Id显示院系
+},
+error:function(e){
+	console.log("错误:"+e.message);
+}
+});
+
 }

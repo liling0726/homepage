@@ -1,5 +1,6 @@
 package swust.homepage.controller;
 
+import swust.homepage.model.Dept;
 import swust.homepage.model.User;
 
 import com.jfinal.core.Controller;
@@ -12,7 +13,7 @@ import com.jfinal.core.Controller;
 public class AdminTeacherInfoController extends Controller {
 
 	public void index() {
-		renderJson("userPage", User.dao.paginate(getParaToInt(0, 1), 10));
+		getPage();
 	}
 	/**
 	 * 传入要保存的user对象的信息（不包含user_id）
@@ -68,5 +69,17 @@ public class AdminTeacherInfoController extends Controller {
 		else{
 			renderJson("user",user);
 		}
+	}
+	/**
+	 * 获取一个页面的老师集合，参数/a-b		获取第a页的老师，每页有b个老师
+	 */
+	public void getPage(){
+		renderJson("userPage", User.dao.paginate(getParaToInt(0, 1), getParaToInt(1, 10)));
+	}
+	/**
+	 * 根据学院Id查专业，如传参数Id=2,找出这个学院下的所有专业名、专业Id
+	 */
+	public void findDeptByAcadId(){
+		renderJson("deptList",Dept.dao.findByAcadId(getParaToInt(0,1)));
 	}
 }

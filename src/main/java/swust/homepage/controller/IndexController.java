@@ -17,8 +17,6 @@ import com.jfinal.plugin.activerecord.Record;
 public class IndexController extends Controller {
 	@ActionKey("/")
 	public void index() {
-//		setAttr("topUserCount", User.dao.topUserCount(9));//刘杰：我就测试一下返回的list对不对
-//		setAttr("acadName", Acad.dao.acad());
 		redirect("/html/homePage.html");
 	}
 	
@@ -38,10 +36,11 @@ public class IndexController extends Controller {
 	}
 	
 	/**
-	 * liujie
+	 * @author 刘杰
+	 * 返回点击排名靠前的老师，默认前12，可传入参数控制个数
 	 */
 	public void topUserCount(){
-		renderJson("topUserCount", User.dao.topUserCount(12));//liujie
+		renderJson("topUserCount", User.dao.topUserCount(getParaToInt(0,12)));//liujie
 	}
 	
 	/**
