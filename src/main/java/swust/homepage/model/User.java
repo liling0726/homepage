@@ -15,7 +15,7 @@ public class User extends Model<User> {
 	 * @return 点击量前count的List<User>
 	 */
 	public List<User> topUserCount(int count) {
-		return find("SELECT user_id,user_name FROM `user` ORDER BY user_count DESC LIMIT 0,"
+		return find("SELECT * FROM `user` ORDER BY user_count DESC LIMIT 0,"
 				+ String.valueOf(count));
 	}
 
