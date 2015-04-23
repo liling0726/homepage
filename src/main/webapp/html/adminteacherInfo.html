@@ -23,9 +23,9 @@
 		<div class="row">
 			<div class="col-md-offset-1 col-md-4">
 				<div class="input-group search">
-					<input type="text" class="form-control" placeholder="按关键字搜索">
+					<input type="text" class="form-control" placeholder="按关键字搜索" id="searchWord">
 					<span class="input-group-btn">
-						<button class="btn btn-info" type="button">搜索</button>
+						<button class="btn btn-info" type="button" id="searchByKey">搜索</button>
 					</span>
 				</div>
 			</div>
@@ -36,7 +36,7 @@
 			<button class="btn btn-success" style="margin-top: 10px;" id="userDeleteByIds">删除</button>
 
 			<div class="col-md-10 col-md-offset-1">
-				<table class="table table-bordered table-hover" id="teacherShow">
+				<table class="table table-bordered table-hover" >
 
 					<tr>
 						<th>全选<input type="checkbox" id="selectAll" /></th>
@@ -46,6 +46,8 @@
 						<th>系别 / 团队</th>
 						<th>标记为管理员</th>
 					</tr>
+					<tbody id="teacherShow">
+					</tbody>
 					<!-- <tr>
 	<td><input type="checkbox"></td>
 	<td>1020010065</td>
@@ -96,26 +98,29 @@
 					<div class="btn-group" role="group" aria-label="...">
 						<button type="button" class="btn" id="pagebackward">上一页</button>
 						<button type="button" class="btn" id="pageforward">下一页</button>
-						<button type="button" class="btn">首页</button>
-						<button type="button" class="btn">末页</button>
+						<button type="button" class="btn" id="firstPage">首页</button>
+						<button type="button" class="btn" id="lastPage">末页</button>
 					</div>
 					<div class="btn-group" role="group" aria-label="...">
 						<button type="button" class="btn">每页</button>
 						<div class="btn-group" role="group" aria-label="...">
 							<select id="max" style="height: 33px; width: 50px;">
-								<option>10</option>
-								<option>20</option>
-								<option>30</option>
-								<option>40</option>
-								<option>50</option>
+								<option value="10">10</option>
+								<option value="20">20</option>
+								<option value="30">30</option>
+								<option value="40">40</option>
+								<option value="50">50</option>
 							</select>
 						</div>
 						<button type="button" class="btn">条</button>
 					</div>
 					<div class="btn-group" role="group" aria-label="...">
-						<button type="button" class="btn">跳转</button>
-						<button type="button" class="btn" id="goto"></button>
+						<button type="button" class="btn">转到第</button>
+						<div class="btn-group" role="group" aria-label="...">
+						<input type="text"  id="gotoPage" style="width:30px;height: 33px;"/>
+						</div>
 						<button type="button" class="btn">页</button>
+						<button type="button" class="btn" id="goto">跳转</button>
 					</div>
 				</div>
 			</div>
@@ -143,9 +148,9 @@
 					</p>
 					<p>
 						学 院：<select style="width: auto; height: 30px;" id="userAcadName">
-							<option>计算机科学与技术</option>
-							<option>信息学院</option>
-							<option>制造学院</option>
+							<option value="9">计算机科学与技术</option>
+							<option value="8">信息学院</option>
+							<option value="6">制造学院</option>
 						</select>
 					</p>
 					<p>
@@ -186,10 +191,10 @@
 						姓 名：<input type="text" style="width: 300px; height: 30px;" id="upUserName">
 					</p>
 					<p>
-						学 院：<select style="width: auto; height: 30px;">
-							<option>计算机科学与技术</option>
-							<option>信息学院</option>
-							<option>制造学院</option>
+						学 院：<select style="width: auto; height: 30px;" id="upUserAcadName">
+							<option value="9">计算机科学与技术</option>
+							<option value="8">信息学院</option>
+							<option value="6">制造学院</option>
 						</select>
 					</p>
 					<p>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>样式选择</title>
+<script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="../js/bootstrap.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+<script type="text/javascript">
+$(function(){
+
+	$("#styleSelect").modal({
+		backdrop:'static',
+		show:true,
+	keyboard:false
+	});
+	$("#styleShow").click(function(e){
+		var param=e.target;
+		$("#detailImgShow").show();
+		$("#detailImgShow").removeAttr("name");
+		$("#detailImgShow").removeAttr("src");
+		$("#detailImgShow").attr({
+			"src":param.src,
+			"name":param.name
+		});
+	});
+	$("#createTeacherPasonalPage").click(function(){
+		
+		var teaStyle=$("#detailImgShow").attr("name");
+		
+		if(teaStyle=="style1")
+			{
+			window.location.href="teacherPasonalPage1.html";
+			
+			}
+		if(teaStyle=="style2")
+			window.location.href="teacherPasonalPage1.html";
+		
+	})
+})
+
+</script>
+</head>
+<body>
+<div class="modal fade" id="styleSelect">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+        <h4 class="modal-title">样式选择</h4>
+      </div>
+      <div class="modal-body">
+      <p>请选择一个您喜欢的主页样式:</p>
+        <div class="row" id="styleShow">
+  <div class="col-xs-6 col-md-3">
+    <a href="#" class="thumbnail" >
+      <img src="../img/background.jpg" alt="..." name="style1">
+    </a>
+    <p style="text-align:center;">样式一</p>
+  </div>
+  <div class="col-xs-6 col-md-3">
+    <a href="#" class="thumbnail">
+      <img src="../img/teachershowmoreback.jpg" alt="..." name="style2">
+    </a>
+    <p  style="text-align:center;">样式二</p>
+  </div>
+</div>
+<div class="row">
+<img src="" style="display:none; width:400px;height:400px;margin-left:100px;" id="detailImgShow" >
+</div>
+      </div>
+      <div class="modal-footer">
+        <a  id="createTeacherPasonalPage"><button type="button" class="btn btn-primary">创建</button></a>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+</body>
+</html>
