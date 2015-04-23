@@ -4,8 +4,8 @@
 var userData,//初始化的时候所有老师信息
 currentPage,//当前页
 totalNum,//查询总条数
-maxPage;//最大页数
-
+maxPage,//最大页数
+keyWord="";//关键字
 $(function(){
 	 currentPage=$("#currentPage").val();
 	 maxPage=$("#max").val();
@@ -169,7 +169,9 @@ $("#goto").bind("click",function(){
 	{
 		currentPage=gotopage;
 		//调用查询
+		if(keyWord==""||keyWord==null)
 		initial();
+		else searchByKey(keyWord);
 	}
 
 });
@@ -179,7 +181,10 @@ $("#pageforward").bind("click",function(){
 	if(currentPage<totalNum)
 	{
 	currentPage=parseInt(currentPage)+1;
-		initial();
+	//调用查询
+	if(keyWord==""||keyWord==null)
+	initial();
+	else searchByKey(keyWord);
 	}
 	else{
 		alert("超出总页数");
@@ -192,7 +197,10 @@ $("#pagebackward").bind("click",function(){
 	
 	if(currentPage>1)
 	{currentPage=parseInt(currentPage)-1;
-		initial();
+	//调用查询
+	if(keyWord==""||keyWord==null)
+	initial();
+	else searchByKey(keyWord);
 	}
 	else{
 		alert("小于总页数");
@@ -209,7 +217,10 @@ $("#firstPage").bind("click",function(){
 		}
 	else{
 	currentPage=1;
+	//调用查询
+	if(keyWord==""||keyWord==null)
 	initial();
+	else searchByKey(keyWord);
 	}
 });
 //点击末页，显示最后页数据
@@ -221,14 +232,20 @@ $("#lastPage").bind("click",function(){
 		}
 	else{
 	currentPage=totalNum;
+	//调用查询
+	if(keyWord==""||keyWord==null)
 	initial();
+	else searchByKey(keyWord);
 	}
 });
 //每页显示页数
 $("#max").bind("change",function(){
 	 maxPage=$("#max").val();
 	 //alert(maxPage);
-	 initial();
+	//调用查询
+		if(keyWord==""||keyWord==null)
+		initial();
+		else searchByKey(keyWord);
 });
 /*
  * 添加模态框中的学院对应相应院系
@@ -245,6 +262,14 @@ $("#userAcadName").bind("change",function(){
 $("#upUserAcadName").bind("change",function(){
 	var acadId2=$(this).val();
 	selectDeptByAcadId($("#upUserDeptName"),acadId2);//添加模态框中根据学院Id显示院系
+});
+/*
+ * 功能：搜索关键字
+ * 后台参数：key（关键字），pageSize（每页显示多少条），pageNumber（当前页）
+*/
+$("#searchByKey").click(function(){
+	 keyWord=$("#searchWord").val();
+	searchByKey(keyWord);
 });
 });
 
@@ -276,15 +301,15 @@ function initial(){
 	    		       +"<td><button class='btn btn-default'>是</td></tr>"
 	    		      
 	    		 }
-	    	 $("#teacherShow").append(html);
+	    	 $("#teacherShow").html(html);
 	    	 $("#currentPage").html(userData.pageNumber);
 	    	 $("#totalPage").html(totalNum);
 	    },
 	    error:function(e){
 	    	console.log("错误："+e);
 	    }
+	    
 	});
-	
 }
 //根据学院Id查找相应专业
 function selectDeptByAcadId(obj,acadId)
@@ -308,4 +333,38 @@ error:function(e){
 }
 });
 
+}
+//根据关键字查询
+function searchByKey(key){
+	$.ajax({
+		type:"post",
+		content:"application/x-www-form-urlencoded;charset=UTF-8",
+	    dataType:"json",
+	    url:"/adminTeacherInfo/findUserByKey",
+	    async:"false",
+	    data:{
+	    	key:key,
+	    	pageSize:maxPage,
+	    	pageNumber:currentPage,	
+	    },
+	    
+	    success:function(result){
+	    	var html="";
+	         var data=result.keyUserPage;
+	         totalNum=data.totalPage
+	    	 for(var i=0;i<data.list.length;i++)
+	    		 {
+	    		 html+="<tr><td><input type='checkbox' name='checkboxGroup' value='"+data.list[i].user_id+"' name='groupCheckbox'></td>"
+	    			 +"<td>"+data.list[i].user_num+"</td>"
+	    		       +"<td>"+data.list[i].user_name+"</td>"
+	    		       +"<td>"+data.list[i].acad_name+"</td>"
+	    		       +"<td>"+data.list[i].dept_name+"</td>"
+	    		       +"<td><button class='btn btn-default'>是</td></tr>"
+	    		      
+	    		 }
+	    	 $("#teacherShow").html(html);
+	    	 $("#currentPage").html(data.pageNumber);
+	    	 $("#totalPage").html(data.totalPage);
+	    	}
+	    });
 }

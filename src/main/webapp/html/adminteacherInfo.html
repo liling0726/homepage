@@ -23,9 +23,9 @@
 		<div class="row">
 			<div class="col-md-offset-1 col-md-4">
 				<div class="input-group search">
-					<input type="text" class="form-control" placeholder="按关键字搜索">
+					<input type="text" class="form-control" placeholder="按关键字搜索" id="searchWord">
 					<span class="input-group-btn">
-						<button class="btn btn-info" type="button">搜索</button>
+						<button class="btn btn-info" type="button" id="searchByKey">搜索</button>
 					</span>
 				</div>
 			</div>
@@ -36,7 +36,7 @@
 			<button class="btn btn-success" style="margin-top: 10px;" id="userDeleteByIds">删除</button>
 
 			<div class="col-md-10 col-md-offset-1">
-				<table class="table table-bordered table-hover" id="teacherShow">
+				<table class="table table-bordered table-hover" >
 
 					<tr>
 						<th>全选<input type="checkbox" id="selectAll" /></th>
@@ -46,6 +46,8 @@
 						<th>系别 / 团队</th>
 						<th>标记为管理员</th>
 					</tr>
+					<tbody id="teacherShow">
+					</tbody>
 					<!-- <tr>
 	<td><input type="checkbox"></td>
 	<td>1020010065</td>
