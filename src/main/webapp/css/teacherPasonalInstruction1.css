@@ -1,0 +1,23 @@
+.panel-success{
+	font-size:17px;
+}
+#title{
+	text-align:center;
+	color:green;
+	font-weight:bold;
+}
+.panel-heading{
+	cursor:pointer;
+	font-weight:bold;
+}
+.panel-heading span{
+	
+	float:right;
+}
+form{
+	font-size:16px;
+}
+form input,form select{
+	width:250px;
+	height:37px;
+}

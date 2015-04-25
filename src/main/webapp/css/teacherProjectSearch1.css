@@ -1,0 +1,28 @@
+body{ 
+	font-size:16px;
+}
+#title {
+	text-align: center;
+	color: purple;
+}
+
+.panel-danger {
+	font-size: 16px;
+}
+
+.panel-body input, form p input,form p select {
+	width: 250px;
+	height: 37px;
+}
+
+.panel-heading {
+	cursor: pointer;
+}
+
+.panel-heading span {
+	float: right;
+}
+
+#searchDirection, #searchArea {
+	display: none;
+}
