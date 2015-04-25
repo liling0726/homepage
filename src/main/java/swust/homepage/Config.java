@@ -62,7 +62,8 @@ public class Config extends JFinalConfig {
 		a.add("/adminAdminInfo", AdminAdminInfoController.class);
 		a.add("/adminTeacherInfo", AdminTeacherInfoController.class);
 		a.add("/adminLogin", AdminLoginController.class);
-	}	
+//		a.add("/adminacadinfo", AdminAcadInfoController.class);
+	}
 	
 	/**
 	 * 建议使用 JFinal 手册推荐的方式启动项目
