@@ -1,7 +1,9 @@
 package swust.homepage.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.jfinal.plugin.activerecord.Model;
 
@@ -35,21 +37,25 @@ public class Acad extends Model<Acad> {
 	 * 
 	 */
 	//List<List<Dept>>
-	public List<List<Dept>> academic()
+	public Map<String,List<Dept>> academic()
 	{
 		List<List<Dept>> llist=new  ArrayList<List<Dept>>();
-		List<Acad> academic=Acad.dao.find("select acad_id from acad");
+		Map<String,List<Dept>> map=new HashMap<String,List<Dept>>();
+	
+		List<Acad> academic=Acad.dao.find("select * from acad");
 		for(int i=0;i<academic.size();i++)
 		{
-			//llist.add(Dept.dao.find("select dept_name from dept where dept_acad_id =?",academic.get(i).getInt("acad_id")));
+			
 			List<Dept> depts=Dept.dao.find("select dept_name from dept where dept_acad_id =?",academic.get(i).getInt("acad_id"));
-			System.out.println(Dept.dao.find("select dept_name from dept where dept_acad_id =?",academic.get(i).getInt("acad_id")));
-			llist.add(depts);
+			
+			map.put(academic.get(i).get("acad_name").toString(),depts);
+			
 		}
 		
-		return  llist;
+		return  map;
 		
 	}
+
 	public boolean delete(int id[])
 	{
 		boolean flag=true;
