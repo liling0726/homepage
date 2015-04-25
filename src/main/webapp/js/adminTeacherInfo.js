@@ -284,7 +284,7 @@ function initial(){
 		type:"post",
 		content:"application/x-www-form-urlencoded;charset=UTF-8",
 	    dataType:"json",
-	    url:"/adminTeacherInfo/"+currentPage+"-"+maxPage,
+	    url:"/adminTeacherInfo/index/"+currentPage+"-"+maxPage,
 	    async:"false",
 	    success:function(result){
 	    	var html="";
