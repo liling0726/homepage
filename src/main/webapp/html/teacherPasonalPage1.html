@@ -4,10 +4,183 @@
 <meta charset="UTF-8">
 <script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
 <script type="text/javascript" src="../js/bootstrap.js"></script>
+<script type="text/javascript" src="../js/teacherCommon.js"></script>
+<script type="text/javascript" src="../js/teacherPasonalPage1.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+<link rel="stylesheet" type="text/css"
+	href="../css/teacherPasonalPage1.css" />
 <title>教师个人主页</title>
 </head>
 <body>
+	<div id="Layer1">
+		<img src="../img/teacherbackground1.jpg" height="100%" width="100%" />
+	</div>
+	<div id="top"></div>
 
+	<div id="topImg">
+		<img src="../img/xikeda1.png" />
+	</div>
+
+	<div class="container-fluid">
+		<div id="frameLeft">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-md-4 col-md-offset-1">
+							<img src="../img/person1.jpg">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-offset-2">
+							<button class="btn btn-primary" id="bttonBasicInfo">
+								添加基本信息</button>
+						</div>
+					</div>
+					<div class="row">
+						<form>
+							<p>
+								姓名：<input type="text" value="杨春明" readOnly id="teacherName">
+							</p>
+							<p>
+								职称：<input type="text">
+							</p>
+							<p>
+								学院：<select>
+									<option>计算机科学与技术</option>
+									<option>制造学院</option>
+									<option>信息学院</option>
+								</select>
+							</p>
+							<p>
+								院系：<select>
+									<option>计算机科学与技术</option>
+									<option>信息安全</option>
+									<option>软件工程</option>
+								</select>
+							</p>
+							<p>
+								团队：<input type="text">
+							</p>
+							<p>
+								指导资格：<input type="text" id="instruQualify">
+							</p>
+							<p>
+								联系方式：<input type="text" id="contactInfo">
+							</p>
+							<p>
+								地址：<input type="text">
+							</p>
+							<p id="btnGroup">
+								<button class="btn btn-info">保存</button>
+								<button class="btn btn-warning" type="reset">取消</button>
+							</p>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="frameCenter">
+			<iframe id="iframemain" name="iframemain" src="teacherHomePage1.html"
+				scrolling="no" frameBorder="0" width="100%"></iframe>
+		</div>
+
+
+		<div class="panel panel-warning" id="frameRight">
+			<div class="panel-heading navToteacher" data-toggle="collapse"
+				data-parent="#accordion" href="#collapse1" aria-expanded="true"
+				aria-controls="collapse1">
+				个人简介<span class="glyphicon glyphicon-plus"></span>
+			</div>
+			<div id="collapse1" class="panel-collapse collapse in">
+				<ul class="ulGroup">
+					<li><a href="#">个人简介</a><span><button
+								class="btn btn-xs btn-info">添加</button></span></li>
+					<li><a href="#">教育背景</a><span><button
+								class="btn btn-xs btn-info">添加</button></span></li>
+					<li><a href="#">工作背景</a><span><button
+								class="btn btn-xs btn-info">添加</button></span></li>
+					<li><a href="#">社会兼职</a><span><button
+								class="btn btn-xs btn-info">添加</button></span></li>
+				</ul>
+			</div>
+			<div class="panel-heading navToteacher " data-toggle="collapse"
+				data-parent="#accordion" href="#collapse2" aria-expanded="true"
+				aria-controls="collapse2">
+				研究项目<span class="glyphicon glyphicon-plus"></span>
+			</div>
+			<div id="collapse2" class="panel-collapse collapse">
+				<ul class="ulGroup">
+					<li><a href="#">研究方向</a><span><button
+								class="btn btn-xs btn-success">添加</button></span></li>
+					<li><a href="#">研究领域</a><span><button
+								class="btn btn-xs btn-success">添加</button></span></li>
+					<li><a href="#">研究项目</a><span><button
+								class="btn btn-xs btn-success">添加</button></span></li>
+				</ul>
+			</div>
+			<div class="panel-heading navToteacher" data-toggle="collapse"
+				data-parent="#accordion" href="#collapse3">
+				研究成果<span class="glyphicon glyphicon-plus"></span>
+			</div>
+			<div id="collapse3" class="panel-collapse collapse">
+				<ul class="ulGroup">
+					<li><a href="#">获奖情况</a><span><button
+								class="btn btn-xs btn-warning">添加</button></span></li>
+					<li><a href="#">期刊论文</a><span><button
+								class="btn btn-xs btn-warning">添加</button></span></li>
+					<li><a href="#">会议论文</a><span><button
+								class="btn btn-xs btn-warning">添加</button></span></li>
+					<li><a href="#">专利</a><span><button
+								class="btn btn-xs btn-warning">添加</button></span></li>
+				</ul>
+			</div>
+
+			<div class="panel-heading navToteacher" data-toggle="collapse"
+				data-parent="#accordion" href="#collapse4">
+				科研团队<span class="glyphicon glyphicon-plus"></span>
+			</div>
+			<div id="collapse4" class="panel-collapse collapse">
+				<ul class="ulGroup">
+					<li><a href="#">团队介绍</a><span><button
+								class="btn btn-xs btn-danger">添加</button></span></li>
+					<li><a href="#">团队成员</a><span><button
+								class="btn btn-xs btn-danger">添加</button></span></li>
+					<li><a href="#">团队成果</a><span><button
+								class="btn btn-xs btn-danger">添加</button></span></li>
+				</ul>
+			</div>
+			<div class="panel-heading navToteacher" data-toggle="collapse"
+				data-parent="#accordion" href="#collapse5">
+				教学资源<span class="glyphicon glyphicon-plus"></span>
+			</div>
+			<div id="collapse5" class="panel-collapse collapse">
+				<ul class="ulGroup">
+					<li><a href="#">计算机网络</a><span><button
+								class="btn btn-xs btn-defalut">添加</button></span></li>
+					<li><a href="#">计算机基础</a><span><button
+								class="btn btn-xs btn-defalut">添加</button></span></li>
+					<li><a href="#">C语言</a><span><button
+								class="btn btn-xs btn-defalut">添加</button></span></li>
+				</ul>
+			</div>
+			<div class="panel-heading navToteacher" data-toggle="collapse"
+				data-parent="#accordion" href="#collapse6">
+				动态交流<span class="glyphicon glyphicon-plus"></span>
+			</div>
+			<div id="collapse6" class="panel-collapse collapse">
+				<ul class="ulGroup">
+					<li><a href="#">提问与交流</a><span><button
+								class="btn btn-xs btn-defalut">添加</button></span></li>
+					<li><a href="#">问题与建议</a><span><button
+								class="btn btn-xs btn-defalut">添加</button></span></li>
+					<li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div id="footer"></div>
 </body>
 </html>
