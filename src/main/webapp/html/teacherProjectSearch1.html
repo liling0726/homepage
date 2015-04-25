@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="../js/bootstrap.js"></script>
+<script type="text/javascript" src="../DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../js/teacherProjectSearch1.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+<link rel="stylesheet" type="text/css"
+	href="../css/teacherProjectSearch1.css" />
+<title>项目研究</title>
+</head>
+<body>
+	<ol class="breadcrumb">
+		<li><a href="#">当前页面</a></li>
+		<li><a href="#">首页</a></li>
+		<li><a href="#">项目研究</a></li>
+	</ol>
+	<h2 id="title">项目研究</h2>
+	<div class="panel-danger">
+		<div class="panel-heading">
+			研究方向 <span class="glyphicon glyphicon-plus" id="addSearchDirection" title="点击添加"></span>
+		<span class="glyphicon glyphicon-pencil" id="updateSearchDirection" title="点击修改">&nbsp;</span>
+		</div>
+		<div class="panel-body">
+			<p>研究方向：数据采集，数据挖掘，大数据</p>
+			<div id="searchDirection">
+				<p>
+					研究方向:<input type="text">
+				</p>
+				<p style="float: right;">
+					<button class="btn btn-danger" id="saveSearchDirection">保存</button>
+					<button class="btn btn-warning">取消</button>
+				</p>
+				<p style="clear: both;"></p>
+			</div>
+		</div>
+		<div class="panel-heading">
+			研究领域 <span class="glyphicon glyphicon-plus" id="addSearchArea" title="点击添加"></span>
+		<span class="glyphicon glyphicon-pencil" id="updateSearchArea" title="点击修改">&nbsp;</span>
+		</div>
+		<div class="panel-body">
+			<p>研究领域：数据处理，图像采集，图像合成</p>
+			<div id="searchArea">
+				<p>
+					研究领域:<input type="text">
+				</p>
+				<p style="float: right;">
+					<button class="btn btn-danger" id="saveSearchArea">保存</button>
+					<button class="btn btn-warning">取消</button>
+				</p>
+				<p style="clear: both;"></p>
+			</div>
+		</div>
+		<div class="panel-heading">
+			研究项目 <span class="glyphicon glyphicon-plus" data-toggle="modal"
+				data-target="#addProjectModal" title="点击添加"></span>
+				<span class="glyphicon glyphicon-pencil" id="updateSearchArea" title="点击修改" id="updateProject" data-toggle="modal"
+				data-target="#updateProjectModal">&nbsp;</span>
+		</div>
+		<div class="panel-body">
+			<ul id="projectList">
+				<li><label>时间：</label><span>2001.9-2004.9</span><br>
+				<label>项目名称：</label><span>课程任务管理系统</span><br> <label>项目描述：</label><span>基于vsm算法的作业判重研究与应用测试编写程序，应用于web系统，在以老师自主申请的方式管理学生任务，并且以算法实现文档判重提高教学质量，在系统中提供在线查看文档，便利老师查阅，督促学生完成学科任务。</span>
+				</li>
+				<li><label>时间：</label><span>2001.9-2004.9</span><br>
+				<label>项目名称：</label><span>课程任务管理系统</span><br> <label>项目描述：</label><span>基于vsm算法的作业判重研究与应用测试编写程序，应用于web系统，在以老师自主申请的方式管理学生任务，并且以算法实现文档判重提高教学质量，在系统中提供在线查看文档，便利老师查阅，督促学生完成学科任务。</span>
+				</li>
+				<li><label>时间：</label><span>2001.9-2004.9</span><br>
+				<label>项目名称：</label><span>课程任务管理系统</span><br> <label>项目描述：</label><span>基于vsm算法的作业判重研究与应用测试编写程序，应用于web系统，在以老师自主申请的方式管理学生任务，并且以算法实现文档判重提高教学质量，在系统中提供在线查看文档，便利老师查阅，督促学生完成学科任务。</span>
+				</li>
+			</ul>
+		</div>
+	</div>
+<!--添加项目  -->
+	<div class="modal fade" id="addProjectModal" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">添加项目</h4>
+				</div>
+				<div class="modal-body">
+					<form action="">
+						<div class="form-group" role="form" style="display: inline;">
+							<span style="float: left; padding-top: 5px;">时间：</span> <input
+								class="Wdate" id="datepicker1" readonly="readonly"
+								placeholder="开始日期" type="text"
+								onclick="WdatePicker({maxDate:'%y-%M-%d'})" /> <span
+								style="float: left; padding-top: 5px;">&nbsp;至&nbsp;</span> <input
+								class="Wdate" id="datepicker2" readonly="readonly"
+								placeholder="截止日期" type="text"
+								onclick="WdatePicker({minDate:'#F{$dp.$D(\'datepicker1\')}',maxDate:'%y-%M-%d'})" />
+						</div>
+						<br>
+						<br>
+						<p>
+							项目名称:<input type="text" placeholder="请填写项目名称"
+								style="margin: 5px 0px;">
+						</p>
+						<p>
+							项目描述:
+							<textarea rows="3" class="form-control"></textarea>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary">保存</button>
+					<button type="button" class="btn btn-info" data-dismiss="modal">取消</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--修改项目  -->
+	<div class="modal fade" id="updateProjectModal" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">修改项目</h4>
+				</div>
+				<div class="modal-body">
+					<form action="">
+					<p>
+							项目名称:<select>
+							<option>请选择项目修改的名称</option>
+							<option> 课程任务管理系统</option>
+							<option>网络爬虫</option>
+							<option>教师个人主页</option>
+							</select>
+						</p>
+						<div class="form-group" role="form" style="display: inline;">
+							<span style="float: left; padding-top: 5px;">时间：</span> <input
+								class="Wdate" id="datepicker1" readonly="readonly"
+								placeholder="开始日期" type="text"
+								onclick="WdatePicker({maxDate:'%y-%M-%d'})" /> <span
+								style="float: left; padding-top: 5px;">&nbsp;至&nbsp;</span> <input
+								class="Wdate" id="datepicker2" readonly="readonly"
+								placeholder="截止日期" type="text"
+								onclick="WdatePicker({minDate:'#F{$dp.$D(\'datepicker1\')}',maxDate:'%y-%M-%d'})" />
+						</div>
+						<br>
+						<br>
+						
+						<p>
+							项目描述:
+							<textarea rows="3" class="form-control"></textarea>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary">修改</button>
+					<button type="button" class="btn btn-info" data-dismiss="modal">取消</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
