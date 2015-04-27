@@ -152,8 +152,9 @@ $(function() {
 						if (j != 0) {
 							text = "你确定要删除选中的" + j + "个系吗？"
 							if (window.confirm(text)) {
-								var deptdelenum = new Array();
-								var i = 0;
+								/*var deptdelenum = new Array();
+								var i = 0;*/
+								var str="";
 								/* 遍历选中的checkbox进行相关操作 */
 								$(this)
 										.parents(".buttonGroup")
@@ -162,22 +163,20 @@ $(function() {
 										.find("input:checked")
 										.each(
 												function() {
-													deptdelenum[i++] = $(this)
+													str += $(this)
 															.parent().children(
-																	"a").html();
+																	"a").html()+"-";
 													$(this).parent().remove();
 													/* alert(deptdelenum[i-1]); */
 												});
+								alert(str);
 
 								$
 										.ajax({
-											type : "post",
+											type : "get",
 											content : "application/x-www-from-urlencoded;charset=UTF-8",
 											dataType : "json",
-											url : "/adminacadinfo/deleteDept",
-											data : {
-												deptDelet : deptdelenum
-											},
+											url : "/adminacadinfo/deleteDept"+str,
 											async : false,
 											success : function(result) {
 												/* alert("删除成功！"); */
