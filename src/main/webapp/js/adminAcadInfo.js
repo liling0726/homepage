@@ -1,8 +1,12 @@
 var data = new Array();
-var currentPage,//当前页
-totalNum,//查询总条数
+var currentPage=1,//当前页
+totalNum=10,//本页总条数
 maxPage;//最大页数
+var end=0,beginNum=0;//控制页数
 // var modal_button=0;//button和模态框的对应数字
+var keyWord;
+
+totalNum=$("#max").val();
 $(function() {
 
 	$("table tr td:nth-child(2)").mouseover(function(e) {
@@ -50,9 +54,23 @@ $(function() {
 					success : function(result) {
 						data = result.result;
 						var j = 0;//统一编号变量
-						for (var i = 0;i<data.length; i++) {
-							if(i==0||data[i].acad_name!=data[i-1].acad_name)
+						//用冗余的方法算出从原数据哪里开始遍历，显示
+						end=0;
+						for (var k = 0;k<data.length;k++) {
+							if(k==0||data[k].acad_name!=data[k-1].acad_name)
 								{
+								end++;
+								if((beginNum+1)==end)break;
+								}
+						}
+						end=0;
+						//清空
+						$("#maintable").html("<tr><th>序号</th><th>学院</th><th colspan=\"2\">系别</th></tr>");
+						for (var i = k;i<data.length;i++) {
+							if(end >= totalNum&&data[i].acad_name!=data[i-1].acad_name)break;//放在下面个if里会有莫名其妙的bug
+							if(i==k||data[i].acad_name!=data[i-1].acad_name)
+								{
+								end++;
 								$("#maintable")
 									.append(
 											"<tr><td>"
@@ -97,6 +115,21 @@ $(function() {
 						console.log("错误：" + e.message);
 					}
 				});
+		
+		//算总页数
+		end=0;
+		for (var i = 0;i<data.length;i++) {
+			if(i==0||data[i].acad_name!=data[i-1].acad_name)
+				{
+				end++;
+				}
+		}
+		maxPage=Math.ceil(end/totalNum);//总页数
+		currentPage=beginNum/totalNum+1;//当前页
+		
+		//显示当前页等信息
+		$("#currentPage").html(currentPage);
+		$("#maxPage").html(maxPage);
 	}
 	/* 添加 */
 	$(".modal-body")
@@ -208,9 +241,8 @@ $(function() {
 	// 按学院或系搜索。
 	$("#searchbtn").on("click",
 	function searchByKey(key) {
-		var searchkey;
-		searchkey=$("#searchInput").val();
-		if(searchkey=="")
+		keyWord=$("#searchInput").val();
+		if(keyWord==""||keyWord==null)
 			alert("请输入关键字！");
 		else {
 		$
@@ -219,7 +251,7 @@ $(function() {
 					content : "application/x-www-from-urlencoded;charset=UTF-8",
 					dataType : "json",
 					url : "/adminacadinfo/searchByKey",
-					data:{searchKey:searchkey},
+					data:{keyWord:keyWord},
 					async : false,
 					success : function(result) {
 						data = result.result;
@@ -290,7 +322,7 @@ $(function() {
 			alert("请输入规范的页码");
 			return;
 		}
-		if(gotopage<1||gotopage>totalNum)
+		if(gotopage<1||gotopage>maxPage)
 		{
 			alert("超出总页数！");
 			return false;
@@ -298,7 +330,9 @@ $(function() {
 		else
 		{
 			currentPage=gotopage;
+			beginNum=(currentPage-1)*totalNum;//计算从多少条数据开始
 			//调用查询
+			keyWord=$("#searchInput").val();
 			if(keyWord==""||keyWord==null)
 			initial();
 			else searchByKey(keyWord);
@@ -308,10 +342,12 @@ $(function() {
 //		下一页
 	$("#pageforward").bind("click",function(){
 		
-		if(currentPage<totalNum)
+		if(currentPage<maxPage)
 		{
 		currentPage=parseInt(currentPage)+1;
+		beginNum=(currentPage-1)*totalNum;//计算从多少条数据开始
 		//调用查询
+		keyWord=$("#searchInput").val();
 		if(keyWord==""||keyWord==null)
 		initial();
 		else searchByKey(keyWord);
@@ -327,7 +363,9 @@ $(function() {
 		
 		if(currentPage>1)
 		{currentPage=parseInt(currentPage)-1;
+		beginNum=(currentPage-1)*totalNum;//计算从多少条数据开始
 		//调用查询
+		keyWord=$("#searchInput").val();
 		if(keyWord==""||keyWord==null)
 		initial();
 		else searchByKey(keyWord);
@@ -347,7 +385,9 @@ $(function() {
 			}
 		else{
 		currentPage=1;
+		beginNum=(currentPage-1)*totalNum;//计算从多少条数据开始
 		//调用查询
+		keyWord=$("#searchInput").val();
 		if(keyWord==""||keyWord==null)
 		initial();
 		else searchByKey(keyWord);
@@ -361,8 +401,10 @@ $(function() {
 			return false;
 			}
 		else{
-		currentPage=totalNum;
+		currentPage=maxPage;
+		beginNum=(currentPage-1)*totalNum;//计算从多少条数据开始
 		//调用查询
+		keyWord=$("#searchInput").val();
 		if(keyWord==""||keyWord==null)
 		initial();
 		else searchByKey(keyWord);
@@ -370,11 +412,16 @@ $(function() {
 	});
 	//每页显示页数
 	$("#max").bind("change",function(){
-		 maxPage=$("#max").val();
-		 //alert(maxPage);
+		 totalNum=$("#max").val();
+		 maxPage=Math.ceil(end/totalNum);//总页数
+		 currentPage=beginNum/totalNum+1;//当前页
+		 beginNum=(currentPage-1)*totalNum;//计算从多少条数据开始
+		 alert("beginNum="+beginNum+"\n"+"totalNum"+totalNum);
+		 //alert(totalNum);
 		//调用查询
+		 keyWord=$("#searchInput").val();
 			if(keyWord==""||keyWord==null)
-			initial();
+				initial();
 			else searchByKey(keyWord);
 	});
 });
