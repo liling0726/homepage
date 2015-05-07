@@ -1,13 +1,16 @@
 package swust.homepage.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import swust.homepage.model.Admin;
 import swust.homepage.model.Dept;
 import swust.homepage.model.User;
 
 import com.jfinal.core.Controller;
 
 /**
- * @author 刘杰
- *管理员页面的老师页面的控制类
+ * @author 刘杰 管理员页面的老师页面的控制类
  */
 public class AdminTeacherInfoController extends Controller {
 
@@ -19,22 +22,69 @@ public class AdminTeacherInfoController extends Controller {
 	 * 传入要保存的user对象的信息（不包含user_id）
 	 */
 	public void save() {
-		if (getModel(User.class).save()) {
-			renderJson("result", "添加成功");
-		} else {
-			renderJson("result", "添加失败");
+		User user = getModel(User.class);
+		if (!user.save()) {
+			renderJson("result", "添加老师失败");
 		}
+		if ((boolean) (user.get("user_is_admin"))) {
+			Admin admin = new Admin();
+			admin.set("admin_num", user.get("user_num"));
+			admin.set("admin_name", user.get("user_name"));
+			admin.set("admin_dept_id", user.get("user_dept_id"));
+			if (!admin.save()) {
+				renderJson("result", "添加管理员失败");
+			}
+		}
+		renderJson("result", "添加成功");
 	}
 
 	/**
 	 * 传入user的id和要改变的信息
 	 */
 	public void update() {
-		if (getModel(User.class).update()) {
-			renderJson("result", "更新成功");
-		} else {
-			renderJson("result", "更新失败");
+		User user = getModel(User.class);
+		User oldUser=User.dao.findById(user.getInt("user_id"));
+		List<Admin> admins = Admin.dao
+				.find("select * from admin where admin_num="
+						+ oldUser.getStr("user_num"));
+		/*利用用户的id得到以前的数据user_num
+		 * 据此num得到管理员
+		 * 避免因改变num而造成的admin表内新建管理员
+		 */
+		if (!user.update()) {
+			renderJson("result", "修改失败");
+			return;
 		}
+		Admin admin = null;
+		if (admins != null && admins.size() > 0) {
+			admin = admins.get(0);
+		}
+		if ((boolean) (user.get("user_is_admin"))) {// 修改管理员（存在），新建管理员（不存在）
+			if (admin == null) {
+				admin = new Admin();
+				admin.set("admin_num", user.get("user_num"));
+				admin.set("admin_name", user.get("user_name"));
+				admin.set("admin_dept_id", user.get("user_dept_id"));
+				if (!admin.save()) {
+					renderJson("result", "修改失败");
+				}
+			} else {
+				admin.set("admin_num", user.get("user_num"));
+				admin.set("admin_name", user.get("user_name"));
+				admin.set("admin_dept_id", user.get("user_dept_id"));
+				if (!admin.update()) {
+					renderJson("result", "修改失败");
+				}
+			}
+
+		} else {// 删除对应管理员
+			if (admins != null && admins.size() > 0) {
+				if (!(admins.get(0).delete())) {
+					renderJson("result", "修改失败");
+				}
+			}
+		}
+		renderJson("result", "修改成功");
 	}
 
 	/**
@@ -86,13 +136,11 @@ public class AdminTeacherInfoController extends Controller {
 	}
 
 	/**
-	 * 根据关键字查询
-	 * key 关键字
-	 * pageNumber 页码
-	 * pageSize 每页最多条数
+	 * 根据关键字查询 key 关键字 pageNumber 页码 pageSize 每页最多条数
 	 */
 	public void findUserByKey() {
 		renderJson("keyUserPage", User.dao.paginateByKey(getPara("key"),
 				getParaToInt("pageNumber"), getParaToInt("pageSize")));
 	}
+
 }
