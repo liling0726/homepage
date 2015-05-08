@@ -1,6 +1,7 @@
 package swust.homepage;
 
 import swust.homepage.controller.AcadInfoMoreController;
+import swust.homepage.controller.AdminAcadInfoController;
 import swust.homepage.controller.AdminAdminInfoController;
 import swust.homepage.controller.AdminLoginController;
 import swust.homepage.controller.AdminTeacherInfoController;
@@ -62,7 +63,7 @@ public class Config extends JFinalConfig {
 		a.add("/adminAdminInfo", AdminAdminInfoController.class);
 		a.add("/adminTeacherInfo", AdminTeacherInfoController.class);
 		a.add("/adminLogin", AdminLoginController.class);
-//		a.add("/adminacadinfo", AdminAcadInfoController.class);
+		a.add("/adminacadinfo", AdminAcadInfoController.class);
 	}
 	
 	/**
