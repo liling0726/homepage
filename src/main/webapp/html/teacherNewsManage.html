@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.js"></script>
+    <script type="text/javascript" src="../js/teacherCommon.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../css/teacherCommon.css" />
+<title>老师新闻管理</title>
+</head>
+<body>
+<div id="top"></div>
+<div class="container-fluid">
+<div class="col-md-2" id="leftColumn"></div>
+<div class="col-md-10">
+<ol class="breadcrumb">
+		<li>当前页面</li>
+		<li><a href="#">首页</a></li>
+		<li><a href="#">新闻管理</a></li>
+	</ol>
+	<div style="margin-bottom:5px;">
+<input type="text" placeholder="请输入关键字" style="height:34px;width:200px;">
+<button class="btn btn-info">查询</button>
+<button class="btn btn-warning" data-toggle="modal" data-target="#insertModal">添加</button>
+<button class="btn btn-danger">删除</button>
+</div>
+<table class="table table-bordered table-hover">
+<tr>
+<th>选择</th>
+<th>序号</th>
+<th>新闻题目</th>
+<th>链接</th>
+<th>栏目</th>
+<th>时间</th>
+<th>是否置顶</th>
+<th>操作</th>
+</tr>
+<tbody>
+<tr>
+<td><input type="checkbox"></td>
+<td>1</td>
+<td>深度：浅谈中国航母对世界的影响 </td>
+<td><a href="#">www.baidu.com</a></td>
+<td>学术研究</td>
+<td>2015-3-4</td>
+<td><a href="#"><span class="glyphicon glyphicon-ok"></span></a></td>
+<td><a href="#"><span class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#updateModal"></span></a></td>
+</tr>
+<tr>
+<td><input type="checkbox"></td>
+<td>1</td>
+<td>深度：浅谈中国航母对世界的影响 </td>
+<td><a href="#">www.baidu.com</a></td>
+<td>学术研究</td>
+<td>2015-3-4</td>
+<td><a href="#"><span class="glyphicon glyphicon-ok"></span></a></td>
+<td><a href="#"><span class="glyphicon glyphicon-pencil"></span></a></td>
+</tr>
+<tr>
+<td><input type="checkbox"></td>
+<td>1</td>
+<td>深度：浅谈中国航母对世界的影响 </td>
+<td><a href="#">www.baidu.com</a></td>
+<td>学术研究</td>
+<td>2015-3-4</td>
+<td><a href="#"><span class="glyphicon glyphicon-ok"></span></a></td>
+<td><a href="#"><span class="glyphicon glyphicon-pencil"></span></a></td>
+</tr>
+<tr>
+<td><input type="checkbox"></td>
+<td>1</td>
+<td>深度：浅谈中国航母对世界的影响 </td>
+<td><a href="#">www.baidu.com</a></td>
+<td>学术研究</td>
+<td>2015-3-4</td>
+<td><a href="#"><span class="glyphicon glyphicon-ok"></span></a></td>
+<td><a href="#"><span class="glyphicon glyphicon-pencil"></span></a></td>
+</tr>
+</tbody>
+</table>
+
+<div class="col-md-offset-2" style="margin-bottom:5px;">
+				<div class="btn-toolbar form-inline">
+					<div class="btn-group" role="group" aria-label="...">
+						<button type="button" class="btn">当前第</button>
+						<button type="button" class="btn" id="currentPage"></button>
+						<button type="button" class="btn">页</button>
+					</div>
+					<div class="btn-group" role="group" aria-label="...">
+						<button type="button" class="btn">共</button>
+						<button type="button" class="btn" id="totalPage"></button>
+						<button type="button" class="btn">页</button>
+					</div>
+					<div class="btn-group" role="group" aria-label="...">
+						<button type="button" class="btn" id="pagebackward">上一页</button>
+						<button type="button" class="btn" id="pageforward">下一页</button>
+					</div>
+					<div class="btn-group" role="group" aria-label="...">
+						<button type="button" class="btn">每页</button>
+						<div class="btn-group" role="group" aria-label="...">
+							<select id="max" style="height: 33px; width: 50px;">
+								<option value="10">10</option>
+								<option value="20">20</option>
+								<option value="30">30</option>
+								<option value="40">40</option>
+								<option value="50">50</option>
+							</select>
+						</div>
+						<button type="button" class="btn">条</button>
+					</div>
+					<div class="btn-group" role="group" aria-label="...">
+						<button type="button" class="btn">转到第</button>
+						<div class="btn-group" role="group" aria-label="...">
+						<input type="text"  id="gotoPage" style="width:30px;height: 33px;"/>
+						</div>
+						<button type="button" class="btn">页</button>
+						<button type="button" class="btn" id="goto">跳转</button>
+					</div>
+				</div>
+</div>
+</div>
+</div>
+<div id="footer"></div>
+<!--添加模态框  -->
+	<div class="modal fade" id="insertModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">添加新闻</h4>
+				</div>
+				<div class="modal-body">
+						<p>
+						<label>新闻题目：</label><input type="text" style="width: 300px; height: 30px;"
+							>
+					</p>
+					<p>
+						<label>链  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;接：</label><input type="text" style="width: 300px; height: 30px;">
+	
+					</p>
+					<p>
+						<label>栏 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目：</label><select style="width: 300px; height: 30px;" >
+							<option>个人简介</option>
+							<option>个人简介</option>
+							<option>个人简介</option>
+							<option>个人简介</option>
+						</select>
+					</p>
+					<p>
+						<label>时&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;间：</label><input type="text" style="width: 300px; height: 30px;">
+	
+					</p>
+					<p>
+					<label>是否置顶：</label><input type="radio" name="column">是 <input
+						type="radio" name="column">否
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="add">添加</button>
+					<button type="button" class="btn btn-warning" data-dismiss="modal">取消</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--修改模态框  -->
+	<div class="modal fade" id="updateModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">修改新闻</h4>
+				</div>
+				<div class="modal-body">
+					<p>
+						<label>新闻题目：</label><input type="text" style="width: 300px; height: 30px;"
+							>
+					</p>
+					<p>
+						<label>链  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 接：</label><input type="text" style="width: 300px; height: 30px;">
+	
+					</p>
+					<p>
+						<label>栏 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目：</label><select style="width: 300px; height: 30px;" >
+							<option>个人简介</option>
+							<option>个人简介</option>
+							<option>个人简介</option>
+							<option>个人简介</option>
+						</select>
+					</p>
+					<p>
+						<label>时&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;间：</label><input type="text" style="width: 300px; height: 30px;">
+	
+					</p>
+					<p>
+					<label>是否置顶：</label><input type="radio" name="column">是 <input
+						type="radio" name="column">否
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="upAdminInfo">保存</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

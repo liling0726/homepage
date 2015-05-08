@@ -19,9 +19,9 @@
 		<li><a href="#">老师管理</a></li>
 
 	</ol>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-offset-1 col-md-4">
+	<div class="container-fluid">
+
+			<div class="col-md-3">
 				<div class="input-group search">
 					<input type="text" class="form-control" placeholder="按关键字搜索" id="searchWord">
 					<span class="input-group-btn">
@@ -34,10 +34,9 @@
 			<button class="btn btn-warning" style="margin-top: 10px;"
 				data-toggle="modal" data-target="#updateModal" id="userUpdateById">修改</button>
 			<button class="btn btn-success" style="margin-top: 10px;" id="userDeleteByIds">删除</button>
-
-			<div class="col-md-10 col-md-offset-1">
-				<table class="table table-bordered table-hover" >
-
+			
+				<table class="table table-bordered table-hover">
+				<thead>
 					<tr>
 						<th>全选<input type="checkbox" id="selectAll" /></th>
 						<th>工号</th>
@@ -46,43 +45,11 @@
 						<th>系别 / 团队</th>
 						<th>标记为管理员</th>
 					</tr>
+					</thead>
 					<tbody id="teacherShow">
+		
 					</tbody>
-					<!-- <tr>
-	<td><input type="checkbox"></td>
-	<td>1020010065</td>
-	<td>杨春明</td>
-	<td>计算机科学与技术</td>
-	<td>计算机科学与技术</td>
-	<td><button class="btn btn-default">是</button></td>
-	</tr>
-	<tr>
-	<td><input type="checkbox"></td>
-	<td>1020010065</td>
-	<td>李波</td>
-	<td>计算机科学与技术</td>
-	<td>信息安全</td>
-<td><button class="btn btn-default">是</button></td>
-	</tr>
-		<tr>
-	<td><input type="checkbox"></td>
-	<td>1020010065</td>
-	<td>马力平</td>
-	<td>计算机科学与技术</td>
-	<td>计算机科学与技术</td>
-	<td><button class="btn btn-default">是</button></td>
-	</tr>
-		<tr>
-	<td><input type="checkbox"></td>
-	<td>1020010065</td>
-	<td>毕国堂</td>
-	<td>计算机科学与技术</td>
-	<td>软件工程</td>
-	<td><button class="btn btn-default">是</button></td>
-	</tr>
-	 -->
 				</table>
-			</div>
 			<div class="col-md-offset-2">
 				<div class="btn-toolbar form-inline">
 					<div class="btn-group" role="group" aria-label="...">
@@ -124,8 +91,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
+</div>
 	<div id="footer"></div>
 	<!--添加模态框  -->
 	<div class="modal fade" id="insertModal" tabindex="-1" role="dialog"
@@ -141,7 +107,7 @@
 				</div>
 				<div class="modal-body">
 					<p>
-						工 号：<input type="text" style="width: 300px; height: 30px;" id="userNum">
+						工 号：<input type="text" style="width:300px; height: 30px;" id="userNum">
 					</p>
 					<p>
 						姓 名：<input type="text" style="width: 300px; height: 30px;" id="userName">

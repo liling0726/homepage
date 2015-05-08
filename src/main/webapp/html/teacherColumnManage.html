@@ -6,14 +6,184 @@
     <script type="text/javascript" src="../js/bootstrap.js"></script>
     <script type="text/javascript" src="../js/teacherCommon.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../css/teacherCommon.css" />
 <title>老师栏目管理</title>
 </head>
 <body>
 <div id="top"></div>
 <div class="container-fluid">
-
-
+<div class="col-md-2" id="leftColumn"></div>
+<div class="col-md-10">
+<ol class="breadcrumb">
+		<li>当前页面</li>
+		<li><a href="#">首页</a></li>
+		<li><a href="#">栏目管理</a></li>
+	</ol>
+	<div style="margin-bottom:5px;">
+<button class="btn btn-primary" data-toggle="modal" data-target="#insertModal">添加</button>
+<button class="btn btn-info">删除</button>
+</div>
+<table class="table table-bordered table-hover">
+<tr>
+<th>选择</th>
+<th>编号</th>
+<th>栏目名称 </th>
+<th>栏目别名 </th>
+<th>栏目类型</th>
+<th>栏目性质 </th> 
+<th>排序 </th>
+<th>是否显示 </th> 
+<th>操作</th> 	 				 			
+<tr>
+<tbody>
+<tr>
+<td><input type="checkbox"></td>
+<td>1</td>
+<td><a href="teacherColumnEdit.html">个人简介</a></td>
+<td>individual resume</td>
+<td>信息简介类</td>
+<td>站内信息</td>
+<td>1</td>
+<td><a href="#"><span class="glyphicon glyphicon-ok"></span></a></td>
+<td><a href="#"><span class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#updateModal"></span></a></td>
+</tr>
+<tr>
+<td><input type="checkbox"></td>
+<td>1</td>
+<td><a href="teacherColumnEdit.html">个人简介</a></td>
+<td>individual resume</td>
+<td>信息简介类</td>
+<td>站内信息</td>
+<td>1</td>
+<td><a href="#"><span class="glyphicon glyphicon-ok"></span></a></td>
+<td><a href="#"><span class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#updateModal"></span></a></td>
+</tr>
+<tr>
+<td><input type="checkbox"></td>
+<td>1</td>
+<td><a href="teacherColumnEdit.html">个人简介</a></td>
+<td>individual resume</td>
+<td>信息简介类</td>
+<td>站内信息</td>
+<td>1</td>
+<td><a href="#"><span class="glyphicon glyphicon-ok"></span></a></td>
+<td><a href="#"><span class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#updateModal"></span></a></td>
+</tr>
+<tr>
+<td><input type="checkbox"></td>
+<td>1</td>
+<td><a href="teacherColumnEdit.html">个人简介</a></td>
+<td>individual resume</td>
+<td>信息简介类</td>
+<td>站内信息</td>
+<td>1</td>
+<td><a href="#"><span class="glyphicon glyphicon-ok"></span></a></td>
+<td><a href="#"><span class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#updateModal"></span></a></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div id="footer"></div>
+<!--添加模态框  -->
+	<div class="modal fade" id="insertModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">添加栏目</h4>
+				</div>
+				<div class="modal-body">
+					<p>
+						<label>栏目名称：</label><input type="text" style="width: 300px; height: 30px;"
+							>
+					</p>
+					<p>
+						<label>栏目别称：</label><input type="text" style="width: 300px; height: 30px;">
+	
+					</p>
+					<p>
+						<label>栏目性质：</label><select style="width: auto; height: 30px;" >
+							<option>站内栏目</option>
+							<option>站外栏目</option>
+						</select>
+					</p>
+					<p>
+						<label>栏目类型：</label><select style="width: auto; height: 30px;">
+							<option>信息简介类</option>
+							<option>新闻资讯类</option>
+						</select>
+					</p>
+					<p>
+					<label>是否显示：</label><input type="radio" name="column">是 <input
+						type="radio" name="column">否
+					</p>
+					<p>
+						<label>排 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;序：</label><input type="text" style="width:300px; height: 30px;">
+	
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="add">添加</button>
+					<button type="button" class="btn btn-warning" data-dismiss="modal">取消</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--修改模态框  -->
+	<div class="modal fade" id="updateModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">修改栏目</h4>
+				</div>
+				<div class="modal-body">
+					<p>
+						<label>栏目名称：</label><input type="text" style="width: 300px; height: 30px;"
+							>
+					</p>
+					<p>
+						<label>栏目别称：</label><input type="text" style="width: 300px; height: 30px;">
+	
+					</p>
+					<p>
+						<label>栏目性质：</label><select style="width: auto; height: 30px;" >
+							<option>站内栏目</option>
+							<option>站外栏目</option>
+						</select>
+					</p>
+					<p>
+						<label>栏目类型：</label><select style="width: auto; height: 30px;">
+							<option>信息简介类</option>
+							<option>新闻资讯类</option>
+						</select>
+					</p>
+					<p>
+					<label>是否显示：</label><input type="radio" name="column">是 <input
+						type="radio" name="column">否
+					</p>
+					<p>
+						<label>排 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;序：</label><input type="text" style="width:300px; height: 30px;">
+	
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="upAdminInfo">保存</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

@@ -284,7 +284,7 @@ function initial(){
 		type:"post",
 		content:"application/x-www-form-urlencoded;charset=UTF-8",
 	    dataType:"json",
-	    url:"/adminTeacherInfo/index/"+currentPage+"-"+maxPage,
+	    url:"/adminTeacherInfo/"+currentPage+"-"+maxPage,
 	    async:"false",
 	    success:function(result){
 	    	var html="";
@@ -293,12 +293,12 @@ function initial(){
 	    	 totalNum=userData.totalPage
 	    	 for(var i=0;i<userData.list.length;i++)
 	    		 {
-	    		 html+="<tr><td><input type='checkbox' name='checkboxGroup' value='"+userData.list[i].user_id+"' name='groupCheckbox'></td>"
-	    			 +"<td>"+userData.list[i].user_num+"</td>"
-	    		       +"<td>"+userData.list[i].user_name+"</td>"
-	    		       +"<td>"+userData.list[i].acad_name+"</td>"
-	    		       +"<td>"+userData.list[i].dept_name+"</td>"
-	    		       +"<td><button class='btn btn-default'>是</td></tr>"
+	    		 html+="<tr><td><input type='checkbox' name='checkboxGroup' value='"+userData.list[i].user_id+"' name='groupCheckbox'></td><td>"
+	    			 +userData.list[i].user_num+"</td><td>"
+	    		     +userData.list[i].user_name+"</td><td>"
+	    		     +userData.list[i].acad_name+"</td><td>"
+	    		     +userData.list[i].dept_name+"</td>"
+	    		      +"<td><button class='btn btn-default'>是</td></tr>"
 	    		      
 	    		 }
 	    	 $("#teacherShow").html(html);
