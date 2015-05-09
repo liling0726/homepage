@@ -1,3 +1,5 @@
+//bug:1搜索之后不能删除 2必须开始的时候覆盖所有的元素3添加的要刷新后才能删除
+
 var data = new Array();
 var currentPage=1,//当前页
 totalNum=10,//本页总条数
@@ -6,7 +8,8 @@ var end=0,beginNum=0;//控制页数
 // var modal_button=0;//button和模态框的对应数字
 var keyWord;
 
-totalNum=$("#max").val(20);//search有bug,有关键字就不能翻页！！！
+$("#max").val(20);//search有bug,有关键字就不能翻页！！！
+totalNum=20;
 $(function() {
 
 	$("table tr td:nth-child(2)").mouseover(function(e) {
@@ -259,16 +262,9 @@ $(function() {
 					success : function(result) {
 						data = result.result;
 						data = result.result;
-						var j = beginNum;//统一编号变量
-						//用冗余的方法算出从原数据哪里开始遍历，显示
-						end=0;
-						for (var k = 0;k<data.length;k++) {
-							if(k==0||data[k].acad_name!=data[k-1].acad_name)
-								{
-								end++;
-								if((beginNum+1)==end)break;
-								}
-						}
+						var j = 0;//统一编号变量
+						//搜索从来都是从0开始显示的，这个表的数据少，特殊！！！
+						k=0;
 						end=0;
 						//清空
 						$("#maintable").html("<tr><th>序号</th><th>学院</th><th colspan=\"2\">系别</th></tr>");
@@ -332,6 +328,8 @@ $(function() {
 		}
 		maxPage=Math.ceil(end/totalNum);//总页数
 		currentPage=beginNum/totalNum+1;//当前页
+		//只要搜索后都定位第一页
+		currentPage=1;
 		
 		//显示当前页等信息
 		$("#currentPage").html(currentPage);
@@ -360,9 +358,9 @@ $(function() {
 			beginNum=(currentPage-1)*totalNum;//计算从多少条数据开始
 			//调用查询
 			keyWord=$("#searchInput").val();
-			if(keyWord==""||keyWord==null)
+			//if(keyWord==""||keyWord==null)
 			initial();
-			else searchByKey(keyWord);//一般搜索后只有一页，点什么也到不了这里。否则就会显示不出来，这个bug以后再改！！！
+			//else searchByKey(keyWord);//一般搜索后只有一页，点什么也到不了这里。否则就会显示不出来，这个bug以后再改！！！
 		}
 
 	});
@@ -375,9 +373,9 @@ $(function() {
 		beginNum=(currentPage-1)*totalNum;//计算从多少条数据开始
 		//调用查询
 		keyWord=$("#searchInput").val();
-		if(keyWord==""||keyWord==null)
+		//if(keyWord==""||keyWord==null)
 		initial();
-		else searchByKey(keyWord);
+		//else searchByKey(keyWord);
 		}
 		else{
 			alert("超出总页数");
@@ -393,9 +391,9 @@ $(function() {
 		beginNum=(currentPage-1)*totalNum;//计算从多少条数据开始
 		//调用查询
 		keyWord=$("#searchInput").val();
-		if(keyWord==""||keyWord==null)
+		//if(keyWord==""||keyWord==null)
 		initial();
-		else searchByKey(keyWord);
+		//else searchByKey(keyWord);
 		}
 		else{
 			alert("小于总页数");
@@ -415,9 +413,9 @@ $(function() {
 		beginNum=(currentPage-1)*totalNum;//计算从多少条数据开始
 		//调用查询
 		keyWord=$("#searchInput").val();
-		if(keyWord==""||keyWord==null)
+		//if(keyWord==""||keyWord==null)
 		initial();
-		else searchByKey(keyWord);
+		//else searchByKey(keyWord);
 		}
 	});
 	//点击末页，显示最后页数据
@@ -432,22 +430,22 @@ $(function() {
 		beginNum=(currentPage-1)*totalNum;//计算从多少条数据开始
 		//调用查询
 		keyWord=$("#searchInput").val();
-		if(keyWord==""||keyWord==null)
+		//if(keyWord==""||keyWord==null)
 		initial();
-		else searchByKey(keyWord);
+		//else searchByKey(keyWord);
 		}
 	});
 	//每页显示页数
 	$("#max").bind("change",function(){
 		 totalNum=$("#max").val();
 		 maxPage=Math.ceil(end/totalNum);//总页数
-		 currentPage=beginNum/totalNum+1;//当前页
+		 currentPage=1;//当前页
 		 beginNum=(currentPage-1)*totalNum;//计算从多少条数据开始
 		 //alert(totalNum);
 		//调用查询
 		 keyWord=$("#searchInput").val();
-			if(keyWord==""||keyWord==null)
+			//if(keyWord==""||keyWord==null)
 				initial();
-			else searchByKey(keyWord);
+			//else searchByKey(keyWord);
 	});
 });
