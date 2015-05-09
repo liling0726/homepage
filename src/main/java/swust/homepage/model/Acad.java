@@ -49,7 +49,7 @@ public class Acad extends Model<Acad> {
 	 * 
 	 */
 	//List<List<Dept>>
-	public Map<String,List<Dept>> academic()
+	/*public Map<String,List<Dept>> academic()
 	{
 		List<List<Dept>> llist=new  ArrayList<List<Dept>>();
 		Map<String,List<Dept>> map=new HashMap<String,List<Dept>>();
@@ -66,9 +66,9 @@ public class Acad extends Model<Acad> {
 		
 		return  map;
 		
-	}
+	}*/
 
-	public boolean delete(int id[])
+	/*public boolean delete(int id[])
 	{
 		boolean flag=true;
 		for(int i=0;i<id.length;i++)
@@ -80,5 +80,5 @@ public class Acad extends Model<Acad> {
 		return flag;
 		
 	
-	}
+	}*/
 }

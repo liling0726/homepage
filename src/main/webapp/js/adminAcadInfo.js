@@ -6,7 +6,7 @@ var end=0,beginNum=0;//控制页数
 // var modal_button=0;//button和模态框的对应数字
 var keyWord;
 
-totalNum=$("#max").val();//search有bug,有关键字就不能翻页！！！
+totalNum=$("#max").val(20);//search有bug,有关键字就不能翻页！！！
 $(function() {
 
 	$("table tr td:nth-child(2)").mouseover(function(e) {
@@ -145,6 +145,7 @@ $(function() {
 							/* 获取模态框按钮id，从而对应弹出模态框按钮id */
 							var str = $(this).attr("id");
 							str = str.charAt(str.length - 1)
+							//var num=str+(currentPage-1)*beginNum+1;
 							var snum = parseInt(str);
 							acadname=$("#deptli"+snum).parents("td").prev().html();
 							$("#deptli" + snum).append(
@@ -196,22 +197,24 @@ $(function() {
 										.find("input:checked")
 										.each(
 												function() {
-													str += $(this)
+													str +="-"+$(this)
 															.parent().children(
-																	"a").html()+"-";
+																	"a").html();
 													$(this).parent().remove();
 													/* alert(deptdelenum[i-1]); */
 												});
 								alert(str);
 
-								$
-										.ajax({
-											type : "get",
-											content : "application/x-www-from-urlencoded;charset=UTF-8",
-											dataType : "json",
-											url : "/adminacadinfo/deleteDept"+str,
-											async : false,
-											success : function(result) {
+								$.ajax({
+									type : "post",
+									content : "application/x-www-from-urlencoded;charset=UTF-8",
+									dataType : "json",
+									url : "/adminacadinfo/deleteDept",
+									data : {
+										deptStr : str,
+									},
+									async : false,
+											success: function(result) {
 												/* alert("删除成功！"); */
 											},
 											error : function(e) {
@@ -245,7 +248,7 @@ $(function() {
 		if(keyWord==null)
 			alert("请输入关键字！");//其实没必要要这个
 		else {
-		$
+		$ 
 				.ajax({
 					type : "post",
 					content : "application/x-www-from-urlencoded;charset=UTF-8",

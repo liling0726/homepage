@@ -17,4 +17,21 @@ public class Dept extends Model<Dept> {
 		String sql="select * from dept where dept_acad_id="+String.valueOf(acadId);
 		return find(sql);
 	}
+	/**
+	 * @author CDK
+	 * @param deptname
+	 * @param id
+	 * @for adminAcadInfo.html
+	 */
+	public void addDept(String deptname,int id)
+	{
+	
+		Dept dept=new Dept();
+		dept.set("dept_name", deptname);
+		dept.set("dept_acad_id", id);
+		dept.save();
+		
+		
+	}
+	
 }
