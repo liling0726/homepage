@@ -11,7 +11,7 @@ public interface LoginService {
 	Optional<Admin> checkAdmin(String adminNum, String pwd);
 	Optional<User> checkTeacher(String userNum, String pwd);
 	
-	static class I {
+	static class IMPL {
 		public static LoginService get() {
 			return new LoginServiceImpl();
 		}

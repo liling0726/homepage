@@ -61,7 +61,7 @@ public class IndexController extends Controller {
 		}
 		
 		// 验证用户身份
-		LoginService s = LoginService.I.get();
+		LoginService s = LoginService.IMPL.get();
 		Optional<User> someTeacher = s.checkTeacher(getPara("admin_num"), getPara("pwd"));
 		if (someTeacher.isPresent())
 			renderJson("result", someTeacher.get());

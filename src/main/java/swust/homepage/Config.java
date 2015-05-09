@@ -6,8 +6,10 @@ import swust.homepage.controller.AdminAdminInfoController;
 import swust.homepage.controller.AdminLoginController;
 import swust.homepage.controller.AdminTeacherInfoController;
 import swust.homepage.controller.IndexController;
+import swust.homepage.controller.TeacherDataController;
 import swust.homepage.model.Acad;
 import swust.homepage.model.Admin;
+import swust.homepage.model.BasicInfo;
 import swust.homepage.model.Data;
 import swust.homepage.model.Dept;
 import swust.homepage.model.News;
@@ -30,7 +32,7 @@ public class Config extends JFinalConfig {
 	public void configConstant(Constants a) {
 		loadPropertyFile("DbInfo.txt");
 		a.setDevMode(true);
-		a.setViewType(ViewType.FREE_MARKER);
+		a.setViewType(ViewType.JSP);
 	}
 
 	@Override
@@ -54,6 +56,7 @@ public class Config extends JFinalConfig {
 		arp.addMapping("data", "data_id", Data.class);
 		arp.addMapping("dept", "dept_id", Dept.class);
 		arp.addMapping("news", "news_id", News.class);
+		arp.addMapping("basic_info", "basic_info_id", BasicInfo.class);
 	}
 
 	@Override
@@ -64,6 +67,7 @@ public class Config extends JFinalConfig {
 		a.add("/adminTeacherInfo", AdminTeacherInfoController.class);
 		a.add("/adminLogin", AdminLoginController.class);
 		a.add("/adminacadinfo", AdminAcadInfoController.class);
+		a.add("/teacherData", TeacherDataController.class); // 老师页面栏目
 	}
 	
 	/**
