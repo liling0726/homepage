@@ -30,6 +30,18 @@ public class Acad extends Model<Acad> {
 		}
 		return Acad.dao.find("select dept_name, acad_name from dept, acad where dept_acad_id = acad_id");
 	}
+	/**
+	 * @author BinJian
+	 * @param key 
+	 * @return
+	 */
+	public List<Acad> findAcadOrDeptByKey(String key){
+		return Acad.dao.find("select acad.acad_name,dept.dept_name"
+				+" from acad,dept where"
+				+ " (acad_name like '%"+key+"%'"
+				+ " or dept.dept_name like '%"+key+"%')"
+				+ " and dept.dept_acad_id = acad.acad_id");
+	}
 	/*
 	 * 
 	 * return List<List>
@@ -37,7 +49,7 @@ public class Acad extends Model<Acad> {
 	 * 
 	 */
 	//List<List<Dept>>
-	public Map<String,List<Dept>> academic()
+	/*public Map<String,List<Dept>> academic()
 	{
 		List<List<Dept>> llist=new  ArrayList<List<Dept>>();
 		Map<String,List<Dept>> map=new HashMap<String,List<Dept>>();
@@ -54,9 +66,9 @@ public class Acad extends Model<Acad> {
 		
 		return  map;
 		
-	}
+	}*/
 
-	public boolean delete(int id[])
+	/*public boolean delete(int id[])
 	{
 		boolean flag=true;
 		for(int i=0;i<id.length;i++)
@@ -67,5 +79,6 @@ public class Acad extends Model<Acad> {
 		
 		return flag;
 		
-	}
+	
+	}*/
 }

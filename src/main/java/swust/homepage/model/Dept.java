@@ -3,6 +3,7 @@ package swust.homepage.model;
 import java.util.List;
 
 import com.jfinal.plugin.activerecord.Model;
+import com.jfinal.plugin.activerecord.Page;
 
 public class Dept extends Model<Dept> {
 	private static final long serialVersionUID = -450036181371802172L;
@@ -16,4 +17,21 @@ public class Dept extends Model<Dept> {
 		String sql="select * from dept where dept_acad_id="+String.valueOf(acadId);
 		return find(sql);
 	}
+	/**
+	 * @author CDK
+	 * @param deptname
+	 * @param id
+	 * @for adminAcadInfo.html
+	 */
+	public void addDept(String deptname,int id)
+	{
+	
+		Dept dept=new Dept();
+		dept.set("dept_name", deptname);
+		dept.set("dept_acad_id", id);
+		dept.save();
+		
+		
+	}
+	
 }
