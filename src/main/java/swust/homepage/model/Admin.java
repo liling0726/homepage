@@ -13,8 +13,8 @@ public class Admin extends Model<Admin> {
 	 * @param pageSize每页的数量
 	 * @return 含有admin表内老师的所有信息的对象集
 	 * */
-	public Page<Admin> adminAdminInfo(int pageNumber, int pageSize) {//学院 -> 老师 -> 专业
-		return paginate(pageNumber, pageSize, "select * ", "from admin");
+	public Page<Admin> adminAdminInfo(int pageNumber, int pageSize) {//学院 -> 老师 -> 专业 -> 姓名 -> 专业名称
+		return paginate(pageNumber, pageSize, "select * ", "from admin , dept where admin_dept_id = dept_id");
 	}
 	
 }
