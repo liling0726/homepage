@@ -6,7 +6,7 @@ var end=0,beginNum=0;//控制页数
 // var modal_button=0;//button和模态框的对应数字
 var keyWord;
 
-totalNum=$("#max").val();
+totalNum=$("#max").val();//search有bug,有关键字就不能翻页！！！
 $(function() {
 
 	$("table tr td:nth-child(2)").mouseover(function(e) {
@@ -53,7 +53,7 @@ $(function() {
 					async : false,
 					success : function(result) {
 						data = result.result;
-						var j = 0;//统一编号变量
+						var j = beginNum;//统一编号变量
 						//用冗余的方法算出从原数据哪里开始遍历，显示
 						end=0;
 						for (var k = 0;k<data.length;k++) {
@@ -242,73 +242,97 @@ $(function() {
 	$("#searchbtn").on("click",
 	function searchByKey(key) {
 		keyWord=$("#searchInput").val();
-		if(keyWord==""||keyWord==null)
-			alert("请输入关键字！");
+		if(keyWord==null)
+			alert("请输入关键字！");//其实没必要要这个
 		else {
 		$
 				.ajax({
 					type : "post",
 					content : "application/x-www-from-urlencoded;charset=UTF-8",
 					dataType : "json",
-					url : "/adminacadinfo/searchByKey",
-					data:{keyWord:keyWord},
+					url : "/adminacadinfo/findAcadOrDept",
+					data:{key:keyWord},
 					async : false,
 					success : function(result) {
 						data = result.result;
-						// 如果一条数据都没有搜到，则弹出一个框。
-						if (data.length == 0) {
-								alert("没有搜素到条目！");
-						} else {
-							//清空,只留表头
-							$("#maintable").html("<tr><th>序号</th><th>学院</th><th colspan=\"2\">系别</th></tr>");
-							var j = 0;//统一编号变量
-							for (var i = 0;i<data.length; i++) {
-								if(i==0||data[i].acad_name!=data[i-1].acad_name)
-									{
-									$("#maintable")
-										.append(
-												"<tr><td>"
-														+ (j + 1)
-														+ "</td><td>"
-														+ data[i].acad_name
-														+ "</td><td><ul id=\"deptli"
-														+ j
-														+ "\"class=\"classInfo\"></ul></td>"
-														+ "<td style=\"width: 100px;\"><div class=\"buttonGroup\"><button id=\"adddeptbtn"
-														+ j
-														+ "\"class=\"btn btn-danger btn-xs\" "
-														+ "data-toggle=\"modal\"data-target=\"#insertModal"
-														+ j
-														+ "\">添加</button>"
-														+ "<button class=\"btn btn-info btn-xs\">删除</button></div></td></tr>"
-										);
-								/* 动态添加模态框，使得模态框按钮id最后一位为数字，此数字与点击弹出模态框的按钮编号相同，从而获得此按钮的id！不容易想到 */
-								$("#modals")
-										.append(
-												"<div class=\"modal fade\" id=\"insertModal"
-														+ j
-														+ "\" tabindex=\"-1\" role=\"dialog\"aria-labelledby=\"myModalLabel\" "
-														+ "aria-hidden=\"true\"><div class=\"modal-dialog modal-sm\"><div class=\"modal-content\"><div class=\"modal-header\">"
-														+ "<button type=\"button\" class=\"close\" data-dismiss=\"modal\"aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>"
-														+ "<h4 class=\"modal-title\" id=\"myModalLabel\">添加系别</h4></div><div class=\"modal-body\"><p>系别："
-														+ "<input type=\"text\" style=\"width: 200px; height: 30px;\"value=\"请输入系名\"></p><div class=\"modal-footer\"><button id=\"addacadbtn"
-														+ j
-														+ "\"type=\"button\" "
-														+ "class=\"btn btn-primary\">添加</button><button id=\"deleteacad\"type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">取消"
-														+ "</button></div></div></div></div>");
-								j=j+1;
-									}
-								$("#deptli" + (j-1)).append(
-											"<li><input type=\"checkbox\">&nbsp;&nbsp;<a>"
-													+ data[i].dept_name
-													+ "</a></li>");
+						data = result.result;
+						var j = beginNum;//统一编号变量
+						//用冗余的方法算出从原数据哪里开始遍历，显示
+						end=0;
+						for (var k = 0;k<data.length;k++) {
+							if(k==0||data[k].acad_name!=data[k-1].acad_name)
+								{
+								end++;
+								if((beginNum+1)==end)break;
 								}
 						}
+						end=0;
+						//清空
+						$("#maintable").html("<tr><th>序号</th><th>学院</th><th colspan=\"2\">系别</th></tr>");
+						for (var i = k;i<data.length;i++) {
+							if(end >= totalNum&&data[i].acad_name!=data[i-1].acad_name)break;//放在下面个if里会有莫名其妙的bug
+							if(i==k||data[i].acad_name!=data[i-1].acad_name)
+								{
+								end++;
+								$("#maintable")
+									.append(
+											"<tr><td>"
+													+ (j + 1)
+													+ "</td><td>"
+													+ data[i].acad_name
+													+ "</td><td><ul id=\"deptli"
+													+ j
+													+ "\"class=\"classInfo\"></ul></td>"
+													+ "<td style=\"width: 100px;\"><div class=\"buttonGroup\"><button id=\"adddeptbtn"
+													+ j
+													+ "\"class=\"btn btn-danger btn-xs\" "
+													+ "data-toggle=\"modal\"data-target=\"#insertModal"
+													+ j
+													+ "\">添加</button>"
+													+ "<button class=\"btn btn-info btn-xs\">删除</button></div></td></tr>"
+									);
+							/* 动态添加模态框，使得模态框按钮id最后一位为数字，此数字与点击弹出模态框的按钮编号相同，从而获得此按钮的id！不容易想到 */
+							$("#modals")
+									.append(
+											"<div class=\"modal fade\" id=\"insertModal"
+													+ j
+													+ "\" tabindex=\"-1\" role=\"dialog\"aria-labelledby=\"myModalLabel\" "
+													+ "aria-hidden=\"true\"><div class=\"modal-dialog modal-sm\"><div class=\"modal-content\"><div class=\"modal-header\">"
+													+ "<button type=\"button\" class=\"close\" data-dismiss=\"modal\"aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>"
+													+ "<h4 class=\"modal-title\" id=\"myModalLabel\">添加系别</h4></div><div class=\"modal-body\"><p>系别："
+													+ "<input type=\"text\" style=\"width: 200px; height: 30px;\"value=\"请输入系名\"></p><div class=\"modal-footer\"><button id=\"addacadbtn"
+													+ j
+													+ "\"type=\"button\" "
+													+ "class=\"btn btn-primary\">添加</button><button id=\"deleteacad\"type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">取消"
+													+ "</button></div></div></div></div>");
+							j=j+1;
+								}
+							$("#deptli" + (j-1)).append(
+										"<li><input type=\"checkbox\">&nbsp;&nbsp;<a>"
+												+ data[i].dept_name
+												+ "</a></li>");
+							
+							}
 					},
 					error : function(e) {
 						console.log("错误：" + e.message);
 					}
 				});
+		
+		//算总页数
+		end=0;
+		for (var i = 0;i<data.length;i++) {
+			if(i==0||data[i].acad_name!=data[i-1].acad_name)
+				{
+				end++;
+				}
+		}
+		maxPage=Math.ceil(end/totalNum);//总页数
+		currentPage=beginNum/totalNum+1;//当前页
+		
+		//显示当前页等信息
+		$("#currentPage").html(currentPage);
+		$("#maxPage").html(maxPage);
 		}
 	}
 	);
@@ -335,7 +359,7 @@ $(function() {
 			keyWord=$("#searchInput").val();
 			if(keyWord==""||keyWord==null)
 			initial();
-			else searchByKey(keyWord);
+			else searchByKey(keyWord);//一般搜索后只有一页，点什么也到不了这里。否则就会显示不出来，这个bug以后再改！！！
 		}
 
 	});
@@ -395,7 +419,7 @@ $(function() {
 	});
 	//点击末页，显示最后页数据
 	$("#lastPage").bind("click",function(){
-		if(currentPage==totalNum)
+		if(currentPage==maxPage)
 			{
 			alert("已经是最后页了");
 			return false;
@@ -416,7 +440,6 @@ $(function() {
 		 maxPage=Math.ceil(end/totalNum);//总页数
 		 currentPage=beginNum/totalNum+1;//当前页
 		 beginNum=(currentPage-1)*totalNum;//计算从多少条数据开始
-		 alert("beginNum="+beginNum+"\n"+"totalNum"+totalNum);
 		 //alert(totalNum);
 		//调用查询
 		 keyWord=$("#searchInput").val();

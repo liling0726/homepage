@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import swust.homepage.model.Acad;
+import swust.homepage.model.Dept;
+import swust.homepage.model.User;
 
 import com.jfinal.core.Controller;
 /**
@@ -17,8 +19,9 @@ public class AdminAcadInfoController extends Controller{
 	public void index()
 	{
 		renderJson("result",Acad.dao.acadInfoMore());
-		/*renderJson("result",Acad.dao.academic());*/
-		/*render("/html/adminAcadInfo.html");*/
+	}
+	public void findAcadOrDept(){
+		renderJson("result",Acad.dao.findAcadOrDeptByKey(getPara("key")));
 	}
 
 }
