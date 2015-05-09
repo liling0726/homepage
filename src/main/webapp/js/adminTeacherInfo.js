@@ -35,13 +35,14 @@ $(function(){
 		var userNum=$("#userNum").val(),
 		userName=$("#userName").val(),
 		userDeptId=$("#userDeptName").val(),
-		isSetAdmin=$("input[name=admin]:checked").val();//还未实现
+		isSetAdmin=$("input[name=admin]:checked").val();
+		//alert(isSetAdmin);
 		$.ajax({
 			type:"post",
 			content:"application/x-www-from-urlencoded;charset=UTF-8",
 			dataType:"json",
 			url:"/adminTeacherInfo/save",
-			data:"user.user_num="+userNum+"&user.user_name="+userName+"&user.user_dept_id="+userDeptId,
+			data:"user.user_num="+userNum+"&user.user_name="+userName+"&user.user_dept_id="+userDeptId+"&user.user_is_admin="+isSetAdmin,
 			async:false,
 			success:function(result){
 				alert(result.result);
@@ -111,6 +112,7 @@ $(function(){
 			var userId=$("input[name='checkboxGroup']:checked").val();
 			for(var i=0;i<userData.list.length;i++)
 				{
+				
 				if(userId==userData.list[i].user_id)
 					{
 					
@@ -135,13 +137,13 @@ $(function(){
 		var userNum=$("#upUserNum").val();
 		var userName=$("#upUserName").val();
 		var userDeptId=$("#upUserDeptName").val(),
-		isSetAdmin=$("input[name=admin]:checked").val();//未实现
+		isSetAdmin=$("input[name=admin]:checked").val();
 		$.ajax({
 			type:"post",
 			content:"application/x-www-from-urlencoded;charset=UTF-8",
 			dataType:"json",
 			url:"/adminTeacherInfo/update",
-			data:"user.user_id="+userId+"&user.user_num="+userNum+"&user.user_name="+userName+"&user.user_dept_id="+userDeptId,
+			data:"user.user_id="+userId+"&user.user_num="+userNum+"&user.user_name="+userName+"&user.user_dept_id="+userDeptId+"&user.user_is_admin="+isSetAdmin,
 			async:false,
 			success:function(result){
 				alert(result.result);
@@ -297,8 +299,10 @@ function initial(){
 	    			 +userData.list[i].user_num+"</td><td>"
 	    		     +userData.list[i].user_name+"</td><td>"
 	    		     +userData.list[i].acad_name+"</td><td>"
-	    		     +userData.list[i].dept_name+"</td>"
-	    		      +"<td><button class='btn btn-default'>是</td></tr>"
+	    		     +userData.list[i].dept_name+"</td>";
+	    		     if(userData.list[i].user_is_admin)
+	    		    	 html+="<td><button class='btn btn-default' onclick='transformAdmin(this)' value='"+userData.list[i].user_id+"'>否</td></tr>";
+	    		     else html+="<td><button class='btn btn-default' onclick='transformAdmin(this)'  value='"+userData.list[i].user_id+"'>是</td></tr>";
 	    		      
 	    		 }
 	    	 $("#teacherShow").html(html);
@@ -324,7 +328,7 @@ $.ajax({
      var data=result.deptList;
      for(var i=0;i<data.length;i++)
     	 {
-    	 deptInfo+="<option id='"+data[i].dept_id+"'>"+data[i].dept_name+"</option>"
+    	 deptInfo+="<option value='"+data[i].dept_id+"'>"+data[i].dept_name+"</option>"
     	 }
      obj.html(deptInfo);//添加模态框中根据学院Id显示院系
 },
@@ -358,8 +362,10 @@ function searchByKey(key){
 	    			 +"<td>"+data.list[i].user_num+"</td>"
 	    		       +"<td>"+data.list[i].user_name+"</td>"
 	    		       +"<td>"+data.list[i].acad_name+"</td>"
-	    		       +"<td>"+data.list[i].dept_name+"</td>"
-	    		       +"<td><button class='btn btn-default'>是</td></tr>"
+	    		       +"<td>"+data.list[i].dept_name+"</td>";
+	    		       if(data.list[i].user_is_admin)
+		    		    	 html+="<td><button class='btn btn-default' onclick='transformAdmin(this)' value='"+data.list[i].user_id+"'>否</td></tr>";
+		    		     else html+="<td><button class='btn btn-default' onclick='transformAdmin(this)' value='"+data.list[i].user_id+"'>是</td></tr>";
 	    		      
 	    		 }
 	    	 $("#teacherShow").html(html);
@@ -367,4 +373,30 @@ function searchByKey(key){
 	    	 $("#totalPage").html(data.totalPage);
 	    	}
 	    });
+}
+function transformAdmin(obj){
+	var isTranformAdmin=0,
+	transformAdminId=$(obj).val();
+	//alert(transformAdminId);
+	if($(obj).text()=="是")
+		{
+		isTranformAdmin=1;
+		
+		$(obj).text("否")
+		}
+	else if($(obj).text()=="否")
+		{
+		$(obj).text("是")
+		}
+	$.ajax({
+		type:"post",
+		content:"application/x-www-form-urlencoded;charset=UTF-8",
+	    dataType:"json",
+	    url:"/adminTeacherInfo/teacherBeAdmin",
+	    data:"user.user_id="+transformAdminId+"&user.user_is_admin="+isTranformAdmin,
+	    async:"false",
+	    success:function(result){
+	    	alert(result.result);
+	    }
+	});
 }
