@@ -12,6 +12,7 @@ import swust.homepage.model.Admin;
 import swust.homepage.model.BasicInfo;
 import swust.homepage.model.Data;
 import swust.homepage.model.Dept;
+import swust.homepage.model.Message;
 import swust.homepage.model.News;
 import swust.homepage.model.User;
 
@@ -57,6 +58,7 @@ public class Config extends JFinalConfig {
 		arp.addMapping("dept", "dept_id", Dept.class);
 		arp.addMapping("news", "news_id", News.class);
 		arp.addMapping("basic_info", "basic_info_id", BasicInfo.class);
+		arp.addMapping("message", "message_id", Message.class);
 	}
 
 	@Override

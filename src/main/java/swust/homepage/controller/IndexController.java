@@ -63,8 +63,11 @@ public class IndexController extends Controller {
 		// 验证用户身份
 		LoginService s = LoginService.IMPL.get();
 		Optional<User> someTeacher = s.checkTeacher(getPara("admin_num"), getPara("pwd"));
-		if (someTeacher.isPresent())
-			renderJson("result", someTeacher.get());
+		if (someTeacher.isPresent()) {
+			User user = someTeacher.get();
+			setAttr("user_id", user.get("user_id")); // 把老师ID放进session中
+			renderJson("result", user);
+		}
 		else
 			renderJson("result", "第一次登录");
 	}
