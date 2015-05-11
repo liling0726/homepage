@@ -16,7 +16,7 @@ public class Acad extends Model<Acad> {
 	 * @return 含有acad表内所有学院的对象集
 	 * */
 	public List<Acad> acad(){
-		return Acad.dao.find("select acad_name from acad");
+		return Acad.dao.find("select * from acad");
 	}
 	
 	/**
