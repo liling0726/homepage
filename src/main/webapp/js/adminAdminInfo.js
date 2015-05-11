@@ -1,5 +1,5 @@
 /*
- * @made by Chengzeng；
+ * @made by 程曾；
  */
 var adminData, // 初始化的时候所有管理员信息
 currentPage, // 当前页
