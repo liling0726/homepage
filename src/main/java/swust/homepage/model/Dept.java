@@ -33,5 +33,15 @@ public class Dept extends Model<Dept> {
 		
 		
 	}
-	
+	/**
+	 * 获取专业的id对应的学院的id
+	 * @author 刘杰
+	 * @param deptId 专业id
+	 * @return 对应的学院的id
+	 */
+	public int getAcadIdByDeptId(int deptId){
+		Dept dept=findById(deptId);
+		int acadId=dept.getInt("dept_id");
+		return acadId;
+	}
 }
