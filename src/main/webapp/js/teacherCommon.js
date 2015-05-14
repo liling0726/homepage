@@ -25,16 +25,16 @@ $(function(){
 					+' </div><!-- /.navbar-collapse -->'
 					+' </div><!-- /.container-fluid -->'
 					+'</nav>',
-					footerHtml:'<p>西南科技大学@数据与知识工程</p>',
-					leftColumnHtml:'<div class="panel panel-default" style="font-weight:bold;">'
+					footerHtml:'<p>西南科技大学@数据与知识工程</p>'
+					/*leftColumnHtml:'<div class="panel panel-default" style="font-weight:bold;">'
 						+'<div class="panel-heading"><a href="#">首页</a></div>'
 						+'<div class="panel-heading"><a href="teacherColumnManage.html">栏目管理</a></div>'
 						+'<div class="panel-heading"><a href="teacherInfoManage.html">信息管理</a></div>'
 						+'<div class="panel-heading"><a href="teacherNewsManage.html">新闻管理</a></div>'
-						+'</div>'
+						+'</div>'*/
 
 		};
-		$("#leftColumn").html(adminCommon.leftColumnHtml);
+	/*	$("#leftColumn").html(adminCommon.leftColumnHtml);*/
 		$("#top").html(adminCommon.navHtml);
 		$("#footer").html(adminCommon.footerHtml);
 
