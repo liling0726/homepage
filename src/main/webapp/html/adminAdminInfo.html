@@ -9,7 +9,7 @@
 <script type="text/javascript" src="../js/adminAdminInfo.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="../css/common.css" />
-<title>院系详细信息</title>
+<title>管理员详细信息</title>
 </head>
 <body>
 	<div id="top"></div>
@@ -39,10 +39,10 @@
 				<thead>
 					<tr>
 						<th>全选<input type="checkbox" id="selectAll" /></th>
+						<th>工号</th>
 						<th>姓名</th>
 						<th>学院</th>
 						<th>系别 / 团队</th>
-						
 					</tr>
 					</thead>
 					<tbody id="adminShow">
@@ -61,7 +61,7 @@
 						<button type="button" class="btn" id="totalPage"></button>
 						<button type="button" class="btn">页</button>
 					</div>
-					<div class="btn-group" role="group" aria-label="..."> 
+					<div class="btn-group" role="group" aria-label="...">
 						<button type="button" class="btn" id="pagebackward">上一页</button>
 						<button type="button" class="btn" id="pageforward">下一页</button>
 						<button type="button" class="btn" id="firstPage">首页</button>
@@ -125,7 +125,7 @@
 							<option value="6">制造学院</option>
 						</select>
 					</p>
-			
+		
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary" id="add">添加</button>
@@ -149,29 +149,29 @@
 				</div>
 				<div class="modal-body">
 					<p>
-						工 号：<input type="text" style="width: 300px; height: 30px;" id="upadminNum">
+						工 号：<input type="text" style="width: 300px; height: 30px;" id="upAdminNum">
 					</p>
 					<p>
-						姓 名：<input type="text" style="width: 300px; height: 30px;" id="upadminName">
+						姓 名：<input type="text" style="width: 300px; height: 30px;" id="upAdminName">
 					</p>
 					<p>
-						学 院：<select style="width: auto; height: 30px;" id="upadminAcadName">
+						学 院：<select style="width: auto; height: 30px;" id="upAdminAcadName">
 							<option value="9">计算机科学与技术</option>
 							<option value="8">信息学院</option>
 							<option value="6">制造学院</option>
 						</select>
 					</p>
 					<p>
-						系别/团队：<select style="width: auto; height: 30px;" id="upadminDeptName">
+						系别/团队：<select style="width: auto; height: 30px;" id="upAdminDeptName">
 							<option value="9">计算机科学与技术</option>
 							<option value="8">信息学院</option>
 							<option value="6">制造学院</option>
 						</select>
 					</p>
-					
+			
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" id="upadminInfo">保存</button>
+					<button type="button" class="btn btn-primary" id="upAdminInfo">保存</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
 
 				</div>
