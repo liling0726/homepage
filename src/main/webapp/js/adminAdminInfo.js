@@ -80,8 +80,10 @@ $(function() {
 			$.ajax({
 				type : "post",
 				content : "application/x-www-from-urlencoded;charset=UTF-8",
-				url : "/adminAdminInfo/delete/" + str,
+				url : "/adminAdminInfo/delete",
 				dataType : "json",
+				data:{
+					ID:str				},
 				success : function(result) {
 					alert(result.result);
 					location.reload();
@@ -234,12 +236,13 @@ $(function() {
 				searchByKey(keyWord);
 		}
 	});
+	
 	// 每页显示页数
-	// 不可用，admin_id存在问题
 	$("#max").bind("change", function() {
 		maxPage = $("#max").val();
 		// alert(maxPage);
 		// 调用查询
+		//alert(keyWord);
 		if (keyWord == "" || keyWord == null)
 			initial();
 		else
@@ -273,6 +276,7 @@ $(function() {
  */
 function initial() {
 	$("#selectAll").removeAttr('checked');
+	//alert(maxPage);
 	// alert(currentPage);
 	$
 			.ajax({
@@ -318,7 +322,7 @@ function selectDeptByAcadId(obj, acadId) {
 		type : "post",
 		content : "application/x-www-form-urlencoded;charset=UTF-8",
 		dataType : "json",
-		url : "/adminTeacherInfo/findDeptByAcadId/" + acadId,
+		url : "/adminAdminInfo/findDeptByAcadId/" + acadId,
 		async : "false",
 		success : function(result) {
 			var data = result.deptList;

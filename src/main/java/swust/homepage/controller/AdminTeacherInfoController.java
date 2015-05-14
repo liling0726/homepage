@@ -31,8 +31,6 @@ public class AdminTeacherInfoController extends Controller {
 			admin.set("admin_num", user.get("user_num"));
 			admin.set("admin_name", user.get("user_name"));
 			admin.set("admin_dept_id", user.get("user_dept_id"));
-			admin.set("admin_acad_id",
-					Dept.dao.getAcadIdByDeptId(user.getInt("user_dept_id")));
 			if (!admin.save()) {
 				renderJson("result", "添加管理员失败");
 			}
@@ -45,12 +43,11 @@ public class AdminTeacherInfoController extends Controller {
 	 */
 	public void update() {
 		User user = getModel(User.class);
-		User oldUser = User.dao.findById(user.getInt("user_id"));
+		User oldUser=User.dao.findById(user.getInt("user_id"));
 		List<Admin> admins = Admin.dao
 				.find("select * from admin where admin_num="
 						+ oldUser.getStr("user_num"));
-		/*
-		 * 利用用户的id得到以前的数据user_num 
+		/*利用用户的id得到以前的数据user_num
 		 * 据此num得到管理员
 		 * 避免因改变num而造成的admin表内新建管理员
 		 */
@@ -62,16 +59,12 @@ public class AdminTeacherInfoController extends Controller {
 		if (admins != null && admins.size() > 0) {
 			admin = admins.get(0);
 		}
-
 		if ((boolean) (user.get("user_is_admin"))) {// 修改管理员（存在），新建管理员（不存在）
 			if (admin == null) {
 				admin = new Admin();
 				admin.set("admin_num", user.get("user_num"));
 				admin.set("admin_name", user.get("user_name"));
 				admin.set("admin_dept_id", user.get("user_dept_id"));
-
-				admin.set("admin_acad_id",
-						Dept.dao.getAcadIdByDeptId(user.getInt("user_dept_id")));
 				if (!admin.save()) {
 					renderJson("result", "修改失败");
 				}
@@ -79,8 +72,6 @@ public class AdminTeacherInfoController extends Controller {
 				admin.set("admin_num", user.get("user_num"));
 				admin.set("admin_name", user.get("user_name"));
 				admin.set("admin_dept_id", user.get("user_dept_id"));
-				admin.set("admin_acad_id",
-						Dept.dao.getAcadIdByDeptId(user.getInt("user_dept_id")));
 				if (!admin.update()) {
 					renderJson("result", "修改失败");
 				}
