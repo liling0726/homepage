@@ -1,5 +1,5 @@
 /*
- * @made by 程曾；因为后台数据还未添加，所以还未完善（查找，增减）
+ * @made by Chengzeng；
  */
 var adminData, // 初始化的时候所有管理员信息
 currentPage, // 当前页
@@ -29,33 +29,39 @@ $(function() {
 		}
 	});
 	/*
-	 * 功能：添加 后台参数:admin.admin_num,admin.admin_name,(admin.admin_dept_id)
+	 * 功能：添加 后台参数:admin.admin_num,admin.admin_name,admin.admin_dept_id
 	 */
 	$("#add")
-	.click(
-			function() {
-				var adminNum = $("#adminNum").val(), adminName = $(
-				"#adminName").val(), adminDeptId = $(
-				"#adminDeptName").val(), isSetAdmin = $(
-				"input[name=admin]:checked").val();// 还未实现
-				$.ajax({
-					type : "post",
-					content : "application/x-www-from-urlencoded;charset=UTF-8",
-					dataType : "json",
-					url : "/adminAdminInfo/save",
-					data : "admin.admin_num=" + adminNum + "&admin.admin_name=" + adminName,
-					async : false,
-					success : function(result) {
-						alert(result.result);
-						window.location.reload();
-					},
-					error : function(e) {
-						console.log("错误：" + e.message);
-					}
-				});
-			});
+			.click(
+					function() {
+						var adminNum = $("#adminNum").val(), 
+						adminName = $("#adminName").val(),
+						adminDeptId = $("#adminDeptName").val();
+						adminAcadId = $("#adminAcadName").val();
+						// alert(isSetAdmin);
+						$
+								.ajax({
+									type : "post",
+									content : "application/x-www-from-urlencoded;charset=UTF-8",
+									dataType : "json",
+									url : "/adminAdminInfo/save",
+									data : "admin.admin_num=" + adminNum
+											+ "&admin.admin_name=" + adminName
+											+ "&admin.admin_dept_id="+ adminDeptId
+											+ "&admin.admin_acad_id="+ adminAcadId,
+									async : false,
+									success : function(result) {
+										alert(result.result);
+										window.location.reload();
+									},
+									error : function(e) {
+										console.log("错误：" + e.message);
+									}
+								});
+					});
 	/*
 	 * 功能：删除 后台参数：所要删除的管理员Id 描述:可以删除多条，以字符串的形式返给后台，以'-'连接
+	 * 不可用，admin_id存在问题。
 	 */
 	$("#adminDeleteByIds").bind("click", function() {
 		var length = $("input[name='checkboxGroup']:checked").length;
@@ -74,8 +80,10 @@ $(function() {
 			$.ajax({
 				type : "post",
 				content : "application/x-www-from-urlencoded;charset=UTF-8",
-				url : "/adminAdminInfo/delete/" + str,
+				url : "/adminAdminInfo/delete",
 				dataType : "json",
+				data:{
+					ID:str				},
 				success : function(result) {
 					alert(result.result);
 					location.reload();
@@ -103,6 +111,7 @@ $(function() {
 		} else {
 			var adminId = $("input[name='checkboxGroup']:checked").val();
 			for (var i = 0; i < adminData.list.length; i++) {
+
 				if (adminId == adminData.list[i].admin_id) {
 
 					$("#upAdminNum").val(adminData.list[i].admin_num);
@@ -115,40 +124,38 @@ $(function() {
 	});
 	/*
 	 * 功能：修改 后台参数：需要修改的管理员Id-->admin.admin_id, 管理员名-->admin.admin_Name,
-	 * 院系Id-->admin.admin_dept_id, 是否为管理员-->,(还未写)
-	 * 
+	
 	 */
 	$("#upAdminInfo")
-	.click(
-			function() {
-				var adminId = $("input[name='checkboxGroup']:checked")
-				.val();
-				var adminNum = $("#upAdminNum").val();
-				var adminName = $("#upAdminName").val();
-				var adminDeptId = $("#upAdminDeptName").val(), isSetAdmin = $(
-				"input[name=admin]:checked").val();// 未实现
-				$
-				.ajax({
-					type : "post",
-					content : "application/x-www-from-urlencoded;charset=UTF-8",
-					dataType : "json",
-					url : "/adminAdminInfo/update",
-					data : "admin.admin_id=" + adminId
-					+ "&admin.admin_num=" + adminNum
-					+ "&admin.admin_name=" + adminName
-					+ "&admin.admin_dept_id="
-					+ adminDeptId,
-					async : false,
-					success : function(result) {
-						alert(result.result);
-						window.location.reload();
-					},
-					error : function(e) {
-						console.log("错误：" + e.message);
-					}
-				});
+			.click(
+					function() {
+						var adminId = $("input[name='checkboxGroup']:checked")
+								.val();
+						var adminNum = $("#upAdminNum").val();
+						var adminName = $("#upAdminName").val();
+						var adminDeptId = $("#upAdminDeptName").val();
+						$
+								.ajax({
+									type : "post",
+									content : "application/x-www-from-urlencoded;charset=UTF-8",
+									dataType : "json",
+									url : "/adminAdminInfo/update",
+									data : "admin.admin_id=" + adminId
+											+ "&admin.admin_num=" + adminNum
+											+ "&admin.admin_name=" + adminName
+											+ "&admin.admin_dept_id="+ adminDeptId,
+											
+									async : false,
+									success : function(result) {
+										alert(result.result);
+										window.location.reload();
+									},
+									error : function(e) {
+										console.log("错误：" + e.message);
+									}
+								});
 
-			});
+					});
 	// 跳转
 	$("#goto").bind("click", function() {
 		var gotopage = $("#gotoPage").val();
@@ -229,11 +236,13 @@ $(function() {
 				searchByKey(keyWord);
 		}
 	});
+	
 	// 每页显示页数
 	$("#max").bind("change", function() {
 		maxPage = $("#max").val();
 		// alert(maxPage);
 		// 调用查询
+		//alert(keyWord);
 		if (keyWord == "" || keyWord == null)
 			initial();
 		else
@@ -267,38 +276,46 @@ $(function() {
  */
 function initial() {
 	$("#selectAll").removeAttr('checked');
+	//alert(maxPage);
 	// alert(currentPage);
 	$
-	.ajax({
-		type : "post",
-		content : "application/x-www-form-urlencoded;charset=UTF-8",
-		dataType : "json",
-		url : "/adminAdminInfo/" + currentPage + "-" + maxPage,
-		async : "false",
-		success : function(result) {
-			var html = "";
-			adminData = result.adminAdminInfo;
-			var total = adminData.totalRow;
-			totalNum = adminData.totalPage
-			for (var i = 0; i < adminData.list.length; i++) {
-				html += "<tr><td><input type='checkbox' name='checkboxGroup' value='"
-					+ adminData.list[i].admin_id
-					+ "' name='groupCheckbox'></td>"
-					+ "<td>"
-					+ adminData.list[i].admin_name + "</td>"
+			.ajax({
+				type : "post",
+				content : "application/x-www-form-urlencoded;charset=UTF-8",
+				dataType : "json",
+				url : "/adminAdminInfo/" + currentPage + "-" + maxPage,
+				async : "false",
+				success : function(result) {
+					var html = "";
+					adminData = result.adminAdminInfo;
+					var total = adminData.totalRow;
+					totalNum = adminData.totalPage
+					for (var i = 0; i < adminData.list.length; i++) {
+						html += "<tr><td><input type='checkbox' name='checkboxGroup' value='"
+								+ adminData.list[i].admin_id
+								+ "' name='groupCheckbox'></td><td>"
+								+ adminData.list[i].admin_num
+								+ "</td><td>"
+								+ adminData.list[i].admin_name
+								+ "</td><td>"
+								+ adminData.list[i].acad_name
+								+ "</td><td>"
+								+ adminData.list[i].dept_name + "</td>";
+						
 
-			}
-			$("#teacherShow").html(html);
-			$("#currentPage").html(adminData.pageNumber);
-			$("#totalPage").html(totalNum);
-		},
-		error : function(e) {
-			console.log("错误：" + e);
-		}
+					}
+					$("#adminShow").html(html);
+					$("#currentPage").html(adminData.pageNumber);
+					$("#totalPage").html(totalNum);
+				},
+				error : function(e) {
+					console.log("错误：" + e);
+				}
 
-	});
+			});
 }
-//根据学院Id查找相应专业
+// 根据学院Id查找相应专业
+// 后台未写acadId，故引用老师管理页面的地址：url : "/adminTeacherInfo"
 function selectDeptByAcadId(obj, acadId) {
 	var deptInfo = "";
 	$.ajax({
@@ -309,9 +326,10 @@ function selectDeptByAcadId(obj, acadId) {
 		async : "false",
 		success : function(result) {
 			var data = result.deptList;
-			for (var i = 0; i < data.length; i++) {
-				deptInfo += "<option id='" + data[i].dept_id + "'>"
-				+ data[i].dept_name + "</option>"
+			for (var i = 0; i < data.length; i++)
+			{
+				deptInfo += "<option value='" + data[i].dept_id + "'>"
+						+ data[i].dept_name + "</option>"
 			}
 			obj.html(deptInfo);// 添加模态框中根据学院Id显示院系
 		},
@@ -321,34 +339,48 @@ function selectDeptByAcadId(obj, acadId) {
 	});
 
 }
-//根据关键字查询
+// 根据关键字查询
+// 后台无key传递
 function searchByKey(key) {
 	$
-	.ajax({
-		type : "post",
-		content : "application/x-www-form-urlencoded;charset=UTF-8",
-		dataType : "json",
-		url : "/adminAdminInfo/findadminByKey",
-		async : "false",
-		data : {
-			key : key,
-			pageSize : maxPage,
-			pageNumber : currentPage,
-		},
+			.ajax({
+				type : "post",
+				content : "application/x-www-form-urlencoded;charset=UTF-8",
+				dataType : "json",
+				url : "/adminAdminInfo/findAdminByKey",
+				async : "false",
+				data : {
+					key : key,
+					pageSize : maxPage,
+					pageNumber : currentPage,
+				},
 
-		success : function(result) {
-			var html = "";
-			var data = result.keyadminAdminInfo;
-			totalNum = data.totalPage
-			for (var i = 0; i < data.list.length; i++) {
-				html+="<tr><td><input type='checkbox' name='checkboxGroup' value='"+data.list[i].admin_id+"' name='groupCheckbox'></td>"
-
-				+"<td>"+data.list[i].admin_name+"</td>"
-
-			}
-			$("#teacherShow").html(html);
-			$("#currentPage").html(data.pageNumber);
-			$("#totalPage").html(data.totalPage);
-		}
-	});
+				success : function(result) {
+					var html = "";
+					var data = result.keyAdminAdminPage;
+					totalNum = data.totalPage
+					for (var i = 0; i < data.list.length; i++)
+					{
+						html += "<tr><td><input type='checkbox' name='checkboxGroup' value='"
+								+ data.list[i].admin_id
+								+ "' name='groupCheckbox'></td>"
+								+ "<td>"
+								+ data.list[i].admin_num
+								+ "</td>"
+								+ "<td>"
+								+ data.list[i].admin_name
+								+ "</td>"
+								+ "<td>"
+								+ data.list[i].acad_name
+								+ "</td>"
+								+ "<td>"
+								+ data.list[i].dept_name 
+								+ "</td>";
+					
+					}
+					$("#adminShow").html(html);
+					$("#currentPage").html(data.pageNumber);
+					$("#totalPage").html(data.totalPage);
+				}
+			});
 }
