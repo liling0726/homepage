@@ -1,7 +1,9 @@
 package swust.homepage.controller;
 
 import com.jfinal.core.Controller;
+
 import swust.homepage.model.Admin;
+import swust.homepage.model.User;
 
 
 /**
@@ -9,8 +11,8 @@ import swust.homepage.model.Admin;
  */
 public class AdminAdminInfoController extends Controller{
 
-	public void index() {
-		renderJson("adminAdminInfo", Admin.dao.adminAdminInfo(getParaToInt(0, 1), 10));
+	public void index() {//若给定值，pageNumber/pageSize为给定的值，否则为默认值即后者参数
+		renderJson("adminAdminInfo", Admin.dao.adminAdminInfo(getParaToInt(0, 1), getParaToInt(1, 10)));
 	}
 
 	//添加
@@ -51,5 +53,10 @@ public class AdminAdminInfoController extends Controller{
     			renderJson("result", "删除失败");
     		}    	
         }
+	}
+	
+	//根据关键字key查询
+	public void findAdminByKey() {
+		renderJson("keyAdminPage", Admin.dao.paginateByKey(getPara("key"), getParaToInt("pageNumber"), getParaToInt("pageSize")));
 	}
 }
