@@ -14,13 +14,13 @@
 <div class="container-fluid">
 <ol class="breadcrumb">
 		<li>当前页面</li>
-		<li><a href="#">首页</a></li>
-		<li><a href="#">新闻管理</a></li>
+		<li><a href="teacherIndex.html">首页</a></li>
+		<li><a href="teacherNewsManage.html">新闻管理</a></li>
 	</ol>
 	<div style="margin-bottom:5px;">
 <input type="text" placeholder="请输入关键字" style="height:34px;width:200px;">
 <button class="btn btn-info">查询</button>
-<button class="btn btn-warning" data-toggle="modal" data-target="#insertModal">添加</button>
+<a href="teacherNewsEdit.html"><button class="btn btn-warning">添加</button></a>
 <button class="btn btn-danger">删除</button>
 </div>
 <table class="table table-bordered table-hover">
@@ -37,25 +37,25 @@
 <tr>
 <td><input type="checkbox"></td>
 <td>1</td>
-<td><a href="#">深度：浅谈中国航母对世界的影响 </a></td>
+<td><a href="teacherNewsEdit.html">深度：浅谈中国航母对世界的影响 </a></td>
 <td>学术研究</td>
 <td>2015-3-4</td>
 <td><a href="#"><span class="glyphicon glyphicon-ok"></span></a></td>
-<td><a href="#"><span class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#updateModal"></span></a></td>
+<td><a href="teacherNewsEdit.html"><span class="glyphicon glyphicon-pencil"></span></a></td>
 </tr>
 <tr>
 <td><input type="checkbox"></td>
 <td>2</td>
-<td><a href="#">深度：浅谈中国航母对世界的影响 </a></td>
+<td><a href="teacherNewsEdit.html">深度：浅谈中国航母对世界的影响 </a></td>
 <td>学术研究</td>
 <td>2015-3-4</td>
 <td><a href="#"><span class="glyphicon glyphicon-ok"></span></a></td>
-<td><a href="#"><span class="glyphicon glyphicon-pencil"></span></a></td>
+<td><a href="teacherNewsEdit.html"><span class="glyphicon glyphicon-pencil"></span></a></td>
 </tr>
 <tr>
 <td><input type="checkbox"></td>
 <td>3</td>
-<td><a href="#">深度：浅谈中国航母对世界的影响 </a></td>
+<td><a href="teacherNewsEdit.html">深度：浅谈中国航母对世界的影响 </a></td>
 <td>学术研究</td>
 <td>2015-3-4</td>
 <td><a href="#"><span class="glyphicon glyphicon-ok"></span></a></td>
@@ -64,11 +64,11 @@
 <tr>
 <td><input type="checkbox"></td>
 <td>4</td>
-<td><a href="#">深度：浅谈中国航母对世界的影响 </a></td>
+<td><a href="teacherNewsEdit.html">深度：浅谈中国航母对世界的影响 </a></td>
 <td>学术研究</td>
 <td>2015-3-4</td>
 <td><a href="#"><span class="glyphicon glyphicon-ok"></span></a></td>
-<td><a href="#"><span class="glyphicon glyphicon-pencil"></span></a></td>
+<td><a href="teacherNewsEdit.html"><span class="glyphicon glyphicon-pencil"></span></a></td>
 </tr>
 </tbody>
 </table>
@@ -114,7 +114,7 @@
 </div>
 </div>
 <div id="footer"></div>
-<!--添加模态框  -->
+<!-- 
 	<div class="modal fade" id="insertModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -159,52 +159,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<!--修改模态框  -->
-	<div class="modal fade" id="updateModal" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel">修改新闻</h4>
-				</div>
-				<div class="modal-body">
-					<p>
-						<label>新闻题目：</label><input type="text" style="width: 300px; height: 30px;"
-							>
-					</p>
-					<p>
-						<label>链  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 接：</label><input type="text" style="width: 300px; height: 30px;">
+	</div> -->
 	
-					</p>
-					<p>
-						<label>栏 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目：</label><select style="width: 300px; height: 30px;" >
-							<option>个人简介</option>
-							<option>个人简介</option>
-							<option>个人简介</option>
-							<option>个人简介</option>
-						</select>
-					</p>
-					<p>
-						<label>时&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;间：</label><input type="text" style="width: 300px; height: 30px;">
-	
-					</p>
-					<p>
-					<label>是否置顶：</label><input type="radio" name="column">是 <input
-						type="radio" name="column">否
-					</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" id="upAdminInfo">保存</button>
-					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-
-				</div>
-			</div>
-		</div>
-	</div>
 </body>
 </html>

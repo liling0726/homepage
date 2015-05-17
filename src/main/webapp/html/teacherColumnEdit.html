@@ -22,26 +22,52 @@
 </head>
 <body>
 <div id="top"></div>
-<div class="container-fluid">
-<div class="col-md-2" id="leftColumn"></div>
-<div class="col-md-10">
 <ol class="breadcrumb">
 		<li>当前页面</li>
 		<li><a href="#">首页</a></li>
 		<li><a href="#">栏目管理</a></li>
 		<li><a href="#">栏目编辑</a></li>
 	</ol>
+<div class="container">
+
 <form>
-<p><label>栏目名称：</label><input type="text"></p>
+<p>
+						<label>栏目名称：</label><input type="text" style="width: 250px; height: 30px;"
+							>
+					</p>
+					<p>
+						<label>栏目别称：</label><input type="text" style="width: 250px; height: 30px;">
+	
+					</p>
+					<p>
+						<label>栏目性质：</label><select style="width: 250px; height: 30px;" >
+							<option>站内栏目</option>
+							<option>站外栏目</option>
+						</select>
+					</p>
+					<p>
+						<label>栏目类型：</label><select style="width: 250px; height: 30px;">
+							<option>信息简介类</option>
+							<option>新闻资讯类</option>
+						</select>
+					</p>
+					
 <p><label style="float:left;">栏目内容:</label><textarea name="后台取值的key" id="myEditor" class="col-md-10"></textarea>
 <div style="clear:both;"></div>
 </p>
+<p>
+					<label>是否显示：</label><input type="radio" name="column">是 <input
+						type="radio" name="column">否
+					</p>
+					<p>
+						<label>排 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;序：</label><input type="text" style="width:250px; height: 30px;">
+	
+					</p>
 <p style="float:right;margin-right:180px;">
 <button class="btn btn-primary">保存</button>
 <button class="btn btn-danger" type="reset">重置</button>
 </p>
 </form>
-</div>
 </div>
 <div id="footer"></div>
 
