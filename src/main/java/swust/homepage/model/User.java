@@ -63,5 +63,21 @@ public class User extends Model<User> {
 				+ " or dept.dept_name like '%"+key+"%')"
 				+ " and `user`.user_dept_id = dept.dept_id and dept.dept_acad_id = acad.acad_id");
 	}
+	
+	/** @author jinlong */
+	public boolean isLogin() {
+		return true;
+	}
+	
+	/** @author jinlong */
+	public List<User> randomUser() {
+		return User.dao.find("select user_name, user_url, user_img "
+				           + "from user order by rand() limit 12");
+	}
+	
+	public List<User> orderedUser() {
+		return User.dao.find("select user_name, user_url, user_img "
+		           + "from user limit 12");
+	}
 
 }

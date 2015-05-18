@@ -8,7 +8,7 @@ import swust.homepage.model.Data;
 import com.jfinal.core.Controller;
 
 /** @author jinlong */
-public class TeacherDataController extends Controller {
+public class TeacherColumnManageController extends Controller {
 	/* 
 	 * 新建栏目：需要提供的字段  data_name data_content data_order data_parent
 	 * 至少需要提供 data_name

@@ -3,7 +3,6 @@ package swust.homepage.model;
 import java.util.List;
 
 import com.jfinal.plugin.activerecord.Model;
-import com.jfinal.plugin.activerecord.Page;
 
 public class Dept extends Model<Dept> {
 	private static final long serialVersionUID = -450036181371802172L;

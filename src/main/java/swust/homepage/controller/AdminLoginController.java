@@ -29,7 +29,7 @@ public class AdminLoginController extends Controller {
 		}
 		
 		// 验证用户身份
-		LoginService s = LoginService.IMPL.get();
+		LoginService s = new LoginService();
 		Optional<Admin> someAdmin = s.checkAdmin(getPara("admin_num"), getPara("pwd"));
 		if (someAdmin.isPresent())
 			renderJson("result", someAdmin.get());

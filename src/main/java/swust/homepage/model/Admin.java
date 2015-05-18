@@ -29,4 +29,9 @@ public class Admin extends Model<Admin> {
 				 + " and admin_dept_id = dept_id and admin_acad_id = acad_id");
 	}
 	
+	/** @author jinlong */
+	public boolean isLogin() {
+		return true;
+	}
+	
 }
