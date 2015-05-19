@@ -6,6 +6,7 @@ import com.jfinal.core.Controller;
 public class TeacherShowMoreController extends Controller {
 	
 	public void showMore() {
-		renderJson("result", User.dao.orderedUser());
+		System.out.println(getParaToBoolean("restart"));
+		renderJson("result", User.dao.orderedUser(getParaToBoolean("restart")));
 	}
 }
