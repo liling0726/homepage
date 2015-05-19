@@ -19,7 +19,7 @@ $(function(){
 					+' <li><a href="#">基本信息</a></li>'
 					+' <li><a href="teacherColumnManage.html">栏目管理</a></li>'
 					+' <li><a href="teacherNewsManage.html">新闻管理</a></li>'
-					+' <li><a href="#">动态留言</a></li>'
+					+' <li><a href="teacherMessageFeedback.html">留言和反馈</a></li>'
 					+' <li><a href="">admin</a></li>'
 					+' <li><a href="#">退出</a></li>'
 					+'</ul>'
