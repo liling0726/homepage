@@ -63,5 +63,26 @@ public class User extends Model<User> {
 				+ " or dept.dept_name like '%"+key+"%')"
 				+ " and `user`.user_dept_id = dept.dept_id and dept.dept_acad_id = acad.acad_id");
 	}
+	
+	/** @author jinlong */
+	public boolean isLogin() {
+		return true;
+	}
+	
+	/** @author jinlong */
+	public List<User> randomUser() {
+		return User.dao.find("select user_name, user_url, user_img "
+				           + "from user order by rand() limit 12");
+	}
+	
+	private int __count = -12;
+	public List<User> orderedUser(boolean restart) {
+		if (restart)
+			__count = 0;
+		else
+			__count = __count + 12;
+		return User.dao.find("select user_name, user_url, user_img, dept_name, acad_name from user, dept, acad where user_dept_id = dept_id and dept_acad_id = acad_id limit " + __count + ", 12");
+
+	}
 
 }

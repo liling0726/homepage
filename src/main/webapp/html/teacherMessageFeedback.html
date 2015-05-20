@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="../js/bootstrap.js"></script>
+<script type="text/javascript" src="../js/bootstrap.js"></script>
+<script type="text/javascript" src="../js/teacherCommon.js"></script>
+<script type="text/javascript" src="../js/teacherMessageFeedback.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="../css/teacherCommon.css" />
+<link rel="stylesheet" type="text/css" href="../css/teacherMessageFeedback.css" />
+<title>老师首页</title>
+</head>
+<body>
+	<div id="top"></div>
+	<ol class="breadcrumb">
+		<li>当前页面</li>
+		<li><a href="teacherIndex.html">首页</a></li>
+		<li><a href="teacherMessageFeedback.html">留言和反馈</a></li>
+	</ol>
+	<div class="container-fluid">
+		<div class="col-md-10 col-md-offset-1">
+
+			<div class="panel panel-danger">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<span class="glyphicon glyphicon-comment"></span>意见反馈与建议
+					</h3>
+				</div>
+				<div class="panel-body">
+				<div class="col-md-2 col-md-offset-10 ">
+												<button id="newSuggestion" type="button"
+													class="btn btn-warning btn-block"data-toggle="collapse" data-parent="#accordion"
+								href="#collapse1" aria-expanded="false"
+								aria-controls="collapse2">新意见</button>
+											</div>
+				<div id="collapse1" class="panel-collapse collapse"
+									role="tabpanel" aria-labelledby="heading2">
+									<div class="panel-body">
+										<div>
+											<textarea id="textarea1"class="form-control" rows="3"placeholder="输入后回车确认提交！"></textarea>
+										</div>
+									</div>
+				</div>
+				<div class="col-md-12">
+				<ul id="suggestion">
+					<li><a href="#">在上传图片时，出现问题，请尽快解决<span
+							class="label label-info">已解决</span><span
+							class="label label-info">删除</span><span>2015-4-4</span></a></li>
+					<li><a href="#">教师主页太单一，能否再添加更多的样式以及可以自定义样式呢？<span
+							class="label label-info">待解决</span><span
+							class="label label-info">删除</span><span>2015-4-4</span></a></li>
+					<li><a href="#">上传论文的时候提示上传失败，为什么，请尽快解决<span
+							class="label label-info">无法解决</span><span
+							class="label label-info">删除</span><span>2015-4-4</span></a></li>
+					<li><a href="#">在上传图片时，出现问题，请尽快解决<span
+							class="label label-info">已解决</span><span
+							class="label label-info">删除</span><span>2015-4-4</span></a></li>
+				</ul>
+				</div>
+				</div>
+			</div>
+			<div class="panel panel-warning">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<span class="glyphicon glyphicon-list-alt"></span>&nbsp;最新动态留言
+					</h3>
+				</div>
+				<table class="table table-hover">
+					<tr>
+						<th>序号</th>
+						<th>内容</th>
+						<th>姓名</th>
+						<th>邮箱</th>
+						<th>时间</th>
+						<th>状态</th>
+					</tr>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>老师，您好，谢谢您的分享</td>
+							<td>李丽</td>
+							<td>1329301856@sina.cn</td>
+							<td>2015-4-5</td>
+							<td>未查看</td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>老师，您好，谢谢您的分享</td>
+							<td>李丽</td>
+							<td>1329301856@sina.cn</td>
+							<td>2015-4-5</td>
+							<td>查看</td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td>老师，您好，谢谢您的分享</td>
+							<td>李丽</td>
+							<td>1329301856@sina.cn</td>
+							<td>2015-4-5</td>
+							<td>查看</td>
+						</tr>
+						<tr>
+							<td>4</td>
+							<td>老师，您好，谢谢您的分享</td>
+							<td>李丽</td>
+							<td>1329301856@sina.cn</td>
+							<td>2015-4-5</td>
+							<td>未查看</td>
+						</tr>
+						<tr>
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+	</div>
+	<div id="footer"></div>
+</body>
+</html>

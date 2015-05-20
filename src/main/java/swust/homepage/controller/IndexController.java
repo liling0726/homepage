@@ -1,6 +1,5 @@
 package swust.homepage.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
@@ -11,8 +10,6 @@ import swust.homepage.service.LoginService;
 
 import com.jfinal.core.ActionKey;
 import com.jfinal.core.Controller;
-import com.jfinal.plugin.activerecord.Db;
-import com.jfinal.plugin.activerecord.Record;
 
 public class IndexController extends Controller {
 	@ActionKey("/")
@@ -22,10 +19,7 @@ public class IndexController extends Controller {
 	
 	/** @author jinlong */
 	public void random() {
-		List<Record> result = Db.find(
-				"select user_name, user_url, user_img "
-				+ "from user order by rand() limit 12");
-		renderJson("user", result);
+		renderJson("user", User.dao.randomUser());
 	}
 	
 	/**
@@ -61,7 +55,7 @@ public class IndexController extends Controller {
 		}
 		
 		// 验证用户身份
-		LoginService s = LoginService.IMPL.get();
+		LoginService s = new LoginService();
 		Optional<User> someTeacher = s.checkTeacher(getPara("admin_num"), getPara("pwd"));
 		if (someTeacher.isPresent()) {
 			User user = someTeacher.get();

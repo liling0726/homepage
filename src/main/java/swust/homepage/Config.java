@@ -6,7 +6,8 @@ import swust.homepage.controller.AdminAdminInfoController;
 import swust.homepage.controller.AdminLoginController;
 import swust.homepage.controller.AdminTeacherInfoController;
 import swust.homepage.controller.IndexController;
-import swust.homepage.controller.TeacherDataController;
+import swust.homepage.controller.TeacherColumnManageController;
+import swust.homepage.controller.TeacherShowMoreController;
 import swust.homepage.model.Acad;
 import swust.homepage.model.Admin;
 import swust.homepage.model.BasicInfo;
@@ -33,13 +34,14 @@ public class Config extends JFinalConfig {
 	public void configConstant(Constants a) {
 		loadPropertyFile("DbInfo.txt");
 		a.setDevMode(true);
-		a.setViewType(ViewType.JSP);
+		a.setViewType(ViewType.FREE_MARKER);
 	}
 
 	@Override
 	public void configHandler(Handlers a) {
 	}
 
+	// 此处添加全局拦截器
 	@Override
 	public void configInterceptor(Interceptors a) {
 	}
@@ -63,13 +65,14 @@ public class Config extends JFinalConfig {
 
 	@Override
 	public void configRoute(Routes a) {
-		a.add("/index", IndexController.class);
+		a.add("/index", IndexController.class); // 首页
 		a.add("/acadInfoMore", AcadInfoMoreController.class);
 		a.add("/adminAdminInfo", AdminAdminInfoController.class);
 		a.add("/adminTeacherInfo", AdminTeacherInfoController.class);
 		a.add("/adminLogin", AdminLoginController.class);
 		a.add("/adminacadinfo", AdminAcadInfoController.class);
-		a.add("/teacherData", TeacherDataController.class); // 老师页面栏目
+		a.add("/teacherColumnManage", TeacherColumnManageController.class); // 老师页面栏目
+		a.add("/teacherShowMore", TeacherShowMoreController.class); // 搜索页面
 	}
 	
 	/**
