@@ -1,6 +1,9 @@
 package swust.homepage.model;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Page;
@@ -77,10 +80,26 @@ public class User extends Model<User> {
 	
 	/** @author jinlong */
 	public List<User> showMore(int count, String searchWords) {
-		if (searchWords != null && !searchWords.equals(""))
-			return find("select user_name, user_url, user_img, dept_name, acad_name from user, dept, acad where user_dept_id = dept_id and dept_acad_id = acad_id and user_name  = '" + searchWords + "' limit " + count + ", 24");
-		else
-			return find("select user_name, user_url, user_img, dept_name, acad_name from user, dept, acad where user_dept_id = dept_id and dept_acad_id = acad_id limit " + count + ", 24");
+		Set<User> userSet = new HashSet<User>(); 
+		StringBuilder builder = new StringBuilder();
+		String prefix = "select user_name, user_url, user_img, dept_name, acad_name from user, dept, acad where user_dept_id = dept_id and dept_acad_id = acad_id ";
+		if (searchWords != null && !searchWords.equals("")) {
+			String[] words = searchWords.split(" ");
+			for (String str: words) {
+				builder.append(prefix);
+				builder.append(" and ((user_name like '%" + str +"%') ");
+				builder.append(" or (acad_name like '%" + str +"%') ");
+				builder.append(" or (dept_name like '%" + str +"%')) ");
+				builder.append(" limit " + count + ", 24");
+				userSet.addAll(find(builder.toString()));
+				builder.delete(0, builder.length());
+			}
+			return new ArrayList<>(userSet);
+		} else {
+			builder.append(prefix);
+			builder.append(" limit " + count + ", 24");
+			return find(builder.toString());
+		}
 	}
 
 }
