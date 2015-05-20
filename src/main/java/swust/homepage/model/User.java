@@ -71,18 +71,16 @@ public class User extends Model<User> {
 	
 	/** @author jinlong */
 	public List<User> randomUser() {
-		return User.dao.find("select user_name, user_url, user_img "
+		return find("select user_name, user_url, user_img "
 				           + "from user order by rand() limit 12");
 	}
 	
-	private int __count = -12;
-	public List<User> orderedUser(boolean restart) {
-		if (restart)
-			__count = 0;
+	/** @author jinlong */
+	public List<User> showMore(int count, String searchWords) {
+		if (searchWords != null && !searchWords.equals(""))
+			return find("select user_name, user_url, user_img, dept_name, acad_name from user, dept, acad where user_dept_id = dept_id and dept_acad_id = acad_id and user_name  = '" + searchWords + "' limit " + count + ", 24");
 		else
-			__count = __count + 12;
-		return User.dao.find("select user_name, user_url, user_img, dept_name, acad_name from user, dept, acad where user_dept_id = dept_id and dept_acad_id = acad_id limit " + __count + ", 12");
-
+			return find("select user_name, user_url, user_img, dept_name, acad_name from user, dept, acad where user_dept_id = dept_id and dept_acad_id = acad_id limit " + count + ", 24");
 	}
 
 }
