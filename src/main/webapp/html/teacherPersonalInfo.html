@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="../js/bootstrap.js"></script>
+<script type="text/javascript" src="../js/teacherCommon.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="../css/teacherCommon.css" />
+<title>老师栏目管理</title>
+</head>
+<body>
+	<div id="top"></div>
+	<div class="container-fluid">
+		<ol class="breadcrumb">
+			<li>当前页面</li>
+			<li><a href="#">首页</a></li>
+			<li><a href="#">教师个人信息修改</a></li>
+		</ol>
+		
+		<table class="table table-bordered table-hover">
+			<tr>
+				<th style="width: 10%;">姓名</th>
+				<th><input type="text" name="name" value="杨春明"></th>
+			</tr>
+			<tr>
+				<th>职称</th>
+				<th><input type="text" name="Occupation" value="教师"></th>
+			</tr>
+			<tr>
+				<th style="width: 10%;">学位</th>
+				<th><input type="text" name="academic degree" value="博士"></th>
+			</tr>
+			<tr>
+				<th>学院</th>
+				<th>
+					<form>
+						<select name="acad">
+							<option >计算机科学与技术学院</option>
+							<option >法学院</option>
+							<option >土建学院</option>
+							<option >生命学院</option>
+						</select>
+					</form>
+				</th>
+			</tr>
+			<tr>
+				<th>邮箱</th>
+				<th><input type="text" name="Email" value="135315351@163.com"></th>
+			</tr>
+			<tr>
+				<th>联系方式</th>
+				<th><input type="text" name="phone" value="12156135713"></th>
+			</tr>
+			<tr>
+				<th>办公地址</th>
+				<th><input type="text" name="address" value="博士"></th>
+			</tr>
+			<tr>
+				<th>主要研究方向</th>
+				<th><input type="text" name="way" value="数据挖掘"></th>
+			</tr>
+		</table>
+		<div style="margin-bottom: 5px;" align="right">
+			<button class="btn btn-primary" data-toggle="modal"
+				data-target="#insertModal">保存</button>
+			<button class="btn btn-info">取消</button>
+		</div>
+	</div>
+	<div id="footer"></div>
+
+</body>
+</html>

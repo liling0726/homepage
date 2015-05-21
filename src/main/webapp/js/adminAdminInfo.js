@@ -350,7 +350,7 @@ function searchByKey(key) {
 				url : "/adminAdminInfo/findAdminByKey",
 				async : "false",
 				data : {
-					key : key,
+					keyAdminPage : key,
 					pageSize : maxPage,
 					pageNumber : currentPage,
 				},
