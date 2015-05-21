@@ -1,20 +1,31 @@
 var myDate = new Date();
+$(document).ready(
+	function(){
+$("li").delegate("span[name='span1']", "click", function() {
+	$(this).parent().remove();
+});
+$("#confirm")
+		.on(
+				"click",
+				function() {
+					var text = $("#textarea1").val();
+					if(text=="")
+						alert("没有文字！");
+					else
+						{
+					$("#suggestion").append("<li><a href=\"#\">" 
+							+text
+							+"<span class=\"label label-info\">已解决</span><span name=\"span1\"" 
+							+"class=\"label label-info\">删除</span><span>"
+							+myDate.getFullYear()
+							+"-"
+							+(myDate.getMonth()+1)
+							+"-"
+							+myDate.getDate()
+							+"</span></a></li>"
+							);
+						}
+				});
+});
 
-$(
-document.onkeydown = function(event_e){    
-        if(window.event)    
-         event_e = window.event;    
-         var int_keycode = event_e.charCode||event_e.keyCode;    
-         if(int_keycode ==13){   
-        if(1)
-        	alert("请输入反馈内容！");
-        else
-        	{
-        $("#suggestion").append("<li><a href=\"#\">"+$("#textarea1").val()+"<span "
-        		+"class=\"label label-info\">有待解决</span><span " 
-        		+"class=\"label label-info\">删除</span><span>2015-4-4</span></a></li>");
-         $("#textarea1").val("");
-        	}
-        }  
-    } 
-);
+//添加过后要刷新！！！！！！！！！！！！！！！！！！！

@@ -14,12 +14,16 @@ $(document)
 						.find('ul')
 						.append("<li>"
 										+ text
-										+ "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label id='delete×'>×</label><span>"
+										+ "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label id='delete×'>×</label>" 
+										+"<span>"
 										+myDate.getFullYear()
 										+"-"
 										+(myDate.getMonth()+1)
 										+"-"
 										+myDate.getDate()
+										+"</span>"
+										+"<span>"
+										+"id"
 										+"</span>"
 										+"</li>");
 				});

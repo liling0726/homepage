@@ -3,10 +3,14 @@ ul li{
 	margin-top:7px;
 	margin-left:20px;
 }
-ul li span{
+ul li span:nth-child(3){
 	float:right;
-	padding-right:5px;
+	padding-right:10px;
 	
+}
+ul li span:nth-child(2){
+	float:right;
+	margin-right:0px;
 }
 .panel-heading{
 	font-weight:bold;
