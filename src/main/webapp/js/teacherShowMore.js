@@ -4,9 +4,9 @@ var searchWords;
 function retrieve(count, searchWords) {
 	$.ajax({
 		type : "post",
-		content : "application/x-www-from-urlencoded;charset=UTF-8",
+		content : "applicat	ion/x-www-from-urlencoded;charset=UTF-8",
 		dataType : "json",
-		url : "/teacherShowMore/showMore",
+		url : "../teacherShowMore/showMore",
 		data: { count: count, searchWords: searchWords },
 		async : false,
 		success : function (result) {
@@ -15,7 +15,7 @@ function retrieve(count, searchWords) {
 				html +=  '<div class="col-xs-6 col-md-3">'
 		               + '	<div class="thumbnail">'
                        + '     <a href="' + res[i].user_url + '">'
-	                   + '     <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTcxIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE3MSAxODAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMTcxIiBoZWlnaHQ9IjE4MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjU5IiB5PSI5MCIgc3R5bGU9ImZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMHB0O2RvbWluYW50LWJhc2VsaW5lOmNlbnRyYWwiPjE3MXgxODA8L3RleHQ+PC9nPjwvc3ZnPg==" alt="..." title="系别：' +  res[i].dept_name + '&#10;学院：' + res[i].acad_name + '"></a>'
+	                   + '     <img src="../img/person12.jpg" alt="..." title="系别：' +  res[i].dept_name + '&#10;学院：' + res[i].acad_name + '"></a>'
                 	   + '	    <div id="user" class="caption">'
 	                   + '		   <a href="' + res[i].user_url + '">' + res[i].user_name + '</a><br />'
 	                   + '	    </div>'

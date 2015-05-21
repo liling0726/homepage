@@ -1,13 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta charset="UTF-8">
+<script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
 <script type="text/javascript" src="../js/bootstrap.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
 <link rel="stylesheet" type="text/css"
 	href="../css/teacherPersonalShow.css" />
+	<script type="text/javascript">
+	$("#imgcode").click(function(){
+		 reloadcode();
+	})
+	$(".changeOne").click(function(){
+		 reloadcode();
+	})
+	function reloadcode(){
+		$("#imgcode").attr("src","checkcode.jsp?random="+Math.random());
+	}
+	
+	</script>
 <title>老师主页</title>
 </head>
 <body>
@@ -60,7 +71,7 @@
 
 					</div>
 					<div>
-						<button class="btn btn-success btn-block">留言</button>
+						<button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#leaveMess">留言</button>
 					</div>
 				</div>
 			</div>
@@ -77,6 +88,33 @@
 			<p>数据挖掘团队</p>
 		</div>
 	</div>
-
+	<!--留言模态框  -->
+<div class="modal fade" id="leaveMess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">留言</h4>
+      </div>
+      <div class="modal-body">
+<form>
+<p class="form-inline"><label >用户名：</label><input type="text" class="form-control" style="width:250px;" required></p>
+<p class="form-inline"><label >邮&nbsp;&nbsp;箱：</label><input type="text" class="form-control" style="width:250px;" required></p>
+<p class="form-inline"><label >留&nbsp;&nbsp;言：</label><textarea rows="3"  class="form-control" style="width:250px;" required></textarea> </p>
+<p class="form-inline"><label >验证码：</label><input type="text" class="form-control" placeholder="验证码"
+				id="authcode" required> <img
+				id="imgcode" src="checkcode.jsp" alt="验证码"> <span>看不清？<a
+				href="javascript:void(0)" class="changeOne">换一张</a></span> <label
+				id="authcode_succeed" class="blank invisible"></label> <label
+				id="authcode_error" class="hide"></label></p>
+</form>
+      </div>
+      <div class="modal-footer">  
+        <button type="button" class="btn btn-primary">留言</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>

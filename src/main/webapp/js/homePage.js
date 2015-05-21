@@ -2,8 +2,6 @@
  * @author:李玲；
 */
 $(function(){
-$(".navbar").removeClass("navbar-default").addClass("navbar-inverse");
-$(".navbar-brand").text("");
 //首页随机显示12位教师头像及名字
 $.ajax({
 	type:"post",
