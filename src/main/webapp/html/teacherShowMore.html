@@ -11,18 +11,21 @@
     <title>教师个人显示</title>
     <style>
         h1 {
-            color: darkcyan;
+            color: #428bca;
             text-align: center;
             text-shadow: 6px 6px 6px darkgray;
         }
         
         .thumbnail {
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.4);
             border-color: cornflowerblue;
         }
         
+        #user a {
+            font-family: sans-serif;
+        }
         a:link {
-            color: #0303ff;
+            color: darkcyan;
         }
         a:visited {
             color: #6c14ad;
@@ -34,12 +37,19 @@
             color: #ff0000;
         }
         
-        .user {
-            font-weight: 600;
+        div#user {
+            text-align: center;
         }
         
-        div.user span {
-            color:deeppink;
+        div.col-md-8 {
+/*            background-color: rgba(245, 242, 240, 0.4);*/
+            background-color: rgba(255, 255, 255, 0.4);
+            border-style: dashed;
+            border-radius: 10px;
+            border-color: gray;
+            box-shadow:0 0 80px rgba(155, 155, 155, 0.8);
+            padding: 20px;
+            margin: 20px;
         }
     </style>
 </head>
@@ -57,18 +67,20 @@
                 <div class="input-group search">
                     <input id="searchWords" type="text" class="form-control" placeholder="姓名 系别 学院">
                     <span class="input-group-btn">
-                        <button id="search" class="btn btn-success" type="button">搜索</button>
+                        <button id="search" class="btn btn-warning" type="button">搜索</button>
                     </span>
                 </div>
             </div>
             <div class="col-md-4"></div>
         </div>
+        <br />
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8"><div id="teachers"></div></div>
             <div class="col-md-2"></div>
         </div>
 		
+        <br />
         <div class="row">
             <div class="col-md-12" style="text-align: center;">
                 <button id="appendMore" class="btn btn-info" style="width: 660px;">加载更多</button>
