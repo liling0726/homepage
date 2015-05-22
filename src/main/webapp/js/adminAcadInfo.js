@@ -52,7 +52,7 @@ $(function() {
 					type : "get",
 					content : "application/x-www-from-urlencoded;charset=UTF-8",
 					dataType : "json",
-					url : "/adminacadinfo/index",
+					url : "../adminacadinfo/index",
 					/* data:"user.user_num="+userNum+"&user.user_name="+userName+"&user.user_dept_id="+userDeptId, */
 					async : false,
 					success : function(result) {
@@ -173,7 +173,7 @@ $(function() {
 										type : "post",
 										content : "application/x-www-from-urlencoded;charset=UTF-8",
 										dataType : "json",
-										url : "/adminacadinfo/addDept",
+										url : "../adminacadinfo/addDept",
 										data : {
 											oneDept : deptdname,
 											acadName : acadname,
@@ -227,7 +227,7 @@ $(function() {
 							type : "post",
 							content : "application/x-www-from-urlencoded;charset=UTF-8",
 							dataType : "json",
-							url : "/adminacadinfo/deleteDept",
+							url : "../adminacadinfo/deleteDept",
 							data : {
 								deptStr : str,
 							},
@@ -274,7 +274,7 @@ $(function() {
 										type : "post",
 										content : "application/x-www-from-urlencoded;charset=UTF-8",
 										dataType : "json",
-										url : "/adminacadinfo/findAcadOrDept",
+										url : "../adminacadinfo/findAcadOrDept",
 										data : {
 											key : keyWord
 										},

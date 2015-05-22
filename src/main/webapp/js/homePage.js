@@ -6,7 +6,7 @@ $(function(){
 $.ajax({
 	type:"post",
 	content : "application/x-www-form-urlencoded;charset=UTF-8",
-	url:"/index/random",
+	url:"../index/random",
 	dataType:'json',
 	async:false,
 	success:function(result){
@@ -33,7 +33,7 @@ $.ajax({
 $.ajax({
 	type:"post",
 	content:"application/x-www-form-urlencoded;charset=UTF-8",
-	url:"/index/topUserCount",
+	url:"../index/topUserCount",
 	dataType:"json",
 	async:false	,
 	success:function(result){
@@ -57,7 +57,7 @@ $.ajax({
 $.ajax({
 	type:"post",
 	content:"application/x-www-form-urlencoded;charset=UFT-8",
-	url:"/index/acadName",
+	url:"../index/acadName",
 	async:false,
 	success:function(result){
 		var data=result.acadName,html="<tr>";
@@ -80,7 +80,7 @@ $.ajax({
 $.ajax({
 	type:"post",
 	content:"application/x-www-form-urlencoded;charset=UFT-8",
-	url:"/index/searchFlesh",
+	url:"../index/searchFlesh",
 	async:false,
 	success:function(result){
 		var data=result.Searchs,html="";

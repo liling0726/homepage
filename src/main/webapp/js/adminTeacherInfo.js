@@ -41,7 +41,7 @@ $(function(){
 			type:"post",
 			content:"application/x-www-from-urlencoded;charset=UTF-8",
 			dataType:"json",
-			url:"/adminTeacherInfo/save",
+			url:"../adminTeacherInfo/save",
 			data:"user.user_num="+userNum+"&user.user_name="+userName+"&user.user_dept_id="+userDeptId+"&user.user_is_admin="+isSetAdmin,
 			async:false,
 			success:function(result){
@@ -77,7 +77,7 @@ $(function(){
 			$.ajax({
 				type:"post",
 				content:"application/x-www-from-urlencoded;charset=UTF-8",
-				url:"/adminTeacherInfo/delete/"+str,
+				url:"../adminTeacherInfo/delete/"+str,
 				dataType:"json",				
 				success:function(result){
 					alert(result.result);	
@@ -290,7 +290,7 @@ function initial(){
 		type:"post",
 		content:"application/x-www-form-urlencoded;charset=UTF-8",
 	    dataType:"json",
-	    url:"/adminTeacherInfo/"+currentPage+"-"+maxPage,
+	    url:"../adminTeacherInfo/"+currentPage+"-"+maxPage,
 	    async:"false",
 	    success:function(result){
 	    	var html="";
@@ -329,7 +329,7 @@ $.ajax({
 	type:"post",
 	content:"application/x-www-form-urlencoded;charset=UTF-8",
     dataType:"json",
-    url:"/adminTeacherInfo/findDeptByAcadId/"+acadId,
+    url:"../adminTeacherInfo/findDeptByAcadId/"+acadId,
     async:"false",
     success:function(result){
      var data=result.deptList;
@@ -355,7 +355,7 @@ function searchByKey(key){
 		type:"post",
 		content:"application/x-www-form-urlencoded;charset=UTF-8",
 	    dataType:"json",
-	    url:"/adminTeacherInfo/findUserByKey",
+	    url:"../adminTeacherInfo/findUserByKey",
 	    async:"false",
 	    data:{
 	    	key:key,
@@ -390,7 +390,7 @@ function updateUser(userId,userNum,userName,userDeptId,isSetAdmin){
 		type:"post",
 		content:"application/x-www-from-urlencoded;charset=UTF-8",
 		dataType:"json",
-		url:"/adminTeacherInfo/update",
+		url:"../adminTeacherInfo/update",
 		data:"user.user_id="+userId+"&user.user_num="+userNum+"&user.user_name="+userName+"&user.user_dept_id="+userDeptId+"&user.user_is_admin="+isSetAdmin,
 		async:false,
 		success:function(result){
@@ -435,7 +435,7 @@ function acadInitial(){
 		type:"post",
 		content:"application/x-www-from-urlencoded;charset=UTF-8",
 		dataType:"json",
-		url:"/index/acadName",
+		url:"../index/acadName",
 		async:false,
 		success:function(result){
 		result=result.acadName;

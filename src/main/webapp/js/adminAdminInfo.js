@@ -44,7 +44,7 @@ $(function() {
 									type : "post",
 									content : "application/x-www-from-urlencoded;charset=UTF-8",
 									dataType : "json",
-									url : "/adminAdminInfo/save",
+									url : "../adminAdminInfo/save",
 									data : "admin.admin_num=" + adminNum
 											+ "&admin.admin_name=" + adminName
 											+ "&admin.admin_dept_id="+ adminDeptId
@@ -80,7 +80,7 @@ $(function() {
 			$.ajax({
 				type : "post",
 				content : "application/x-www-from-urlencoded;charset=UTF-8",
-				url : "/adminAdminInfo/delete",
+				url : "../adminAdminInfo/delete",
 				dataType : "json",
 				data:{
 					ID:str				},
@@ -139,7 +139,7 @@ $(function() {
 									type : "post",
 									content : "application/x-www-from-urlencoded;charset=UTF-8",
 									dataType : "json",
-									url : "/adminAdminInfo/update",
+									url : "../adminAdminInfo/update",
 									data : "admin.admin_id=" + adminId
 											+ "&admin.admin_num=" + adminNum
 											+ "&admin.admin_name=" + adminName
@@ -283,7 +283,7 @@ function initial() {
 				type : "post",
 				content : "application/x-www-form-urlencoded;charset=UTF-8",
 				dataType : "json",
-				url : "/adminAdminInfo/" + currentPage + "-" + maxPage,
+				url : "../adminAdminInfo/" + currentPage + "-" + maxPage,
 				async : "false",
 				success : function(result) {
 					var html = "";
@@ -322,7 +322,7 @@ function selectDeptByAcadId(obj, acadId) {
 		type : "post",
 		content : "application/x-www-form-urlencoded;charset=UTF-8",
 		dataType : "json",
-		url : "/adminAdminInfo/findDeptByAcadId/" + acadId,
+		url : "../adminAdminInfo/findDeptByAcadId/" + acadId,
 		async : "false",
 		success : function(result) {
 			var data = result.deptList;
@@ -347,7 +347,7 @@ function searchByKey(key) {
 				type : "post",
 				content : "application/x-www-form-urlencoded;charset=UTF-8",
 				dataType : "json",
-				url : "/adminAdminInfo/findAdminByKey",
+				url : "../adminAdminInfo/findAdminByKey",
 				async : "false",
 				data : {
 					keyAdminPage : key,
