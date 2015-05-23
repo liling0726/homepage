@@ -6,10 +6,10 @@
 <script type="text/javascript" src="../js/bootstrap.js"></script>
 <script type="text/javascript" src="../js/bootstrap.js"></script>
 <script type="text/javascript" src="../js/teacherCommon.js"></script>
-<script type="text/javascript" src="../js/teacherMessage.js"></script>
+<script type="text/javascript" src="../js/teacherFeedback.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="../css/teacherCommon.css" />
-<link rel="stylesheet" type="text/css" href="../css/teacherMessage.css" />
+<link rel="stylesheet" type="text/css" href="../css/teacherFeedback.css" />
 <title>老师首页</title>
 </head>
 <body>
@@ -17,7 +17,7 @@
 	<ol class="breadcrumb">
 		<li>当前页面</li>
 		<li><a href="teacherIndex.html">首页</a></li>
-		<li><a href="teacherMessage.html">留言</a></li>
+		<li><a href="teacherMessage.html">意见与反馈</a></li>
 	</ol>
 	<div class="container-fluid">
 		<div class="col-md-10 col-md-offset-1">
@@ -26,39 +26,32 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<span class="glyphicon glyphicon-comment"></span>意见反馈与建议
-					</h3>
-					<button id="newSuggestion" type="button"
+						<a data-toggle="collapse" href="#collapse1" aria-expanded="false" aria-controls="collapse1">
+						新意见</a><!-- id="newSuggestion" type="button"
 													class="btn btn-block"data-toggle="collapse" data-parent="#accordion"
 								href="#collapse1" aria-expanded="false"
-								aria-controls="collapse2">新意见</button>
+								aria-controls="collapse2" -->
+					</h3>
 				</div>
 				<div class="panel-body">
 				<div class="col-md-12">
 				<ul id="suggestion">
 					<li><a href="#">在上传图片时，出现问题，请尽快解决<span
-							class="label label-info">已解决</span><span name="span1"
-							class="label label-info">删除</span><span>2015-4-4</span></a></li>
+							class="label label-info">已解决</span><span>2015-4-4</span></a></li>
 					<li><a href="#">教师主页太单一，能否再添加更多的样式以及可以自定义样式呢？<span
-							class="label label-info">待解决</span><span name="span1"
-							class="label label-info">删除</span><span>2015-4-4</span></a></li>
+							class="label label-info">待解决</span><span>2015-4-4</span></a></li>
 					<li><a href="#">上传论文的时候提示上传失败，为什么，请尽快解决<span
-							class="label label-info">无法解决</span><span name="span1"
-							class="label label-info">删除</span><span>2015-4-4</span></a></li>
+							class="label label-info">无法解决</span><span>2015-4-4</span></a></li>
 					<li><a href="#">在上传图片时，出现问题，请尽快解决<span
-							class="label label-info">已解决</span><span name="span1"
-							class="label label-info">删除</span><span>2015-4-4</span></a></li>
+							class="label label-info">已解决</span><span>2015-4-4</span></a></li>
 					<li><a href="#">在上传图片时，出现问题，请尽快解决<span
-							class="label label-info">已解决</span><span name="span1"
-							class="label label-info">删除</span><span>2015-4-4</span></a></li>
+							class="label label-info">已解决</span><span>2015-4-4</span></a></li>
 					<li><a href="#">教师主页太单一，能否再添加更多的样式以及可以自定义样式呢？<span
-							class="label label-info">待解决</span><span name="span1"
-							class="label label-info">删除</span><span>2015-4-4</span></a></li>
+							class="label label-info">待解决</span><span>2015-4-4</span></a></li>
 					<li><a href="#">上传论文的时候提示上传失败，为什么，请尽快解决<span
-							class="label label-info">无法解决</span><span name="span1"
-							class="label label-info">删除</span><span>2015-4-4</span></a></li>
+							class="label label-info">无法解决</span><span>2015-4-4</span></a></li>
 					<li><a href="#">在上传图片时，出现问题，请尽快解决<span
-							class="label label-info">已解决</span><span name="span1"
-							class="label label-info">删除</span><span>2015-4-4</span></a></li>
+							class="label label-info">已解决</span><span>2015-4-4</span></a></li>
 				</ul>
 				
 				<div id="collapse1" class="panel-collapse collapse"
