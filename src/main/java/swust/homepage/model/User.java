@@ -5,6 +5,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import swust.homepage.util.Tuple2;
+
+import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Page;
 
@@ -79,7 +82,12 @@ public class User extends Model<User> {
 	}
 	
 	/** @author jinlong */
-	public List<User> showMore(int count, String searchWords, int need) {
+	public Long countAll() {
+		return Db.queryLong("select count(*) from user");
+	}
+	
+	/** @author jinlong */
+	public Tuple2<String, List<User>> showMore(int count, String searchWords, int need) {
 		Set<User> userSet = new HashSet<User>(); 
 		StringBuilder builder = new StringBuilder();
 		String prefix = "select user_name, user_url, user_img, dept_name, acad_name from user, dept, acad where user_dept_id = dept_id and dept_acad_id = acad_id ";
@@ -93,11 +101,14 @@ public class User extends Model<User> {
 				userSet.addAll(find(builder.toString()));
 				builder.delete(0, builder.length());
 			}
-			return new ArrayList<>(userSet);
+			return new Tuple2<>("success", new ArrayList<>(userSet));
 		} else {
 			builder.append(prefix);
 			builder.append(" limit " + count + ", " + need);
-			return find(builder.toString());
+			if ((count + need) > countAll())
+				return new Tuple2<>("nomore", find(builder.toString()));
+			else
+				return new Tuple2<>("success", find(builder.toString()));
 		}
 	}
 

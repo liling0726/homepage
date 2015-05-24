@@ -1,26 +1,30 @@
 var count = 0;
 var searchWords;
 var need = 30;
-// 搜索有bug
 
 $(function () {
-    init();
+    init(); // 初始化
 
     $("#search").bind("click", function () {
         searchWords = $("#searchWords").val();
-        count = 0;
         $("#teachers").empty();
         retrieve(count, searchWords, need);
+        if (searchWords != "")
+        	$("#appendMore").attr("disabled", "disabled");
+        else
+        	$("#appendMore").removeAttr("disabled");
     });
 
     $("#appendMore").bind("click", function () {
-        count = count + 24;
-        retrieve(count, searchWords, need);
+        count = count + need;
+        if (retrieve(count, searchWords, need) != "success")
+        	$("#appendMore").attr("disabled", "disabled");
     });
 });
 
 
 function retrieve(count, searchWords, need) {
+	var status;
 	$.ajax({
 		type : "post",
 		content : "applicat	ion/x-www-from-urlencoded;charset=UTF-8",
@@ -29,7 +33,8 @@ function retrieve(count, searchWords, need) {
 		data: { count: count, searchWords: searchWords, need: need },
 		async : false,
 		success : function (result) {
-			var res = result.result, html = "", i;
+			var res = result[2], html = "", i;
+			status = result[1];
 			for (i = 0; i < res.length; i = i + 1) {
 				html +=  '<div class=" col-lg-2dot4">'
 		               + '	<div class="thumbnail">'
@@ -47,10 +52,21 @@ function retrieve(count, searchWords, need) {
 			console.log("错误：" + e.message);
 		}
 	});
+	return status;
 }
 
 function init() {
-    count = 0;
-    searchWords = $("#searchWords").val();
-    retrieve(0, searchWords, need);
+	var path = location.href.split('?'); // 用于获取从其它页面传过来的参数
+	if (path.length > 1) {
+		searchWords = decodeURI(path[1].split('=')[1]);
+		$("#searchWords").val(searchWords);
+	} else
+		searchWords = $("#searchWords").val();
+	
+    count = 0; // 重置计数
+    retrieve(count, searchWords, need);
+    if (searchWords != "")
+    	$("#appendMore").attr("disabled", "disabled");
+    else
+    	$("#appendMore").removeAttr("disabled");
 }
