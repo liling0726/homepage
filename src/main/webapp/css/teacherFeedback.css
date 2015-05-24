@@ -22,4 +22,12 @@ font-weight: bold;
 #suggestion li a span:nth-child(2){
 	float:right;
 	margin-right:5px;
+	color:red;
+}
+#suggestion li a span:nth-child(3){
+	float:right;
+	margin-right:5px;
+}
+#newView{
+	color: #DB70DB;
 }
