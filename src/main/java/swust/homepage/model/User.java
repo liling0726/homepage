@@ -79,7 +79,7 @@ public class User extends Model<User> {
 	}
 	
 	/** @author jinlong */
-	public List<User> showMore(int count, String searchWords) {
+	public List<User> showMore(int count, String searchWords, int need) {
 		Set<User> userSet = new HashSet<User>(); 
 		StringBuilder builder = new StringBuilder();
 		String prefix = "select user_name, user_url, user_img, dept_name, acad_name from user, dept, acad where user_dept_id = dept_id and dept_acad_id = acad_id ";
@@ -90,14 +90,13 @@ public class User extends Model<User> {
 				builder.append(" and ((user_name like '%" + str +"%') ");
 				builder.append(" or (acad_name like '%" + str +"%') ");
 				builder.append(" or (dept_name like '%" + str +"%')) ");
-				builder.append(" limit " + count + ", 24");
 				userSet.addAll(find(builder.toString()));
 				builder.delete(0, builder.length());
 			}
 			return new ArrayList<>(userSet);
 		} else {
 			builder.append(prefix);
-			builder.append(" limit " + count + ", 24");
+			builder.append(" limit " + count + ", " + need);
 			return find(builder.toString());
 		}
 	}

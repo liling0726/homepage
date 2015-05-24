@@ -8,6 +8,6 @@ public class TeacherShowMoreController extends Controller {
 	
 	public void showMore() {
 		renderJson("result", User.dao.showMore(getParaToInt("count")
-				, getPara("searchWords")));
+				, getPara("searchWords"), getParaToInt("need")));
 	}
 }
