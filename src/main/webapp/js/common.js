@@ -1,7 +1,7 @@
 $(function(){
 	var common={
 		
-				navHtml: '<nav class="navbar navbar-default">'
+				navHtml: '<nav class="navbar navbar-default navbar-fixed-top">'
 				  +'<div class="container-fluid">'
 	+'<div class="navbar-header">' 
 	+'<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">'  
@@ -14,18 +14,21 @@ $(function(){
 				        +'</div>'
 				        +'<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">'
 
-				        +'<form class="navbar-form navbar-right" role="search">'
+						+'<form class="navbar-form navbar-left" role="search">'
 				        +'<div class="form-group">'
 				        +'<input id="searchWords" type="text" class="form-control" placeholder="姓名/学院/系别">' 
 				        +'</div>'
 				        +'<button id="search" type="button" class="btn btn-info " style="margin-left:5px;">搜索</button>'
 				        +'</form>'
+				        
 				        +'<ul class="nav navbar-nav navbar-right">'
 						+'<li><a href="homePage.html">'
 						+'<span class="glyphicon glyphicon-home"></span>&nbsp;首页</a></li>'		
 						+'<li><a href="#" data-toggle="modal" data-target="#myModal">'
 						+'<span class="glyphicon glyphicon-log-in"></span>&nbsp;登录</a></li>'
-						+'<li><a href="#"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;帮助</a></li></ul></div></div></nav>'
+						+'<li><a href="#"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;帮助</a></li></ul>'
+						
+						+'</div></div></nav>'
 						+'<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'
 						+'"<div class="modal-dialog">'
 						+'<div class="modal-content">'
