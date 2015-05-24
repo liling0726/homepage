@@ -13,6 +13,12 @@ font-weight: bold;
 	float:right;
 	text-decoration:none;
 }
+#suggestion{
+	list-style-type:none;
+}
+#suggestion li{
+	height:30px;
+}
 #suggestion li a{
 	text-decoration:none;
 }
@@ -27,7 +33,11 @@ font-weight: bold;
 #suggestion li a span:nth-child(3){
 	float:right;
 	margin-right:5px;
+	color:DarkGray;
 }
 #newView{
 	color: #DB70DB;
+}
+#textareaDiv{
+	margin-bottom:10px;
 }

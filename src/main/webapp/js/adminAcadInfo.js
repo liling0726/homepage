@@ -266,9 +266,6 @@ $(function() {
 					"click",
 					function searchByKey(key) {
 						keyWord = $("#searchInput").val();
-						if (keyWord == null)
-							alert("请输入关键字！");// 其实没必要要这个
-						else {
 							$
 									.ajax({
 										type : "post",
@@ -288,8 +285,7 @@ $(function() {
 											end = 0;
 											// 清空
 											$("#maintable")
-													.html(
-															"<tr><th>序号</th><th>学院</th><th colspan=\"2\">系别</th></tr>");
+													.html("<tr><th>序号</th><th>学院</th><th colspan=\"2\">系别</th></tr>");
 											for (var i = k; i < data.length; i++) {
 												if (end >= totalNum
 														&& data[i].acad_name != data[i - 1].acad_name)
@@ -360,7 +356,6 @@ $(function() {
 							// 显示当前页等信息
 							$("#currentPage").html(currentPage);
 							$("#maxPage").html(maxPage);
-						}
 					});
 	// 加翻页功能。
 
