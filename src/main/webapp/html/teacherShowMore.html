@@ -5,54 +5,85 @@
     <script type="text/javascript" src="../js/jquery-2.1.1.js"></script>
     <script type="text/javascript" src="../js/bootstrap.js"></script>
     <script type="text/javascript" src="../js/common.js"></script>
+    <script type="text/javascript" src="../js/teacherShowMore.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="../css/common.css" />
-    <script type="text/javascript" src="../js/teacherShowMore.js"></script>
-    <title>教师个人显示</title>
+    <title>搜索结果</title>
     <style>
-        h1 {
-            color: #428bca;
-            text-align: center;
-            text-shadow: 6px 6px 6px darkgray;
-        }
-        
-        .thumbnail {
-            background-color: rgba(255, 255, 255, 0.4);
-            border-color: cornflowerblue;
-        }
-        
-        #user a {
-            font-family: sans-serif;
-        }
-        a:link {
-            color: darkcyan;
-        }
-        a:visited {
-            color: #6c14ad;
-        }
-        a:hover {
-            color: #911bc6;
-        }
-        a:active {
-            color: #ff0000;
-        }
-        
-        div#user {
-            text-align: center;
-        }
-        
-        div.col-md-8 {
-/*            background-color: rgba(245, 242, 240, 0.4);*/
-            background-color: rgba(255, 255, 255, 0.4);
-            border-style: dashed;
-            border-radius: 10px;
-            border-width:1px;
-            border-color:#00CCCC;
-            box-shadow:0 0 80px rgba(155, 155, 155, 0.8);
-            padding: 20px;
-            margin: 20px;
-        }
-    </style>
+h1 {
+	color: #003366;
+	text-align: center;
+	text-shadow: 6px 6px 6px darkgray;
+	font-weight: bold;
+	font-family: cursive;
+}
+
+.thumbnail {
+	background-color: rgba(255, 255, 255, 0.4);
+	border-color: cornflowerblue;
+}
+
+#user a {
+	font-family: sans-serif;
+}
+
+a:link {
+	color: darkcyan;
+}
+
+a:visited {
+	color: #6c14ad;
+}
+
+a:hover {
+	color: #911bc6;
+}
+
+a:active {
+	color: #ff0000;
+}
+
+div#user {
+	text-align: center;
+}
+
+div.col-md-8 {
+	/*            background-color: rgba(245, 242, 240, 0.4);*/
+	background-color: rgba(255, 255, 255, 0.4);
+	border-style: dashed;
+	border-radius: 10px;
+	border-width: 1px;
+	border-color: #00CCCC;
+	box-shadow: 0 0 80px rgba(155, 155, 155, 0.8);
+	padding: 20px;
+	margin: 20px;
+}
+
+.col-lg-2dot4 {
+	position: relative;
+	min-height: 1px;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+@media ( min-width : 1200px) {
+	.col-lg-2dot4 {
+		float: left;
+	}
+	.col-lg-2dot4 {
+		width: 20%;
+	}
+	.col-lg-pull-2dot4 {
+		right: 20%;
+	}
+	.col-lg-push-2dot4 {
+		left: 20%;
+	}
+	.col-lg-offset-2dot4 {
+		margin-left: 20%;
+	}
+}
+</style>
 </head>
 
 <body>
@@ -61,19 +92,7 @@
     </div>
     <div id="top"></div> <!-- 页头 -->
     <div class="container">
-        <div class="row"><h1>教师个人主页</h1></div>
-        <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
-                <div class="input-group search">
-                    <input id="searchWords" type="text" class="form-control" placeholder="姓名 系别 学院">
-                    <span class="input-group-btn">
-                        <button id="search" class="btn btn-warning" type="button">搜索</button>
-                    </span>
-                </div>
-            </div>
-            <div class="col-md-4"></div>
-        </div>
+        <div class="row"><h1>搜索结果</h1></div>
         <br />
         <div class="row">
             <div class="col-md-2"></div>
@@ -83,8 +102,8 @@
 		
         <br />
         <div class="row">
-            <div class="col-md-12" style="text-align: center;">
-                <button id="appendMore" class="btn btn-info" style="width: 660px;">加载更多</button>
+            <div class="col-md-12">
+                <button id="appendMore" class="btn btn-info" style="width: 45em; position: relative; left: 280px; top: -20px;">加载更多</button>
             </div>
         </div>
     </div>
