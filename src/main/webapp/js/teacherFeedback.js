@@ -24,6 +24,7 @@ $("#confirm")
 							+"</span></a></li>"
 							);
 						}
+					$("#textarea1").val("");
 				});
 $("#suggestion li").find("span[name='deleteSpan']").hide();
 $("#suggestion li").mouseover(function(){
