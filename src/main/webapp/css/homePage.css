@@ -3,8 +3,8 @@
 	padding:0px;
 }
 body{
-background:url(../img/background.jpg) no-repeat;
-
+	padding-top: 60px;
+	background:url(../img/background.jpg) no-repeat;
 }
 
 /* .homePage-nav{

@@ -7,7 +7,7 @@ $(function () {
 
     $("#search").bind("click", function () {
         searchWords = $("#searchWords").val();
-        $("#teachers").empty();
+        $("#teachers").html("");
         retrieve(count, searchWords, need);
         if (searchWords != "")
         	$("#appendMore").attr("disabled", "disabled");
