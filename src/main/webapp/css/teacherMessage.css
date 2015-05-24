@@ -9,25 +9,47 @@ body{
 text-align:center;
 font-weight: bold;
 }
-.panel-heading a{
+a:link{
+text-decoration:none;
+}
+a:visited{
+text-decoration:none;
+}
+a:hover{
+text-decoration:none;
+}
+a:active{
+text-decoration:none;
+}
+#mainUl{
+	list-style-type:none;
+}
+#mainUl li div:nth-child(2){
+	height:21px;
+}
+#mainUl li div:nth-child(2) span:nth-child(1){
 	float:right;
-	text-decoration:none;
 }
-#suggestion{
-	list-style:none;
-	line-height:28px;
-	margin-left:15px;
-}
-#suggestion li a{
-	text-decoration:none;
-}
-#suggestion li a span:nth-child(1){
-	margin-left:20px;
-}
-#suggestion li a span:nth-child(2){
-	margin-left:20px;
-}
-#suggestion li a span:nth-child(3){
+#mainUl li div:nth-child(2) span:nth-child(2){
 	float:right;
 	margin-right:5px;
+	color:DarkGray;
+}
+#mainUl li div:nth-child(2) span:nth-child(3){
+	float:right;
+	margin-right:15px;
+	color:DarkGray;
+}
+.liborder{
+	border-bottom:1px dotted DarkGray;
+	margin-left:30px;
+	margin-right:20px;
+	margin-bottom:15px;
+	padding-bottom:10px;
+}
+.noborder{
+	margin-left:30px;
+	margin-right:20px;
+	margin-bottom:15px;
+	padding-bottom:10px;
 }

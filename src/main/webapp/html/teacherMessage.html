@@ -6,10 +6,10 @@
 <script type="text/javascript" src="../js/bootstrap.js"></script>
 <script type="text/javascript" src="../js/bootstrap.js"></script>
 <script type="text/javascript" src="../js/teacherCommon.js"></script>
-<script type="text/javascript" src="../js/teacherFeedback.js"></script>
+<script type="text/javascript" src="../js/teacherMessage.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="../css/teacherCommon.css" />
-<link rel="stylesheet" type="text/css" href="../css/teacherFeedback.css" />
+<link rel="stylesheet" type="text/css" href="../css/teacherMessage.css" />
 <title>老师首页</title>
 </head>
 <body>
@@ -17,7 +17,7 @@
 	<ol class="breadcrumb">
 		<li>当前页面</li>
 		<li><a href="teacherIndex.html">首页</a></li>
-		<li><a href="teacherFeedback.html">动态留言</a></li>
+		<li><a href="teacherMessage.html">动态留言</a></li>
 	</ol>
 	<div class="container-fluid">
 		<div class="col-md-10 col-md-offset-1">
@@ -28,7 +28,35 @@
 						<span class="glyphicon glyphicon-list-alt"></span>&nbsp;最新动态留言
 					</h3>
 				</div>
-				<table class="table table-hover">
+				<div class="panel-body">
+					<ul id="mainUl">
+						<li>
+						<div class="liborder">
+						<div><a>路易斯：</a>&nbsp;&nbsp;&nbsp;<span>老师，今天的作业什么时候交啊？</span></div>
+						<div><span name="saw">未查看</span><span>2015-5-24 20:02</span><span>18381747976@163.com</span></div>
+						</div>
+						</li>
+						<li>
+						<div class="liborder">
+						<div><a>路易斯：</a>&nbsp;&nbsp;&nbsp;<span>老师，今天的作业什么时候交啊？老师，今天的作业</span></div>
+						<div><span name="saw">已查看</span><span>2015-5-24 20:02</span><span>18381747976@163.com</span></div>
+						</div>
+						</li>
+						<li>
+						<div class="liborder">
+						<div><a>路易斯：</a>&nbsp;&nbsp;&nbsp;<span>老师，今天的作业什么时候交啊？老师，今天的作业什么时候交啊老师，今天的作业</span></div>
+						<div><span name="saw">未查看</span><span>2015-5-24 20:02</span><span>18381747976@163.com</span></div>
+						</div>
+						</li>
+						<li>
+						<div class="noborder">
+						<div><a>路易斯：</a>&nbsp;&nbsp;&nbsp;<span>老师，今天的作业什么时候交啊？谢谢您的分享，谢谢您的分享</span></div>
+						<div><span name="saw">未查看</span><span>2015-5-24 20:02</span><span>18381747976@163.com</span></div>
+						</div>
+						</li>
+					</ul>
+				</div>
+				<!-- <table class="table table-hover">
 					<tr>
 						<th>序号</th>
 						<th>内容</th>
@@ -72,7 +100,7 @@
 						</tr>
 						<tr>
 					</tbody>
-				</table>
+				</table> -->
 			</div>
 
 		</div>
