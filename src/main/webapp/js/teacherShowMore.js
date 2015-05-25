@@ -36,7 +36,9 @@ function retrieve(count, searchWords, need) {
 			var res = result[2], html = "", i;
 			status = result[1];
 			for (i = 0; i < res.length; i = i + 1) {
-				html +=  '<div class=" col-lg-2dot4">'
+				if ((i % 5) == 0)
+					html += '<div class="row">';
+				html +=  '<div class="col-lg-2dot4">'
 		               + '	<div class="thumbnail">'
                        + '     <a href="' + res[i].user_url + '">'
 	                   + '     <img src="../img/person' + (i%10+1) + '.jpg" alt="..." title="系别：' +  res[i].dept_name + '&#10;学院：' + res[i].acad_name + '"></a>'
@@ -45,6 +47,8 @@ function retrieve(count, searchWords, need) {
 	                   + '	    </div>'
 	                   + '	</div>'
 	                   + '</div>';
+				if ((i % 5) == 4)
+					html += '</div>';
 			}
 			$("#teachers").append(html);
 		},
