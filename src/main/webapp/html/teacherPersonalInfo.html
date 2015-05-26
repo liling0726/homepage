@@ -17,7 +17,7 @@
 			<li><a href="#">首页</a></li>
 			<li><a href="#">教师个人信息修改</a></li>
 		</ol>
-		
+
 		<table class="table table-bordered table-hover">
 			<tr>
 				<th style="width: 10%;">姓名</th>
@@ -25,7 +25,7 @@
 			</tr>
 			<tr>
 				<th>职称</th>
-				<th><input type="text" name="Occupation" value="教师"></th>
+				<th><input type="text" name="occupation" value="教师"></th>
 			</tr>
 			<tr>
 				<th style="width: 10%;">学位</th>
@@ -33,20 +33,11 @@
 			</tr>
 			<tr>
 				<th>学院</th>
-				<th>
-					<form>
-						<select name="acad">
-							<option >计算机科学与技术学院</option>
-							<option >法学院</option>
-							<option >土建学院</option>
-							<option >生命学院</option>
-						</select>
-					</form>
-				</th>
+				<th><input type="text" name="acad" value="计算机科学与技术学院"></th>
 			</tr>
 			<tr>
 				<th>邮箱</th>
-				<th><input type="text" name="Email" value="135315351@163.com"></th>
+				<th><input type="text" name="email" value="135315351@163.com"></th>
 			</tr>
 			<tr>
 				<th>联系方式</th>
@@ -59,6 +50,26 @@
 			<tr>
 				<th>主要研究方向</th>
 				<th><input type="text" name="way" value="数据挖掘"></th>
+			</tr>
+			<tr>
+				<th>是否允许留言</th>
+				<th>
+					<form>
+						是<input type="radio" name="message" value="yes" />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						否<input type="radio" name="message" value="no" />
+					</form>
+				</th>
+			</tr>
+			<tr>
+				<th>模板选择</th>
+				<th>
+					<form>
+						模板1<input type="radio" name="type" value="one" />&nbsp;&nbsp;&nbsp;
+						模板2<input type="radio" name="type" value="two" />&nbsp;&nbsp;&nbsp;
+						模板3<input type="radio" name="type" value="three" />&nbsp;&nbsp;&nbsp;
+					</form>
+				</th>
 			</tr>
 		</table>
 		<div style="margin-bottom: 5px;" align="right">
