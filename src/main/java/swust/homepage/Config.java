@@ -7,6 +7,8 @@ import swust.homepage.controller.AdminLoginController;
 import swust.homepage.controller.AdminTeacherInfoController;
 import swust.homepage.controller.IndexController;
 import swust.homepage.controller.TeacherColumnManageController;
+import swust.homepage.controller.TeacherFeedbackController;
+import swust.homepage.controller.TeacherMessageController;
 import swust.homepage.controller.TeacherShowMoreController;
 import swust.homepage.model.Acad;
 import swust.homepage.model.Admin;
@@ -73,6 +75,8 @@ public class Config extends JFinalConfig {
 		a.add("/adminacadinfo", AdminAcadInfoController.class);
 		a.add("/teacherColumnManage", TeacherColumnManageController.class); // 老师页面栏目
 		a.add("/teacherShowMore", TeacherShowMoreController.class); // 搜索页面
+		a.add("/teacherMessage", TeacherMessageController.class);
+		a.add("/teacherFeedback", TeacherFeedbackController.class);
 	}
 	
 	/**
