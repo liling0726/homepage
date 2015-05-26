@@ -43,13 +43,12 @@ public class AdminTeacherInfoController extends Controller {
 	 */
 	public void update() {
 		User user = getModel(User.class);
-		User oldUser=User.dao.findById(user.getInt("user_id"));
+		User oldUser = User.dao.findById(user.getInt("user_id"));
 		List<Admin> admins = Admin.dao
 				.find("select * from admin where admin_num="
 						+ oldUser.getStr("user_num"));
-		/*利用用户的id得到以前的数据user_num
-		 * 据此num得到管理员
-		 * 避免因改变num而造成的admin表内新建管理员
+		/*
+		 * 利用用户的id得到以前的数据user_num 据此num得到管理员 避免因改变num而造成的admin表内新建管理员
 		 */
 		if (!user.update()) {
 			renderJson("result", "修改失败");
@@ -96,6 +95,21 @@ public class AdminTeacherInfoController extends Controller {
 		for (int i = 0, p = getParaToInt(i, -1); p != -1; i++) {
 			p = getParaToInt(i, -1);
 			if (p >= 0) {
+				User user = User.dao.findById(p);
+				if (user.getBoolean("user_is_admin")) {
+					List<Admin> admins = Admin.dao
+							.find("select * from admin where admin.admin_num="
+									+ user.getStr("user_num"));
+					Admin admin = null;
+					if (admins != null && admins.size() > 0) {
+						admin = admins.get(0);
+					}
+					if (admin != null && admin.delete()) {
+						System.out.println("User:id=" + p + " 对应管理员刪除成功！");
+					} else {
+						System.out.println("User:id=" + p + " 对应管理员刪除失败！");
+					}
+				}
 				if (User.dao.deleteById(p)) {
 					success++;
 					System.out.println("User:id=" + p + " 删除成功！");
