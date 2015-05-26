@@ -31,6 +31,7 @@ public class AdminTeacherInfoController extends Controller {
 			admin.set("admin_num", user.get("user_num"));
 			admin.set("admin_name", user.get("user_name"));
 			admin.set("admin_dept_id", user.get("user_dept_id"));
+			admin.set("admin_acad_id", Dept.dao.getAcadIdByDeptId(user.getInt("user_dept_id")));
 			if (!admin.save()) {
 				renderJson("result", "添加管理员失败");
 			}
@@ -64,6 +65,7 @@ public class AdminTeacherInfoController extends Controller {
 				admin.set("admin_num", user.get("user_num"));
 				admin.set("admin_name", user.get("user_name"));
 				admin.set("admin_dept_id", user.get("user_dept_id"));
+				admin.set("admin_acad_id", Dept.dao.getAcadIdByDeptId(user.getInt("user_dept_id")));
 				if (!admin.save()) {
 					renderJson("result", "修改失败");
 				}
@@ -71,6 +73,7 @@ public class AdminTeacherInfoController extends Controller {
 				admin.set("admin_num", user.get("user_num"));
 				admin.set("admin_name", user.get("user_name"));
 				admin.set("admin_dept_id", user.get("user_dept_id"));
+				admin.set("admin_acad_id", Dept.dao.getAcadIdByDeptId(user.getInt("user_dept_id")));
 				if (!admin.update()) {
 					renderJson("result", "修改失败");
 				}
@@ -96,6 +99,11 @@ public class AdminTeacherInfoController extends Controller {
 			p = getParaToInt(i, -1);
 			if (p >= 0) {
 				User user = User.dao.findById(p);
+				if(user==null){
+					System.out.println("用户不存在，删除失败！");
+					renderJson("用户不存在，删除失败！");
+					return;
+				}
 				if (user.getBoolean("user_is_admin")) {
 					List<Admin> admins = Admin.dao
 							.find("select * from admin where admin.admin_num="

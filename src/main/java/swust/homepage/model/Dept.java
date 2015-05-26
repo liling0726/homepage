@@ -32,5 +32,14 @@ public class Dept extends Model<Dept> {
 		
 		
 	}
+	/**
+	 * 根据专业id查询对应学院id
+	 * @param deptId
+	 * @return
+	 */
+	public int getAcadIdByDeptId(int deptId){
+		Dept dept=findById(deptId);
+		return dept.getInt("dept_acad_id");
+	}
 	
 }
