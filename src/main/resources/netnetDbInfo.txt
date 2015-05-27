@@ -1,0 +1,8 @@
+jdbcUrl = jdbc:mysql://10.10.4.217:3306/homepage?characterEncoding=UTF-8
+user = root
+password = cs.swust
+
+
+jdbcUrl = jdbc:mysql://127.0.0.1:3306/homepage?characterEncoding=UTF-8
+user = root
+password = 654321
