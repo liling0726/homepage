@@ -114,7 +114,6 @@ $("#pageforward").bind("click",function(){
 	if(currentPage<totalNum)
 	{
 	currentPage=parseInt(currentPage)+1;
-	alert(currentPage);
 	initial();
 	}
 	else{
