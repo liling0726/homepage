@@ -44,7 +44,7 @@ function initial() {
 				else{
 					html+="<li id=\"" 
 						+i
-						+"\"><div class=\"noborder\"><div><a>"
+						+"\"><div class=\"liborder\"><div><a>"
 						+data[i].user_name
 						+":</a>&nbsp;&nbsp;&nbsp;<span>" 
 						+data[i].message_content

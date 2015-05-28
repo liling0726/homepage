@@ -17,7 +17,7 @@ public class TeacherMessageController extends Controller {
 		// Message.dao.teacherMessage(getParaToInt(0, 1), getParaToInt(1, 10),
 		// getParaToInt("userId")));
 		// 测试下对不对
-		renderJson("teacherMessage", Message.dao.teacherMessage(getParaToInt(0, 1), getParaToInt(1, 10),3));
+		renderJson("teacherMessage", Message.dao.teacherMessage(getParaToInt(0, 1), getParaToInt(1, 10),4));
 
 	}
 
