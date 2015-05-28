@@ -17,7 +17,7 @@ public class IndexController extends Controller {
 		redirect("/html/homePage.html");
 	}
 	
-	/** @author jinlong */
+	/** jinlong */
 	public void random() {
 		renderJson("user", User.dao.randomUser());
 	}
@@ -39,7 +39,7 @@ public class IndexController extends Controller {
 	
 	/**
 	 * 老师登录验证
-	 * @author jinlong
+	 * jinlong
 	 */
 	public void login() {
 		// 检查验证码
