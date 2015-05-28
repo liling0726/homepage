@@ -1,12 +1,7 @@
 package swust.homepage.model;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import swust.homepage.util.Tuple2;
-
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Page;
@@ -70,42 +65,42 @@ public class User extends Model<User> {
 				+ " and `user`.user_dept_id = dept.dept_id and dept.dept_acad_id = acad.acad_id");
 	}
 	
-	/** @author jinlong */
+	/** jinlong */
 	public boolean isLogin() {
 		return true;
 	}
 	
-	/** @author jinlong */
+	/** jinlong */
 	public List<User> randomUser() {
 		return find("select user_name, user_url, user_img "
 				           + "from user order by rand() limit 12");
 	}
 	
-	/** @author jinlong */
+	/** jinlong */
 	public Long countAll() {
 		return Db.queryLong("select count(*) from user");
 	}
 	
-	/** @author jinlong */
+	/** jinlong */
 	public Tuple2<String, List<User>> showMore(int count, String searchWords, int need) {
-		StringBuilder builder = new StringBuilder();
+		StringBuilder b = new StringBuilder();
 		String prefix = "select user_name, user_url, user_img, dept_name, acad_name from user, dept, acad where user_dept_id = dept_id and dept_acad_id = acad_id ";
 		if (searchWords != null && !searchWords.equals("")) {
 			String[] words = searchWords.split(" ");
-			builder.append(prefix);
+			b.append(prefix);
 			for (String str: words) {
-				builder.append(" and ((user_name like '%" + str +"%') ");
-				builder.append(" or (acad_name like '%" + str +"%') ");
-				builder.append(" or (dept_name like '%" + str +"%')) ");
+				b.append(" and ((user_name like '%"); b.append(str); b.append("%') ");
+				b.append(" or (acad_name like '%"); b.append(str); b.append("%') ");
+				b.append(" or (dept_name like '%"); b.append(str); b.append("%')) ");
 			}
-			return new Tuple2<>("success", find(builder.toString()));
+			return new Tuple2<>("success", find(b.toString()));
 		} else {
-			builder.append(prefix);
-			builder.append(" limit " + count + ", " + need);
+			b.append(prefix);
+			b.append(" limit "); b.append(count); b.append(", "); b.append(need);
 			if ((count + need) > countAll())
-				return new Tuple2<>("nomore", find(builder.toString()));
+				return new Tuple2<>("nomore", find(b.toString()));
 			else
-				return new Tuple2<>("success", find(builder.toString()));
+				return new Tuple2<>("success", find(b.toString()));
 		}
 	}
 
