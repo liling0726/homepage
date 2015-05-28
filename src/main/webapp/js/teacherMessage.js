@@ -31,14 +31,14 @@ function initial() {
 						+i
 						+"\"><div class=\"noborder\"><div><a>"
 						+data[i].user_name
-						+":</a>&nbsp;&nbsp;&nbsp;<span>" 
-						+data[i].message_content
+						+"</a>&nbsp;&nbsp;&nbsp;<span>"
+						+data[i].message_email
 						+"</span><span name=\"deletex\" title=\"删除\">×</span></div><div><span name=\"saw\">"
 						+"未查看" 
 						+"</span><span>"
 						+"2015-5-24 20:02" 
-						+"</span><span>"
-						+data[i].message_email
+						+"</span><span>" 
+						+data[i].message_content
 						+"</span></div></div></li>";
 					}
 				else{
@@ -46,15 +46,16 @@ function initial() {
 						+i
 						+"\"><div class=\"liborder\"><div><a>"
 						+data[i].user_name
-						+":</a>&nbsp;&nbsp;&nbsp;<span>" 
-						+data[i].message_content
+						+"</a>&nbsp;&nbsp;&nbsp;<span>"
+						+data[i].message_email
 						+"</span><span name=\"deletex\" title=\"删除\">×</span></div><div><span name=\"saw\">"
 						+"未查看" 
 						+"</span><span>"
 						+"2015-5-24 20:02" 
-						+"</span><span>"
-						+data[i].message_email
+						+"</span><span>" 
+						+data[i].message_content
 						+"</span></div></div></li>";
+					
 				}
 			}
 			$("#mainUl").html(html);
