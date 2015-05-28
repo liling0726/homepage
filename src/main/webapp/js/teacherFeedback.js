@@ -74,7 +74,7 @@ $(document)
 					$("span[name='deleteSpan']").click(function() {
 						alert("确认删除？");
 					});
-				});
+				
 /*
  * 初始化页面
  */
@@ -188,3 +188,4 @@ $("#max").bind("change",function(){
 		initial();
 		else searchByKey(keyWord);
 });
+				});

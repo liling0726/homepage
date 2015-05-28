@@ -24,6 +24,10 @@ text-decoration:none;
 #mainUl{
 	list-style-type:none;
 }
+#mainUl li div:nth-child(1) span:nth-child(3){
+	margin-left:40px;
+	color:red;
+}
 #mainUl li div:nth-child(2){
 	height:21px;
 }

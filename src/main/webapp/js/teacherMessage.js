@@ -27,11 +27,13 @@ function initial() {
 			for(var i = 0;i<data.length;i++){
 				if(i==data.length-1)
 					{
-					html+="<li><div class=\"noborder\"><div><a>"
+					html+="<li id=\"" 
+						+i
+						+"\"><div class=\"noborder\"><div><a>"
 						+data[i].user_name
 						+":</a>&nbsp;&nbsp;&nbsp;<span>" 
 						+data[i].message_content
-						+"</span></div><div><span name=\"saw\">"
+						+"</span><span name=\"deletex\" title=\"删除\">×</span></div><div><span name=\"saw\">"
 						+"未查看" 
 						+"</span><span>"
 						+"2015-5-24 20:02" 
@@ -40,11 +42,13 @@ function initial() {
 						+"</span></div></div></li>";
 					}
 				else{
-					html+="<li><div class=\"liborder\"><div><a>"
+					html+="<li id=\"" 
+						+i
+						+"\"><div class=\"noborder\"><div><a>"
 						+data[i].user_name
 						+":</a>&nbsp;&nbsp;&nbsp;<span>" 
 						+data[i].message_content
-						+"</span></div><div><span name=\"saw\">"
+						+"</span><span name=\"deletex\" title=\"删除\">×</span></div><div><span name=\"saw\">"
 						+"未查看" 
 						+"</span><span>"
 						+"2015-5-24 20:02" 
@@ -77,6 +81,33 @@ function initial() {
 					$(this).html("未查看");
 					$(this).css("color","red");
 				}
+			});
+			$("#mainUl li").find("span[name='deletex']").hide();
+			$("#mainUl li").mouseover(function() {
+				$(this).find("span[name='deletex']").show();
+			});
+			$("#mainUl li").mouseleave(function() {
+				$(this).find("span[name='deletex']").hide();
+			});
+			$("span[name='deletex']").click(function() {
+				var id;
+				alert("确认删除？");
+				id=parseInt($(this).parents("li").attr("id"))+(currentPage-1)*maxPage;
+				alert(id);
+				$.ajax({
+					type : "post",
+					content : "application/x-www-form-urlencoded;charset=UTF-8",
+					dataType : "json",
+					url : "../teacherMessage/delete",
+					data:{id:id},
+					async : "false",
+					success : function(result) {
+						
+					},
+				error:function(e){
+					console.log("错误：" + e);
+				}
+				});
 			});
 			
 			 $("#currentPage").html(result.teacherMessage.pageNumber);
@@ -166,4 +197,6 @@ $("#max").bind("change",function(){
 	 alert(maxPage);
 	 initial();
 });
+
 });
+
