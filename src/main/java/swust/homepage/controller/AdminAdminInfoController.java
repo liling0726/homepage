@@ -1,11 +1,8 @@
 package swust.homepage.controller;
 
-import java.util.Random;
-
 import com.jfinal.core.Controller;
 
 import swust.homepage.model.Admin;
-import swust.homepage.model.User;
 
 
 /**

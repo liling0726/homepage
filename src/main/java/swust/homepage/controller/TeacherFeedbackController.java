@@ -12,9 +12,9 @@ import swust.homepage.model.Feedback;
 public class TeacherFeedbackController extends Controller {
 
 	public void index() {// 若给定值，pageNumber/pageSize为给定的值，否则为默认值即后者参数
-		//renderJson("teacherMessage", Feedback.dao.teacherFeedback(getParaToInt(0, 1), getParaToInt(1, 10), getParaToInt("userId")));
+		//renderJson("teacherFeedback", Feedback.dao.teacherFeedback(getParaToInt(0, 1), getParaToInt(1, 10), getParaToInt("userId")));
 		// 测试下对不对
-		renderJson("teacherMessage", Feedback.dao.teacherFeedback(1, 10, 4));
+		renderJson("teacherFeedback", Feedback.dao.teacherFeedback(1, 10, 4));
 
 	}
 
