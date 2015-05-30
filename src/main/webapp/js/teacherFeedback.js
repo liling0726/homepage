@@ -93,6 +93,8 @@ function initial() {
 		}
 	});
 }
+
+
 // 添加过后要刷新！！！！！！！！！！！！！！！！！！！
 //跳转
 $("#goto").bind("click",function(){
