@@ -74,7 +74,7 @@ $(document)
 					$("span[name='deleteSpan']").click(function() {
 						alert("确认删除？");
 					});
-				
+				});
 /*
  * 初始化页面
  */
@@ -188,4 +188,35 @@ $("#max").bind("change",function(){
 		initial();
 		else searchByKey(keyWord);
 });
-				});
+
+// 只是為了測試一下
+// @Author zengdan
+/*$("#add").click(
+ function() {
+ var feedbackContent = "hphp;h;ge";
+ feedbackAnserContent = "我也不知道啊啊";
+ feedbackIsAnsered = "1";
+ feedbackUpdateTime = "2015-05-14 17:45:33";
+ feedbackUserId = "4";
+ // alert(isSetAdmin);
+ $.ajax({
+ type : "post",
+ content : "application/x-www-from-urlencoded;charset=UTF-8",
+ dataType : "json",
+ url : "../teacherFeedback/save",
+ data : "feedback.feedback_content=" + feedbackContent
+ + "&feedback.feedback_anser_content=" + feedbackAnserContent
+ + "&feedback.feedback_is_ansered=" + feedbackIsAnsered
+ + "&feedback.feedback_update_time=" + feedbackUpdateTime
+ + "&feedback.feedback_user_id=" + feedbackUserId,
+ async : false,
+ success : function(result) {
+ alert(result.result);
+ window.location.reload();
+ },
+ error : function(e) {
+ console.log("错误：" + e.message);
+ }
+ });
+ });*/
+//測試到此為止
