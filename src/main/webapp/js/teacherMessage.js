@@ -26,40 +26,34 @@ $(document).ready(function(){
 				var html="";
 				for(var i = 0;i<data.length;i++){
 					if(i==data.length-1)
-					{
-<<<<<<< HEAD
-					html+="<li id=\"" 
-						+i
-						+"\"><div class=\"noborder\"><div><a>"
-						+data[i].user_name
-						+"</a>&nbsp;&nbsp;&nbsp;<span>"
-						+data[i].message_email
-						+"</span><span name=\"deletex\" title=\"删除\">×</span></div><div><span name=\"saw\">"
-						+"未查看" 
-						+"</span><span>"
-						+"2015-5-24 20:02" 
-						+"</span><span>" 
-						+data[i].message_content
-						+"</span></div></div></li>";
-					}
-				else{
-					html+="<li id=\"" 
+					{      html+="<li id=\"" 
 						+i
 						+"\"><div class=\"liborder\"><div><a>"
 						+data[i].user_name
 						+"</a>&nbsp;&nbsp;&nbsp;<span>"
 						+data[i].message_email
-						+"</span><span name=\"deletex\" title=\"删除\">×</span></div><div><span name=\"saw\">"
-						+"未查看" 
+						+"</span><span name=\"deletex\" title=\"删除\">×</span></div><div><span>" 
+						+data[i].message_content
 						+"</span><span>"
 						+"2015-5-24 20:02" 
-						+"</span><span>" 
-						+data[i].message_content
-						+"</span></div></div></li>";
+						+"&nbsp;&nbsp;<label name=\"saw\">未查看</label></span></div></div></li>";
+			}
+				else{
+					 html+="<li id=\"" 
+							+i
+							+"\"><div class=\"liborder\"><div><a>"
+							+data[i].user_name
+							+"</a>&nbsp;&nbsp;&nbsp;<span>"
+							+data[i].message_email
+							+"</span><span name=\"deletex\" title=\"删除\">×</span></div><div><span>" 
+							+data[i].message_content
+							+"</span><span>"
+							+"2015-5-24 20:02" 
+							+"&nbsp;&nbsp;<label name=\"saw\">未查看</label></span></div></div></li>";
 				}
 				}
 				$("#mainUl").html(html);
-				$("span[name='saw']").each(function(){
+				$("label[name='saw']").each(function(){
 					var spanHtml;
 					spanHtml=$(this).html();
 					if(spanHtml=="已查看")
@@ -70,7 +64,7 @@ $(document).ready(function(){
 						$(this).css("color","red");
 					}
 				});
-				$("span[name='saw']").click(function(){
+				$("label[name='saw']").click(function(){
 					var spanHtml;
 					spanHtml=$(this).html();
 					if(spanHtml=="未查看")

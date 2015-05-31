@@ -31,19 +31,22 @@ text-decoration:none;
 	float:right;
 	color:red;
 	font-size:25px;
+	cursor:pointer;
 }
-#mainUl li div div:nth-child(1){
+#mainUl li div{
 	padding-bottom:14px;
 }
-#mainUl li div div:nth-child(2) span:nth-child(1){
-	float:right;
+#mainUl li div div:nth-child(2) span:nth-child(2) label{
+	font-weight:normal;
+	cursor:pointer;
 }
 #mainUl li div div:nth-child(2) span:nth-child(2){
-	float:right;
 	margin-right:5px;
+	margin-left:30px;
 	color:DarkGray;
+	float:right;
 }
-#mainUl li div div:nth-child(2) span:nth-child(3){
+#mainUl li div div:nth-child(2) span:nth-child(1){
 	margin-left:30px;
 }
 .liborder{
