@@ -1,7 +1,7 @@
 var myDate = new Date();
 var currentPage, // 当前页
-totalNum, // 一页总条数
-maxPage;// 最大页数
+totalNum, // 共多少页
+maxPage;// 一页多少条
 $(document)
 		.ready(
 				function() {
@@ -74,7 +74,7 @@ $(document)
 					$("span[name='deleteSpan']").click(function() {
 						alert("确认删除？");
 					});
-				});
+				
 /*
  * 初始化页面
  */
@@ -86,7 +86,35 @@ function initial() {
 		url : "../teacherFeedback/" + currentPage + "-" + maxPage,
 		async : "false",
 		success : function(result) {
-
+			var data=result.teacherFeedback.list;
+			var html="";
+			for(var i=0;i<data.length;i++)
+				{
+				if(data[i].feedback_is_ansered==true)
+					{
+				html+="<li><a href=\"#\">"
+				+data[i].feedback_content
+				+"<span class=\"label label-info\">"
+				+"已解决"
+				+"</span><span name=\"deleteSpan\">×</span><span>"
+				+data[i].feedback_update_time
+				+"</span></a></li>";
+					}
+				else{
+				html+="<li><a href=\"#\">"
+				+data[i].feedback_content
+				+"<span class=\"label label-info\">"
+				+"有待解决"
+				+"</span><span name=\"deleteSpan\">×</span><span>"
+				+data[i].feedback_update_time
+				+"</span></a></li>";
+				}
+				}
+			$("#suggestion").append(html);
+			currentPage=result.teacherFeedback.pageNumber;
+			totalNum=result.teacherFeedback.totalPage;
+			$("#currentPage").html(currentPage);
+			$("#totalPage").html(totalNum);
 		},
 		error : function(e) {
 			console.log("错误：" + e);
@@ -112,9 +140,7 @@ $("#goto").bind("click",function(){
 	{
 		currentPage=gotopage;
 		//调用查询
-		if(keyWord==""||keyWord==null)
 		initial();
-		else searchByKey(keyWord);
 	}
 
 });
@@ -125,9 +151,7 @@ $("#pageforward").bind("click",function(){
 	{
 	currentPage=parseInt(currentPage)+1;
 	//调用查询
-	if(keyWord==""||keyWord==null)
 	initial();
-	else searchByKey(keyWord);
 	}
 	else{
 		alert("超出总页数");
@@ -141,9 +165,7 @@ $("#pagebackward").bind("click",function(){
 	if(currentPage>1)
 	{currentPage=parseInt(currentPage)-1;
 	//调用查询
-	if(keyWord==""||keyWord==null)
 	initial();
-	else searchByKey(keyWord);
 	}
 	else{
 		alert("小于总页数");
@@ -161,9 +183,7 @@ $("#firstPage").bind("click",function(){
 	else{
 	currentPage=1;
 	//调用查询
-	if(keyWord==""||keyWord==null)
 	initial();
-	else searchByKey(keyWord);
 	}
 });
 //点击末页，显示最后页数据
@@ -176,21 +196,18 @@ $("#lastPage").bind("click",function(){
 	else{
 	currentPage=totalNum;
 	//调用查询
-	if(keyWord==""||keyWord==null)
 	initial();
-	else searchByKey(keyWord);
 	}
 });
 //每页显示页数
 $("#max").bind("change",function(){
 	 maxPage=$("#max").val();
+	 currentPage=1;
 	 //alert(maxPage);
 	//调用查询
-		if(keyWord==""||keyWord==null)
-		initial();
-		else searchByKey(keyWord);
+	 initial();
 });
-
+});
 // 只是為了測試一下
 // @Author zengdan
 /*$("#add").click(
