@@ -120,7 +120,7 @@ $(document).ready(function(){
 							}
 						});
 					}
-					if(spanHtml=="已查看"){
+					/*if(spanHtml=="已查看"){
 						$(this).html("未查看");
 						$(this).css("color","red");
 						$
@@ -139,9 +139,9 @@ $(document).ready(function(){
 												+ e.message);
 							}
 						});
-					}
+					}*/
 					
-				});1
+				});
 				$("#mainUl li").find("span[name='deletex']").hide();
 				$("#mainUl li").mouseover(function() {
 					$(this).find("span[name='deletex']").show();
