@@ -16,7 +16,7 @@ $(function(){
 					+'<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">'
 					+'<ul class="nav navbar-nav navbar-right">'
 					+' <li><a href="teacherIndex.html">首页</a></li>'
-					+' <li><a href="#">基本信息</a></li>'
+					+' <li><a href="teacherPersonalInfo.html">基本信息</a></li>'
 					+' <li><a href="teacherColumnManage.html">栏目管理</a></li>'
 					+' <li><a href="teacherNewsManage.html">新闻管理</a></li>'
 					+' <li><a href="teacherMessage.html">动态留言</a></li>'
