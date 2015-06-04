@@ -47,9 +47,9 @@ $(document)
 														dataType : "json",
 														url : "../teacherFeedback/save",
 														data : {
-															feedbackString : text,
-															time:time
-														},
+															feedback_content: text,
+															feedback_update_time:time
+														},	
 														async : false,
 														success : function(result) {
 															alert("成功否？");
@@ -140,7 +140,7 @@ $(document)
 																		content : "application/x-www-form-urlencoded;charset=UTF-8",
 																		dataType : "json",
 																		url : "../teacherFeedback/deleteSome",
-																		data:{id:id},
+																		data:{feedback_id:id},
 																		async : "false",
 																		success : function(result) {
 																			//alert("删除成功！");
