@@ -13,9 +13,6 @@ $(document)
 					// 初始化
 					initial();
 
-					$("li").delegate("span[name='span1']", "click", function() {
-						$(this).parent().remove();
-					});
 					$("#confirm")
 							.on(
 									"click",
@@ -46,13 +43,10 @@ $(document)
 														content : "application/x-www-from-urlencoded;charset=UTF-8",
 														dataType : "json",
 														url : "../teacherFeedback/save",
-														data : {
-															feedback_content: text,
-															feedback_update_time:time
-														},
+														data:"feedback.feedback_content="+text+"&feedback.feedback_anser_content="+"kkk"+"&feedback.feedback_is_ansered="+0+"&feedback.feedback_update_time="+time+"&feedback.feedback_user_id="+4,
 														async : false,
 														success : function(result) {
-															alert("成功否？");
+															alert(result.result);
 															window.location.reload();
 														},
 														error : function(e) {
@@ -84,7 +78,7 @@ $(document)
 										for (var i = 0; i < data.length; i++) {
 											if (data[i].feedback_is_ansered == true) {
 												html += "<li id=\""
-														+ i
+														+ data[i].feedback_id
 														+ "\"><a href=\"#\">"
 														+ data[i].feedback_content
 														+ "<span class=\"label label-info\">"
@@ -94,7 +88,7 @@ $(document)
 														+ "</span></a></li>";
 											} else {
 												html += "<li id=\""
-														+ i
+														+ data[i].feedback_id
 														+ "\"><a href=\"#\">"
 														+ data[i].feedback_content
 														+ "<span class=\"label label-info\">"
@@ -133,17 +127,16 @@ $(document)
 												.click(
 														function() {
 															var id=$(this).parents("li").attr("id");
-															id=parseInt(id)+parseInt((currentPage-1)*maxPage);
-															alert(id);
 															$.ajax({
 																		type : "post",
 																		content : "application/x-www-form-urlencoded;charset=UTF-8",
 																		dataType : "json",
-																		url : "../teacherFeedback/deleteSome",
-																		data:{feedback_id:id},
+																		url : "../teacherFeedback/delete",
+																		data:{ID:id},
 																		async : "false",
 																		success : function(result) {
-																			//alert("删除成功！");
+																			alert(result.result);
+																			window.location.reload();
 																		},
 																		error : function(e) {
 																			console.log("错误:"+ e);

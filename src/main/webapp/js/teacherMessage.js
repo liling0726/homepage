@@ -26,8 +26,9 @@ $(document).ready(function(){
 				var html="";
 				for(var i = 0;i<data.length;i++){
 					if(i==data.length-1)
-					{      html+="<li id=\"" 
-						+i
+					{   if(data[i].message_is_view==1){
+						html+="<li id=\"" 
+						+data[i].message_id
 						+"\"><div class=\"liborder\"><div><a>"
 						+data[i].user_name
 						+"</a>&nbsp;&nbsp;&nbsp;<span>"
@@ -36,11 +37,11 @@ $(document).ready(function(){
 						+data[i].message_content
 						+"</span><span>"
 						+"2015-5-24 20:02" 
-						+"&nbsp;&nbsp;<label name=\"saw\">未查看</label></span></div></div></li>";
-			}
-				else{
-					 html+="<li id=\"" 
-							+i
+						+"&nbsp;&nbsp;<label name=\"saw\">已查看</label></span></div></div></li>";
+					}
+					else{
+						html+="<li id=\"" 
+							+data[i].message_id
 							+"\"><div class=\"liborder\"><div><a>"
 							+data[i].user_name
 							+"</a>&nbsp;&nbsp;&nbsp;<span>"
@@ -50,7 +51,37 @@ $(document).ready(function(){
 							+"</span><span>"
 							+"2015-5-24 20:02" 
 							+"&nbsp;&nbsp;<label name=\"saw\">未查看</label></span></div></div></li>";
-				}
+					}
+					}
+				else{
+					if(data[i].message_is_view==1){
+						html+="<li id=\"" 
+							+data[i].message_id
+							+"\"><div class=\"liborder\"><div><a>"
+							+data[i].user_name
+							+"</a>&nbsp;&nbsp;&nbsp;<span>"
+							+data[i].message_email
+							+"</span><span name=\"deletex\" title=\"删除\">×</span></div><div><span>" 
+							+data[i].message_content
+							+"</span><span>"
+							+"2015-5-24 20:02" 
+							+"&nbsp;&nbsp;<label name=\"saw\">已查看</label></span></div></div></li>";
+			
+					}
+					else{
+					 html+="<li id=\"" 
+							+data[i].message_id
+							+"\"><div class=\"liborder\"><div><a>"
+							+data[i].user_name
+							+"</a>&nbsp;&nbsp;&nbsp;<span>"
+							+data[i].message_email
+							+"</span><span name=\"deletex\" title=\"删除\">×</span></div><div><span>" 
+							+data[i].message_content
+							+"</span><span>"
+							+"2015-5-24 20:02" 
+							+"&nbsp;&nbsp;<label name=\"saw\">未查看</label></span></div></div></li>";
+					}
+					}
 				}
 				$("#mainUl").html(html);
 				$("label[name='saw']").each(function(){
@@ -66,17 +97,51 @@ $(document).ready(function(){
 				});
 				$("label[name='saw']").click(function(){
 					var spanHtml;
+					var id=$(this).parents("li").attr("id");
 					spanHtml=$(this).html();
 					if(spanHtml=="未查看")
 					{
 						$(this).html("已查看");
 						$(this).css("color","DarkGray");
+						$
+						.ajax({
+							type : "post",
+							content : "application/x-www-from-urlencoded;charset=UTF-8",
+							dataType : "json",
+							url : "../teacherMessage/save",
+							data:"message.message_id="+id+"&message.message_is_view="+1,
+							async : false,
+							success : function(result) {
+							},
+							error : function(e) {
+								console
+										.log("错误："
+												+ e.message);
+							}
+						});
 					}
 					if(spanHtml=="已查看"){
 						$(this).html("未查看");
 						$(this).css("color","red");
+						$
+						.ajax({
+							type : "post",
+							content : "application/x-www-from-urlencoded;charset=UTF-8",
+							dataType : "json",
+							url : "../teacherMessage/save",
+							data:"message.message_id="+id+"&message.message_is_view="+0,
+							async : false,
+							success : function(result) {
+							},
+							error : function(e) {
+								console
+										.log("错误："
+												+ e.message);
+							}
+						});
 					}
-				});
+					
+				});1
 				$("#mainUl li").find("span[name='deletex']").hide();
 				$("#mainUl li").mouseover(function() {
 					$(this).find("span[name='deletex']").show();
@@ -86,18 +151,17 @@ $(document).ready(function(){
 				});
 				$("span[name='deletex']").click(function() {
 					var id;
-					alert("确认删除？");
-					id=parseInt($(this).parents("li").attr("id"))+(currentPage-1)*maxPage;
-					alert(id);
+					id=$(this).parents("li").attr("id");
 					$.ajax({
 						type : "post",
 						content : "application/x-www-form-urlencoded;charset=UTF-8",
 						dataType : "json",
 						url : "../teacherMessage/delete",
-						data:{id:id},
+						data:{ID:id},
 						async : "false",
 						success : function(result) {
-
+							alert(result.result);
+							window.location.reload();
 						},
 						error:function(e){
 							console.log("错误：" + e);

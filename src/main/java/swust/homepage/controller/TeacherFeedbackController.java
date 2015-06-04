@@ -21,6 +21,7 @@ public class TeacherFeedbackController extends Controller {
 
 	// 添加
 	public void save() {
+		//getPara("feedback_content");
 		if (getModel(Feedback.class).save()) {
 			renderJson("result", "添加成功");
 		} else {
