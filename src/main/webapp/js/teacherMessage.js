@@ -108,7 +108,7 @@ $(document).ready(function(){
 							type : "post",
 							content : "application/x-www-from-urlencoded;charset=UTF-8",
 							dataType : "json",
-							url : "../teacherMessage/save",
+							url : "../teacherMessage/update",
 							data:"message.message_id="+id+"&message.message_is_view="+1,
 							async : false,
 							success : function(result) {
@@ -128,7 +128,7 @@ $(document).ready(function(){
 							type : "post",
 							content : "application/x-www-from-urlencoded;charset=UTF-8",
 							dataType : "json",
-							url : "../teacherMessage/save",
+							url : "../teacherMessage/update",
 							data:"message.message_id="+id+"&message.message_is_view="+0,
 							async : false,
 							success : function(result) {

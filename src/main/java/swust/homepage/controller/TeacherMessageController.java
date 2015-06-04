@@ -20,8 +20,8 @@ public class TeacherMessageController extends Controller {
 	}
 
 	// 添加
-	public void save() {
-		if (getModel(Message.class).save()) {
+	public void update() {
+		if (getModel(Message.class).update()) {
 			renderJson("result", "添加成功");
 		} else {
 			renderJson("result", "添加失败");
