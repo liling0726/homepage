@@ -17,6 +17,7 @@
 		<li>当前页面</li>
 		<li><a href="#">首页</a></li>
 		<li><a href="#">管理员管理</a></li>
+
 	</ol>
 	<div class="container-fluid">
 
@@ -31,8 +32,8 @@
 			<button class="btn btn-danger" style="margin-top: 10px;"
 				data-toggle="modal" data-target="#insertModal">添加</button>
 			<button class="btn btn-warning" style="margin-top: 10px;"
-				data-toggle="modal" data-target="#updateModal" id="adminUpdateById">修改</button>
-			<button class="btn btn-success" style="margin-top: 10px;" id="adminDeleteByIds">删除</button>
+				data-toggle="modal" data-target="#updateModal" id="userUpdateById">修改</button>
+			<button class="btn btn-success" style="margin-top: 10px;" id="userDeleteByIds">删除</button>
 			
 				<table class="table table-bordered table-hover">
 				<thead>
@@ -42,9 +43,10 @@
 						<th>姓名</th>
 						<th>学院</th>
 						<th>系别 / 团队</th>
+						
 					</tr>
 					</thead>
-					<tbody id="adminShow">
+					<tbody id="teacherShow">
 		
 					</tbody>
 				</table>
@@ -105,26 +107,26 @@
 				</div>
 				<div class="modal-body">
 					<p>
-						工 号：<input type="text" style="width:300px; height: 30px;" id="adminNum">
+						工 号：<input type="text" style="width:300px; height: 30px;" id="userNum">
 					</p>
 					<p>
-						姓 名：<input type="text" style="width: 300px; height: 30px;" id="adminName">
+						姓 名：<input type="text" style="width: 300px; height: 30px;" id="userName">
 					</p>
 					<p>
-						学 院：<select style="width: auto; height: 30px;" id="adminAcadName">
+						学 院：<select style="width: auto; height: 30px;" id="userAcadName">
+							<!-- <option value="9">计算机科学与技术</option>
+							<option value="8">信息学院</option>
+							<option value="6">制造学院</option> -->
+						</select>
+					</p>
+					<p>
+						系别/团队：<select style="width: auto; height: 30px;" id="userDeptName">
 							<option value="9">计算机科学与技术</option>
 							<option value="8">信息学院</option>
 							<option value="6">制造学院</option>
 						</select>
 					</p>
-					<p>
-						系别/团队：<select style="width: auto; height: 30px;" id="adminDeptName">
-							<option value="9">计算机科学与技术</option>
-							<option value="8">信息学院</option>
-							<option value="6">制造学院</option>
-						</select>
-					</p>
-		
+
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary" id="add">添加</button>
@@ -148,29 +150,29 @@
 				</div>
 				<div class="modal-body">
 					<p>
-						工 号：<input type="text" style="width: 300px; height: 30px;" id="upAdminNum">
+						工 号：<input type="text" style="width: 300px; height: 30px;" id="upUserNum">
 					</p>
 					<p>
-						姓 名：<input type="text" style="width: 300px; height: 30px;" id="upAdminName">
+						姓 名：<input type="text" style="width: 300px; height: 30px;" id="upUserName">
 					</p>
 					<p>
-						学 院：<select style="width: auto; height: 30px;" id="upAdminAcadName">
-							<option value="9">计算机科学与技术</option>
+						学 院：<select style="width: auto; height: 30px;" id="upUserAcadName">
+							<!-- <option value="9">计算机科学与技术</option>
 							<option value="8">信息学院</option>
-							<option value="6">制造学院</option>
+							<option value="6">制造学院</option> -->
 						</select>
 					</p>
 					<p>
-						系别/团队：<select style="width: auto; height: 30px;" id="upAdminDeptName">
-							<option value="9">计算机科学与技术</option>
+						系别/团队：<select style="width: auto; height: 30px;" id="upUserDeptName">
+							<!-- <option value="9">计算机科学与技术</option>
 							<option value="8">信息学院</option>
-							<option value="6">制造学院</option>
+							<option value="6">制造学院</option> -->
 						</select>
 					</p>
-			
+
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" id="upAdminInfo">保存</button>
+					<button type="button" class="btn btn-primary" id="upUserInfo">保存</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
 
 				</div>

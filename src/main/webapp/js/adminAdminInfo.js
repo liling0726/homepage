@@ -1,7 +1,7 @@
 /*
- * @made by Chengzeng；
+ * @made by cz；
  */
-var adminData, // 初始化的时候所有管理员信息
+var userData, // 初始化的时候所有老师信息
 currentPage, // 当前页
 totalNum, // 查询总条数
 maxPage, // 最大页数
@@ -12,15 +12,15 @@ $(function() {
 	// alert(maxPage);
 	if (currentPage == "undefined" || currentPage == "")
 		currentPage = 1;
-	// 添加模态框的根据学院id显示院系
-	var acadId = $("#adminAcadName").val();
-	selectDeptByAcadId($("#adminDeptName"), acadId);// 添加模态框中根据学院Id显示院系
-	// 修改模态框的根据学院id显示院系
-	var upacadId = $("#upAdminAcadName").val();
-	selectDeptByAcadId($("#upAdminDeptName"), upacadId);// 修改模态框中根据学院Id显示院系
 	// 初始化
 	initial();
-	// 全选，取消全选
+	// 添加模态框的根据学院id显示院系
+	var acadId = $("#userAcadName").val();
+	selectDeptByAcadId($("#userDeptName"), acadId);// 添加模态框中根据学院Id显示院系
+	/*
+	 * //修改模态框的根据学院id显示院系 var upacadId=$("#upUserAcadName").val();
+	 * selectDeptByAcadId($("#upUserDeptName"),upacadId);//修改模态框中根据学院Id显示院系
+	 */// 全选，取消全选
 	$("#selectAll").click(function() {
 		if (this.checked) {
 			$(':checkbox').prop('checked', true);
@@ -29,50 +29,50 @@ $(function() {
 		}
 	});
 	/*
-	 * 功能：添加 后台参数:admin.admin_num,admin.admin_name,admin.admin_dept_id
+	 * 功能：添加 后台参数:user.user_num,user.user_name,user.user_dept_id
 	 */
 	$("#add")
-			.click(
-					function() {
-						var adminNum = $("#adminNum").val(), 
-						adminName = $("#adminName").val(),
-						adminDeptId = $("#adminDeptName").val();
-						adminAcadId = $("#adminAcadName").val();
-						// alert(isSetAdmin);
-						$
-								.ajax({
-									type : "post",
-									content : "application/x-www-from-urlencoded;charset=UTF-8",
-									dataType : "json",
-									url : "../adminAdminInfo/save",
-									data : "admin.admin_num=" + adminNum
-											+ "&admin.admin_name=" + adminName
-											+ "&admin.admin_dept_id="+ adminDeptId
-											+ "&admin.admin_acad_id="+ adminAcadId,
-									async : false,
-									success : function(result) {
-										alert(result.result);
-										window.location.reload();
-									},
-									error : function(e) {
-										console.log("错误：" + e.message);
-									}
-								});
-					});
+	.click(
+			function() {
+				var userNum = $("#userNum").val(), 
+				userName = $("#userName").val(),
+				userDeptId = $("#userDeptName").val();
+				userAcadId = $("#userAcadName").val();
+				// alert(isSetAdmin);
+				$
+						.ajax({
+							type : "post",
+							content : "application/x-www-from-urlencoded;charset=UTF-8",
+							dataType : "json",
+							url : "../adminAdminInfo/save",
+							data : "admin.admin_num=" + userNum
+									+ "&admin.admin_name=" + userName
+									+ "&admin.admin_dept_id="+ userDeptId
+									+ "&admin.admin_acad_id="+ userAcadId,
+							async : false,
+							success : function(result) {
+								alert(result.result);
+								window.location.reload();
+							},
+							error : function(e) {
+								console.log("错误：" + e.message);
+							}
+						});
+			});
 	/*
-	 * 功能：删除 后台参数：所要删除的管理员Id 描述:可以删除多条，以字符串的形式返给后台，以'-'连接
-	 * 不可用，admin_id存在问题。
+	 * 功能：删除 后台参数：所要删除的老师Id 描述:可以删除多条，以字符串的形式返给后台，以'-'连接
 	 */
-	$("#adminDeleteByIds").bind("click", function() {
+	$("#userDeleteByIds").bind("click", function() {
 		var length = $("input[name='checkboxGroup']:checked").length;
 		if (length == 0) {
 			alert("请选择要删除的管理员记录");
 			return false;
 		} else if (confirm("确定要删除" + length + "条管理员信息？")) {
 			var str = "";
+	
 			$("input[name='checkboxGroup']:checked").each(function() {
 
-				str += $(this).val() + '-';
+				str += $(this).val() + '-';		//alert($(this).val() + '-');
 			});
 
 			str = str.substring(0, str.length - 1);
@@ -98,7 +98,7 @@ $(function() {
 	});
 
 	// 点击修改按钮
-	$("#adminUpdateById").click(function() {
+	$("#userUpdateById").click(function() {
 		var length = $("input[name='checkboxGroup']:checked").length;
 		if (length == 0) {
 			alert("请选择要修改的管理员记录");
@@ -109,53 +109,57 @@ $(function() {
 			location.reload();
 			return false;
 		} else {
-			var adminId = $("input[name='checkboxGroup']:checked").val();
-			for (var i = 0; i < adminData.list.length; i++) {
+			var userId = $("input[name='checkboxGroup']:checked").val();
+			for (var i = 0; i < userData.list.length; i++) {
 
-				if (adminId == adminData.list[i].admin_id) {
+				if (userId == userData.list[i].admin_id) {
 
-					$("#upAdminNum").val(adminData.list[i].admin_num);
-					$("#upAdminName").val(adminData.list[i].admin_name);
-					break;
-				}
-			}
-			$("#updateModal").show();
-		}
-	});
-	/*
-	 * 功能：修改 后台参数：需要修改的管理员Id-->admin.admin_id, 管理员名-->admin.admin_Name,
-	
-	 */
-	$("#upAdminInfo")
-			.click(
-					function() {
-						var adminId = $("input[name='checkboxGroup']:checked")
-								.val();
-						var adminNum = $("#upAdminNum").val();
-						var adminName = $("#upAdminName").val();
-						var adminDeptId = $("#upAdminDeptName").val();
-						$
-								.ajax({
-									type : "post",
-									content : "application/x-www-from-urlencoded;charset=UTF-8",
-									dataType : "json",
-									url : "../adminAdminInfo/update",
-									data : "admin.admin_id=" + adminId
-											+ "&admin.admin_num=" + adminNum
-											+ "&admin.admin_name=" + adminName
-											+ "&admin.admin_dept_id="+ adminDeptId,
-											
-									async : false,
-									success : function(result) {
-										alert(result.result);
-										window.location.reload();
-									},
-									error : function(e) {
-										console.log("错误：" + e.message);
+					$("#upUserNum").val(userData.list[i].admin_num);
+					//alert(userData.list[i].admin_num);
+					$("#upUserName").val(userData.list[i].admin_name);
+									for (var j = 0; j < $("#upUserAcadName")[0].options.length; j++) {
+
+										if ($("#upUserAcadName")[0].options[j].text == userData.list[i].acad_name) {
+
+											$("#upUserAcadName")[0].options[j].selected = true;
+
+											selectDeptByAcadId(
+													$("#upUserDeptName"),
+													$("#upUserAcadName")[0].options[j].value,
+													userData.list[i].dept_name);
+										}
+
 									}
-								});
 
+									$("input[name='isAdmin']")
+											.each(
+													function() {
+														if ($(this).val() == userData.list[i].user_is_admin) {
+															$(this).attr(
+																	"checked",
+																	"checked");
+														}
+													})
+									break;
+								}
+
+							}
+							$("#updateModal").show();
+						}
 					});
+	/*
+	 * 功能：修改 后台参数：需要修改的老师Id-->user.user_id, 老师名-->user.user_Name,
+	 * 院系Id-->user.user_dept_id, 是否为管理员-->user.user_is_admin
+	 * 
+	 */
+	$("#upUserInfo").click(
+			function() {
+				var userId = $("input[name='checkboxGroup']:checked").val();
+				var userNum = $("#upUserNum").val();
+				var userName = $("#upUserName").val();
+				var userDeptId = $("#upUserDeptName").val();
+				updateUser(userId, userNum, userName, userDeptId);
+			});
 	// 跳转
 	$("#goto").bind("click", function() {
 		var gotopage = $("#gotoPage").val();
@@ -236,13 +240,11 @@ $(function() {
 				searchByKey(keyWord);
 		}
 	});
-	
 	// 每页显示页数
 	$("#max").bind("change", function() {
 		maxPage = $("#max").val();
 		// alert(maxPage);
 		// 调用查询
-		//alert(keyWord);
 		if (keyWord == "" || keyWord == null)
 			initial();
 		else
@@ -251,16 +253,16 @@ $(function() {
 	/*
 	 * 添加模态框中的学院对应相应院系 后台参数：学院Id
 	 */
-	$("#adminAcadName").bind("change", function() {
+	$("#userAcadName").bind("change", function() {
 		var acadId1 = $(this).val();
-		selectDeptByAcadId($("#adminDeptName"), acadId1);// 添加模态框中根据学院Id显示院系
+		selectDeptByAcadId($("#userDeptName"), acadId1);// 添加模态框中根据学院Id显示院系
 	});
 	/*
 	 * 修改模态框中的学院对应相应院系 后台参数：学院Id
 	 */
-	$("#upAdminAcadName").bind("change", function() {
+	$("#upUserAcadName").bind("change", function() {
 		var acadId2 = $(this).val();
-		selectDeptByAcadId($("#upAdminDeptName"), acadId2);// 添加模态框中根据学院Id显示院系
+		selectDeptByAcadId($("#upUserDeptName"), acadId2);// 添加模态框中根据学院Id显示院系
 	});
 	/*
 	 * 功能：搜索关键字 后台参数：key（关键字），pageSize（每页显示多少条），pageNumber（当前页）
@@ -276,7 +278,6 @@ $(function() {
  */
 function initial() {
 	$("#selectAll").removeAttr('checked');
-	//alert(maxPage);
 	// alert(currentPage);
 	$
 			.ajax({
@@ -287,25 +288,24 @@ function initial() {
 				async : "false",
 				success : function(result) {
 					var html = "";
-					adminData = result.adminAdminInfo;
-					var total = adminData.totalRow;
-					totalNum = adminData.totalPage
-					for (var i = 0; i < adminData.list.length; i++) {
+					userData = result.adminAdminInfo;
+					var total = userData.totalRow;
+					totalNum = userData.totalPage
+					for (var i = 0; i < userData.list.length; i++) {
 						html += "<tr><td><input type='checkbox' name='checkboxGroup' value='"
-								+ adminData.list[i].admin_id
+								+ userData.list[i].admin_id
 								+ "' name='groupCheckbox'></td><td>"
-								+ adminData.list[i].admin_num
+								+ userData.list[i].admin_num
 								+ "</td><td>"
-								+ adminData.list[i].admin_name
+								+ userData.list[i].admin_name
 								+ "</td><td>"
-								+ adminData.list[i].acad_name
+								+ userData.list[i].acad_name
 								+ "</td><td>"
-								+ adminData.list[i].dept_name + "</td>";
-						
+								+ userData.list[i].dept_name + "</td>";
 
 					}
-					$("#adminShow").html(html);
-					$("#currentPage").html(adminData.pageNumber);
+					$("#teacherShow").html(html);
+					$("#currentPage").html(userData.pageNumber);
 					$("#totalPage").html(totalNum);
 				},
 				error : function(e) {
@@ -313,23 +313,30 @@ function initial() {
 				}
 
 			});
+	// 初始化学院
+	acadInitial();
 }
 // 根据学院Id查找相应专业
-// 后台未写acadId，故引用老师管理页面的地址：url : "/adminTeacherInfo"
 function selectDeptByAcadId(obj, acadId) {
 	var deptInfo = "";
+	var adeptName = arguments[2] || null;
 	$.ajax({
 		type : "post",
 		content : "application/x-www-form-urlencoded;charset=UTF-8",
 		dataType : "json",
-		url : "../adminAdminInfo/findDeptByAcadId/" + acadId,
+		url : "../adminTeacherInfo/findDeptByAcadId/" + acadId,
 		async : "false",
 		success : function(result) {
 			var data = result.deptList;
-			for (var i = 0; i < data.length; i++)
-			{
-				deptInfo += "<option value='" + data[i].dept_id + "'>"
-						+ data[i].dept_name + "</option>"
+			deptlenght = data.length;
+			for (var i = 0; i < data.length; i++) {
+				if (adeptName == data[i].dept_name && adeptName != null) {
+					deptInfo += "<option  selected='selected' value='"
+							+ data[i].dept_id + "'>" + data[i].dept_name
+							+ "</option>";
+				} else
+					deptInfo += "<option value='" + data[i].dept_id + "'>"
+							+ data[i].dept_name + "</option>";
 			}
 			obj.html(deptInfo);// 添加模态框中根据学院Id显示院系
 		},
@@ -337,10 +344,8 @@ function selectDeptByAcadId(obj, acadId) {
 			console.log("错误:" + e.message);
 		}
 	});
-
 }
 // 根据关键字查询
-// 后台无key传递
 function searchByKey(key) {
 	$
 			.ajax({
@@ -350,37 +355,80 @@ function searchByKey(key) {
 				url : "../adminAdminInfo/findAdminByKey",
 				async : "false",
 				data : {
-					keyAdminPage : key,
+					key : key,
 					pageSize : maxPage,
 					pageNumber : currentPage,
 				},
 
 				success : function(result) {
 					var html = "";
-					var data = result.keyAdminAdminPage;
-					totalNum = data.totalPage
-					for (var i = 0; i < data.list.length; i++)
-					{
+					userData = result.keyAdminPage;
+					totalNum = userData.totalPage
+					for (var i = 0; i < userData.list.length; i++) {
 						html += "<tr><td><input type='checkbox' name='checkboxGroup' value='"
-								+ data.list[i].admin_id
+								+ userData.list[i].admin_id
 								+ "' name='groupCheckbox'></td>"
 								+ "<td>"
-								+ data.list[i].admin_num
+								+ userData.list[i].admin_num
 								+ "</td>"
 								+ "<td>"
-								+ data.list[i].admin_name
+								+ userData.list[i].admin_name
 								+ "</td>"
 								+ "<td>"
-								+ data.list[i].acad_name
+								+ userData.list[i].acad_name
 								+ "</td>"
 								+ "<td>"
-								+ data.list[i].dept_name 
-								+ "</td>";
-					
+								+ userData.list[i].dept_name + "</td>";
+					//alert(userData.list[i].admin_num);
 					}
-					$("#adminShow").html(html);
-					$("#currentPage").html(data.pageNumber);
-					$("#totalPage").html(data.totalPage);
+					$("#teacherShow").html(html);
+					$("#currentPage").html(userData.pageNumber);
+					$("#totalPage").html(userData.totalPage);
 				}
 			});
+}
+function updateUser(userId, userNum, userName, userDeptId) {
+	$.ajax({
+		type : "post",
+		content : "application/x-www-from-urlencoded;charset=UTF-8",
+		dataType : "json",
+		url : "../adminAdminInfo/update",
+		data : "admin.admin_id=" + userId + "&admin.admin_num=" + userNum
+				+ "&admin.admin_name=" + userName + "&admin.admin_dept_id="
+				+ userDeptId,
+		async : false,
+		success : function(result) {
+			alert(result.result);
+			window.location.reload();
+		},
+		error : function(e) {
+			console.log("错误：" + e.message);
+		}
+	});
+	location.reload();
+}
+
+/*初始化学院
+ * 
+ */
+function acadInitial() {
+	$.ajax({
+		type : "post",
+		content : "application/x-www-from-urlencoded;charset=UTF-8",
+		dataType : "json",
+		url : "../index/acadName",
+		async : false,
+		success : function(result) {
+			result = result.acadName;
+			var acadHtml = "";
+			for (var i = 0; i < result.length; i++) {
+				acadHtml += "<option value='" + result[i].acad_id + "'>"
+						+ result[i].acad_name + "</option>";
+			}
+			//添加模态框中学院的初始化
+			$("#userAcadName").html(acadHtml);
+			//修改模态框中学院的初始化
+			$("#upUserAcadName").html(acadHtml);
+		},
+	});
 }

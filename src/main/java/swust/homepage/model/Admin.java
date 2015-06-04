@@ -21,11 +21,11 @@ public class Admin extends Model<Admin> {
 	public Page<Admin> paginateByKey(String key,int pageNumber, int pageSize) {
 		System.out.println("按关键字查找ing...Key="+key+"  页码="+String.valueOf(pageNumber)+"  最大条数="+String.valueOf(pageSize));
 		return paginate(pageNumber, pageSize, 
-				"select admin_name, acad_name, dept_name"
+				"select *"
 				 , " from admin, acad, dept where"
-				 + " admin_name like '%" + key + "%'"
+				 + "( admin_name like '%" + key + "%'"
 				 + " or acad_name like '%" + key + "%'"
-				 + " or dept_name like'%" + key + "%'"
+				 + " or dept_name like'%" + key + "%')"
 				 + " and admin_dept_id = dept_id and admin_acad_id = acad_id");
 	}
 	
