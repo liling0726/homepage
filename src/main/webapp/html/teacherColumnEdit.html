@@ -5,69 +5,71 @@
 <script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="../js/bootstrap.js"></script>
     <script type="text/javascript" src="../js/teacherCommon.js"></script>
-<script src="../ueditor/ueditor.config.js" charset="utf-8" type="text/javascript"></script>
+ <script src="../ueditor/ueditor.config.js" charset="utf-8" type="text/javascript"></script>
 <script src="../ueditor/ueditor.all.js" charset="utf-8" type="text/javascript"></script>
 <script src="../ueditor/lang/zh-cn/zh-cn.js" charset="utf-8" type="text/javascript"></script>
-<script src="../ueditor/lang/en/en.js" charset="utf-8" type="text/javascript"></script>
+<script src="../ueditor/lang/en/en.js" charset="utf-8" type="text/javascript"></script> 
+    <script type="text/javascript" src="../js/teacherColumnEdit.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
-    <link type="text/css" href="../ueditor/themes/default/css/ueditor.css" rel="stylesheet">
+ <link type="text/css" href="../ueditor/themes/default/css/ueditor.css" rel="stylesheet"> 
     <link rel="stylesheet" type="text/css" href="../css/teacherCommon.css" />
 <title>老师信息管理</title>
-<script type="text/javascript">
-    var editor = new UE.ui.Editor();
-    editor.render("myEditor");
-    //1.2.4以后可以使用一下代码实例化编辑器
- UE.getEditor('myEditor');
-</script>
 </head>
 <body>
 <div id="top"></div>
 <ol class="breadcrumb">
 		<li>当前页面</li>
-		<li><a href="#">首页</a></li>
-		<li><a href="#">栏目管理</a></li>
+		<li><a href="teacherIndex.html">首页</a></li>
+		<li><a href="teacherColumnManage.html">栏目管理</a></li>
 		<li><a href="#">栏目编辑</a></li>
 	</ol>
 <div class="container">
-
-<form>
+<div>
 <p>
 						<label>栏目名称：</label><input type="text" style="width: 250px; height: 30px;"
-							>
+							id="columnName">
 					</p>
 					<p>
-						<label>栏目别称：</label><input type="text" style="width: 250px; height: 30px;">
+						<label>栏目别称：</label><input type="text" style="width: 250px; height: 30px;" id="columnResume">
 	
 					</p>
 					<p>
-						<label>栏目性质：</label><select style="width: 250px; height: 30px;" >
-							<option>站内栏目</option>
-							<option>站外栏目</option>
-						</select>
+						<label>栏目性质：</label><input type="text" style="width: 250px; height: 30px;" id="columnProperty" disabled="true">
+	
 					</p>
 					<p>
-						<label>栏目类型：</label><select style="width: 250px; height: 30px;">
-							<option>信息简介类</option>
-							<option>新闻资讯类</option>
-						</select>
+						<label>栏目类型：</label><input type="text" style="width: 250px; height: 30px;" id="columnType" disabled="true">
+	
 					</p>
+					<!-- <p>
+						<label>栏目性质：</label><select style="width: 250px; height: 30px;" id="columnProperty">
+							<option value="0">站内栏目</option>
+							<option value="1">站外栏目</option>
+						</select>
+					</p> 
+					<p>
+						<label>栏目类型：</label><select style="width: 250px; height: 30px;" id="columnType">
+							<option value="0">信息简介类</option>
+							<option value="1">新闻资讯类</option>
+						</select>
+					</p>-->
 					
-<p><label style="float:left;">栏目内容:</label><textarea name="后台取值的key" id="myEditor" class="col-md-10"></textarea>
+ <p><label style="float:left;">栏目内容:</label><textarea id="myEditor" class="col-md-10"></textarea>
 <div style="clear:both;"></div>
 </p>
 <p>
-					<label>是否显示：</label><input type="radio" name="column">是 <input
-						type="radio" name="column">否
+					<label>是否显示：</label><input type="radio" name="column" value="1">是 <input
+						type="radio" name="column" value="2">否
 					</p>
 					<p>
-						<label>排 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;序：</label><input type="text" style="width:250px; height: 30px;">
+						<label>排 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;序：</label><input type="text" style="width:250px; height: 30px;" id="columnSort">
 	
 					</p>
 <p style="float:right;margin-right:180px;">
-<button class="btn btn-primary">保存</button>
+<button class="btn btn-primary" id="save">保存</button>
 <button class="btn btn-danger" type="reset">重置</button>
 </p>
-</form>
+</div>
 </div>
 <div id="footer"></div>
 

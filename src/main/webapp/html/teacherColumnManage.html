@@ -5,6 +5,7 @@
 <script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="../js/bootstrap.js"></script>
     <script type="text/javascript" src="../js/teacherCommon.js"></script>
+    <script type="text/javascript" src="../js/teacherColumnManage.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="../css/teacherCommon.css" />
 <title>老师栏目管理</title>
@@ -19,7 +20,7 @@
 	</ol>
 	<div style="margin-bottom:5px;">
 <button class="btn btn-primary" data-toggle="modal" data-target="#insertModal"><span class="glyphicon glyphicon-plus"></span>添加</button>
-<button class="btn btn-info"><span class="glyphicon glyphicon-remove"></span>删除</button>
+<button class="btn btn-info" id="columnDelete"><span class="glyphicon glyphicon-remove"></span>删除</button>
 </div>
 <table class="table table-bordered table-hover">
 <tr>
@@ -30,54 +31,12 @@
 <th>栏目类型</th>
 <th>栏目性质 </th> 
 <th>排序 </th>
+<th>时间</th>
 <th>是否显示 </th> 
 <th>操作</th> 	 				 			
 <tr>
-<tbody>
-<tr>
-<td><input type="checkbox"></td>
-<td>1</td>
-<td><a href="teacherColumnEdit.html">个人简介</a></td>
-<td>individual resume</td>
-<td>信息简介类</td>
-<td>站内信息</td>
-<td>1</td>
-<td><a href="#"><span class="glyphicon glyphicon-ok"></span></a></td>
-<td><a href="#"><span class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#updateModal"></span></a></td>
-</tr>
-<tr>
-<td><input type="checkbox"></td>
-<td>2</td>
-<td><a href="teacherColumnEdit.html">个人简介</a></td>
-<td>individual resume</td>
-<td>信息简介类</td>
-<td>站内信息</td>
-<td>2</td>
-<td><a href="#"><span class="glyphicon glyphicon-ok"></span></a></td>
-<td><a href="#"><span class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#updateModal"></span></a></td>
-</tr>
-<tr>
-<td><input type="checkbox"></td>
-<td>3</td>
-<td><a href="teacherColumnEdit.html">个人简介</a></td>
-<td>individual resume</td>
-<td>信息简介类</td>
-<td>站内信息</td>
-<td>3</td>
-<td><a href="#"><span class="glyphicon glyphicon-ok"></span></a></td>
-<td><a href="#"><span class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#updateModal"></span></a></td>
-</tr>
-<tr>
-<td><input type="checkbox"></td>
-<td>4</td>
-<td><a href="teacherColumnEdit.html">个人简介</a></td>
-<td>individual resume</td>
-<td>信息简介类</td>
-<td>站内信息</td>
-<td>4</td>
-<td><a href="#"><span class="glyphicon glyphicon-ok"></span></a></td>
-<td><a href="#"><span class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#updateModal"></span></a></td>
-</tr>
+<tbody id="columnInfo">
+
 </tbody>
 </table>
 </div>
@@ -96,31 +55,32 @@
 				</div>
 				<div class="modal-body">
 					<p>
-						<label>栏目名称：</label><input type="text" style="width: 300px; height: 30px;"
+						<label>栏目名称：</label><input id="columnName" type="text" style="width: 300px; height: 30px;"
 							>
 					</p>
 					<p>
-						<label>栏目别称：</label><input type="text" style="width: 300px; height: 30px;">
-	
+						<label>栏目别称：</label><input id="columnResume" type="text" style="width: 300px; height: 30px;">
+	<br>
+				<span>栏目性质为站外栏目，则栏目别名请输入链接地址</span>
 					</p>
 					<p>
-						<label>栏目性质：</label><select style="width: auto; height: 30px;" >
-							<option>站内栏目</option>
-							<option>站外栏目</option>
+						<label>栏目性质：</label><select style="width: auto; height: 30px;" id="columnProperty">
+							<option value="0">站内栏目</option>
+							<option value="1">站外栏目</option>
 						</select>
 					</p>
 					<p>
-						<label>栏目类型：</label><select style="width: auto; height: 30px;">
-							<option>信息简介类</option>
-							<option>新闻资讯类</option>
+						<label>栏目类型：</label><select style="width: auto; height: 30px;" id="columnType">
+							<option value="0">信息简介类</option>
+							<option value="1">新闻资讯类</option>
 						</select>
 					</p>
 					<p>
-					<label>是否显示：</label><input type="radio" name="column">是 <input
-						type="radio" name="column">否
+					<label>是否显示：</label><input type="radio" name="column" value="1">是 <input
+						type="radio" name="column" value="2">否
 					</p>
 					<p>
-						<label>排 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;序：</label><input type="text" style="width:300px; height: 30px;">
+						<label>排 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;序：</label><input type="text" style="width:300px; height: 30px;" id="columnSort">
 	
 					</p>
 				</div>
@@ -147,35 +107,37 @@
 				<div class="modal-body">
 					<p>
 						<label>栏目名称：</label><input type="text" style="width: 300px; height: 30px;"
-							>
+							id="upColumnName">
 					</p>
 					<p>
-						<label>栏目别称：</label><input type="text" style="width: 300px; height: 30px;">
-	
+						<label>栏目别称：</label><input type="text" style="width: 300px; height: 30px;" id="upColumResume">
+	<br>
+				<span>栏目性质为站外栏目，则栏目别名请输入链接地址</span>
 					</p>
 					<p>
-						<label>栏目性质：</label><select style="width: auto; height: 30px;" >
-							<option>站内栏目</option>
-							<option>站外栏目</option>
+						<label>栏目性质：</label><select style="width: auto; height: 30px;" id="upColumnProperty">
+							<option value="0">站内栏目</option>
+							<option value="1">站外栏目</option>
 						</select>
 					</p>
 					<p>
-						<label>栏目类型：</label><select style="width: auto; height: 30px;">
-							<option>信息简介类</option>
-							<option>新闻资讯类</option>
+						<label>栏目类型：</label><select style="width: auto; height: 30px;" id="upColumnType">
+							<option value="0">信息简介类</option>
+							<option value="1">新闻资讯类</option>
 						</select>
 					</p>
 					<p>
-					<label>是否显示：</label><input type="radio" name="column">是 <input
-						type="radio" name="column">否
+					<label>是否显示：</label><input type="radio" name="upColumn" value="1">是 <input
+						type="radio" name="upColumn" value="2">否
 					</p>
 					<p>
-						<label>排 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;序：</label><input type="text" style="width:300px; height: 30px;">
+						<label>排 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;序：</label><input type="text" style="width:300px; height: 30px;" id="upColumnSort">
 	
 					</p>
+					<p id="upColumnId"></p>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" id="upAdminInfo">保存</button>
+					<button type="button" class="btn btn-primary" id="upColumnInfo">保存</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
 
 				</div>
