@@ -1,3 +1,6 @@
+/*
+ *by 李玲 
+*/
 $(function(){
 	var common={
 		
@@ -39,7 +42,7 @@ $(function(){
 						+'<div class="modal-body" style="font-size:18px;margin-left:50px;">' 
 						+'<p class="form-inline"><span for="teaNum">教工号：</span><input type="text" id="teaNum"  class="form-control" style="width:250px;"></p>'  
 						+'<p  style="margin-top:25px;" class="form-inline"><span for="teaPassword">密&nbsp;&nbsp; 码：</span><input type="password" id="teaPassword" class="form-control" style="width:250px;"></p>'  
-						+'<p  style="margin-top:25px;" class="form-inline"><span for="teaPassword">验证码：</span>'
+						+'<p  style="margin-top:25px;" class="form-inline"><span for="authcode">验证码：</span>'
 						+'<input type="text" class="form-control" placeholder="验证码" id="authcode">'
 							+' <img id="imgcode" src="../html/checkcode.jsp" alt="验证码"> <span>看不清？'
 							+'<a href="javascript:void(0)" class="changeOne">换一张</a></span>'
@@ -49,7 +52,7 @@ $(function(){
 						
 						+'</div>'  
 						+'<div class="modal-footer">' 
-						+'<button type="button" class="btn btn-info">登录</button>'        
+						+'<button type="button" class="btn btn-info" id="login">登录</button>'        
 						+'<button type="button" class="btn btn-warning" data-dismiss="modal">取消</button>'   
 						+'</div></div></div></div>',
 				
@@ -69,6 +72,41 @@ $(function(){
 		$("#imgcode").attr("src","checkcode.jsp?random="+Math.random());
 	}
 	
-	
+	/*
+	 * 老师登录验证
+	     * 需要参数 user_num(老师工号)
+	     *  pwd(密码)
+	     *   checkcode(验证码)
+	 *
+	*/
+	$("#login").click(function(){
+		var teaNum=$("#teaNum").val();
+		var teaPassword=$("#teaPassword").val();
+		var teaAuthCode=$("#authcode").val();
+		alert(teaAuthCode);
+		$.ajax({
+			type:"post",
+			content:"application/x-www-from-urlencoded;charset=UTF-8",
+			dataType:"json",
+			url:"../index/login",
+			data:{
+				user_num:teaNum,
+				pwd:teaPassword,
+				checkcode:teaAuthCode
+			},
+			async:false,
+			success:function(result){
+				var re=result.result
+				if(re instanceof Object)
+					{
+					window.location.href="../html/teacherIndex.html?teaId="+re.user_id;
+					}
+				else {
+					alert(re);
+					location.reload();
+				}
+			}
+		});
+	});	
 
 });

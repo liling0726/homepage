@@ -96,4 +96,5 @@ $.ajax({
 $("#search").bind("click", function () {
     window.location = "teacherShowMore.html?searchWords=" + $("#searchWords").val();
 });
+
 })
