@@ -1,11 +1,10 @@
 package swust.homepage.controller;
 
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-import swust.homepage.model.Admin;
-import swust.homepage.model.Dept;
+import swust.homepage.model.Data;
 import swust.homepage.model.News;
-import swust.homepage.model.User;
 
 import com.jfinal.core.Controller;
 
@@ -17,6 +16,8 @@ public class TeacherNewsManageController extends Controller {
 
 	public void save() {
 		News news = getModel(News.class);
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// 设置日期格式
+		news.set("news_create_time", df.format(new Date()));
 		if (news.save()) {
 			renderJson("result", "添加成功");
 		} else {
@@ -24,6 +25,7 @@ public class TeacherNewsManageController extends Controller {
 		}
 	}
 
+	@SuppressWarnings("static-access")
 	public void delete() {
 
 		int success = 0;
@@ -49,26 +51,43 @@ public class TeacherNewsManageController extends Controller {
 		renderJson("result", "删除成功" + success + "个，失败" + fail + "个");
 	}
 
-	//获取一个news，一个参数，多余参数无效
+	// 获取一个news，一个参数，多余参数无效
 	public void findNewsById() {
 		renderJson("news", News.dao.findById(getPara(0)));
 	}
 
 	public void update() {
-		News news =getModel(News.class);
-		if(news.update()){
-			renderJson("修改成功");
-		}
-		else{
-			renderJson("修改失败");
+		News news = getModel(News.class);
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// 设置日期格式
+		news.set("news_update_time", df.format(new Date()));
+		if (news.update()) {
+			renderJson("result", "修改成功");
+		} else {
+			renderJson("result", "修改失败");
 		}
 	}
 
 	/**
-	 * 获取一个页面的新闻集合，参数/a-b 获取第a页的老师，每页有b个老师
+	 * 获取一个页面的新闻集合，参数/a-b 获取第a页的新闻，每页有b个新闻
 	 */
 	public void getPage() {
 		renderJson("newsPage",
 				News.dao.paginate(getParaToInt(0, 1), getParaToInt(1, 10)));
+	}
+
+	// 根据参数获取data链表，参数为data.data_type
+	public void getDataByType() {
+		renderJson("datas", Data.dao.getDataByType(getParaToInt()));
+	}
+
+	/**
+	 * 根据关键字查询 key 关键字 pageNumber 页码 pageSize 每页最多条数
+	 */
+	public void findNewsByKey() {
+		renderJson(
+				"keyNewsPage",
+				News.dao.paginateByKey(getPara("key"),
+						getParaToInt("pageNumber", 1),
+						getParaToInt("pageSize", 10)));
 	}
 }

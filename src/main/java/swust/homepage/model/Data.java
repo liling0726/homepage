@@ -18,4 +18,8 @@ public class Data extends Model<Data> {
     public Page<Data> page(int pageNum, int need, int dataUserId) {
         return paginate(pageNum, need, "SELECT *", "FROM `data` where `data_user_id`=?", dataUserId);
     }
+    
+    public List<Data> getDataByType(int type){
+    	return find("select * from `data` where `data`.data_type="+String.valueOf(type));
+    }
 }

@@ -1,8 +1,6 @@
 package swust.homepage.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import swust.homepage.model.Admin;
 import swust.homepage.model.Dept;
 import swust.homepage.model.User;
@@ -31,7 +29,8 @@ public class AdminTeacherInfoController extends Controller {
 			admin.set("admin_num", user.get("user_num"));
 			admin.set("admin_name", user.get("user_name"));
 			admin.set("admin_dept_id", user.get("user_dept_id"));
-			admin.set("admin_acad_id", Dept.dao.getAcadIdByDeptId(user.getInt("user_dept_id")));
+			admin.set("admin_acad_id",
+					Dept.dao.getAcadIdByDeptId(user.getInt("user_dept_id")));
 			if (!admin.save()) {
 				renderJson("result", "添加管理员失败");
 			}
@@ -65,7 +64,8 @@ public class AdminTeacherInfoController extends Controller {
 				admin.set("admin_num", user.get("user_num"));
 				admin.set("admin_name", user.get("user_name"));
 				admin.set("admin_dept_id", user.get("user_dept_id"));
-				admin.set("admin_acad_id", Dept.dao.getAcadIdByDeptId(user.getInt("user_dept_id")));
+				admin.set("admin_acad_id",
+						Dept.dao.getAcadIdByDeptId(user.getInt("user_dept_id")));
 				if (!admin.save()) {
 					renderJson("result", "修改失败");
 				}
@@ -73,7 +73,8 @@ public class AdminTeacherInfoController extends Controller {
 				admin.set("admin_num", user.get("user_num"));
 				admin.set("admin_name", user.get("user_name"));
 				admin.set("admin_dept_id", user.get("user_dept_id"));
-				admin.set("admin_acad_id", Dept.dao.getAcadIdByDeptId(user.getInt("user_dept_id")));
+				admin.set("admin_acad_id",
+						Dept.dao.getAcadIdByDeptId(user.getInt("user_dept_id")));
 				if (!admin.update()) {
 					renderJson("result", "修改失败");
 				}
@@ -99,7 +100,7 @@ public class AdminTeacherInfoController extends Controller {
 			p = getParaToInt(i, -1);
 			if (p >= 0) {
 				User user = User.dao.findById(p);
-				if(user==null){
+				if (user == null) {
 					System.out.println("用户不存在，删除失败！");
 					renderJson("用户不存在，删除失败！");
 					return;
@@ -161,8 +162,11 @@ public class AdminTeacherInfoController extends Controller {
 	 * 根据关键字查询 key 关键字 pageNumber 页码 pageSize 每页最多条数
 	 */
 	public void findUserByKey() {
-		renderJson("keyUserPage", User.dao.paginateByKey(getPara("key"),
-				getParaToInt("pageNumber"), getParaToInt("pageSize")));
+		renderJson(
+				"keyUserPage",
+				User.dao.paginateByKey(getPara("key"),
+						getParaToInt("pageNumber", 1),
+						getParaToInt("pageSize", 10)));
 	}
 
 }
