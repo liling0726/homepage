@@ -71,6 +71,7 @@ public class Config extends JFinalConfig {
 	@Override
 	public void configRoute(Routes a) {
 		a.add("/index", IndexController.class); // 首页
+		a.add("/adminLogin", AdminLoginController.class); // 管理员登陆
 		a.add("/acadInfoMore", AcadInfoMoreController.class);
 		a.add("/adminAdminInfo", AdminAdminInfoController.class);
 		a.add("/adminTeacherInfo", AdminTeacherInfoController.class);

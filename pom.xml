@@ -50,6 +50,22 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.20</version>
 		</dependency>
+		<!-- 仓库中没有的类库 我放在了WEB-INF/lib目录下面 -->
+		<dependency>
+			<groupId>com.wiscom</groupId>
+			<artifactId>idstar</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>
+			<!--本地jar的路径-->
+			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/idstar.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>Ice</groupId>
+			<artifactId>Ice</artifactId>
+			<version>3.0</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/Ice.jar</systemPath>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>homepage</finalName>

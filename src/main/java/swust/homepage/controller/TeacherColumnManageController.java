@@ -24,12 +24,25 @@ public class TeacherColumnManageController extends Controller {
 
     /**
      * 删除栏目
-     * 必须提供 data_id
+     * 必须提供 data_id 如果要删除多个以“-”分隔
      * url: /teacherColumnManage/delete
      */
 	public void delete() {
-		trueOrFalse(Data.dao.deleteById(getPara("data_id")));
+        String delList[] = getPara("data_id").split("-");
+        boolean success = true;
+        for (String s: delList) {
+            try {
+                int id = Integer.parseInt(s);
+                success = Data.dao.deleteById(id);
+                if (!success) break;
+            } catch (NumberFormatException ex) {
+                success = false;
+                break;
+            }
+        }
+		trueOrFalse(success);
 	}
+
 
     /**
      * 查找所有栏目

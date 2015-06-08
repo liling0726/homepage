@@ -4,12 +4,14 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
+import com.jfinal.config.JFinalConfig;
 import swust.homepage.model.Acad;
 import swust.homepage.model.User;
 import swust.homepage.service.LoginService;
 
 import com.jfinal.core.ActionKey;
 import com.jfinal.core.Controller;
+import swust.homepage.util.LoginCheck;
 
 public class IndexController extends Controller {
 	@ActionKey("/")
@@ -39,6 +41,8 @@ public class IndexController extends Controller {
 	
 	/**
 	 * 老师登录验证
+     * 需要参数 user_num(老师工号) pwd(密码) checkcode(验证码)
+     * url: /index/login
 	 * jinlong
 	 */
 	public void login() {
@@ -49,22 +53,26 @@ public class IndexController extends Controller {
 			return;
 		}
 		String checkCode = (String)session.getAttribute("checkCode");
-		if (!checkCode.equals(getPara("checkCode"))) {
+		if (!checkCode.equals(getPara("checkcode"))) {
 			renderJson("result", "验证码错误");
 			return;
 		}
 		
 		// 验证用户身份
 		LoginService s = new LoginService();
-		Optional<User> someTeacher = s.checkTeacher(getPara("admin_num"), getPara("pwd"));
+		Optional<User> someTeacher = s.checkTeacher(getPara("user_num"), getPara("pwd"));
 		if (someTeacher.isPresent()) {
 			User user = someTeacher.get();
 			setAttr("user_id", user.get("user_id")); // 把老师ID放进session中
 			renderJson("result", user);
-		}
-		else
+		} else
 			renderJson("result", "第一次登录");
 	}
+
+	public void checkUser() {
+		renderJson(LoginCheck.manager.getUserNameByID(getPara("user_num")));
+	}
+
 	/**
 	 * @author chendekai
 	 */
