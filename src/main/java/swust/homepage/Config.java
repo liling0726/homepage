@@ -75,7 +75,6 @@ public class Config extends JFinalConfig {
 		a.add("/acadInfoMore", AcadInfoMoreController.class);
 		a.add("/adminAdminInfo", AdminAdminInfoController.class);
 		a.add("/adminTeacherInfo", AdminTeacherInfoController.class);
-		a.add("/adminLogin", AdminLoginController.class);
 		a.add("/adminacadinfo", AdminAcadInfoController.class);
 		a.add("/teacherColumnManage", TeacherColumnManageController.class); // 老师页面栏目
 		a.add("/teacherShowMore", TeacherShowMoreController.class); // 搜索页面
