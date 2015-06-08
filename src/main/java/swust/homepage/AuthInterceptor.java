@@ -13,18 +13,18 @@ public class AuthInterceptor implements Interceptor {
 	@Override
 	public void intercept(ActionInvocation ai) {
 		Controller controller = ai.getController();
-		String type = controller.getSessionAttr("type");
+		String type = controller.getSessionAttr("type");			// 获取用户类型
 		switch (type) {
 			case "teacher":
-				User user = controller.getSessionAttr("user");
-				if (user != null && user.isLogin())
+				String userId = controller.getSessionAttr("user_id");			// 获取session中的id并验证
+				if (userId != null && (User.dao.findById(userId) != null))
 					ai.invoke();
 				else
-					controller.redirect("html/homePage.html");
+					controller.redirect("html/homePage.html");			// 如果不对则跳回首页
 				break;
 			case "admin":
-				Admin admin = controller.getSessionAttr("admin");
-				if (admin != null && admin.isLogin())
+				String adminId = controller.getSessionAttr("admin_id");
+				if (adminId != null && (Admin.dao.findById(adminId) != null))
 					ai.invoke();
 				else
 					controller.redirect("html/adminLogin.html");

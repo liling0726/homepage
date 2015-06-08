@@ -36,6 +36,7 @@ public class AdminLoginController extends Controller {
 		if (someAdmin.isPresent()) {
 			Admin admin = someAdmin.get();
 			setAttr("admin_id", admin.get("admin_id")); // 把管理员ID放进session中
+            setAttr("type", "admin");
 			renderJson("result", admin);
 		}
 		else

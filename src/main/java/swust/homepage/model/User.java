@@ -66,11 +66,6 @@ public class User extends Model<User> {
 	}
 	
 	/** jinlong */
-	public boolean isLogin() {
-		return true;
-	}
-	
-	/** jinlong */
 	public List<User> randomUser() {
 		return find("select user_name, user_url, user_img "
 				           + "from user order by rand() limit 12");

@@ -64,6 +64,7 @@ public class IndexController extends Controller {
 		if (someTeacher.isPresent()) {
 			User user = someTeacher.get();
 			setAttr("user_id", user.get("user_id")); // 把老师ID放进session中
+            setAttr("type", "teacher");
 			renderJson("result", user);
 		} else
 			renderJson("result", "第一次登录");
