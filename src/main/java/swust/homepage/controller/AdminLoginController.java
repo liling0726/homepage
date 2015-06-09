@@ -25,7 +25,7 @@ public class AdminLoginController extends Controller {
 			return;
 		}
 		String checkCode = (String)session.getAttribute("checkCode");
-		if (!checkCode.equals(getPara("checkCode"))) {
+		if (!checkCode.equals(getPara("checkcode"))) {
 			renderJson("result", "验证码错误");
 			return;
 		}
