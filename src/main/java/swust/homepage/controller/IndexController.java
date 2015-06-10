@@ -2,27 +2,27 @@ package swust.homepage.controller;
 
 import java.util.Optional;
 
-import javax.servlet.http.HttpSession;
-
-import com.jfinal.config.JFinalConfig;
 import swust.homepage.model.Acad;
 import swust.homepage.model.User;
 import swust.homepage.service.LoginService;
-
-import com.jfinal.core.ActionKey;
-import com.jfinal.core.Controller;
+import swust.homepage.util.HomePageController;
 import swust.homepage.util.LoginCheck;
+import com.jfinal.core.ActionKey;
 
-public class IndexController extends Controller {
+public class IndexController extends HomePageController {
 	@ActionKey("/")
 	public void index() {
-		redirect("/html/homePage.html");
+        String url = getPara(0);
+        if (url == null || url.equals(""))
+		    redirect("/html/homePage.html");
+        else {
+            // 设置参数
+            render("/html/teacherPersonalShow.html"); // 默认使用FreeMarker模板渲染
+        }
 	}
 	
-	/** jinlong */
-	public void random() {
-		renderJson("user", User.dao.randomUser());
-	}
+	/* jinlong */
+	public void random() { renderJson("user", User.dao.randomUser()); }
 	
 	/**
 	 * ZengDan
@@ -47,12 +47,7 @@ public class IndexController extends Controller {
 	 */
 	public void login() {
 		// 检查验证码
-		HttpSession session = getSession();
-		if (session == null) {
-			renderJson("result", "请输入验证码");
-			return;
-		}
-		String checkCode = (String)session.getAttribute("checkCode");
+		String checkCode = getAttr("checkCode");
 		if (!checkCode.equals(getPara("checkcode"))) {
 			renderJson("result", "验证码错误");
 			return;
@@ -70,9 +65,15 @@ public class IndexController extends Controller {
 			renderJson("result", "第一次登录");
 	}
 
-	public void checkUser() {
-		renderJson(LoginCheck.manager.getUserNameByID(getPara("user_num")));
-	}
+    /**
+     * 创建新用户
+     */
+	public void createUser() {
+        boolean ret = getModel(User.class).save();
+        trueOrFalse(ret);
+    }
+
+	public void checkUser() { renderJson(LoginCheck.manager.getUserNameByID(getPara("user_num"))); }
 
 	/**
 	 * @author chendekai

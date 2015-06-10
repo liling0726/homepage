@@ -7,10 +7,10 @@ import java.util.Map;
 
 import com.jfinal.plugin.activerecord.Page;
 import swust.homepage.model.Data;
-import com.jfinal.core.Controller;
+import swust.homepage.util.HomePageController;
 
 /** @author jinlong */
-public class TeacherColumnManageController extends Controller {
+public class TeacherColumnManageController extends HomePageController {
 	/**
      * 新建栏目
      * 需要提供的字段 data_name(栏目名称) data_content(栏目内容) data_order(栏目排序) data_url(栏目别名)
@@ -19,8 +19,9 @@ public class TeacherColumnManageController extends Controller {
      * url: /teacherColumnManage/save
 	 */
 	public void save() {
-		trueOrFalse(genData().save());
-	}
+        boolean ret = genData().save();
+		trueOrFalse(ret);
+    }
 
     /**
      * 删除栏目
@@ -50,10 +51,9 @@ public class TeacherColumnManageController extends Controller {
      * url: /teacherColumnManage/all
      */
 	public void all() {
-		setAttr("data_user_id", 6);
-		int dataUserId = getAttrForInt("data_user_id");
+		int dataUserId = getAttrForInt("user_id");
 		List<Data> dataList = Data.dao.findAll(dataUserId);
-		dataOrInfo(dataList);
+		listOrFalse(dataList);
 	}
 
     /**
@@ -63,7 +63,7 @@ public class TeacherColumnManageController extends Controller {
      */
     public void page() {
         Page<Data> page = Data.dao.page(getParaToInt("pageNum"), getParaToInt("need"), getAttrForInt("data_user_id"));
-        dataOrInfo(page.getList());
+        listOrFalse(page.getList());
     }
 
     /**
@@ -73,10 +73,7 @@ public class TeacherColumnManageController extends Controller {
      */
     public void findById() {
         Data data =  Data.dao.findById(getParaToInt("data_id"));
-        if (data != null)
-            renderJson("result", data);
-        else
-            renderJson("result", "失败");
+        oneOrFalse(data);
     }
 	
 	/**
@@ -114,25 +111,5 @@ public class TeacherColumnManageController extends Controller {
         data.set("data_is_show", getPara("data_is_show"));
 		data.set("data_update_time", new Date());
 		return data;
-	}
-	
-	private void trueOrFalse(boolean bool) {
-		if (bool)
-			renderJson("result", "成功");
-		else
-			renderJson("result", "失败");
-	}
-	
-	private <T> void dataOrInfo(List<T> lst) {
-		if (lst.size() == 0)
-			renderJson("result", "失败");
-		else
-			renderJson("result", lst);
-	}
-	
-	private void putIfExists(Map<String, Object> map, String paraName) {
-		String value = getPara(paraName);
-		if (value != null)
-			map.put(paraName, value);
 	}
 }
