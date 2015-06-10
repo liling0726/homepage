@@ -19,12 +19,11 @@ public class AdminLoginController extends Controller {
 	 */
 	public void login() {
 		// 检查验证码
-		HttpSession session = getSession();
-		if (session == null) {
+		String checkCode = getAttr("checkCode");
+		if (checkCode == null) {
 			renderJson("result", "请输入验证码");
 			return;
 		}
-		String checkCode = (String)session.getAttribute("checkCode");
 		if (!checkCode.equals(getPara("checkcode"))) {
 			renderJson("result", "验证码错误");
 			return;

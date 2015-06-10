@@ -5,11 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.Page;
+import swust.homepage.AuthInterceptor;
 import swust.homepage.model.Data;
 import swust.homepage.util.HomePageController;
 
 /** @author jinlong */
+@Before(AuthInterceptor.class)
 public class TeacherColumnManageController extends HomePageController {
 	/**
      * 新建栏目

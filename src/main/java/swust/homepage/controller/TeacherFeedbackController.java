@@ -1,7 +1,9 @@
 package swust.homepage.controller;
 
+import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
 
+import swust.homepage.AuthInterceptor;
 import swust.homepage.model.Feedback;
 
 /**
@@ -9,6 +11,7 @@ import swust.homepage.model.Feedback;
  * @author zengdan
  *
  */
+@Before(AuthInterceptor.class)
 public class TeacherFeedbackController extends Controller {
 
 	public void index() {// 若给定值，pageNumber/pageSize为给定的值，否则为默认值即后者参数

@@ -1,6 +1,9 @@
 package swust.homepage.controller;
 
 import java.util.List;
+
+import com.jfinal.aop.Before;
+import swust.homepage.AuthInterceptor;
 import swust.homepage.model.Admin;
 import swust.homepage.model.Dept;
 import swust.homepage.model.User;
@@ -10,6 +13,7 @@ import com.jfinal.core.Controller;
 /**
  * @author 刘杰 管理员页面的老师页面的控制类
  */
+@Before(AuthInterceptor.class)
 public class AdminTeacherInfoController extends Controller {
 
 	public void index() {

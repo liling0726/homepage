@@ -3,11 +3,14 @@ package swust.homepage.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.jfinal.aop.Before;
+import swust.homepage.AuthInterceptor;
 import swust.homepage.model.Data;
 import swust.homepage.model.News;
 
 import com.jfinal.core.Controller;
 
+@Before(AuthInterceptor.class)
 public class TeacherNewsManageController extends Controller {
 
 	public void index() {

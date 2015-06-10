@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.jfinal.aop.Before;
+import swust.homepage.AuthInterceptor;
 import swust.homepage.model.Acad;
 import swust.homepage.model.Dept;
 import swust.homepage.model.User;
@@ -15,6 +17,7 @@ import com.jfinal.core.Controller;
  * @author CDK
  *
  */
+@Before(AuthInterceptor.class)
 public class AdminAcadInfoController extends Controller{
 	public void index()
 	{
