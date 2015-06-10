@@ -9,6 +9,8 @@ import swust.homepage.util.HomePageController;
 import swust.homepage.util.LoginCheck;
 import com.jfinal.core.ActionKey;
 
+import javax.servlet.http.HttpSession;
+
 public class IndexController extends HomePageController {
     @ActionKey("/")
     public void index() {
@@ -49,9 +51,9 @@ public class IndexController extends HomePageController {
      */
     public void login() {
         // 检查验证码
-        String checkCode = getAttr("checkCode");
+        String checkCode = getSessionAttr("checkCode");
         if (checkCode == null) {
-            renderJson("result", "请输入验证码");
+            renderJson("result", "没有验证码");
             return;
         }
         if (!checkCode.equals(getPara("checkcode"))) {
@@ -64,8 +66,8 @@ public class IndexController extends HomePageController {
         Optional<User> someTeacher = s.checkTeacher(getPara("user_num"), getPara("pwd"));
         if (someTeacher.isPresent()) {
             User user = someTeacher.get();
-            setAttr("user_id", user.get("user_id")); // 把老师ID放进session中
-            setAttr("type", "teacher");
+            setSessionAttr("user_id", user.get("user_id")); // 把老师ID放进session中
+            setSessionAttr("type", "teacher");
             renderJson("result", user);
         } else
             renderJson("result", "第一次登录");

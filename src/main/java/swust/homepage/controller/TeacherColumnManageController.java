@@ -54,7 +54,7 @@ public class TeacherColumnManageController extends HomePageController {
      * url: /teacherColumnManage/all
      */
 	public void all() {
-		int dataUserId = getAttrForInt("user_id");
+		int dataUserId = getSessionAttr("user_id");
 		List<Data> dataList = Data.dao.findAll(dataUserId);
 		listOrFalse(dataList);
 	}

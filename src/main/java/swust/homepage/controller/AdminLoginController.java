@@ -19,7 +19,7 @@ public class AdminLoginController extends Controller {
 	 */
 	public void login() {
 		// 检查验证码
-		String checkCode = getAttr("checkCode");
+		String checkCode = getSessionAttr("checkCode");
 		if (checkCode == null) {
 			renderJson("result", "请输入验证码");
 			return;
@@ -34,8 +34,8 @@ public class AdminLoginController extends Controller {
 		Optional<Admin> someAdmin = s.checkAdmin(getPara("admin_num"), getPara("pwd"));
 		if (someAdmin.isPresent()) {
 			Admin admin = someAdmin.get();
-			setAttr("admin_id", admin.get("admin_id")); // 把管理员ID放进session中
-            setAttr("type", "admin");
+			setSessionAttr("admin_id", admin.get("admin_id")); // 把管理员ID放进session中
+            setSessionAttr("type", "admin");
 			renderJson("result", admin);
 		}
 		else

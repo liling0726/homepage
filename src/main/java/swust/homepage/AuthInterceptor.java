@@ -22,14 +22,14 @@ public class AuthInterceptor implements Interceptor {
 
 		switch (type) {
 			case "teacher":
-				String userId = controller.getSessionAttr("user_id");			// 获取session中的id并验证
+				String userId = controller.getSessionAttr("user_id").toString();			// 获取session中的id并验证
 				if (userId != null && (User.dao.findById(userId) != null))
 					ai.invoke();
 				else
                     controller.renderJson("EEE");
 				break;
 			case "admin":
-				String adminId = controller.getSessionAttr("admin_id");
+				String adminId = controller.getSessionAttr("admin_id").toString();
 				if (adminId != null && (Admin.dao.findById(adminId) != null))
 					ai.invoke();
 				else
