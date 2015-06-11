@@ -8,43 +8,19 @@ import swust.homepage.model.User;
 import com.jfinal.core.Controller;
 
 public class TeacherPersonalInfoController extends Controller {
-	private  Integer ID;//就是不能随便访问我的修改的，必须有顺序要求才行
-	public int getID()
-	{
-		if(ID==null)
-		{
-			System.out.println("有非法操作");
-		}
-		return ID;
-	}
-	public void setID(int ID)
-	{
-		this.ID=ID;
-		
-	}
+	
 	/**
 	 * @CDK
-	 * 问一下学长有没有更简单的方法直接用sql语句求出之歌值，不用一直在这里判断
-	 * 用两次数据查找，就可以给出只要的东西，这个是一个肖心得
+	 * 
+	 * and = 才行
 	 */
 	
 	public void index()
 	{
-	//	int user_id=getParaToInt(0);
-	//	String basic_info_user_id="4";
-		List<BasicInfo> list=BasicInfo.dao.find("select user_name,basic_info_id,basic_info_user_id,basic_info_title,basic_info_degree,basic_info_email,basic_info_phone,basic_info_address,basic_info_research,basic_info_allow_message,basic_info_model from user,basic_info where user_id=basic_info_user_id");
-		BasicInfo user=null;
-		for(BasicInfo l:list)
-		{
-			if(l.getInt("basic_info_user_id")==4)//当可以传值的时候就修改一下
-			{
-				user=l;break;
-				
-			}
-			
-		}
-		renderJson("basicInfo",user);
-	//	render("teacherPersonalInfo.html");
+		int user_id=getSessionAttr("user_id");
+		BasicInfo basicinfo=BasicInfo.dao.find("select user_name,basic_info_id,basic_info_user_id,basic_info_title,basic_info_degree,basic_info_email,basic_info_phone,basic_info_address,basic_info_research,basic_info_allow_message,basic_info_model from user,basic_info where user_id=basic_info_user_id and user_id=?",user_id).get(0);;
+		renderJson("basicInfo",basicinfo);
+
 	}
 	/**
 	 * @CDk
