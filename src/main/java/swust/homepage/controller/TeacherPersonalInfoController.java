@@ -18,7 +18,7 @@ public class TeacherPersonalInfoController extends Controller {
 	public void index()
 	{
 		int user_id=getSessionAttr("user_id");
-		BasicInfo basicinfo=BasicInfo.dao.find("select user_name,basic_info_id,basic_info_user_id,basic_info_title,basic_info_degree,basic_info_email,basic_info_phone,basic_info_address,basic_info_research,basic_info_allow_message,basic_info_model from user,basic_info where user_id=basic_info_user_id and user_id=?",user_id).get(0);;
+		BasicInfo basicinfo=BasicInfo.dao.find("select user_name,basic_info_title,basic_info_degree,basic_info_email,basic_info_phone,basic_info_address,basic_info_research,basic_info_allow_message,basic_info_model from user,basic_info where user_id=basic_info_user_id and user_id=?",user_id).get(0);;
 		renderJson("basicInfo",basicinfo);
 
 	}
@@ -52,10 +52,9 @@ public class TeacherPersonalInfoController extends Controller {
 		 *
 		 */
 		String []line=new String[8];
+		int user_id=getSessionAttr("user_id");
+	//	int ID=getParaToInt("ID");
 
-		int ID=getParaToInt("ID");
-	//	int UserID=getParaToInt("userId");
-	//一个for循环就可以了
 		line[0]=getPara("name");
 		line[1]=getPara("occupation");
 		line[2]=getPara("degree");
@@ -65,12 +64,12 @@ public class TeacherPersonalInfoController extends Controller {
 		line[6]=getPara("address");
 		line[7]=getPara("way");
 		line[8]=getPara("message");
-		BasicInfo bI=BasicInfo.dao.findById(1);
+		System.out.println(line[0]);
+		/*BasicInfo bI=BasicInfo.dao.findById(1);
 		bI.set("basic_info_title",line[0]);
 		bI.set("basic_info_degree",line[1]);
 		bI.set("basic_info_email", line[2]);
-		
-		System.out.println(BasicInfo.dao.findById(1).get("basic_info_user_id"));
+		*/
 	}
 	/**
 	 * @CDK
