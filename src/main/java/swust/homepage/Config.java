@@ -10,6 +10,7 @@ import swust.homepage.controller.TeacherColumnManageController;
 import swust.homepage.controller.TeacherFeedbackController;
 import swust.homepage.controller.TeacherMessageController;
 import swust.homepage.controller.TeacherNewsManageController;
+import swust.homepage.controller.TeacherPersonalInfoController;
 import swust.homepage.controller.TeacherShowMoreController;
 import swust.homepage.model.Acad;
 import swust.homepage.model.Admin;
@@ -81,6 +82,7 @@ public class Config extends JFinalConfig {
 		a.add("/teacherMessage", TeacherMessageController.class);
 		a.add("/teacherFeedback", TeacherFeedbackController.class);
 		a.add("/teacherNewsManage",TeacherNewsManageController.class);
+		a.add("/teacherPersonInfo",TeacherPersonalInfoController.class);
 	}
 	
 	/**
