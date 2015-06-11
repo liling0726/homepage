@@ -137,6 +137,7 @@ $(function() {
 
 		// 显示当前页等信息
 		$("#currentPage").html(currentPage);
+		$("#pageNum").html(end);
 		$("#maxPage").html(maxPage);
 	}
 	/* 添加 */

@@ -312,6 +312,7 @@ function initial(){
 	    	 $("#teacherShow").html(html);
 	    	 $("#currentPage").html(userData.pageNumber);
 	    	 $("#totalPage").html(totalNum);
+	    	 $("#pageNum").html(userData.totalRow);
 	    },
 	    error:function(e){
 	    	console.log("错误："+e);
@@ -382,6 +383,7 @@ function searchByKey(key){
 	    	 $("#teacherShow").html(html);
 	    	 $("#currentPage").html(userData.pageNumber);
 	    	 $("#totalPage").html(userData.totalPage);
+	    	 $("#pageNum").html(userData.totalRow);
 	    	}
 	    });
 }

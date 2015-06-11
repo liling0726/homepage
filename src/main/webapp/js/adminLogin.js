@@ -21,7 +21,6 @@ $(function(){
 		var adminNum=$("#adminNum").val();
 		var adminPassword=$("#adminPassword").val();
 		var adminAuthCode=$("#adminAuthCode").val();
-		alert(adminAuthCode);
 		$.ajax({
 			type:"post",
 			content:"application/x-www-from-urlencoded;charset=UTF-8",
@@ -35,13 +34,14 @@ $(function(){
 			async:false,
 			success:function(result){
 				result=result.result
-				alert(result);
-				if(result=="登陆成功")
+				
+				if(result instanceof Object)
 					{
 				
 					window.location.href="../html/adminHomePage.html"
 					}
 				else{
+					alert(result);
 					location.reload();
 				}
 			}

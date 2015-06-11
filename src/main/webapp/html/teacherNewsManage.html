@@ -5,6 +5,7 @@
 <script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="../js/bootstrap.js"></script>
     <script type="text/javascript" src="../js/teacherCommon.js"></script>
+       <script type="text/javascript" src="../js/teacherNewsManage.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="../css/teacherCommon.css" />
 <title>老师新闻管理</title>
@@ -18,10 +19,10 @@
 		<li><a href="teacherNewsManage.html">新闻管理</a></li>
 	</ol>
 	<div style="margin-bottom:5px;">
-<input type="text" placeholder="请输入关键字" style="height:34px;width:200px;">
-<button class="btn btn-info"><span class="glyphicon glyphicon-search"></span>查询</button>
+<input type="text" placeholder="请输入关键字" style="height:34px;width:200px;" id="searchWord">
+<button class="btn btn-info" id="searchByKey"><span class="glyphicon glyphicon-search" ></span>查询</button>
 <a href="teacherNewsEdit.html"><button class="btn btn-warning"><span class=" glyphicon glyphicon-plus"></span>添加</button></a>
-<button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>删除</button>
+<button class="btn btn-danger"  id="deleteNews"><span class="glyphicon glyphicon-remove"></span>删除</button>
 </div>
 <table class="table table-bordered table-hover">
 <tr>
@@ -33,7 +34,7 @@
 <th>是否置顶</th>
 <th>操作</th>
 </tr>
-<tbody>
+<tbody id="newsInfo">
 <tr>
 <td><input type="checkbox"></td>
 <td>1</td>
@@ -73,7 +74,7 @@
 </tbody>
 </table>
 
-<div class="col-md-offset-2" style="margin-bottom:5px;">
+<div class="text-center" style="margin-bottom:5px;">
 				<div class="btn-toolbar form-inline">
 					<div class="btn-group" role="group" aria-label="...">
 						<button type="button" class="btn">当前第</button>
@@ -84,6 +85,11 @@
 						<button type="button" class="btn">共</button>
 						<button type="button" class="btn" id="totalPage"></button>
 						<button type="button" class="btn">页</button>
+					</div>
+					<div class="btn-group" role="group" aria-label="...">
+						<button type="button" class="btn">共</button>
+						<button type="button" class="btn" id="totalNum"></button>
+						<button type="button" class="btn">条</button>
 					</div>
 					<div class="btn-group" role="group" aria-label="...">
 						<button type="button" class="btn" id="pagebackward">上一页</button>

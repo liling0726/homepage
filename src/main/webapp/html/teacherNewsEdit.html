@@ -13,17 +13,13 @@
 	type="text/javascript"></script>
 <script src="../ueditor/lang/en/en.js" charset="utf-8"
 	type="text/javascript"></script>
+	<script type="text/javascript" src="../js/teacherNewsEdit.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
 <link type="text/css" href="../ueditor/themes/default/css/ueditor.css"
 	rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="../css/teacherCommon.css" />
 <title>老师信息管理</title>
-<script type="text/javascript">
-	var editor = new UE.ui.Editor();
-	editor.render("myEditor");
-	//1.2.4以后可以使用一下代码实例化编辑器
-	UE.getEditor('myEditor');
-</script>
+
 </head>
 <body>
 	<div id="top"></div>
@@ -35,39 +31,34 @@
 	</ol>
 	<div class="container">
 
-		<form>
 			<p>
 				<label>新闻题目：</label><input type="text"
-					style="width: 300px; height: 30px;">
+					style="width: 300px; height: 30px;" id="newsTitle">
 			</p>
 			<p>
 				<label>栏 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目：</label><select
-					style="width: 300px; height: 30px;">
-					<option>个人简介</option>
-					<option>个人简介</option>
-					<option>个人简介</option>
-					<option>个人简介</option>
+					style="width: 300px; height: 30px;" id="newsForColumn">
+					<option value="">==请选择==</option>
 				</select>
 			</p>
-			<p>
+	<!-- 		<p>
 				<label>时&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;间：</label><input type="text"
-					style="width: 300px; height: 30px;">
+					style="width: 300px; height: 30px;" id="newsTime">
 
-			</p>
+			</p> -->
 			<p>
 			<p>
 				<label style="float: left;">栏目内容:</label>
-				<textarea name="后台取值的key" id="myEditor" class="col-md-10"></textarea>
+				<textarea  id="myEditor" class="col-md-10" ></textarea>
 			<div style="clear: both;"></div>
 			</p>
-			<label>是否置顶：</label><input type="radio" name="column">是 <input
-				type="radio" name="column">否
+			<label>是否置顶：</label><input type="radio" name="news" value="1">是 <input
+				type="radio" name="news" value="0" checked="checked">否
 			</p>
 			<p style="float: right; margin-right: 180px;">
-				<button class="btn btn-primary">保存</button>
+				<button class="btn btn-primary" id="save">保存</button>
 				<button class="btn btn-danger" type="reset">重置</button>
 			</p>
-		</form>
 	</div>
 	<div id="footer"></div>
 
