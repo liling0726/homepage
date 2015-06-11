@@ -12,7 +12,7 @@ public class TeacherPersonalInfoController extends Controller {
 	/**
 	 * @CDK
 	 * 
-	 * and =
+	 * and = 才行
 	 */
 	
 	public void index()
