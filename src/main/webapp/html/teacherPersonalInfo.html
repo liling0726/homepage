@@ -5,6 +5,7 @@
 <script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
 <script type="text/javascript" src="../js/bootstrap.js"></script>
 <script type="text/javascript" src="../js/teacherCommon.js"></script>
+<script type="text/javascript" src="../js/teacherPersonalInfo.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="../css/teacherCommon.css" />
 <title>老师栏目管理</title>
@@ -18,62 +19,76 @@
 			<li><a href="#">基本信息</a></li>
 		</ol>
 
-		<form class="form-horizontal col-md-offset-3" action="../teacherPersonInfo/save">
+		<form class="form-horizontal">
+		<input class="form-control" id="teaInfoId" style="display:none;">
 			<div class="form-group ">
 				<label class="col-sm-2 control-label ">姓名</label>
-				<div class="col-sm-3" style="margin-bottom: 1%;">
-					<input class="form-control" id="name" name="user_name"  placeholder="杨春明">
+				<div class="col-sm-2" style="margin-bottom: 1%;">
+					<input class="form-control" id="name"  disabled="true">
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-2 control-label">职称</label>
-				<div class="col-sm-3" style="margin-bottom: 1%;">
-					<input class="form-control" id="occupation" placeholder="教师">
-				</div>
+				<label class="col-sm-2 control-label">职称     </label>
+				 <div class="col-sm-1" style="margin-bottom: 1%;">
+					<!-- <input class="form-control" id="occupation"> -->
+				<select id="occupation" class="form-control">
+				<option>助教</option>
+				<option>讲师</option>
+				<option>副教授</option>
+				<option>教授</option>
+				</select>
+				</div> 
+				
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">学位</label>
-				<div class="col-sm-3" style="margin-bottom: 1%;">
-					<input class="form-control" id="acaddegree" placeholder="博士">
-				</div>
+				 <div class="col-sm-1" style="margin-bottom: 1%;">
+					<!--<input class="form-control" id="acaddegree">-->
+				<select id="acaddegree" class="form-control">
+				<option>学士</option>
+				<option>硕士</option>
+				<option>博士</option>
+				</select>
+				</div> 
+				
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">学院</label>
 				<div class="col-sm-3" style="margin-bottom: 1%;">
-					<input class="form-control" id="acad" placeholder="计算机科学与技术学院">
+					<input class="form-control" id="acad" disabled="true">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">邮箱</label>
 				<div class="col-sm-3" style="margin-bottom: 1%;">
 					<input class="form-control" id="email"
-						placeholder="124315135@qq.com">
+						>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">联系方式</label>
-				<div class="col-sm-3" style="margin-bottom: 1%;">
-					<input class="form-control" id="phone" placeholder="124315135">
+				<div class="col-sm-2" style="margin-bottom: 1%;">
+					<input class="form-control" id="phone" >
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">办公地址</label>
-				<div class="col-sm-3" style="margin-bottom: 1%;">
-					<input class="form-control" id="address" placeholder="东九2-17">
+				<div class="col-sm-2" style="margin-bottom: 1%;">
+					<input class="form-control" id="address">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">主要研究方向</label>
-				<div class="col-sm-3" style="margin-bottom: 1%;">
-					<input class="form-control" id="way" placeholder="数据挖掘">
+				<div class="col-sm-4" style="margin-bottom: 1%;">
+					<input class="form-control" id="way">
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-2 control-label">是否允许留言</label>
+				<label class="col-sm-2 control-label">允许留言</label>
 				<div class="col-sm-3" style="margin-bottom: 1%;">
 					<div class="btn-group" role="group1" aria-label="用户名">
-						 <input type="radio" checked="checked" name="isMessage" value="male" />是 
-						 <input type="radio" name="isMessage" value="female" style="margin-left: 100px;">否
+						 <input type="radio" checked="checked" name="isMessage" value="1" />是 
+						 <input type="radio" name="isMessage" value="0" style="margin-left: 100px;">否
 					
 					</div>
 				</div>
@@ -95,13 +110,8 @@
 					</div>
 				</div>
 			</div>
-<div style="margin-bottom: 5px;" align="right">
-			<button class="btn btn-primary" data-toggle="modal"
-				data-target="#insertModal" type="submit">保存</button>
-			<button class="btn btn-info">取消</button>
-		</div>
+
 		</form>
-		
 		<!-- <table class="table table-bordered table-hover col-md-6" >
 			<tr>
 				<th style="width: 10%;">姓名</th>
@@ -156,7 +166,10 @@
 				</th>
 			</tr>
 		</table> -->
-		
+		<div style="margin-bottom: 5px;" align="right">
+			<button class="btn btn-primary" id="save">保存</button>
+			<button class="btn btn-info">取消</button>
+		</div>
 	</div>
 	<div id="footer"></div>
 
