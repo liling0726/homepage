@@ -22,7 +22,7 @@ $(function(){
 			$("#address").val(result.basic_info_address);
 			$("#way").val(result.basic_info_research);
 $("input[name='isMessage']").each(function(){
-	alert($(this).val()==result.basic_info_allow_message);
+	/*alert($(this).val()==result.basic_info_allow_message);*/
 	if($(this).val()==result.basic_info_allow_message)
 		{
 		$(this).attr("checked","checked");
@@ -54,7 +54,6 @@ $("input[name='isMessage']").each(function(){
 		var teaAddress=$("#address").val();
 		var teaIsmMessage=$("input[name=isMessage]").val();
 		var teaSearch=$("#way").val();
-		alert(teaIsmMessage);
 		$.ajax({
 			type:"post",
 			content:"application/x-www-from-urlencoded;charset=UTF-8",
