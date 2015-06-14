@@ -54,6 +54,7 @@ $("input[name='isMessage']").each(function(){
 		var teaAddress=$("#address").val();
 		var teaIsmMessage=$("input[name=isMessage]").val();
 		var teaSearch=$("#way").val();
+		
 		$.ajax({
 			type:"post",
 			content:"application/x-www-from-urlencoded;charset=UTF-8",
@@ -67,6 +68,7 @@ $("input[name='isMessage']").each(function(){
 				phone:teaPhone,
 				address:teaAddress,
 				message:teaIsmMessage,
+				research:teaSearch,
 				model:"1"
 			},
 			async:false,
