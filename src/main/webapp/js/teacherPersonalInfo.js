@@ -52,8 +52,9 @@ $("input[name='isMessage']").each(function(){
 		var teaEmail=$("#email").val();
 		var teaPhone=$("#phone").val();
 		var teaAddress=$("#address").val();
-		var teaIsmMessage=$("#isMessage").val();
+		var teaIsmMessage=$("input[name=isMessage]").val();
 		var teaSearch=$("#way").val();
+		alert(teaIsmMessage);
 		$.ajax({
 			type:"post",
 			content:"application/x-www-from-urlencoded;charset=UTF-8",
