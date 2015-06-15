@@ -84,6 +84,7 @@ public class TeacherPersonalInfoController extends Controller {
 			else
 			{
 				
+				
 				System.out.println("false");
 				
 			}
