@@ -43,20 +43,53 @@ public class TeacherPersonalInfoController extends Controller {
 	public void save()
 	{
 		/**
-		 * method 1 	
+		 * 保存的应该是都有id的
+		 * method 1
+		 * 这张表中一定有id 	
+		 * 后台添加判空机制
 		 */
-			BasicInfo basicinfo=getModel(BasicInfo.class);
-			basicinfo.set("basic_info_user_id",getSessionAttr("user_id"));
-			if(basicinfo.save())
+		Integer id=null;
+		String[]info={"title","degree","email","phone","address","research"};
+		String[]basic={"basic_info_title","basic_info_degree","basic_info_email","basic_info_phone","basic_info_address","basic_info_research"};
+		String[]infoget=new String[6];
+		if((id=getParaToInt("id"))==null)
+		{
+			renderJson("pleaese login!");
+			
+		}
+		else
+		{
+			BasicInfo basicinfo=BasicInfo.dao.findById((int)id);
+			int i;
+			for(i=0;i<info.length;i++)
+			{
+				if((infoget[i]=getPara(info[i]))=="")
+				{
+					
+					infoget[i]="暂无数据";
+					
+				}
+				basicinfo.set(basic[i], infoget[i]);
+			}
+			System.out.println("sad"+getPara("phone")+"heihie");
+			int message=getParaToInt("message");
+			int model=getParaToInt("model");
+			basicinfo.set("basic_info_allow_message",message);
+			basicinfo.set("basic_info_model",model);
+			if(basicinfo.update())
 			{
 				
-				System.out.println("chenggong");
-				
+				System.out.println("success");
 			}
 			else
 			{
-				System.out.println("cuocuo");
+				
+				System.out.println("false");
+				
 			}
+			
+	//	renderJson("asc",basicinfo);
+		}
 		
 	}
 	/**
