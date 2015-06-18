@@ -127,7 +127,7 @@ function newsInitial(){
 		type:"post",
 		content:"application/x-www-from-urlencoded;charset=UTF-8",
 		dataType:"json",
-		url:"../teacherNewsManage/getPage?"+currentPage+"-"+maxPage,
+		url:"../teacherNewsManage/getPage/"+currentPage+"-"+maxPage,
 		async:false,
 		success:function(result){
 	    	var html="";
