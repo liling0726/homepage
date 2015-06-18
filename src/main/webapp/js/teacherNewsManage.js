@@ -139,7 +139,7 @@ function newsInitial(){
 	    		 html+="<tr><td><input type='checkbox' name='checkboxGroup' value='"+newData.list[i].news_id+"'></td><td>"
     			 +(i+1+(currentPage-1)*maxPage)+"</td><td>"
     		     +"<a href='../html/teacherNewsEdit.html?newsId="+newData.list[i].news_id+"'>"+newData.list[i].news_title+"</a></td><td>"
-    		     +newData.list[i].news_data_id+"</td><td>"
+    		     +newData.list[i].data_name+"</td><td>"
     		     +newData.list[i].news_update_time+"</td>";
     		     if(newData.list[i].news_istop!=null)
     		    	 html+="<td><a href='#' value='"+newData.list[i].news_id+"'><span class='glyphicon glyphicon-ok'></span></a></td>"
