@@ -16,7 +16,9 @@ public class News extends Model<News> {
 	 * @return 含有用户 （news表内）所有信息以及专业名，学院名的对象集
 	 */
 	public Page<News> paginate(int pageNumber, int pageSize) {
-		return paginate(pageNumber, pageSize, "SELECT *", "FROM news");
+		return paginate(pageNumber, pageSize,
+				"select news.*,`data`.data_name ",
+				"from news,`data` where news.news_data_id=`data`.data_id");
 	}
 
 	/**

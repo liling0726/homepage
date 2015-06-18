@@ -21,6 +21,7 @@ public class TeacherNewsManageController extends Controller {
 		News news = getModel(News.class);
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// 设置日期格式
 		news.set("news_create_time", df.format(new Date()));
+		news.set("news_update_time", df.format(new Date()));
 		if (news.save()) {
 			renderJson("result", "添加成功");
 		} else {
