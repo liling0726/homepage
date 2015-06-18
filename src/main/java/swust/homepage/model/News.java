@@ -38,7 +38,7 @@ public class News extends Model<News> {
 		return paginate(
 				pageNumber,
 				pageSize,
-				"select news.*,`data`.data_name",
+				"select news.*,`data`.data_name ",
 				" from news,`data` where (news.news_data_id=`data`.data_id) and (news.news_title like '%"
 						+ key
 						+ "%' or news.news_content like '%"
