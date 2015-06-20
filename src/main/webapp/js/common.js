@@ -83,7 +83,7 @@ $(function(){
 		var teaNum=$("#teaNum").val();
 		var teaPassword=$("#teaPassword").val();
 		var teaAuthCode=$("#authcode").val();
-		alert(teaAuthCode);
+		//alert(teaAuthCode);
 		$.ajax({
 			type:"post",
 			content:"application/x-www-from-urlencoded;charset=UTF-8",

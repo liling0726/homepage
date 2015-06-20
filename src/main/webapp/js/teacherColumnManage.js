@@ -38,6 +38,13 @@ $(function(){
 			}
 		});
 	});
+	/*判断是否正确的网址
+	*/
+	$("#upColumnProperty").bind("change",function(){
+		var columnResume=$("#columnResume").val();
+		IsUrl(columnResume);
+		
+	})
 	/*
 	 * 删除栏目
 	 * 后台参数：data_id
@@ -283,3 +290,13 @@ $.ajax({
 	}
 });	
 }
+//判断是否是正确的网址
+function IsUrl(str){   
+    var regUrl = /(http\:\/\/)?([\w.]+)(\/[\w- \.\/\?%&=]*)?/gi;   
+    var result = str.match(regUrl);
+    alert("123");
+    if(result==null) {
+    $("#urlError").html("请输入正确的网址！");	
+   }   
+ 
+}   

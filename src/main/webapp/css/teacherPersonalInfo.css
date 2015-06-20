@@ -1,0 +1,15 @@
+#teaInfo input{
+	width:250px;
+	margin-bottom: 1%;
+}
+#teaInfo input[type=radio]{
+	width:auto;
+}
+
+#teaInfo select{
+	width:auto;
+	margin-bottom: 1%;
+}
+ #teaInfo #way{
+	width:400px;
+}

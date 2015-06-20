@@ -40,7 +40,7 @@ $(function(){
 		var content="";
 	else content=result.news_content;
 					$("#myEditor").val(content);
-					$("#newsTitle").val(result.news_title);				
+					$("#newsTitle").val(result.news_title);
 					$("input[name=news]").each(function(){
 					
 						if($(this).val()==result.news_istop)

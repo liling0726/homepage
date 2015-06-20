@@ -16,7 +16,7 @@ $(function(){
 			$("#name").val(result.user_name);
 			$("#occupation").val(result.basic_info_title);
 			$("#acaddegree").val(result.basic_info_degree);
-			$("#acad").val("计算机科学与技术学院");
+			$("#acad").val(result.dept_name);
 			$("#email").val(result.basic_info_email);
 			$("#phone").val(result.basic_info_phone);
 			$("#address").val(result.basic_info_address);
@@ -73,7 +73,6 @@ $("input[name='isMessage']").each(function(){
 			},
 			async:false,
 			success:function(result){
-
 				}
 	})
 	
