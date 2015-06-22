@@ -81,10 +81,6 @@ public class IndexController extends HomePageController {
         trueOrFalse(ret);
     }
 
-    public void checkUser() {
-        renderJson(LoginCheck.manager.getUserNameByID(getPara("user_num")));
-    }
-
     /**
      * @author chendekai
      */
