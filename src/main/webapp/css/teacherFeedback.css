@@ -35,6 +35,11 @@ font-weight: bold;
 	margin-right:5px;
 	color:DarkGray;
 }
+#suggestion li a span:nth-child(4){
+	float:right;
+	margin-right:5px;
+	color:DarkGray;
+}
 #newView{
 	color: #DB70DB;
 }

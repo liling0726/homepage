@@ -85,17 +85,21 @@ $(document)
 														+ "已解决"
 														+ "</span><span name=\"deleteSpan\">×</span><span>"
 														+ data[i].feedback_update_time
-														+ "</span></a></li>";
+														+ "</span><span>"
+														+data[i].user_name
+														+"</span></a></li>";
 											} else {
 												html += "<li id=\""
-														+ data[i].feedback_id
-														+ "\"><a href=\"#\">"
-														+ data[i].feedback_content
-														+ "<span class=\"label label-info\">"
-														+ "有待解决"
-														+ "</span><span name=\"deleteSpan\">×</span><span>"
-														+ data[i].feedback_update_time
-														+ "</span></a></li>";
+													+ data[i].feedback_id
+													+ "\"><a href=\"#\">"
+													+ data[i].feedback_content
+													+ "<span class=\"label label-info\">"
+													+ "未解决"
+													+ "</span><span name=\"deleteSpan\">×</span><span>"
+													+ data[i].feedback_update_time
+													+ "</span><span>"
+													+data[i].user_name
+													+"</span></a></li>";
 											}
 										}
 										$("#suggestion").html(html);

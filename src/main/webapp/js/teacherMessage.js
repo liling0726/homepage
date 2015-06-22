@@ -28,25 +28,25 @@ $(document).ready(function(){
 					if(data[i].message_is_view==1){
 						html+="<li id=\"" 
 							+data[i].message_id
-							+"\"><div>&nbsp;&nbsp;<span>" 
+							+"\"><div><span>" 
 							+data[i].message_content
-							+"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;<label><a>"
+							+"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;<label>"
 							+data[i].user_name
-							+"</a></label>&nbsp;&nbsp;&nbsp;&nbsp;<label>" 
+							+"</label>&nbsp;&nbsp;&nbsp;&nbsp;<label>" 
 							+data[i].message_email
 							+"</label>&nbsp;&nbsp;&nbsp;&nbsp;<label>" 
 							+data[i].message_submit_time
-							+"</label>&nbsp;&nbsp;<label name=\"saw\">已查看</label>&nbsp;&nbsp;<button name=\"deletex\" title=\"删除\">×</button></span></div></li>";
+							+"</label>&nbsp;&nbsp;<label name=\"saw\">已查看</label>&nbsp;&nbsp;<button name=\"deletex\" title=\"删除\">×</button></span><div class=\"clear\"></div></div></li>";
 			
 					}
 					else{
 						html+="<li id=\"" 
 							+data[i].message_id
-							+"\"><div>&nbsp;&nbsp;<span>" 
+							+"\"><div><span>" 
 							+data[i].message_content
-							+"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;<label><a>"
+							+"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;<label>"
 							+data[i].user_name
-							+"</a></label>&nbsp;&nbsp;&nbsp;&nbsp;<label>" 
+							+"</label>&nbsp;&nbsp;&nbsp;&nbsp;<label>" 
 							+data[i].message_email
 							+"</label>&nbsp;&nbsp;&nbsp;&nbsp;<label>" 
 							+data[i].message_submit_time
