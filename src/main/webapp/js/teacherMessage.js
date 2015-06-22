@@ -2,6 +2,7 @@ var currentPage, // 当前页
 	totalNum, // 最大页数
 	maxPage;// 一页总条数
 $(document).ready(function(){
+	$("#alertdiv").hide();//面包屑下面的警告框
 	currentPage=$("#currentPage").val();
 	maxPage=$("#max").val();
 	//alert(maxPage);
@@ -82,6 +83,10 @@ $(document).ready(function(){
 							data:"message.message_id="+id+"&message.message_is_view="+1,
 							async : false,
 							success : function(result) {
+								$("#alertdiv").show();
+								var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+										"<span aria-hidden=\"true\">&times;</span></button>标记成功！"
+								$("#alertdiv").html(html);
 							},
 							error : function(e) {
 								console
@@ -130,8 +135,12 @@ $(document).ready(function(){
 						data:{ID:id},
 						async : "false",
 						success : function(result) {
-							alert(result.result);
-							window.location.reload();
+							$("#alertdiv").show();
+							var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+									"<span aria-hidden=\"true\">&times;</span></button>" +result.result;
+							$("#alertdiv").html(html);
+							initial();
+							
 						},
 						error:function(e){
 							console.log("错误：" + e);
@@ -153,12 +162,18 @@ $(document).ready(function(){
 	$("#goto").bind("click",function(){
 		var gotopage=$("#gotoPage").val();
 		if(!gotopage.match("^\\d+$")){//判断是否为数字
-			alert("请输入规范的页码");
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>请输入规范的页码！"
+			$("#alertdiv").html(html);
 			return;
 		}
 		if(gotopage<1||gotopage>totalNum)
 		{
-			alert("超出总页数！");
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>超出总页数！"
+			$("#alertdiv").html(html);
 			return false;
 		}
 		else
@@ -177,7 +192,10 @@ $(document).ready(function(){
 			initial();
 		}
 		else{
-			alert("超出总页数");
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>超出总页数！"
+			$("#alertdiv").html(html);
 			return;
 		}
 
@@ -190,7 +208,10 @@ $(document).ready(function(){
 			initial();
 		}
 		else{
-			alert("小于总页数");
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>小于总页数！"
+			$("#alertdiv").html(html);
 			return;
 		}
 
@@ -199,7 +220,10 @@ $(document).ready(function(){
 	$("#firstPage").bind("click",function(){
 		if(currentPage==1)
 		{
-			alert("已经第一页了");
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>已经第一页了！"
+			$("#alertdiv").html(html);
 			return false;
 		}
 		else{
@@ -211,7 +235,10 @@ $(document).ready(function(){
 	$("#lastPage").bind("click",function(){
 		if(currentPage==totalNum)
 		{
-			alert("已经是最后页了");
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>已经是最后页了！"
+			$("#alertdiv").html(html);
 			return false;
 		}
 		else{
@@ -223,7 +250,12 @@ $(document).ready(function(){
 	$("#max").bind("change",function(){
 		maxPage=$("#max").val();
 		currentPage=1;
-		alert(maxPage);
+		$("#alertdiv").show();
+		var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+				"<span aria-hidden=\"true\">&times;</span></button>每页显示"
+					+maxPage
+					+"条！"
+		$("#alertdiv").html(html);
 		initial();
 	});
 
