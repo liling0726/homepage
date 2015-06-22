@@ -24,41 +24,38 @@ text-decoration:none;
 #mainUl{
 	list-style-type:none;
 }
-#mainUl li div div:nth-child(1) span:nth-child(2){
-	color:darkGray;
+#mainUl li div span:nth-child(1) {
 }
-#mainUl li div div:nth-child(1) span:nth-child(3){
+#mainUl li div span:nth-child(2) {
 	float:right;
-	color:red;
-	font-size:25px;
-	cursor:pointer;
 }
-#mainUl li div{
-	padding-bottom:14px;
-}
-#mainUl li div div:nth-child(2) span:nth-child(2) label{
-	font-weight:normal;
-	cursor:pointer;
-}
-#mainUl li div div:nth-child(2) span:nth-child(2){
-	margin-right:5px;
-	margin-left:30px;
+#mainUl li div span:nth-child(2) label:nth-child(1){
+	text-decoration:none;
 	color:DarkGray;
-	float:right;
+	font-weight:normal;
+	font-size:16px;
+	margin-bottom:0px;
 }
-#mainUl li div div:nth-child(2) span:nth-child(1){
-	margin-left:30px;
+#mainUl li div span:nth-child(2)  label:nth-child(2){
+	color:DarkGray;
+	font-weight:normal;
+	font-size:16px;
+	margin-bottom:0px;
 }
-.liborder{
-	border-bottom:1px dotted DarkGray;
-	margin-left:30px;
-	margin-right:20px;
-	margin-bottom:15px;
-	padding-bottom:10px;
+#mainUl li div span:nth-child(2)  label:nth-child(3){
+	color:DarkGray;
+	font-weight:normal;
+	font-size:16px;
+	margin-bottom:0px;
 }
-.noborder{
-	margin-left:30px;
-	margin-right:20px;
-	margin-bottom:15px;
-	padding-bottom:10px;
+#mainUl li div span:nth-child(2)  label:nth-child(4){
+	font-weight:normal;
+	font-size:16px;
+	margin-bottom:0px;
+}
+#mainUl li div span:nth-child(2)  button{
+	background-color: Transparent; 
+	border-style :none;
+	font-weight:normal;
+	color:red;
 }

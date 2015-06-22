@@ -25,62 +25,32 @@ $(document).ready(function(){
 				var data=result.teacherMessage.list;
 				var html="";
 				for(var i = 0;i<data.length;i++){
-					if(i==data.length-1)
-					{   if(data[i].message_is_view==1){
-						html+="<li id=\"" 
-						+data[i].message_id
-						+"\"><div class=\"liborder\"><div><a>"
-						+data[i].user_name
-						+"</a>&nbsp;&nbsp;&nbsp;<span>"
-						+data[i].message_email
-						+"</span><span name=\"deletex\" title=\"删除\">×</span></div><div><span>" 
-						+data[i].message_content
-						+"</span><span>"
-						+"2015-5-24 20:02" 
-						+"&nbsp;&nbsp;<label name=\"saw\">已查看</label></span></div></div></li>";
-					}
-					else{
-						html+="<li id=\"" 
-							+data[i].message_id
-							+"\"><div class=\"liborder\"><div><a>"
-							+data[i].user_name
-							+"</a>&nbsp;&nbsp;&nbsp;<span>"
-							+data[i].message_email
-							+"</span><span name=\"deletex\" title=\"删除\">×</span></div><div><span>" 
-							+data[i].message_content
-							+"</span><span>"
-							+"2015-5-24 20:02" 
-							+"&nbsp;&nbsp;<label name=\"saw\">未查看</label></span></div></div></li>";
-					}
-					}
-				else{
 					if(data[i].message_is_view==1){
 						html+="<li id=\"" 
 							+data[i].message_id
-							+"\"><div class=\"liborder\"><div><a>"
-							+data[i].user_name
-							+"</a>&nbsp;&nbsp;&nbsp;<span>"
-							+data[i].message_email
-							+"</span><span name=\"deletex\" title=\"删除\">×</span></div><div><span>" 
+							+"\"><div>&nbsp;&nbsp;<span>" 
 							+data[i].message_content
-							+"</span><span>"
-							+"2015-5-24 20:02" 
-							+"&nbsp;&nbsp;<label name=\"saw\">已查看</label></span></div></div></li>";
+							+"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;<label><a>"
+							+data[i].user_name
+							+"</a></label>&nbsp;&nbsp;&nbsp;&nbsp;<label>" 
+							+data[i].message_email
+							+"</label>&nbsp;&nbsp;&nbsp;&nbsp;<label>" 
+							+data[i].message_submit_time
+							+"</label>&nbsp;&nbsp;<label name=\"saw\">已查看</label>&nbsp;&nbsp;<button name=\"deletex\" title=\"删除\">×</button></span></div></li>";
 			
 					}
 					else{
-					 html+="<li id=\"" 
+						html+="<li id=\"" 
 							+data[i].message_id
-							+"\"><div class=\"liborder\"><div><a>"
-							+data[i].user_name
-							+"</a>&nbsp;&nbsp;&nbsp;<span>"
-							+data[i].message_email
-							+"</span><span name=\"deletex\" title=\"删除\">×</span></div><div><span>" 
+							+"\"><div>&nbsp;&nbsp;<span>" 
 							+data[i].message_content
-							+"</span><span>"
-							+"2015-5-24 20:02" 
-							+"&nbsp;&nbsp;<label name=\"saw\">未查看</label></span></div></div></li>";
-					}
+							+"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;<label><a>"
+							+data[i].user_name
+							+"</a></label>&nbsp;&nbsp;&nbsp;&nbsp;<label>" 
+							+data[i].message_email
+							+"</label>&nbsp;&nbsp;&nbsp;&nbsp;<label>" 
+							+data[i].message_submit_time
+							+"</label>&nbsp;&nbsp;<label name=\"saw\">未查看</label>&nbsp;&nbsp;<button name=\"deletex\" title=\"删除\">×</button></span></div></li>";
 					}
 				}
 				$("#mainUl").html(html);
@@ -142,14 +112,14 @@ $(document).ready(function(){
 					}*/
 					
 				});
-				$("#mainUl li").find("span[name='deletex']").hide();
+				$("#mainUl li").find("button[name='deletex']").hide();
 				$("#mainUl li").mouseover(function() {
-					$(this).find("span[name='deletex']").show();
+					$(this).find("button[name='deletex']").show();
 				});
 				$("#mainUl li").mouseleave(function() {
-					$(this).find("span[name='deletex']").hide();
+					$(this).find("button[name='deletex']").hide();
 				});
-				$("span[name='deletex']").click(function() {
+				$("button[name='deletex']").click(function() {
 					var id;
 					id=$(this).parents("li").attr("id");
 					$.ajax({
