@@ -252,9 +252,9 @@ $(document).ready(function(){
 		currentPage=1;
 		$("#alertdiv").show();
 		var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
-				"<span aria-hidden=\"true\">&times;</span></button>每页显示";
+				"<span aria-hidden=\"true\">&times;</span></button>每页显示"
 					+maxPage
-					+"条！"
+					+"条！";
 		$("#alertdiv").html(html);
 		initial();
 	});
