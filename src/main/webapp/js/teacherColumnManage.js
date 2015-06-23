@@ -1,6 +1,7 @@
 $(function(){
 	//初始化
 	acadInitial();
+	$("#alertdiv").hide();//面包屑下面的警告框
 	/*
 	 * 功能：添加栏目
 	 * 后台参数：data_name(栏目名称) 
@@ -17,7 +18,10 @@ $(function(){
 		var columnType=$("#columnType").val();
 		var columnIsShow=$("input[name=column]:checked").val();
 		var columnSort=$("#columnSort").val();
-		alert(columnIsShow);
+		$("#alertdiv").show();
+		var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+				"<span aria-hidden=\"true\">&times;</span></button>"+columnIsShow+"！";
+		$("#alertdiv").html(html);
 		$.ajax({
 			type:"post",
 			content:"application/x-www-from-urlencoded;charset=UTF-8",
@@ -33,8 +37,11 @@ $(function(){
 			},
 			async:false,
 			success:function(result){
-				alert(result.result);
-				location.reload();
+				$("#alertdiv").show();
+				var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+						"<span aria-hidden=\"true\">&times;</span></button>" +result.result+"！";
+				$("#alertdiv").html(html);
+				acadInitial();
 			}
 		});
 	});
@@ -54,7 +61,10 @@ $(function(){
 		var length=$("input[name='checkboxGroup']:checked").length;
 		if(length==0)
 		{
-			alert("请选择要删除的老师记录");
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>请选择要删除的老师记录！";
+			$("#alertdiv").html(html);
 			return false;
 		}
 		else if(confirm("确定要删除"+length+"条栏目信息？"))
@@ -75,8 +85,11 @@ $(function(){
 				},
 				dataType:"json",				
 				success:function(result){
-					alert(result.result);	
-					location.reload();
+					$("#alertdiv").show();
+					var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+							"<span aria-hidden=\"true\">&times;</span></button>" +result.result+"！";
+					$("#alertdiv").html(html);
+					acadInitial();
 				},
 				error:function(e){
 					console.log("错误："+e.message);
@@ -187,7 +200,7 @@ function acadInitial(){
 				}
 				acadHtml=acadHtml+"<td  onclick='updateContentRemenber(this)' data-toggle='modal' data-target='#updateModal' value='"+result[i].data_id+"'><a href='#' ><span class='glyphicon glyphicon-pencil'></span></td>";
 			}
-			$("#columnInfo").append(acadHtml);
+			$("#columnInfo").html(acadHtml);
 		},
 	});
 }
@@ -254,8 +267,11 @@ function updateColumn(upColumnId,upColumnName,upColumnSort,upColumResume,upColum
 		},
 		async:false,
 		success:function(result){
-			alert(result.result);
-			location.reload();
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>" +result.result+"！";
+			$("#alertdiv").html(html);
+			acadInitial();
 		}
 	});	
 	
@@ -286,7 +302,11 @@ $.ajax({
 	},
 	async:false,
 	success:function(result){
-		location.reload();
+		$("#alertdiv").show();
+		var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+				"<span aria-hidden=\"true\">&times;</span></button>" +result.result+"！";
+		$("#alertdiv").html(html);
+		acadInitial();
 	}
 });	
 }
@@ -294,7 +314,10 @@ $.ajax({
 function IsUrl(str){   
     var regUrl = /(http\:\/\/)?([\w.]+)(\/[\w- \.\/\?%&=]*)?/gi;   
     var result = str.match(regUrl);
-    alert("123");
+    $("#alertdiv").show();
+	var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+			"<span aria-hidden=\"true\">&times;</span></button>123！";
+	$("#alertdiv").html(html);
     if(result==null) {
     $("#urlError").html("请输入正确的网址！");	
    }   

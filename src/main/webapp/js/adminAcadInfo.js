@@ -11,7 +11,7 @@ var keyWord;
 $("#max").val(20);// search有bug,有关键字就不能翻页！！！
 totalNum = 20;
 $(function() {
-
+	$("#alertdiv").hide();// 面包屑下面的警告框
 	$("table tr td:nth-child(2)").mouseover(function(e) {
 
 		var pos = mousePosition(e);
@@ -44,7 +44,7 @@ $(function() {
 
 	/* 导入后台数据，点击模态框按钮添加内容到表格 */
 	/* 宾健 */
-	
+
 	initial();
 	function initial() {
 		$
@@ -95,7 +95,7 @@ $(function() {
 														+ "data-toggle=\"modal\"data-target=\"#insertModal"
 														+ j
 														+ "\">添加</button>"
-														+ "<button id=\"deleteBtn" 
+														+ "<button id=\"deleteBtn"
 														+ j
 														+ "\" onclick=\"btnDelete(id);\" class=\"btn btn-info btn-xs\">删除</button></div></td></tr>");
 								/* 动态添加模态框，使得模态框按钮id最后一位为数字，此数字与点击弹出模态框的按钮编号相同，从而获得此按钮的id！不容易想到 */
@@ -147,11 +147,14 @@ $(function() {
 					function() {
 						var deptdname = $(this).parents(".modal-body").find(
 								"input").val();
-						if (deptdname == "请输入系名" || deptdname == "")
-							alert("请输入系名!");
-						else {
-							$(this).parents(".modal-body").find(
-							"input").val("");
+						if (deptdname == "请输入系名" || deptdname == "") {
+							$("#alertdiv").show();
+							var html = "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">"
+									+ "<span aria-hidden=\"true\">&times;</span></button>请输入系名！";
+							$("#alertdiv").html(html);
+						} else {
+							$(this).parents(".modal-body").find("input")
+									.val("");
 							var acadname;
 							var str1;
 							/* 获取模态框按钮id，从而对应弹出模态框按钮id */
@@ -159,7 +162,7 @@ $(function() {
 							str1 = str;
 							str1 = str1.charAt(str1.length - 2);
 							str = str.charAt(str.length - 1);
-							if (str1 <= "9" && str1 >= "0") {//序号只能在两位以内！
+							if (str1 <= "9" && str1 >= "0") {// 序号只能在两位以内！
 								var snum = parseInt(str) + parseInt(str1) * 10;
 							} else {
 								var snum = parseInt(str);
@@ -181,7 +184,10 @@ $(function() {
 										},
 										async : false,
 										success : function(result) {
-											alert("添加成功！");
+											$("#alertdiv").show();
+											var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+													"<span aria-hidden=\"true\">&times;</span></button>添加成功！";
+											$("#alertdiv").html(html);
 										},
 										error : function(e) {
 											console.log("错误：" + e.message);
@@ -190,11 +196,11 @@ $(function() {
 						}
 					});
 	/* 删除 */
-	//用直接绑定按钮的方式执行，否则浏览器自动关联会出问题
-	btnDelete=function(id){
+	// 用直接绑定按钮的方式执行，否则浏览器自动关联会出问题
+	btnDelete = function(id) {
 		var j = 0;
 		var text;
-		$("#"+id).parents(".buttonGroup").parent().prev().find(
+		$("#" + id).parents(".buttonGroup").parent().prev().find(
 				"input:checked").each(function() {
 			j++;
 		});
@@ -206,22 +212,12 @@ $(function() {
 				 */
 				var str = "";
 				/* 遍历选中的checkbox进行相关操作 */
-				$("#"+id)
-						.parents(".buttonGroup")
-						.parent()
-						.prev()
-						.find("input:checked")
-						.each(
-								function() {
-									str += "-"
-											+ $(this)
-													.parent()
-													.children(
-															"a")
-													.html();
-									$(this).parent().remove();
-									/* alert(deptdelenum[i-1]); */
-								});
+				$("#" + id).parents(".buttonGroup").parent().prev().find(
+						"input:checked").each(function() {
+					str += "-" + $(this).parent().children("a").html();
+					$(this).parent().remove();
+					/* alert(deptdelenum[i-1]); */
+				});
 
 				$
 						.ajax({
@@ -235,6 +231,10 @@ $(function() {
 							async : false,
 							success : function(result) {
 								/* alert("删除成功！"); */
+								$("#alertdiv").show();
+								var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+										"<span aria-hidden=\"true\">&times;</span></button>删除成功！";
+								$("#alertdiv").html(html);
 							},
 							error : function(e) {
 								console.log("错误：" + e.message);
@@ -246,10 +246,12 @@ $(function() {
 				return false;
 			}
 		} else {
-			alert("您一条也没选！");
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>您一条也没选！";
+			$("#alertdiv").html(html);
 		}
-	}		
-					
+	}
 
 	$(".modal-body input").mouseover(function() {
 		if ($(this).val() == "请输入系名") {
@@ -267,109 +269,114 @@ $(function() {
 					"click",
 					function searchByKey(key) {
 						keyWord = $("#searchInput").val();
-							$
-									.ajax({
-										type : "post",
-										content : "application/x-www-from-urlencoded;charset=UTF-8",
-										dataType : "json",
-										url : "../adminacadinfo/findAcadOrDept",
-										data : {
-											key : keyWord
-										},
-										async : false,
-										success : function(result) {
-											data = result.result;
-											data = result.result;
-											var j = 0;// 统一编号变量
-											// 搜索从来都是从0开始显示的，这个表的数据少，特殊！！！
-											k = 0;
-											end = 0;
-											// 清空
-											$("#maintable")
-													.html("<tr><th>序号</th><th>学院</th><th colspan=\"2\">系别</th></tr>");
-											for (var i = k; i < data.length; i++) {
-												if (end >= totalNum
-														&& data[i].acad_name != data[i - 1].acad_name)
-													break;// 放在下面个if里会有莫名其妙的bug
-												if (i == k
-														|| data[i].acad_name != data[i - 1].acad_name) {
-													end++;
-													$("#maintable")
-															.append(
-																	"<tr><td>"
-																			+ (j + 1)
-																			+ "</td><td>"
-																			+ data[i].acad_name
-																			+ "</td><td><ul id=\"deptli"
-																			+ j
-																			+ "\"class=\"classInfo\"></ul></td>"
-																			+ "<td style=\"width: 100px;\"><div class=\"buttonGroup\"><button id=\"adddeptbtn"
-																			+ j
-																			+ "\"class=\"btn btn-danger btn-xs\" "
-																			+ "data-toggle=\"modal\"data-target=\"#insertModal"
-																			+ j
-																			+ "\">添加</button>"
-																			+ "<button id=\"deleteBtn" 
-																			+ j
-																			+ "\" onclick=\"btnDelete(id);\" class=\"btn btn-info btn-xs\">删除</button></div></td></tr>");
-													/* 动态添加模态框，使得模态框按钮id最后一位为数字，此数字与点击弹出模态框的按钮编号相同，从而获得此按钮的id！不容易想到 */
-													$("#modals")
-															.append(
-																	"<div class=\"modal fade\" id=\"insertModal"
-																			+ j
-																			+ "\" tabindex=\"-1\" role=\"dialog\"aria-labelledby=\"myModalLabel\" "
-																			+ "aria-hidden=\"true\"><div class=\"modal-dialog modal-sm\"><div class=\"modal-content\"><div class=\"modal-header\">"
-																			+ "<button type=\"button\" class=\"close\" data-dismiss=\"modal\"aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>"
-																			+ "<h4 class=\"modal-title\" id=\"myModalLabel\">添加系别</h4></div><div class=\"modal-body\"><p>系别："
-																			+ "<input type=\"text\" style=\"width: 200px; height: 30px;\"value=\"请输入系名\"></p><div class=\"modal-footer\"><button id=\"addacadbtn"
-																			+ j
-																			+ "\"type=\"button\" "
-																			+ "class=\"btn btn-primary\">添加</button><button id=\"deleteacad\"type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">取消"
-																			+ "</button></div></div></div></div>");
-													j = j + 1;
-												}
-												$("#deptli" + (j - 1))
+						$
+								.ajax({
+									type : "post",
+									content : "application/x-www-from-urlencoded;charset=UTF-8",
+									dataType : "json",
+									url : "../adminacadinfo/findAcadOrDept",
+									data : {
+										key : keyWord
+									},
+									async : false,
+									success : function(result) {
+										data = result.result;
+										data = result.result;
+										var j = 0;// 统一编号变量
+										// 搜索从来都是从0开始显示的，这个表的数据少，特殊！！！
+										k = 0;
+										end = 0;
+										// 清空
+										$("#maintable")
+												.html(
+														"<tr><th>序号</th><th>学院</th><th colspan=\"2\">系别</th></tr>");
+										for (var i = k; i < data.length; i++) {
+											if (end >= totalNum
+													&& data[i].acad_name != data[i - 1].acad_name)
+												break;// 放在下面个if里会有莫名其妙的bug
+											if (i == k
+													|| data[i].acad_name != data[i - 1].acad_name) {
+												end++;
+												$("#maintable")
 														.append(
-																"<li><input type=\"checkbox\">&nbsp;&nbsp;<a>"
-																		+ data[i].dept_name
-																		+ "</a></li>");
-
+																"<tr><td>"
+																		+ (j + 1)
+																		+ "</td><td>"
+																		+ data[i].acad_name
+																		+ "</td><td><ul id=\"deptli"
+																		+ j
+																		+ "\"class=\"classInfo\"></ul></td>"
+																		+ "<td style=\"width: 100px;\"><div class=\"buttonGroup\"><button id=\"adddeptbtn"
+																		+ j
+																		+ "\"class=\"btn btn-danger btn-xs\" "
+																		+ "data-toggle=\"modal\"data-target=\"#insertModal"
+																		+ j
+																		+ "\">添加</button>"
+																		+ "<button id=\"deleteBtn"
+																		+ j
+																		+ "\" onclick=\"btnDelete(id);\" class=\"btn btn-info btn-xs\">删除</button></div></td></tr>");
+												/* 动态添加模态框，使得模态框按钮id最后一位为数字，此数字与点击弹出模态框的按钮编号相同，从而获得此按钮的id！不容易想到 */
+												$("#modals")
+														.append(
+																"<div class=\"modal fade\" id=\"insertModal"
+																		+ j
+																		+ "\" tabindex=\"-1\" role=\"dialog\"aria-labelledby=\"myModalLabel\" "
+																		+ "aria-hidden=\"true\"><div class=\"modal-dialog modal-sm\"><div class=\"modal-content\"><div class=\"modal-header\">"
+																		+ "<button type=\"button\" class=\"close\" data-dismiss=\"modal\"aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>"
+																		+ "<h4 class=\"modal-title\" id=\"myModalLabel\">添加系别</h4></div><div class=\"modal-body\"><p>系别："
+																		+ "<input type=\"text\" style=\"width: 200px; height: 30px;\"value=\"请输入系名\"></p><div class=\"modal-footer\"><button id=\"addacadbtn"
+																		+ j
+																		+ "\"type=\"button\" "
+																		+ "class=\"btn btn-primary\">添加</button><button id=\"deleteacad\"type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">取消"
+																		+ "</button></div></div></div></div>");
+												j = j + 1;
 											}
-										},
-										error : function(e) {
-											console.log("错误：" + e.message);
+											$("#deptli" + (j - 1)).append(
+													"<li><input type=\"checkbox\">&nbsp;&nbsp;<a>"
+															+ data[i].dept_name
+															+ "</a></li>");
+
 										}
-									});
+									},
+									error : function(e) {
+										console.log("错误：" + e.message);
+									}
+								});
 
-							// 算总页数
-							end = 0;
-							for (var i = 0; i < data.length; i++) {
-								if (i == 0
-										|| data[i].acad_name != data[i - 1].acad_name) {
-									end++;
-								}
+						// 算总页数
+						end = 0;
+						for (var i = 0; i < data.length; i++) {
+							if (i == 0
+									|| data[i].acad_name != data[i - 1].acad_name) {
+								end++;
 							}
-							maxPage = Math.ceil(end / totalNum);// 总页数
-							currentPage = beginNum / totalNum + 1;// 当前页
-							// 只要搜索后都定位第一页
-							currentPage = 1;
+						}
+						maxPage = Math.ceil(end / totalNum);// 总页数
+						currentPage = beginNum / totalNum + 1;// 当前页
+						// 只要搜索后都定位第一页
+						currentPage = 1;
 
-							// 显示当前页等信息
-							$("#currentPage").html(currentPage);
-							$("#maxPage").html(maxPage);
+						// 显示当前页等信息
+						$("#currentPage").html(currentPage);
+						$("#maxPage").html(maxPage);
 					});
 	// 加翻页功能。
 
 	// 跳转
 	$("#goto").bind("click", function() {
 		var gotopage = $("#gotoPage").val();
-		alert(gotopage);
 		if (!gotopage.match("^\\d+$")) {// 判断是否为数字
-			alert("请输入规范的页码");
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>请输入规范的页码!";
+			$("#alertdiv").html(html);
 			return;
 		}
 		if (gotopage < 1 || gotopage > maxPage) {
-			alert("超出总页数！");
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>超出总页数!";
+			$("#alertdiv").html(html);
 			return false;
 		} else {
 			currentPage = gotopage;
@@ -395,7 +402,10 @@ $(function() {
 			initial();
 			// else searchByKey(keyWord);
 		} else {
-			alert("超出总页数");
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>超出总页数!";
+			$("#alertdiv").html(html);
 			return;
 		}
 
@@ -412,7 +422,10 @@ $(function() {
 			initial();
 			// else searchByKey(keyWord);
 		} else {
-			alert("小于总页数");
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>小于总页数!";
+			$("#alertdiv").html(html);
 			return;
 		}
 
@@ -420,7 +433,10 @@ $(function() {
 	// 点击首页，显示第一页数据
 	$("#firstPage").bind("click", function() {
 		if (currentPage == 1) {
-			alert("已经第一页了");
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>已经第一页了!";
+			$("#alertdiv").html(html);
 			return false;
 		} else {
 			currentPage = 1;
@@ -435,7 +451,10 @@ $(function() {
 	// 点击末页，显示最后页数据
 	$("#lastPage").bind("click", function() {
 		if (currentPage == maxPage) {
-			alert("已经是最后页了");
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>已经是最后页了!";
+			$("#alertdiv").html(html);
 			return false;
 		} else {
 			currentPage = maxPage;
@@ -453,6 +472,10 @@ $(function() {
 		maxPage = Math.ceil(end / totalNum);// 总页数
 		currentPage = 1;// 当前页
 		beginNum = (currentPage - 1) * totalNum;// 计算从多少条数据开始
+		$("#alertdiv").show();
+		var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+				"<span aria-hidden=\"true\">&times;</span></button>每页显示"+totalNum+"条！";
+		$("#alertdiv").html(html);
 		// alert(totalNum);
 		// 调用查询
 		keyWord = $("#searchInput").val();

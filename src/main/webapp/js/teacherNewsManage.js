@@ -95,7 +95,10 @@ $(function(){
 		{
 		currentPage=parseInt(currentPage)+1;
 		//调用查询
-		alert(keyWord);
+		$("#alertdiv").show();
+		var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+				"<span aria-hidden=\"true\">&times;</span></button>关键词：" +keyWord;
+		$("#alertdiv").html(html);
 		if(keyWord==""||keyWord==null)
 			newsInitial();
 		else searchByKey(keyWord);
@@ -132,6 +135,11 @@ $(function(){
 	//每页显示页数
 	$("#max").bind("change",function(){
 		 maxPage=$("#max").val();
+		 $("#alertdiv").show();
+			var html = "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">"
+					+ "<span aria-hidden=\"true\">&times;</span></button>每页显示"
+					+ maxPage + "条!";
+			$("#alertdiv").html(html);
 		 //alert(maxPage);
 		//调用查询
 			if(keyWord==""||keyWord==null)

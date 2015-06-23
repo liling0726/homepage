@@ -7,6 +7,7 @@ totalNum,//查询总条数
 maxPage,//最大页数
 keyWord="";//关键字
 $(function(){
+	$("#alertdiv").hide();//面包屑下面的警告框
 	 currentPage=$("#currentPage").val();
 	 maxPage=$("#max").val();
 	 //alert(maxPage);
@@ -45,8 +46,11 @@ $(function(){
 			data:"user.user_num="+userNum+"&user.user_name="+userName+"&user.user_dept_id="+userDeptId+"&user.user_is_admin="+isSetAdmin,
 			async:false,
 			success:function(result){
-				alert(result.result);
-				window.location.reload();
+				$("#alertdiv").show();
+				var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+						"<span aria-hidden=\"true\">&times;</span></button>" +result.result;
+				$("#alertdiv").html(html);
+				initial();
 			},
 			error:function(e){
 				console.log("错误："+e.message);
@@ -62,7 +66,10 @@ $(function(){
 		var length=$("input[name='checkboxGroup']:checked").length;
 		if(length==0)
 			{
-			alert("请选择要删除的老师记录");
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>请选择要删除的老师记录！";
+			$("#alertdiv").html(html);
 			return false;
 			}
 		else if(confirm("确定要删除"+length+"条老师信息？"))
@@ -80,8 +87,11 @@ $(function(){
 				url:"../adminTeacherInfo/delete/"+str,
 				dataType:"json",				
 				success:function(result){
-					alert(result.result);	
-					location.reload();
+					$("#alertdiv").show();
+					var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+							"<span aria-hidden=\"true\">&times;</span></button>" +result.result;
+					$("#alertdiv").html(html);
+					initial();
 				},
 				error:function(e){
 					console.log("错误："+e.message);
@@ -97,14 +107,20 @@ $(function(){
 		var length=$("input[name='checkboxGroup']:checked").length;
 		if(length==0)
 			{
-			alert("请选择要修改的老师记录");
-			location.reload();
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>请选择要修改的老师记录！";
+			$("#alertdiv").html(html);
+			initial();
 			return false;
 			}
 		else if(length>1)
 			{
-			alert("对不起，只能选择有一条修改记录！");
-			location.reload();
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>对不起，只能选择有一条修改记录！";
+			$("#alertdiv").html(html);
+			initial();
 			return false;
 			}
 		else{
@@ -163,12 +179,18 @@ $(function(){
 $("#goto").bind("click",function(){
 	var gotopage=$("#gotoPage").val();
 	if(!gotopage.match("^\\d+$")){//判断是否为数字
-		alert("请输入规范的页码");
+		$("#alertdiv").show();
+		var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+				"<span aria-hidden=\"true\">&times;</span></button>请输入规范的页码！";
+		$("#alertdiv").html(html);
 		return;
 	}
 	if(gotopage<1||gotopage>totalNum)
 	{
-		alert("超出总页数！");
+		$("#alertdiv").show();
+		var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+				"<span aria-hidden=\"true\">&times;</span></button>超出总页数！";
+		$("#alertdiv").html(html);
 		return false;
 	}
 	else
@@ -193,7 +215,10 @@ $("#pageforward").bind("click",function(){
 	else searchByKey(keyWord);
 	}
 	else{
-		alert("超出总页数");
+		$("#alertdiv").show();
+		var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+				"<span aria-hidden=\"true\">&times;</span></button>超出总页数！";
+		$("#alertdiv").html(html);
 		return;
 	}
 	
@@ -209,7 +234,10 @@ $("#pagebackward").bind("click",function(){
 	else searchByKey(keyWord);
 	}
 	else{
-		alert("小于总页数");
+		$("#alertdiv").show();
+		var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+				"<span aria-hidden=\"true\">&times;</span></button>小于总页数！";
+		$("#alertdiv").html(html);
 		return;
 	}
 
@@ -218,7 +246,10 @@ $("#pagebackward").bind("click",function(){
 $("#firstPage").bind("click",function(){
 	if(currentPage==1)
 		{
-		alert("已经第一页了");
+		$("#alertdiv").show();
+		var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+				"<span aria-hidden=\"true\">&times;</span></button>已经第一页了！";
+		$("#alertdiv").html(html);
 		return false;
 		}
 	else{
@@ -233,7 +264,10 @@ $("#firstPage").bind("click",function(){
 $("#lastPage").bind("click",function(){
 	if(currentPage==totalNum)
 		{
-		alert("已经是最后页了");
+		$("#alertdiv").show();
+		var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+				"<span aria-hidden=\"true\">&times;</span></button>已经是最后页了！";
+		$("#alertdiv").html(html);
 		return false;
 		}
 	else{
@@ -247,6 +281,10 @@ $("#lastPage").bind("click",function(){
 //每页显示页数
 $("#max").bind("change",function(){
 	 maxPage=$("#max").val();
+	 $("#alertdiv").show();
+		var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+				"<span aria-hidden=\"true\">&times;</span></button>每页显示"+maxPage+"条！";
+		$("#alertdiv").html(html);
 	 //alert(maxPage);
 	//调用查询
 		if(keyWord==""||keyWord==null)
@@ -396,14 +434,17 @@ function updateUser(userId,userNum,userName,userDeptId,isSetAdmin){
 		data:"user.user_id="+userId+"&user.user_num="+userNum+"&user.user_name="+userName+"&user.user_dept_id="+userDeptId+"&user.user_is_admin="+isSetAdmin,
 		async:false,
 		success:function(result){
-			alert(result.result);
-			window.location.reload();
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>" +result.result;
+			$("#alertdiv").html(html);
+			initial();
 		},
 		error:function(e){
 			console.log("错误："+e.message);
 		}
 	});
-	location.reload();
+	initial();
 }
 function transformAdmin(obj,list){
 	var isTranformAdmin=0,
@@ -426,7 +467,10 @@ function transformAdmin(obj,list){
 	userName=list.user_name,
 	userDeptId=list.user_dept_id,
 	isSetAdmin=isTranformAdmin;
-	alert(list.user_dept_id);
+	$("#alertdiv").show();
+	var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+			"<span aria-hidden=\"true\">&times;</span></button>"+list.user_dept_id;
+	$("#alertdiv").html(html);
 	updateUser(userId,userNum,userName,userDeptId,isSetAdmin);
 }
 /*初始化学院

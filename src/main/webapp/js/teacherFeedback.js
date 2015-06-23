@@ -302,7 +302,7 @@ $(document)
 										$("#alertdiv").show();
 										var html = "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">"
 												+ "<span aria-hidden=\"true\">&times;</span></button>每页显示"
-												+ maxPage + "条";
+												+ maxPage + "条!";
 										$("#alertdiv").html(html);
 										// alert(maxPage);
 										// 调用查询

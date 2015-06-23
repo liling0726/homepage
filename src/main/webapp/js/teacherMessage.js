@@ -85,7 +85,7 @@ $(document).ready(function(){
 							success : function(result) {
 								$("#alertdiv").show();
 								var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
-										"<span aria-hidden=\"true\">&times;</span></button>标记成功！"
+										"<span aria-hidden=\"true\">&times;</span></button>标记成功！";
 								$("#alertdiv").html(html);
 							},
 							error : function(e) {
@@ -164,7 +164,7 @@ $(document).ready(function(){
 		if(!gotopage.match("^\\d+$")){//判断是否为数字
 			$("#alertdiv").show();
 			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
-					"<span aria-hidden=\"true\">&times;</span></button>请输入规范的页码！"
+					"<span aria-hidden=\"true\">&times;</span></button>请输入规范的页码！";
 			$("#alertdiv").html(html);
 			return;
 		}
@@ -172,7 +172,7 @@ $(document).ready(function(){
 		{
 			$("#alertdiv").show();
 			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
-					"<span aria-hidden=\"true\">&times;</span></button>超出总页数！"
+					"<span aria-hidden=\"true\">&times;</span></button>超出总页数！";
 			$("#alertdiv").html(html);
 			return false;
 		}
@@ -194,7 +194,7 @@ $(document).ready(function(){
 		else{
 			$("#alertdiv").show();
 			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
-					"<span aria-hidden=\"true\">&times;</span></button>超出总页数！"
+					"<span aria-hidden=\"true\">&times;</span></button>超出总页数！";
 			$("#alertdiv").html(html);
 			return;
 		}
@@ -210,7 +210,7 @@ $(document).ready(function(){
 		else{
 			$("#alertdiv").show();
 			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
-					"<span aria-hidden=\"true\">&times;</span></button>小于总页数！"
+					"<span aria-hidden=\"true\">&times;</span></button>小于总页数！";
 			$("#alertdiv").html(html);
 			return;
 		}
@@ -222,7 +222,7 @@ $(document).ready(function(){
 		{
 			$("#alertdiv").show();
 			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
-					"<span aria-hidden=\"true\">&times;</span></button>已经第一页了！"
+					"<span aria-hidden=\"true\">&times;</span></button>已经第一页了！";
 			$("#alertdiv").html(html);
 			return false;
 		}
@@ -237,7 +237,7 @@ $(document).ready(function(){
 		{
 			$("#alertdiv").show();
 			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
-					"<span aria-hidden=\"true\">&times;</span></button>已经是最后页了！"
+					"<span aria-hidden=\"true\">&times;</span></button>已经是最后页了！";
 			$("#alertdiv").html(html);
 			return false;
 		}
@@ -252,7 +252,7 @@ $(document).ready(function(){
 		currentPage=1;
 		$("#alertdiv").show();
 		var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
-				"<span aria-hidden=\"true\">&times;</span></button>每页显示"
+				"<span aria-hidden=\"true\">&times;</span></button>每页显示";
 					+maxPage
 					+"条！"
 		$("#alertdiv").html(html);
