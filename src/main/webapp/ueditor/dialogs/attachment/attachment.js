@@ -9,12 +9,10 @@
 
     var uploadFile,
         onlineFile;
-    
+
     window.onload = function () {
-    	var sypaValue;
         initTabs();
         initButtons();
-        getAllParameter();//获取后台设置的附件上传格式
     };
 
     /* 初始化tab标签 */
@@ -79,7 +77,7 @@
                     list = onlineFile.getInsertList();
                     break;
             }
-            
+
             editor.execCommand('insertfile', list);
         };
     }
@@ -147,9 +145,8 @@
                 uploader,
                 actionUrl = editor.getActionUrl(editor.getOpt('fileActionName')),
                 fileMaxSize = editor.getOpt('fileMaxSize'),
-                sypaValue = getAllParameter(),
-                acceptExtensions = sypaValue.replace(/\;/g, ',');;
-              alert(acceptExtensions);
+                acceptExtensions = (editor.getOpt('fileAllowFiles') || []).join('').replace(/\./g, ',').replace(/^[,]/, '');;
+
             if (!WebUploader.Uploader.support()) {
                 $('#filePickerReady').after($('<div>').html(lang.errorNotSupport)).hide();
                 return;
@@ -755,20 +752,3 @@
 
 
 })();
-
-function getAllParameter(){
-	$.ajax({
-		type : "post",
-		contentType : "application/x-www-form-urlencoded;charset=UTF-8",
-		url : '../../../handler/sypaController/viewAllSypa.do',
-		async : false,
-		dataType : 'json',
-		data : {
-			"pType" : 0
-		},
-		success : function(result) {
-			sypaValue = result.data.result[5].sypaValue;
-		}
-	});
-	return sypaValue;
-}

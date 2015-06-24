@@ -1,17 +1,6 @@
 package swust.homepage;
 
-import swust.homepage.controller.AcadInfoMoreController;
-import swust.homepage.controller.AdminAcadInfoController;
-import swust.homepage.controller.AdminAdminInfoController;
-import swust.homepage.controller.AdminLoginController;
-import swust.homepage.controller.AdminTeacherInfoController;
-import swust.homepage.controller.IndexController;
-import swust.homepage.controller.TeacherColumnManageController;
-import swust.homepage.controller.TeacherFeedbackController;
-import swust.homepage.controller.TeacherMessageController;
-import swust.homepage.controller.TeacherNewsManageController;
-import swust.homepage.controller.TeacherPersonalInfoController;
-import swust.homepage.controller.TeacherShowMoreController;
+import swust.homepage.controller.*;
 import swust.homepage.model.Acad;
 import swust.homepage.model.Admin;
 import swust.homepage.model.BasicInfo;
@@ -83,6 +72,7 @@ public class Config extends JFinalConfig {
 		a.add("/teacherFeedback", TeacherFeedbackController.class);
 		a.add("/teacherNewsManage",TeacherNewsManageController.class);
 		a.add("/teacherPersonInfo",TeacherPersonalInfoController.class);
+		a.add("/ueditor", UEditorController.class);
 	}
 	
 	/**
