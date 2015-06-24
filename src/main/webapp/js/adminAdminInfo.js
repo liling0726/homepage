@@ -7,6 +7,7 @@ totalNum, // 查询总条数
 maxPage, // 最大页数
 keyWord = "";// 关键字
 $(function() {
+	$("#alertdiv").hide();//面包屑下面的警告框
 	currentPage = $("#currentPage").val();
 	maxPage = $("#max").val();
 	// alert(maxPage);
@@ -51,8 +52,11 @@ $(function() {
 									+ "&admin.admin_acad_id="+ userAcadId,
 							async : false,
 							success : function(result) {
-								alert(result.result);
-								window.location.reload();
+								$("#alertdiv").show();
+								var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+										"<span aria-hidden=\"true\">&times;</span></button>" +result.result;
+								$("#alertdiv").html(html);
+								initial();
 							},
 							error : function(e) {
 								console.log("错误：" + e.message);
@@ -65,7 +69,10 @@ $(function() {
 	$("#userDeleteByIds").bind("click", function() {
 		var length = $("input[name='checkboxGroup']:checked").length;
 		if (length == 0) {
-			alert("请选择要删除的管理员记录");
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>请选择要删除的管理员记录！";
+			$("#alertdiv").html(html);
 			return false;
 		} else if (confirm("确定要删除" + length + "条管理员信息？")) {
 			var str = "";
@@ -76,7 +83,10 @@ $(function() {
 			});
 
 			str = str.substring(0, str.length - 1);
-			alert(str);
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>"+str;
+			$("#alertdiv").html(html);
 			$.ajax({
 				type : "post",
 				content : "application/x-www-from-urlencoded;charset=UTF-8",
@@ -85,8 +95,11 @@ $(function() {
 				data:{
 					ID:str				},
 				success : function(result) {
-					alert(result.result);
-					location.reload();
+					$("#alertdiv").show();
+					var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+							"<span aria-hidden=\"true\">&times;</span></button>" +result.result;
+					$("#alertdiv").html(html);
+					initial();
 				},
 				error : function(e) {
 					console.log("错误：" + e.message);
@@ -101,12 +114,18 @@ $(function() {
 	$("#userUpdateById").click(function() {
 		var length = $("input[name='checkboxGroup']:checked").length;
 		if (length == 0) {
-			alert("请选择要修改的管理员记录");
-			location.reload();
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>请选择要修改的管理员记录！";
+			$("#alertdiv").html(html);
+			initial();
 			return false;
 		} else if (length > 1) {
-			alert("对不起，只能选择有一条修改记录！");
-			location.reload();
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>对不起，只能选择有一条修改记录！";
+			$("#alertdiv").html(html);
+			initial();
 			return false;
 		} else {
 			var userId = $("input[name='checkboxGroup']:checked").val();
@@ -164,11 +183,17 @@ $(function() {
 	$("#goto").bind("click", function() {
 		var gotopage = $("#gotoPage").val();
 		if (!gotopage.match("^\\d+$")) {// 判断是否为数字
-			alert("请输入规范的页码");
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>请输入规范的页码！";
+			$("#alertdiv").html(html);
 			return;
 		}
 		if (gotopage < 1 || gotopage > totalNum) {
-			alert("超出总页数！");
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>超出总页数！";
+			$("#alertdiv").html(html);
 			return false;
 		} else {
 			currentPage = gotopage;
@@ -191,7 +216,10 @@ $(function() {
 			else
 				searchByKey(keyWord);
 		} else {
-			alert("超出总页数");
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>超出总页数！";
+			$("#alertdiv").html(html);
 			return;
 		}
 
@@ -207,7 +235,10 @@ $(function() {
 			else
 				searchByKey(keyWord);
 		} else {
-			alert("小于总页数");
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>小于总页数！";
+			$("#alertdiv").html(html);
 			return;
 		}
 
@@ -215,7 +246,10 @@ $(function() {
 	// 点击首页，显示第一页数据
 	$("#firstPage").bind("click", function() {
 		if (currentPage == 1) {
-			alert("已经第一页了");
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>已经第一页了！";
+			$("#alertdiv").html(html);
 			return false;
 		} else {
 			currentPage = 1;
@@ -229,7 +263,10 @@ $(function() {
 	// 点击末页，显示最后页数据
 	$("#lastPage").bind("click", function() {
 		if (currentPage == totalNum) {
-			alert("已经是最后页了");
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>已经是最后页了！";
+			$("#alertdiv").html(html);
 			return false;
 		} else {
 			currentPage = totalNum;
@@ -243,6 +280,10 @@ $(function() {
 	// 每页显示页数
 	$("#max").bind("change", function() {
 		maxPage = $("#max").val();
+		$("#alertdiv").show();
+		var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+				"<span aria-hidden=\"true\">&times;</span></button>每页显示"+maxPage+"条!";
+		$("#alertdiv").html(html);
 		// alert(maxPage);
 		// 调用查询
 		if (keyWord == "" || keyWord == null)
@@ -400,8 +441,11 @@ function updateUser(userId, userNum, userName, userDeptId) {
 				+ userDeptId,
 		async : false,
 		success : function(result) {
-			alert(result.result);
-			window.location.reload();
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>" +result.result;
+			$("#alertdiv").html(html);
+			initial();
 		},
 		error : function(e) {
 			console.log("错误：" + e.message);

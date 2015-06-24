@@ -2,6 +2,7 @@ var currentPage, // 当前页
 	totalNum, // 最大页数
 	maxPage;// 一页总条数
 $(document).ready(function(){
+	$("#alertdiv").hide();//面包屑下面的警告框
 	currentPage=$("#currentPage").val();
 	maxPage=$("#max").val();
 	//alert(maxPage);
@@ -25,62 +26,32 @@ $(document).ready(function(){
 				var data=result.teacherMessage.list;
 				var html="";
 				for(var i = 0;i<data.length;i++){
-					if(i==data.length-1)
-					{   if(data[i].message_is_view==1){
-						html+="<li id=\"" 
-						+data[i].message_id
-						+"\"><div class=\"liborder\"><div><a>"
-						+data[i].user_name
-						+"</a>&nbsp;&nbsp;&nbsp;<span>"
-						+data[i].message_email
-						+"</span><span name=\"deletex\" title=\"删除\">×</span></div><div><span>" 
-						+data[i].message_content
-						+"</span><span>"
-						+"2015-5-24 20:02" 
-						+"&nbsp;&nbsp;<label name=\"saw\">已查看</label></span></div></div></li>";
-					}
-					else{
-						html+="<li id=\"" 
-							+data[i].message_id
-							+"\"><div class=\"liborder\"><div><a>"
-							+data[i].user_name
-							+"</a>&nbsp;&nbsp;&nbsp;<span>"
-							+data[i].message_email
-							+"</span><span name=\"deletex\" title=\"删除\">×</span></div><div><span>" 
-							+data[i].message_content
-							+"</span><span>"
-							+"2015-5-24 20:02" 
-							+"&nbsp;&nbsp;<label name=\"saw\">未查看</label></span></div></div></li>";
-					}
-					}
-				else{
 					if(data[i].message_is_view==1){
 						html+="<li id=\"" 
 							+data[i].message_id
-							+"\"><div class=\"liborder\"><div><a>"
-							+data[i].user_name
-							+"</a>&nbsp;&nbsp;&nbsp;<span>"
-							+data[i].message_email
-							+"</span><span name=\"deletex\" title=\"删除\">×</span></div><div><span>" 
+							+"\"><div><span>" 
 							+data[i].message_content
-							+"</span><span>"
-							+"2015-5-24 20:02" 
-							+"&nbsp;&nbsp;<label name=\"saw\">已查看</label></span></div></div></li>";
+							+"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;<label>"
+							+data[i].user_name
+							+"</label>&nbsp;&nbsp;&nbsp;&nbsp;<label>" 
+							+data[i].message_email
+							+"</label>&nbsp;&nbsp;&nbsp;&nbsp;<label>" 
+							+data[i].message_submit_time
+							+"</label>&nbsp;&nbsp;<label name=\"saw\">已查看</label>&nbsp;&nbsp;<button name=\"deletex\" title=\"删除\">×</button></span><div class=\"clear\"></div></div></li>";
 			
 					}
 					else{
-					 html+="<li id=\"" 
+						html+="<li id=\"" 
 							+data[i].message_id
-							+"\"><div class=\"liborder\"><div><a>"
-							+data[i].user_name
-							+"</a>&nbsp;&nbsp;&nbsp;<span>"
-							+data[i].message_email
-							+"</span><span name=\"deletex\" title=\"删除\">×</span></div><div><span>" 
+							+"\"><div><span>" 
 							+data[i].message_content
-							+"</span><span>"
-							+"2015-5-24 20:02" 
-							+"&nbsp;&nbsp;<label name=\"saw\">未查看</label></span></div></div></li>";
-					}
+							+"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;<label>"
+							+data[i].user_name
+							+"</label>&nbsp;&nbsp;&nbsp;&nbsp;<label>" 
+							+data[i].message_email
+							+"</label>&nbsp;&nbsp;&nbsp;&nbsp;<label>" 
+							+data[i].message_submit_time
+							+"</label>&nbsp;&nbsp;<label name=\"saw\">未查看</label>&nbsp;&nbsp;<button name=\"deletex\" title=\"删除\">×</button></span></div></li>";
 					}
 				}
 				$("#mainUl").html(html);
@@ -112,6 +83,10 @@ $(document).ready(function(){
 							data:"message.message_id="+id+"&message.message_is_view="+1,
 							async : false,
 							success : function(result) {
+								$("#alertdiv").show();
+								var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+										"<span aria-hidden=\"true\">&times;</span></button>标记成功！";
+								$("#alertdiv").html(html);
 							},
 							error : function(e) {
 								console
@@ -142,14 +117,14 @@ $(document).ready(function(){
 					}*/
 					
 				});
-				$("#mainUl li").find("span[name='deletex']").hide();
+				$("#mainUl li").find("button[name='deletex']").hide();
 				$("#mainUl li").mouseover(function() {
-					$(this).find("span[name='deletex']").show();
+					$(this).find("button[name='deletex']").show();
 				});
 				$("#mainUl li").mouseleave(function() {
-					$(this).find("span[name='deletex']").hide();
+					$(this).find("button[name='deletex']").hide();
 				});
-				$("span[name='deletex']").click(function() {
+				$("button[name='deletex']").click(function() {
 					var id;
 					id=$(this).parents("li").attr("id");
 					$.ajax({
@@ -160,8 +135,12 @@ $(document).ready(function(){
 						data:{ID:id},
 						async : "false",
 						success : function(result) {
-							alert(result.result);
-							window.location.reload();
+							$("#alertdiv").show();
+							var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+									"<span aria-hidden=\"true\">&times;</span></button>" +result.result;
+							$("#alertdiv").html(html);
+							initial();
+							
 						},
 						error:function(e){
 							console.log("错误：" + e);
@@ -183,12 +162,18 @@ $(document).ready(function(){
 	$("#goto").bind("click",function(){
 		var gotopage=$("#gotoPage").val();
 		if(!gotopage.match("^\\d+$")){//判断是否为数字
-			alert("请输入规范的页码");
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>请输入规范的页码！";
+			$("#alertdiv").html(html);
 			return;
 		}
 		if(gotopage<1||gotopage>totalNum)
 		{
-			alert("超出总页数！");
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>超出总页数！";
+			$("#alertdiv").html(html);
 			return false;
 		}
 		else
@@ -207,7 +192,10 @@ $(document).ready(function(){
 			initial();
 		}
 		else{
-			alert("超出总页数");
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>超出总页数！";
+			$("#alertdiv").html(html);
 			return;
 		}
 
@@ -220,7 +208,10 @@ $(document).ready(function(){
 			initial();
 		}
 		else{
-			alert("小于总页数");
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>小于总页数！";
+			$("#alertdiv").html(html);
 			return;
 		}
 
@@ -229,7 +220,10 @@ $(document).ready(function(){
 	$("#firstPage").bind("click",function(){
 		if(currentPage==1)
 		{
-			alert("已经第一页了");
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>已经第一页了！";
+			$("#alertdiv").html(html);
 			return false;
 		}
 		else{
@@ -241,7 +235,10 @@ $(document).ready(function(){
 	$("#lastPage").bind("click",function(){
 		if(currentPage==totalNum)
 		{
-			alert("已经是最后页了");
+			$("#alertdiv").show();
+			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+					"<span aria-hidden=\"true\">&times;</span></button>已经是最后页了！";
+			$("#alertdiv").html(html);
 			return false;
 		}
 		else{
@@ -253,7 +250,12 @@ $(document).ready(function(){
 	$("#max").bind("change",function(){
 		maxPage=$("#max").val();
 		currentPage=1;
-		alert(maxPage);
+		$("#alertdiv").show();
+		var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+				"<span aria-hidden=\"true\">&times;</span></button>每页显示"
+					+maxPage
+					+"条！";
+		$("#alertdiv").html(html);
 		initial();
 	});
 

@@ -1,6 +1,7 @@
 $(function(){
 	var newsIdArray=location.href.split("=");
 	var newsId;
+	$("#alertdiv").hide();//面包屑下面的警告框
 	if(newsIdArray.length>1)
 		{
 		newsId=newsIdArray[1];//获取那条newsId
@@ -75,7 +76,10 @@ $(function(){
 			data:"news.news_id="+newsId+"&news.news_title="+newsTitle+"&news.news_istop="+newsIsTop+"&news.news_content="+content+"&news.news_data_id="+newsForColumn,
 			async:false,
 			success:function(result){
-				alert(result.result);
+				$("#alertdiv").show();
+				var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+						"<span aria-hidden=\"true\">&times;</span></button>" +result.result;
+				$("#alertdiv").html(html);
 				location.reload();
 				return false;
 			}
@@ -91,7 +95,10 @@ $(function(){
 				data:"news.news_title="+newsTitle+"&news.news_istop="+newsIsTop+"&news.news_content="+content+"&news.news_data_id="+newsForColumn,
 				async:false,
 				success:function(result){
-					alert(result.result);
+					$("#alertdiv").show();
+					var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+							"<span aria-hidden=\"true\">&times;</span></button>" +result.result;
+					$("#alertdiv").html(html);
 					location.reload();
 					return false;
 		}
