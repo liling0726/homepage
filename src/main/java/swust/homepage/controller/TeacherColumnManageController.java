@@ -9,7 +9,7 @@ import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.Page;
 import swust.homepage.AuthInterceptor;
 import swust.homepage.model.Data;
-import swust.homepage.util.HomePageController;
+import swust.homepage.HomePageController;
 
 /** @author jinlong */
 @Before(AuthInterceptor.class)

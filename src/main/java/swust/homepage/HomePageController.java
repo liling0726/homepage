@@ -1,4 +1,4 @@
-package swust.homepage.util;
+package swust.homepage;
 
 import com.jfinal.core.Controller;
 

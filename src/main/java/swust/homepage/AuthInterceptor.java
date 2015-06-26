@@ -7,6 +7,7 @@ import com.jfinal.aop.Interceptor;
 import com.jfinal.core.ActionInvocation;
 import com.jfinal.core.Controller;
 
+// 权限检查
 /** @author jinlong */
 public class AuthInterceptor implements Interceptor {
 

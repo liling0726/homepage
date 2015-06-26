@@ -5,11 +5,8 @@ import java.util.Optional;
 import swust.homepage.model.Acad;
 import swust.homepage.model.User;
 import swust.homepage.service.LoginService;
-import swust.homepage.util.HomePageController;
-import swust.homepage.util.LoginCheck;
+import swust.homepage.HomePageController;
 import com.jfinal.core.ActionKey;
-
-import javax.servlet.http.HttpSession;
 
 public class IndexController extends HomePageController {
     @ActionKey("/")

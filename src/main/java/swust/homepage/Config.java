@@ -1,15 +1,8 @@
 package swust.homepage;
 
+import sun.rmi.runtime.Log;
 import swust.homepage.controller.*;
-import swust.homepage.model.Acad;
-import swust.homepage.model.Admin;
-import swust.homepage.model.BasicInfo;
-import swust.homepage.model.Data;
-import swust.homepage.model.Dept;
-import swust.homepage.model.Feedback;
-import swust.homepage.model.Message;
-import swust.homepage.model.News;
-import swust.homepage.model.User;
+import swust.homepage.model.*;
 
 import com.jfinal.config.Constants;
 import com.jfinal.config.Handlers;
@@ -47,6 +40,7 @@ public class Config extends JFinalConfig {
 		a.add(c3p0Plugin);
 		ActiveRecordPlugin arp = new ActiveRecordPlugin(c3p0Plugin);
 		a.add(arp);
+		// 数据表名 主键名 对应的Model对象
 		arp.addMapping("user", "user_id", User.class);
 		arp.addMapping("admin", "admin_id", Admin.class);
 		arp.addMapping("acad", "acad_id", Acad.class);
@@ -56,10 +50,14 @@ public class Config extends JFinalConfig {
 		arp.addMapping("basic_info", "basic_info_id", BasicInfo.class);
 		arp.addMapping("message", "message_id", Message.class);
 		arp.addMapping("feedback", "feedback_id", Feedback.class);
+		arp.addMapping("browse_log", "browse_log_id", BrowseLog.class);
+		arp.addMapping("login_log", "login_log_id", LoginLog.class);
+		arp.addMapping("op_log", "op_log_id", OpLog.class);
 	}
 
 	@Override
 	public void configRoute(Routes a) {
+		// 路由 对应的Controller对象
 		a.add("/index", IndexController.class); // 首页
 		a.add("/adminLogin", AdminLoginController.class); // 管理员登陆
 		a.add("/acadInfoMore", AcadInfoMoreController.class);
@@ -72,7 +70,6 @@ public class Config extends JFinalConfig {
 		a.add("/teacherFeedback", TeacherFeedbackController.class);
 		a.add("/teacherNewsManage",TeacherNewsManageController.class);
 		a.add("/teacherPersonInfo",TeacherPersonalInfoController.class);
-		a.add("/ueditor", UEditorController.class);
 	}
 	
 	/**
