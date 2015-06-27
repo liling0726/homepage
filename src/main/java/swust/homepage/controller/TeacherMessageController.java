@@ -15,8 +15,8 @@ import swust.homepage.model.Message;
 public class TeacherMessageController extends Controller {
 
 	public void index() {// 若给定值，pageNumber/pageSize为给定的值，否则为默认值即后者参数
-		setAttr("user_id", 4);
-		renderJson("teacherMessage", Message.dao.teacherMessage(getParaToInt(0, 1), getParaToInt(1, 10), getAttr("user_id")));
+		setSessionAttr("user_id", 4);
+		renderJson("teacherMessage", Message.dao.teacherMessage(getParaToInt(0, 1), getParaToInt(1, 10), getSessionAttr("user_id")));
 		// 测试下对不对
 		//renderJson("teacherMessage", Message.dao.teacherMessage(1, 10, 4));
 
