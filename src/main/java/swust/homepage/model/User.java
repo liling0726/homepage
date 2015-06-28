@@ -1,6 +1,9 @@
 package swust.homepage.model;
 
 import java.util.List;
+import java.util.logging.Logger;
+
+import org.apache.log4j.spi.LoggerFactory;
 import swust.homepage.util.Tuple2;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Model;
@@ -9,6 +12,7 @@ import com.jfinal.plugin.activerecord.Page;
 public class User extends Model<User> {
 	private static final long serialVersionUID = 1767655565354816718L;
 	public static final User dao = new User();
+
 
 	/**
 	 * @author 刘杰
@@ -77,23 +81,29 @@ public class User extends Model<User> {
 	}
 	
 	/** jinlong */
-	public Tuple2<String, List<User>> showMore(int count, String searchWords, int need) {
+	public Tuple2<String, List<User>> showMore(int count, int need, String searchWords, String sort) {
 		StringBuilder b = new StringBuilder();
-		String prefix = "select user_name, user_url, user_img, dept_name, acad_name from user, dept, acad where user_dept_id = dept_id and dept_acad_id = acad_id ";
+		String prefix = "SELECT user_name, user_url, user_img, dept_name, acad_name FROM user, dept, acad WHERE user_dept_id = dept_id AND dept_acad_id = acad_id ";
 		if (searchWords != null && !searchWords.equals("")) {
 			String[] words = searchWords.split(" ");
 			b.append(prefix);
 			for (String str: words) {
-				b.append(" and ((user_name like '%"); b.append(str); b.append("%') ");
-				b.append(" or (acad_name like '%"); b.append(str); b.append("%') ");
-				b.append(" or (dept_name like '%"); b.append(str); b.append("%')) ");
+				b.append(" AND ((user_name LIKE '%"); b.append(str); b.append("%') ");
+				b.append(" OR (acad_name LIKE '%"); b.append(str); b.append("%') ");
+				b.append(" OR (dept_name LIKE '%"); b.append(str); b.append("%')) ");
 			}
 			return new Tuple2<>("success", find(b.toString()));
 		} else {
 			b.append(prefix);
-			b.append(" limit "); b.append(count); b.append(", "); b.append(need);
+			if (!sort.equals("default")) {
+				if (sort.equals("click"))
+					b.append(" ORDER BY user_count DESC");
+				if (sort.equals("time"))
+					b.append(" ORDER BY user_update_time DESC");
+			}
+			b.append(" LIMIT "); b.append(count); b.append(", "); b.append(need);
 			if ((count + need) > countAll())
-				return new Tuple2<>("nomore", find(b.toString()));
+				return new Tuple2<>("run out", find(b.toString()));
 			else
 				return new Tuple2<>("success", find(b.toString()));
 		}

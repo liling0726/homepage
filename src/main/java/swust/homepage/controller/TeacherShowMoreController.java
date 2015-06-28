@@ -7,7 +7,7 @@ import com.jfinal.core.Controller;
 public class TeacherShowMoreController extends Controller {
 	
 	public void showMore() {
-		renderJson(User.dao.showMore(getParaToInt("count")
-				, getPara("searchWords"), getParaToInt("need")));
+		renderJson(User.dao.showMore(getParaToInt("count"), getParaToInt("need")
+				, getPara("searchWords"), getPara("sort")));
 	}
 }

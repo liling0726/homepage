@@ -1,40 +1,38 @@
-var count = 0;
-var searchWords;
-var need = 30;
+var count = 0; // 计数位置
+var need = 30; // 默认每次取30条数据
+var searchWords; // 搜索关键字
+var sort = "default"; // 排序方法 排序方式不需要作为函数参数
 
 $(function () {
     init(); // 初始化
 
     $("#search").bind("click", function () {
         searchWords = $("#searchWords").val();
+		if (searchWords != '')
+			$("#appendMore").attr("disabled", "disabled");
+		else
+			$("#appendMore").removeAttr("disabled");
         $("#teachers").html("");
-        retrieve(count, searchWords, need);
-        if (searchWords != "")
-        	$("#appendMore").attr("disabled", "disabled");
-        else
-        	$("#appendMore").removeAttr("disabled");
+        retrieve();
     });
 
+	// “更多”按钮
     $("#appendMore").bind("click", function () {
-        count = count + need;
-        if (retrieve(count, searchWords, need) != "success")
-        	$("#appendMore").attr("disabled", "disabled");
+        retrieve();
     });
 });
 
-
-function retrieve(count, searchWords, need) {
-	var status;
+function retrieve() {
 	$.ajax({
 		type : "post",
-		content : "applicat	ion/x-www-from-urlencoded;charset=UTF-8",
+		content : "application/x-www-from-urlencoded;charset=UTF-8",
 		dataType : "json",
 		url : "../teacherShowMore/showMore",
-		data: { count: count, searchWords: searchWords, need: need },
-		async : false,
+		data: { count: count, need: need, searchWords: searchWords, sort: sort },
+		async : true,
 		success : function (result) {
 			var res = result[2], html = "", i;
-			status = result[1];
+			var status = result[1];
 			for (i = 0; i < res.length; i = i + 1) {
 				if ((i % 5) == 0)
 					html += '<div class="row">';
@@ -51,26 +49,32 @@ function retrieve(count, searchWords, need) {
 					html += '</div>';
 			}
 			$("#teachers").append(html);
+			if (status == "success")
+				count += need;
+			else if (status == "run out")
+				$("#appendMore").attr("disabled", "disabled");
 		},
 		error : function (e) {
-			console.log("错误：" + e.message);
+			console.log("出错啦->" + e.message);
 		}
 	});
-	return status;
 }
 
 function init() {
 	var path = location.href.split('?'); // 用于获取从其它页面传过来的参数
 	if (path.length > 1) {
-		searchWords = decodeURI(path[1].split('=')[1]);
-		$("#searchWords").val(searchWords);
+		var arr = path[1].split('=');
+		if (arr[0] == "searchWords") {
+			searchWords = decodeURI(arr[1]);
+			$("#searchWords").val(searchWords);
+		} else if (arr[0] == "sort") {
+			sort = decodeURI(arr[1]);
+		}
 	} else
 		searchWords = $("#searchWords").val();
-	
+
+	if (searchWords != '')
+		$("#appendMore").attr("disabled", "disabled");
     count = 0; // 重置计数
-    retrieve(count, searchWords, need);
-    if (searchWords != "")
-    	$("#appendMore").attr("disabled", "disabled");
-    else
-    	$("#appendMore").removeAttr("disabled");
+    retrieve();
 }

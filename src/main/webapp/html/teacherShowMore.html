@@ -1,122 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script type="text/javascript" src="../js/jquery-2.1.1.js"></script>
-<script type="text/javascript" src="../js/bootstrap.js"></script>
-<script type="text/javascript" src="../js/common.js"></script>
-<script type="text/javascript" src="../js/teacherShowMore.js"></script>
-<link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="../css/common.css" />
-<title>搜索结果</title>
-<style>
-body {
-	padding-top: 50px;
-}
-h1 {
-	color: #003366;
-	text-align: center;
-	text-shadow: 6px 6px 6px darkgray;
-	font-weight: bold;
-	font-family: cursive;
-}
-.thumbnail {
-	background-color: rgba(255, 255, 255, 0.4);
-	border-color: cornflowerblue;
-}
-#user a {
-	font-family: sans-serif;
-}
-a:link {
-	color: darkcyan;
-}
-a:visited {
-	color: #6c14ad;
-}
-a:hover {
-	color: #911bc6;
-}
-a:active {
-	color: #ff0000;
-}
-div#user {
-	text-align: center;
-}
-div.col-md-8 {
-	/*            background-color: rgba(245, 242, 240, 0.4);*/
-	background-color: rgba(255, 255, 255, 0.4);
-	border-style: dashed;
-	border-radius: 10px;
-	border-width: 1px;
-	border-color: #00CCCC;
-	box-shadow: 0 0 60px rgba(155, 155, 155, 0.8);
-	padding: 20px;
-	margin: 20px;
-}
-.col-lg-2dot4 {
-	position: relative;
-	min-height: 1px;
-	padding-right: 10px;
-	padding-left: 10px;
-}
-@media ( min-width : 120px) {
-	.col-lg-2dot4 {
-		float: left;
-	}
-	.col-lg-2dot4 {
-		width: 20%;
-	}
-	.col-lg-pull-2dot4 {
-		right: 20%;
-	}
-	.col-lg-push-2dot4 {
-		left: 20%;
-	}
-	.col-lg-offset-2dot4 {
-		margin-left: 20%;
-	}
-}
-#order {
-	position: fixed;
-	left: 10%;
-	top: 20%;
-	z-index: 99999;
-	text-align: center;
-	/* 	margin-top: 50px; */
-}
-#order button {
-	text-align: right;
-}
-#appendMore {
-	width: 50%;
-	position: relative;
-	left: 25%;
-	top: -20px;
-}
-</style>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="../css/common.css" />
+	<link rel="stylesheet" type="text/css" href="../css/teacherShowMore.css" />
+	<script type="text/javascript" src="../js/jquery-2.1.1.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.js"></script>
+	<script type="text/javascript" src="../js/common.js"></script>
+	<script type="text/javascript" src="../js/teacherShowMore.js"></script>
+	<title>搜索结果</title>
 </head>
 <body>
-	<div id="background"
-		style="position: fixed; width: 100%; height: 100%; z-index: -1">
+	<div id="background">
 		<img src="../img/background.jpg" height="100%" width="100%" />
 	</div>
 	<div id="top"></div>
-	<!-- 页头 -->
 	<div class="container">
 		<div class="row">
-			<div class="col-md-2">
-				<div id="order" class="btn-group-vertical">
-					<button type="button" class="btn btn-primary btn-sm">
-						按姓名降序&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-down"></span>
-					</button>
-					<button type="button" class="btn btn-primary btn-sm">
-						按点击量降序&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-down"></span>
-					</button>
-					<button type="button" class="btn btn-primary btn-sm">
-						按更新时间降序&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-down"></span>
-					</button>
-				</div>
-			</div>
+			<div class="col-md-2"></div>
 			<div class="col-md-8">
 				<div id="teachers"></div>
 			</div>
@@ -125,12 +27,10 @@ div.col-md-8 {
 		<br />
 		<div class="row">
 			<div class="col-md-12">
-				<button id="appendMore" class="btn btn-info">加载更多</button>
+				<button id="appendMore" class="btn btn-info">更多</button>
 			</div>
 		</div>
 	</div>
-	<div id="footer">
-		<!-- 页脚 -->
-	</div>
+	<div id="footer"></div>
 </body>
 </html>

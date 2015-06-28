@@ -1,0 +1,75 @@
+body {
+    padding-top: 50px !important;
+}
+
+#user a {
+    font-family: sans-serif;
+}
+#user a:link {
+    color: darkcyan;
+}
+#user a:visited {
+    color: #6c14ad;
+}
+#user a:hover {
+    color: #911bc6;
+}
+#user a:active {
+    color: #ff0000;
+}
+div#user {
+    text-align: center;
+}
+
+#teachers  .thumbnail {
+    background-color: rgba(255, 255, 255, 0.4);
+    border-color: cornflowerblue;
+}
+
+#appendMore {
+    width: 50%;
+    position: relative;
+    left: 25%;
+    top: -20px;
+}
+
+div.col-md-8 {
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+    border: 1px dashed #00CCCC;
+    box-shadow: 0 0 60px rgba(155, 155, 155, 0.8);
+    padding: 20px;
+    margin: 20px;
+}
+
+.col-lg-2dot4 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+@media ( min-width : 120px) {
+    .col-lg-2dot4 {
+        float: left;
+    }
+    .col-lg-2dot4 {
+        width: 20%;
+    }
+    .col-lg-pull-2dot4 {
+        right: 20%;
+    }
+    .col-lg-push-2dot4 {
+        left: 20%;
+    }
+    .col-lg-offset-2dot4 {
+        margin-left: 20%;
+    }
+}
+
+#background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
