@@ -69,18 +69,18 @@ public class User extends Model<User> {
 				+ " and `user`.user_dept_id = dept.dept_id and dept.dept_acad_id = acad.acad_id");
 	}
 	
-	/** jinlong */
+	/** Jin Long */
 	public List<User> randomUser() {
 		return find("select user_name, user_url, user_img "
 				           + "from user order by rand() limit 12");
 	}
 	
-	/** jinlong */
+	/** Jin Long */
 	public Long countAll() {
 		return Db.queryLong("select count(*) from user");
 	}
 	
-	/** jinlong */
+	/** Jin Long */
 	public Tuple2<String, List<User>> showMore(int count, int need, String searchWords, String sort) {
 		StringBuilder b = new StringBuilder();
 		String prefix = "SELECT user_name, user_url, user_img, dept_name, acad_name FROM user, dept, acad WHERE user_dept_id = dept_id AND dept_acad_id = acad_id ";
@@ -92,14 +92,30 @@ public class User extends Model<User> {
 				b.append(" OR (acad_name LIKE '%"); b.append(str); b.append("%') ");
 				b.append(" OR (dept_name LIKE '%"); b.append(str); b.append("%')) ");
 			}
+			switch (sort) {
+				case "default":
+					b.append(" ORDER BY CONVERT(user_name USING gbk) ASC");
+					break;
+				case "click":
+					b.append(" ORDER BY user_count DESC");
+					break;
+				case "time":
+					b.append(" ORDER BY user_update_time DESC");
+					break;
+			}
 			return new Tuple2<>("success", find(b.toString()));
 		} else {
 			b.append(prefix);
-			if (!sort.equals("default")) {
-				if (sort.equals("click"))
+			switch (sort) {
+				case "default":
+					b.append(" ORDER BY CONVERT(user_name USING gbk) ASC");
+					break;
+				case "click":
 					b.append(" ORDER BY user_count DESC");
-				if (sort.equals("time"))
+					break;
+				case "time":
 					b.append(" ORDER BY user_update_time DESC");
+					break;
 			}
 			b.append(" LIMIT "); b.append(count); b.append(", "); b.append(need);
 			if ((count + need) > countAll())
