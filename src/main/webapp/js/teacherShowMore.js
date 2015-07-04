@@ -1,10 +1,27 @@
 var count = 0; // 计数位置
-var need = 30; // 默认每次取30条数据
-var searchWords; // 搜索关键字
-var sort = "default"; // 排序方法 排序方式不需要作为函数参数
+var need = 15; // 默认每次取30条数据
+var searchWords = ''; // 搜索关键字
+var sort = 'default'; // 排序方法 排序方式不需要作为函数参数
 
 $(function () {
-    init(); // 初始化
+	var path = location.href.split('?'); // 用于获取从其它页面传过来的参数
+	// 大于1表示有参数
+	if (path.length > 1) {
+		// 分解参数
+		//var keys = path[1].split('&');
+		var keys = path[1].split('=');
+		if (keys[0] == 'searchWords') {
+			searchWords = decodeURI(keys[1]);
+			$("#searchWords").val(searchWords);
+		}
+		if (keys[0] == 'sort')
+			sort = decodeURI(keys[1]);
+	}
+
+	if (searchWords != '')
+		$("#appendMore").attr("disabled", "disabled");
+	count = 0; // 重置计数
+	retrieve();
 
     $("#search").bind("click", function () {
         searchWords = $("#searchWords").val();
@@ -58,23 +75,4 @@ function retrieve() {
 			console.log("出错啦->" + e.message);
 		}
 	});
-}
-
-function init() {
-	var path = location.href.split('?'); // 用于获取从其它页面传过来的参数
-	if (path.length > 1) {
-		var arr = path[1].split('=');
-		if (arr[0] == "searchWords") {
-			searchWords = decodeURI(arr[1]);
-			$("#searchWords").val(searchWords);
-		} else if (arr[0] == "sort") {
-			sort = decodeURI(arr[1]);
-		}
-	} else
-		searchWords = $("#searchWords").val();
-
-	if (searchWords != '')
-		$("#appendMore").attr("disabled", "disabled");
-    count = 0; // 重置计数
-    retrieve();
 }
