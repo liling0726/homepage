@@ -22,4 +22,8 @@ public class Data extends Model<Data> {
     public List<Data> getDataByType(int type){
     	return find("select * from `data` where `data`.data_type="+String.valueOf(type));
     }
+    
+    public List<Data> getDataContent(int dataUserId){
+    	return find("select data_content from data where data_user_id = " + dataUserId);
+    }
 }
