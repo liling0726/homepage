@@ -18,7 +18,7 @@ public class News extends Model<News> {
 	public Page<News> paginate(int pageNumber, int pageSize) {
 		return paginate(pageNumber, pageSize,
 				"select news.*,`data`.data_name ",
-				"from news,`data` where news.news_data_id=`data`.data_id");
+				"from news,`data` where news.news_data_id=`data`.data_id order by news.news_update_time desc");
 	}
 
 	/**
@@ -43,7 +43,7 @@ public class News extends Model<News> {
 						+ key
 						+ "%' or news.news_content like '%"
 						+ key
-						+ "%' or `data`.data_name like '%" + key + "%')");
+						+ "%' or `data`.data_name like '%" + key + "%') order by news.news_update_time desc");
 	}
 
 }
