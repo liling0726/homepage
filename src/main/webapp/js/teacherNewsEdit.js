@@ -1,6 +1,7 @@
 $(function(){
 	var newsIdArray=location.href.split("=");
 	var newsId;
+	var data;
 	$("#alertdiv").hide();//面包屑下面的警告框
 	if(newsIdArray.length>1)
 		{
@@ -10,21 +11,7 @@ $(function(){
 	editor.render("myEditor");
 	//1.2.4以后可以使用一下代码实例化编辑器
 	UE.getEditor('myEditor');
-	//显示属于新闻类型的栏目
-	$.ajax({
-		type:"post",
-		content:"application/x-www-from-urlencoded;charset=UTF-8",
-		dataType:"json",
-		url:"../teacherNewsManage/getDataByType/1",
-		async:false,
-		success:function(result){
-			result=result.datas;
-			var html="";
-			for(var i=0;i<result.length;i++)
-			html+="<option value='"+result[i].data_id+"'>"+result[i].data_name+"</option>";
-			$("#newsForColumn").append(html);
-		}
-	})
+	
 	//初始化，使他们记住新闻中的信息
 	if(newsId!=null&&newsId!=""&&newsId!=undefined)
 		{
@@ -42,6 +29,9 @@ $(function(){
 	else content=result.news_content;
 					$("#myEditor").val(content);
 					$("#newsTitle").val(result.news_title);
+					//alert($("#newsForColumn").length);
+					showNewsName(result.news_data_id)
+				
 					$("input[name=news]").each(function(){
 					
 						if($(this).val()==result.news_istop)
@@ -80,7 +70,6 @@ $(function(){
 				var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
 						"<span aria-hidden=\"true\">&times;</span></button>" +result.result;
 				$("#alertdiv").html(html);
-				location.reload();
 				return false;
 			}
 		})
@@ -99,7 +88,6 @@ $(function(){
 					var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
 							"<span aria-hidden=\"true\">&times;</span></button>" +result.result;
 					$("#alertdiv").html(html);
-					location.reload();
 					return false;
 		}
 		});	
@@ -107,3 +95,28 @@ $(function(){
 	
 	});
 })
+function showNewsName(id){
+	//显示属于新闻类型的栏目
+	//alert(id);
+	$.ajax({
+		type:"post",
+		content:"application/x-www-from-urlencoded;charset=UTF-8",
+		dataType:"json",
+		url:"../teacherNewsManage/getDataByType/1",
+		async:false,
+		success:function(result){
+			data=result.datas;
+			var html="";
+			for(var i=0;i<data.length;i++)
+				{
+				if(data[i].data_id==id)
+					{
+					html+="<option value='"+data[i].data_id+"' selected='selected'>"+data[i].data_name+"</option>";
+					}
+				else html+="<option value='"+data[i].data_id+"'>"+data[i].data_name+"</option>";
+				}
+			$("#newsForColumn").append(html);
+		}
+	})	
+	
+}
