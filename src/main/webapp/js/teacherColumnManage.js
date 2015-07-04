@@ -18,15 +18,20 @@ $(function(){
 		var columnType=$("#columnType").val();
 		var columnIsShow=$("input[name=column]:checked").val();
 		var columnSort=$("#columnSort").val();
-		alert();
 		if(columnName==null||columnName=="")
 			{
 			$("#judColName").html("栏目名称不能为空");
-			
+			return 0;
 			}
-		if(columnProperty==1&&(columnResume!=null||columnResume!="")&&IsUrl(str_url)==-1)
+if(columnProperty==1&&(columnResume==null||columnResume==""))
+	{
+	$("#judName").html("网址不能为空！");
+	return 0;
+	}
+		if(columnProperty==1&&IsUrl(columnResume)==0)
 			{
 			$("#judName").html("请输入正确的网址！");
+			return 0;
 			}
 		$.ajax({
 			type:"post",
@@ -43,20 +48,21 @@ $(function(){
 			},
 			async:false,
 			success:function(result){
-$("#insertModal").hide();
+               $("#insertModal").hide();
 				$("#alertdiv").show();
-				$("#alertdiv").text(result.result);
+				$("#showInfo").text(result.result);
 				acadInitial();
+				//将模态框中的数据清空或设置成默认；
+			$("#columnName").val("");
+				$("#columnResume").val("");
+			$("#columnProperty").val("0");
+			$("#columnType").val("0");
+			$("input[name=column]:checked").val("1");
+			$("#columnSort").val("0");
 			}
 		});
 	});
-	/*判断是否正确的网址
-	*/
-	$("#upColumnProperty").bind("change",function(){
-		var columnResume=$("#columnResume").val();
-		IsUrl(columnResume);
-		
-	})
+
 	/*
 	 * 删除栏目
 	 * 后台参数：data_id
@@ -66,10 +72,7 @@ $("#insertModal").hide();
 		var length=$("input[name='checkboxGroup']:checked").length;
 		if(length==0)
 		{
-			$("#alertdiv").show();
-			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
-					"<span aria-hidden=\"true\">&times;</span></button>请选择要删除的老师记录！";
-			$("#alertdiv").html(html);
+			alert("请选择要删除的老师记录!");
 			return false;
 		}
 		else if(confirm("确定要删除"+length+"条栏目信息？"))
@@ -91,9 +94,7 @@ $("#insertModal").hide();
 				dataType:"json",				
 				success:function(result){
 					$("#alertdiv").show();
-					var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
-							"<span aria-hidden=\"true\">&times;</span></button>" +result.result+"！";
-					$("#alertdiv").html(html);
+					$("#showInfo").text(result.result);
 					acadInitial();
 				},
 				error:function(e){
@@ -115,7 +116,6 @@ $("#insertModal").hide();
 	 *        data_is_show(栏目显示)
 	 */
 	$("#upColumnInfo").click(function(){
-
 		var upColumnId=$("#upColumnId").val();
 		var upColumnName=$("#upColumnName").val();
 		var upColumResume=$("#upColumResume").val();
@@ -123,6 +123,21 @@ $("#insertModal").hide();
 		var upColumnType=$("#upColumnType").val();
 		var upColumnIsShow=$("input[name=upColumn]:checked").val();
 		var upColumnSort=$("#upColumnSort").val();
+		if(upColumnName==null||upColumnName=="")
+		{
+		$("#upColumn").html("栏目名称不能为空");
+		return 0;
+		}
+if(upColumnProperty==1&&(upColumResume==null||upColumResume==""))
+{
+$("#urlError").html("网址不能为空！");
+return 0;
+}
+	if(upColumnProperty==1&&IsUrl(upColumResume)==0)
+		{
+		$("#urlError").html("请输入正确的网址！");
+		return 0;
+		}
 		updateColumn(upColumnId,upColumnName,upColumnSort,upColumResume,upColumnProperty,upColumnType,upColumnIsShow);
 	});
 
@@ -272,10 +287,9 @@ function updateColumn(upColumnId,upColumnName,upColumnSort,upColumResume,upColum
 		},
 		async:false,
 		success:function(result){
+			$("#updateModal").hide();
 			$("#alertdiv").show();
-			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
-					"<span aria-hidden=\"true\">&times;</span></button>" +result.result+"！";
-			$("#alertdiv").html(html);
+			$("#showInfo").text(result.result);
 			acadInitial();
 		}
 	});	
@@ -308,30 +322,19 @@ $.ajax({
 	async:false,
 	success:function(result){
 		$("#alertdiv").show();
-		var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
-				"<span aria-hidden=\"true\">&times;</span></button>" +result.result+"！";
-		$("#alertdiv").html(html);
+		$("#showInfo").tetx(result.result);
 		acadInitial();
 	}
 });	
 }
 //判断是否是正确的网址    
 function IsUrl(str_url){
-    var strRegex = "^((https|http|ftp|rtsp|mms)?://)"
-    + "?(([0-9a-z_!~*'().&=+$%-]+: )?[0-9a-z_!~*'().&=+$%-]+@)?" //ftp的user@
-    + "(([0-9]{1,3}\.){3}[0-9]{1,3}" // IP形式的URL- 199.194.52.184
-    + "|" // 允许IP和DOMAIN（域名）
-    + "([0-9a-z_!~*'()-]+\.)*" // 域名- www.
-    + "([0-9a-z][0-9a-z-]{0,61})?[0-9a-z]\." // 二级域名
-    + "[a-z]{2,6})" // first level domain- .com or .museum
-    + "(:[0-9]{1,4})?" // 端口- :80
-    + "((/?)|" // a slash isn't required if there is no file name
-    + "(/[0-9a-z_!~*'().;?:@&=+$,%#-]+)+/?)$";
-    var re=new RegExp(strRegex);
+	var strRegex = "^((https|http|ftp|rtsp|mms)://)?[a-z0-9A-Z]{3}\.[a-z0-9A-Z][a-z0-9A-Z]{0,61}?[a-z0-9A-Z]\.com|net|cn|cc (:s[0-9]{1-4})?/$";
+	var re = new RegExp(strRegex);
     //re.test()
     if (re.test(str_url)){
-        return 0;
+        return 1;
     }else{
-        return -1;
+        return 0;
     }
 }
