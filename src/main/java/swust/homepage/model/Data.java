@@ -23,7 +23,13 @@ public class Data extends Model<Data> {
     	return find("select * from `data` where `data`.data_type="+String.valueOf(type));
     }
     
+    /**
+     * @author zengdan
+     * 
+     * @param dataUserId  teacherId, 对应教师的id
+     * @return
+     */
     public List<Data> getDataContent(int dataUserId){
-    	return find("select data_content from data where data_user_id = " + dataUserId);
+    	return find("select data_name, data_content from data where data_user_id = " + dataUserId);
     }
 }
