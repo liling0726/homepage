@@ -18,10 +18,16 @@ $(function(){
 		var columnType=$("#columnType").val();
 		var columnIsShow=$("input[name=column]:checked").val();
 		var columnSort=$("#columnSort").val();
-		$("#alertdiv").show();
-		var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
-				"<span aria-hidden=\"true\">&times;</span></button>"+columnIsShow+"！";
-		$("#alertdiv").html(html);
+		alert();
+		if(columnName==null||columnName=="")
+			{
+			$("#judColName").html("栏目名称不能为空");
+			
+			}
+		if(columnProperty==1&&(columnResume!=null||columnResume!="")&&IsUrl(str_url)==-1)
+			{
+			$("#judName").html("请输入正确的网址！");
+			}
 		$.ajax({
 			type:"post",
 			content:"application/x-www-from-urlencoded;charset=UTF-8",
@@ -37,10 +43,9 @@ $(function(){
 			},
 			async:false,
 			success:function(result){
+$("#insertModal").hide();
 				$("#alertdiv").show();
-				var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
-						"<span aria-hidden=\"true\">&times;</span></button>" +result.result+"！";
-				$("#alertdiv").html(html);
+				$("#alertdiv").text(result.result);
 				acadInitial();
 			}
 		});
@@ -310,16 +315,23 @@ $.ajax({
 	}
 });	
 }
-//判断是否是正确的网址
-function IsUrl(str){   
-    var regUrl = /(http\:\/\/)?([\w.]+)(\/[\w- \.\/\?%&=]*)?/gi;   
-    var result = str.match(regUrl);
-    $("#alertdiv").show();
-	var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
-			"<span aria-hidden=\"true\">&times;</span></button>123！";
-	$("#alertdiv").html(html);
-    if(result==null) {
-    $("#urlError").html("请输入正确的网址！");	
-   }   
- 
-}   
+//判断是否是正确的网址    
+function IsUrl(str_url){
+    var strRegex = "^((https|http|ftp|rtsp|mms)?://)"
+    + "?(([0-9a-z_!~*'().&=+$%-]+: )?[0-9a-z_!~*'().&=+$%-]+@)?" //ftp的user@
+    + "(([0-9]{1,3}\.){3}[0-9]{1,3}" // IP形式的URL- 199.194.52.184
+    + "|" // 允许IP和DOMAIN（域名）
+    + "([0-9a-z_!~*'()-]+\.)*" // 域名- www.
+    + "([0-9a-z][0-9a-z-]{0,61})?[0-9a-z]\." // 二级域名
+    + "[a-z]{2,6})" // first level domain- .com or .museum
+    + "(:[0-9]{1,4})?" // 端口- :80
+    + "((/?)|" // a slash isn't required if there is no file name
+    + "(/[0-9a-z_!~*'().;?:@&=+$,%#-]+)+/?)$";
+    var re=new RegExp(strRegex);
+    //re.test()
+    if (re.test(str_url)){
+        return 0;
+    }else{
+        return -1;
+    }
+}

@@ -22,7 +22,7 @@ $(function(){
 					+' <li><a href="teacherMessage.html">动态留言</a></li>'
 					+' <li><a href="teacherFeedback.html">意见与反馈</a></li>'
 					+' <li><a href="">admin</a></li>'
-					+' <li><a href="#">退出</a></li>'
+					+' <li><a href="homePage.html">退出</a></li>'
 					+'</ul>'
 					+' </div><!-- /.navbar-collapse -->'
 					+' </div><!-- /.container-fluid -->'
