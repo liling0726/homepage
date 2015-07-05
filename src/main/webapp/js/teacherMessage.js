@@ -26,33 +26,18 @@ $(document).ready(function(){
 				var data=result.teacherMessage.list;
 				var html="";
 				for(var i = 0;i<data.length;i++){
-					if(data[i].message_is_view==1){
 						html+="<li id=\"" 
 							+data[i].message_id
-							+"\"><div><span>" 
-							+data[i].message_content
-							+"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;<label>"
-							+data[i].user_name
-							+"</label>&nbsp;&nbsp;&nbsp;&nbsp;<label>" 
+							+"\"><div><span>&nbsp;&nbsp;&nbsp;&nbsp;<a title='"
 							+data[i].message_email
-							+"</label>&nbsp;&nbsp;&nbsp;&nbsp;<label>" 
+							+"'>"
+							+data[i].user_name
+							+"</a>&nbsp;&nbsp;&nbsp;&nbsp;<label>" 
 							+data[i].message_submit_time
-							+"</label>&nbsp;&nbsp;<label name=\"saw\">已查看</label>&nbsp;&nbsp;<button name=\"deletex\" title=\"删除\">×</button></span><div class=\"clear\"></div></div></li>";
+							+"发表</label>&nbsp;&nbsp;&nbsp;&nbsp;<label name=\"deletex\" title=\"删除\">×</label></span><div><img src='../img/CSDN.png'/>"
+							+data[i].message_content
+							+"</div></div></li>";
 			
-					}
-					else{
-						html+="<li id=\"" 
-							+data[i].message_id
-							+"\"><div><span>" 
-							+data[i].message_content
-							+"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;<label>"
-							+data[i].user_name
-							+"</label>&nbsp;&nbsp;&nbsp;&nbsp;<label>" 
-							+data[i].message_email
-							+"</label>&nbsp;&nbsp;&nbsp;&nbsp;<label>" 
-							+data[i].message_submit_time
-							+"</label>&nbsp;&nbsp;<label name=\"saw\">未查看</label>&nbsp;&nbsp;<button name=\"deletex\" title=\"删除\">×</button></span></div></li>";
-					}
 				}
 				$("#mainUl").html(html);
 				$("label[name='saw']").each(function(){

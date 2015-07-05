@@ -25,10 +25,13 @@ text-decoration:none;
 	list-style-type:none;
 }
 #mainUl li div span:nth-child(1) {
+	background-color:rgb(245,245,245);
+	height:30px;
+	display:block;
+	border-radius:6px;
+	line-height:30px;
 }
-#mainUl li div span:nth-child(2) {
-	float:right;
-}
+
 #mainUl li div span:nth-child(2) label:nth-child(1){
 	text-decoration:none;
 	color:DarkGray;
@@ -58,7 +61,4 @@ text-decoration:none;
 	border-style :none;
 	font-weight:normal;
 	color:red;
-}
-.clear{
-	clear:both;
 }
