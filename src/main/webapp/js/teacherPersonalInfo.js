@@ -3,6 +3,10 @@
 
 */
 $(function(){
+	
+	//获取老师个性域名的前缀
+	var host1=location.host;
+$("#preSpecialName").text(host1+"/homepage/html/");
 	//查出登录的老师信息
 	$.ajax({
 		type:"post",

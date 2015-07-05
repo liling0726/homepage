@@ -25,10 +25,11 @@ $(function(){
 		var length=$("input[name='checkboxGroup']:checked").length;
 		if(length==0)
 		{
-			$("#alertdiv").show();
+			/*$("#alertdiv").show();
 			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
 					"<span aria-hidden=\"true\">&times;</span></button>请选择要删除的老师记录！"
-			$("#alertdiv").html(html);
+			$("#alertdiv").html(html);*/
+			alert("请选择要删除的老师记录！");
 			return false;
 		}
 		else if(confirm("确定要删除"+length+"条栏目信息？"))
@@ -47,9 +48,8 @@ $(function(){
 				dataType:"json",				
 				success:function(result){
 					$("#alertdiv").show();
-					var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
-							"<span aria-hidden=\"true\">&times;</span></button>" +result.result;
-					$("#alertdiv").html(html);	
+					$("#showInfo").html(result.result);	
+					
 					newsInitial();
 				},
 				error:function(e){
@@ -64,18 +64,20 @@ $(function(){
 	$("#goto").bind("click",function(){
 		var gotopage=$("#gotoPage").val();
 		if(!gotopage.match("^\\d+$")){//判断是否为数字
-			$("#alertdiv").show();
+/*			$("#alertdiv").show();
 			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
 					"<span aria-hidden=\"true\">&times;</span></button>请输入规范的页码！"
-			$("#alertdiv").html(html);
+			$("#alertdiv").html(html);*/
+			alert("请输入规范的页码！");
 			return;
 		}
 		if(gotopage<1||gotopage>totalNum)
 		{
-			$("#alertdiv").show();
+			/*$("#alertdiv").show();
 			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
 					"<span aria-hidden=\"true\">&times;</span></button>超出总页数！"
-			$("#alertdiv").html(html);
+			$("#alertdiv").html(html);*/
+			alert("超出总页数！");
 			return false;
 		}
 		else
@@ -95,19 +97,19 @@ $(function(){
 		{
 		currentPage=parseInt(currentPage)+1;
 		//调用查询
-		$("#alertdiv").show();
+		/*$("#alertdiv").show();
 		var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
 				"<span aria-hidden=\"true\">&times;</span></button>关键词：" +keyWord;
-		$("#alertdiv").html(html);
+		$("#alertdiv").html(html);*/
 		if(keyWord==""||keyWord==null)
 			newsInitial();
 		else searchByKey(keyWord);
 		}
 		else{
-			$("#alertdiv").show();
+			/*$("#alertdiv").show();
 			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
-					"<span aria-hidden=\"true\">&times;</span></button>超出总页数！"
-			$("#alertdiv").html(html);
+					"<span aria-hidden=\"true\">&times;</span></button>超出总页数！"*/
+			alert("超出总页数！");
 			return;
 		}
 		
@@ -123,10 +125,11 @@ $(function(){
 		else searchByKey(keyWord);
 		}
 		else{
-			$("#alertdiv").show();
+			/*$("#alertdiv").show();
 			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
 					"<span aria-hidden=\"true\">&times;</span></button>小于总页数！"
-			$("#alertdiv").html(html);
+			$("#alertdiv").html(html);*/
+			alert("小于总页数！");
 			return;
 		}
 
@@ -135,11 +138,11 @@ $(function(){
 	//每页显示页数
 	$("#max").bind("change",function(){
 		 maxPage=$("#max").val();
-		 $("#alertdiv").show();
+		 /*$("#alertdiv").show();
 			var html = "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">"
 					+ "<span aria-hidden=\"true\">&times;</span></button>每页显示"
 					+ maxPage + "条!";
-			$("#alertdiv").html(html);
+			$("#alertdiv").html(html);*/
 		 //alert(maxPage);
 		//调用查询
 			if(keyWord==""||keyWord==null)

@@ -11,7 +11,8 @@ $(function(){
 	editor.render("myEditor");
 	//1.2.4以后可以使用一下代码实例化编辑器
 	UE.getEditor('myEditor');
-	
+	//显示属于新闻栏目的栏目名称
+	showNewsName(null);
 	//初始化，使他们记住新闻中的信息
 	if(newsId!=null&&newsId!=""&&newsId!=undefined)
 		{
@@ -67,9 +68,7 @@ $(function(){
 			async:false,
 			success:function(result){
 				$("#alertdiv").show();
-				var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
-						"<span aria-hidden=\"true\">&times;</span></button>" +result.result;
-				$("#alertdiv").html(html);
+				$("#showInfo").html(result.result);
 				return false;
 			}
 		})
@@ -85,9 +84,7 @@ $(function(){
 				async:false,
 				success:function(result){
 					$("#alertdiv").show();
-					var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
-							"<span aria-hidden=\"true\">&times;</span></button>" +result.result;
-					$("#alertdiv").html(html);
+					$("#showInfo").html(result.result);
 					return false;
 		}
 		});	
@@ -109,7 +106,7 @@ function showNewsName(id){
 			var html="";
 			for(var i=0;i<data.length;i++)
 				{
-				if(data[i].data_id==id)
+				if(id!=null&&data[i].data_id==id)
 					{
 					html+="<option value='"+data[i].data_id+"' selected='selected'>"+data[i].data_name+"</option>";
 					}

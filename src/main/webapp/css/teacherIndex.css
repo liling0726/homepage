@@ -17,6 +17,9 @@ font-weight: bold;
 	line-height:28px;
 	margin-left:15px;
 }
+#suggestion li{
+	height:35px;
+}
 #suggestion li a{
 	text-decoration:none;
 }
