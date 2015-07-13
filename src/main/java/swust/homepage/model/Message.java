@@ -13,7 +13,12 @@ public class Message extends Model<Message> {
 	 * @return 含有所有留言信息的对象集+老师名称
 	 */
 	public Page<Message> teacherMessage(int pageNumber, int pageSize, int userId) {
-		//return paginate(pageNumber, pageSize, "select message_email, message_content, user_name ", "from message, user where message_user_id = user_id and user_id = " + userId);
-		return paginate(pageNumber, pageSize, "select message.*, user_name ", "from message, user where message_user_id = user_id and user_id = " + userId);
+		// return paginate(pageNumber, pageSize,
+		// "select message_email, message_content, user_name ",
+		// "from message, user where message_user_id = user_id and user_id = " +
+		// userId);
+		return paginate(pageNumber, pageSize, "select message.*, user_name ",
+				"from message, user where message_user_id = user_id and user_id = "
+						+ userId + " order by message_submit_time DESC");
 	}
 }

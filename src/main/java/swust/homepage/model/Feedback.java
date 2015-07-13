@@ -13,6 +13,6 @@ public class Feedback extends Model<Feedback>{
 	 * @return 含有所有反馈信息的对象集
 	 */
 	public Page<Feedback> teacherFeedback(int pageNumber, int pageSize, int userId) {
-		return paginate(pageNumber, pageSize, "select feedback.*, user_name ", "from feedback, user where feedback_user_id = user_id and user_id = " + userId);
+		return paginate(pageNumber, pageSize, "select feedback.*, user_name ", "from feedback, user where feedback_user_id = user_id and user_id = " + userId+" order by feedback_update_time DESC");
 	}
 }

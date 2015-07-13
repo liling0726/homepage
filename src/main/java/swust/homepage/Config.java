@@ -71,6 +71,7 @@ public class Config extends JFinalConfig {
 		a.add("/teacherNewsManage",TeacherNewsManageController.class);
 		a.add("/teacherPersonInfo",TeacherPersonalInfoController.class);
 		a.add("/teacherPersonalShow",TeacherPersonalShowController.class); //老师页面显示
+		a.add("/teacherIndex",TeacherIndexController.class); //老师页面显示
 	}
 	
 	/**

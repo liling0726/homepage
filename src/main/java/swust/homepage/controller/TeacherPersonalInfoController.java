@@ -18,9 +18,19 @@ public class TeacherPersonalInfoController extends Controller {
 	public void index()
 	{
 		int user_id=getSessionAttr("user_id");
-		BasicInfo basicinfo=BasicInfo.dao.find("select user_name,dept_name,basic_info_id,basic_info_title,basic_info_degree,basic_info_email,basic_info_phone,basic_info_address,basic_info_research,basic_info_allow_message,basic_info_model from user,dept,basic_info where user_dept_id=dept_id AND user_id=basic_info_user_id and user_id=?",user_id).get(0);;
-		renderJson("basicInfo",basicinfo);
-
+	
+		if(	BasicInfo.dao.findById(user_id)==null)
+		{
+		
+			User basicinfo= User.dao.find("select user_name ,dept_name from user,dept where user_id=?",user_id).get(0);
+			
+			renderJson("basicInfo",basicinfo);
+		}
+		else
+		{
+			BasicInfo basicinfo=BasicInfo.dao.find("select user_name,dept_name,basic_info_id,basic_info_title,basic_info_degree,basic_info_email,basic_info_phone,basic_info_address,basic_info_research,basic_info_allow_message,basic_info_model from user,dept,basic_info where user_dept_id=dept_id AND user_id=basic_info_user_id and user_id=?",user_id).get(0);;
+			renderJson("basicInfo",basicinfo);
+		}
 	}
 	/**
 	 * @CDk
