@@ -61,6 +61,7 @@ $("input[name='isMessage']").each(function(){
 		var teaSearch=$("#way").val();
 		var teaSpecialName=$("#specialName").val();//个性域名
 		$.ajax({
+			
 			type:"post",
 			content:"application/x-www-from-urlencoded;charset=UTF-8",
 			dataType:"json",

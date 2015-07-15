@@ -114,6 +114,7 @@ public class TeacherPersonalInfoController extends Controller {
 				}
 				basicinfo.set(basic[i], infoget[i]);
 			}
+			
 			int message=getParaToInt("message");
 			int model=getParaToInt("model");
 			basicinfo.set("basic_info_allow_message",message);
