@@ -1,4 +1,79 @@
+var loginNum=0;
+var lookNum=0;
 $(function () {
+	/*
+	 * 获取最近12天登录量
+	 */
+	$.ajax({
+		type:"post",
+		content:"application/x-www-from-urlencoded;charset=UTF-8",
+		url:"../AdminHomePageController/loginNumber",
+		dataType:"json",
+		async:false,
+		success:function(result){
+			loginNum =result.loginNumber;
+		}
+	});
+	alert(loginNum);
+	/*
+	 * 获取最近12天浏览量
+	 */
+	$.ajax({
+		type:"post",
+		content:"application/x-www-from-urlencoded;charset=UTF-8",
+		url:"../AdminHomePageController/readAllNumber",
+		dataType:"json",
+		async:false,
+		success:function(result){
+			lookNum =result.readAllNumbers;
+		}
+	});
+	/**
+	 * 获取12位老师的浏览量
+	*/
+	$.ajax({
+		type:"post",
+		content:"application/x-www-from-urlencoded;charset=UTF-8",
+		url:"../AdminHomePageController/readNumber",
+		dataType:"json",
+		async:false,
+		success:function(result){
+			result =result.readNumber;
+			var html="";
+			for(var i=0;i<result.length;i++)
+				{
+				
+				html+="<tr><td>"+result[i].user_name+"</td>"
+				      +"<td>"+result[i].user_count+"</td>"
+				      +"<td>"+result[i].user_update_time+"</td></tr>";
+				}
+			$("#teaLookNUm").html(html);
+		}
+	});
+	/**
+	 * 获取问题反馈
+	*/
+	$.ajax({
+		type:"post",
+		content:"application/x-www-from-urlencoded;charset=UTF-8",
+		url:"../AdminHomePageController/feedBack",
+		dataType:"json",
+		async:false,
+		success:function(result){
+			result =result.feeds;
+			var html="";
+			for(var i=0;i<result.length;i++)
+				{
+				
+				html+="<li><a href='#'>"+result[i].feedback_content
+				+"<span>"+result[i].feedback_update_time
+				+"</span></a></li>";
+				}
+			
+			$("#feedBack").html(html);
+		}
+	});
+	
 	//折线图，显示每天的登陆量
     $('.loginCount').highcharts({
         chart: {
@@ -36,10 +111,10 @@ $(function () {
         },
         series: [{
             name: '登陆量',
-            data: [100, 200, 300, 400, 200, 230, 260, 120, 500, 300, 70,20]
+            data:loginNum
         }, {
             name: '浏览量',
-            data: [1000, 300, 200, 500, 100, 390, 69, 100, 540, 700, 990, 560]
+            data: lookNum
         }]
     });
 });				
