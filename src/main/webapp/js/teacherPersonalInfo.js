@@ -25,7 +25,7 @@ $("#preSpecialName").text(host1+"/homepage/html/");
 			$("#phone").val(result.basic_info_phone);
 			$("#address").val(result.basic_info_address);
 			$("#way").val(result.basic_info_research);
-			$("#specialName").val(result.setsite);//个性域名
+			$("#specialName").val(result.user_url);//个性域名
 $("input[name='isMessage']").each(function(){
 	/*alert($(this).val()==result.basic_info_allow_message);*/
 	if($(this).val()==result.basic_info_allow_message)
