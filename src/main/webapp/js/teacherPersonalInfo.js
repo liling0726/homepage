@@ -25,6 +25,7 @@ $("#preSpecialName").text(host1+"/homepage/html/");
 			$("#phone").val(result.basic_info_phone);
 			$("#address").val(result.basic_info_address);
 			$("#way").val(result.basic_info_research);
+			$("#specialName").val(result.setsite);//个性域名
 $("input[name='isMessage']").each(function(){
 	/*alert($(this).val()==result.basic_info_allow_message);*/
 	if($(this).val()==result.basic_info_allow_message)
@@ -58,7 +59,7 @@ $("input[name='isMessage']").each(function(){
 		var teaAddress=$("#address").val();
 		var teaIsmMessage=$("input[name=isMessage]").val();
 		var teaSearch=$("#way").val();
-		
+		var teaSpecialName=$("#specialName").val();//个性域名
 		$.ajax({
 			type:"post",
 			content:"application/x-www-from-urlencoded;charset=UTF-8",
@@ -73,7 +74,8 @@ $("input[name='isMessage']").each(function(){
 				address:teaAddress,
 				message:teaIsmMessage,
 				research:teaSearch,
-				model:"1"
+				model:"1",
+				setsite:teaSpecialName
 			},
 			async:false,
 			success:function(result){
