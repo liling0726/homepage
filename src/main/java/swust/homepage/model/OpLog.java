@@ -1,7 +1,6 @@
 package swust.homepage.model;
 
 import com.jfinal.plugin.activerecord.Model;
-
 import java.util.List;
 
 /** Jin Long */
@@ -13,5 +12,10 @@ public class OpLog extends Model<OpLog> {
         return find(sql);
     }
 
+    public List<OpLog> findByPage(int page, int recordPerPage) {
+        int start = (page - 1) * recordPerPage;
+        String sql = "SELECT user_name, op, time FROM op_log, user WHERE op_log.user_id=user.user_id ORDER BY time desc LIMIT " + start + ", " + recordPerPage;
+        return find(sql);
+    }
 
 }
