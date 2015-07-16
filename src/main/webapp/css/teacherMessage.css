@@ -62,3 +62,18 @@ text-decoration:none;
 	font-weight:normal;
 	color:red;
 }
+#bottomDiv{
+	width:100%;
+}
+#picDiv{
+	float:left;
+	display:inline;
+} 
+#contentDiv{
+	float:left;
+	display:inline;
+	padding-left:10px;
+}
+#clearBothDiv{
+	clear:both;
+}
