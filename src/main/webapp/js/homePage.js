@@ -16,7 +16,7 @@ $.ajax({
 			{
 			html+="<div class='col-md-2'>"
     +"<div class='thumbnail'>"
-      +"<a href='#'><img src='../img/person"+(i+1)+".jpg' alt='...'></a>"
+      +"<a href='#'><img src='../img/mould.png' alt='...'></a>"
     +"</div>"
     +"<div class='personName'>"
     +"<a title='...' href='"+result[i].user_url +"'>"+result[i].user_name
