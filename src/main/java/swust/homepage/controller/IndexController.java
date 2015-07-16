@@ -2,6 +2,8 @@ package swust.homepage.controller;
 
 import java.util.Optional;
 
+import com.jfinal.aop.Before;
+import swust.homepage.OpInterceptor;
 import swust.homepage.model.Acad;
 import swust.homepage.model.User;
 import swust.homepage.service.LoginService;
@@ -46,6 +48,7 @@ public class IndexController extends HomePageController {
      * url: /index/login
      * jinlong
      */
+    @Before(OpInterceptor.class)
     public void login() {
         // 检查验证码
         String checkCode = getSessionAttr("checkCode");

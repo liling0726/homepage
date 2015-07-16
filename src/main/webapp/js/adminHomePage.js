@@ -1,6 +1,24 @@
 var loginNum=0;
 var lookNum=0;
 $(function () {
+	/**
+	 * 获取最新的5条操作日志
+	 */
+	$.ajax({
+		type:"post",
+		content:"application/x-www-from-urlencoded;charset=UTF-8",
+		url:"../AdminHomePageController/opLog",
+		dataType:"json",
+		async:false,
+		success:function(result){
+			var result = result.result;
+			for (i = 0; i < result.length; i++) {
+				$("#opLog").append("<tr><td>"+result[i].time+"</td>" +
+					"<td>"+result[i].user_name+"</td>" +
+					"<td>"+result[i].op+"</td></tr>")
+			}
+		}
+	});
 	/*
 	 * 获取最近12天登录量
 	 */
@@ -14,7 +32,7 @@ $(function () {
 			loginNum =result.loginNumber;
 		}
 	});
-	alert(loginNum);
+	//alert(loginNum);
 	/*
 	 * 获取最近12天浏览量
 	 */

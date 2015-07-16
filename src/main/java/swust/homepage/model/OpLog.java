@@ -1,10 +1,21 @@
 package swust.homepage.model;
 
 import com.jfinal.plugin.activerecord.Model;
+import java.util.List;
 
-/**
- * Created by jinlong on 2015/6/26.
- */
+/** Jin Long */
 public class OpLog extends Model<OpLog> {
     public static final OpLog dao = new OpLog();
+
+    public List<OpLog> get5Log() {
+        String sql = "SELECT user_name, op, time FROM op_log, user WHERE op_log.user_id=user.user_id ORDER BY time desc LIMIT 5";
+        return find(sql);
+    }
+
+    public List<OpLog> findByPage(int page, int recordPerPage) {
+        int start = (page - 1) * recordPerPage;
+        String sql = "SELECT user_name, op, time FROM op_log, user WHERE op_log.user_id=user.user_id ORDER BY time desc LIMIT " + start + ", " + recordPerPage;
+        return find(sql);
+    }
+
 }
