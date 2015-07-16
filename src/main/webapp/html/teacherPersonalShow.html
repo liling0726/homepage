@@ -2,11 +2,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
-<script type="text/javascript" src="../js/bootstrap.js"></script>
-<link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+<script type="text/javascript" src="./js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="./js/bootstrap.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/bootstrap.css" />
 <link rel="stylesheet" type="text/css"
-	href="../css/teacherPersonalShow.css" />
+	href="./css/teacherPersonalShow.css" />
 	<script type="text/javascript">
 	$("#imgcode").click(function(){
 		 reloadcode();
@@ -24,7 +24,7 @@
 <body>
 	<div class="container">
 		<div id="header">
-			<img src="../img/xikeda1.png">
+			<img src="./img/xikeda1.png">
 		</div>
 		<!-- <div id="navigation">
 			<ul>
@@ -52,10 +52,10 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-left">
-        <li ><a href="#" >基本信息</a></li>
+        <li ><a href="# " >基本信息</a></li>
 				<li><a href="#">研究方向</a></li>
 				<li><a href="#">科研团队</a></li>
-				<li><a href="#">科研项目</a></li>
+				<li><a href="# ">科研项目</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -65,14 +65,14 @@
 				<div class="panel-heading">
 					<div class="row">
 						<div class="col-md-8 col-md-offset-1">
-							<a href="#" class="thumbnail"> <img src="../img/person10.jpg"
+							<a href="#" class="thumbnail"> <img src="./img/person10.jpg"
 								alt="...">
 							</a>
 						</div>
 					</div>
 					<div id="basicInfo" class="row">
 						<p>
-							<label>姓名：</label><span>杨春明</span>
+							<label>姓名：</label><span>${teacherBasicInfo.user_name}</span>
 						</p>
 						<p>
 							<label>职称：</label><span>副教授</span>
@@ -123,7 +123,7 @@
       <div class="modal-body">
 <form>
 <p class="form-inline"><label >用户名：</label><input type="text" class="form-control" style="width:250px;" required></p>
-<p class="form-inline"><label >邮&nbsp;&nbsp;箱：</label><input type="text" class="form-control" style="width:250px;" required></p>
+<p class="form-inline"><label >${teacherBasicInfo.basic_info_email}：</label><input type="text" class="form-control" style="width:250px;" required></p>
 <p class="form-inline"><label >留&nbsp;&nbsp;言：</label><textarea rows="3"  class="form-control" style="width:250px;" required></textarea> </p>
 <p class="form-inline"><label >验证码：</label><input type="text" class="form-control" placeholder="验证码"
 				id="authcode" required> <img
