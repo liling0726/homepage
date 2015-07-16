@@ -18,9 +18,8 @@ import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Db;
 
 public class TeacherIndexController extends Controller {
-
 	public void index() {
-		
+
 	}
 
 	public void message() {

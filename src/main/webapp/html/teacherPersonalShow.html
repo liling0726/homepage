@@ -7,18 +7,17 @@
 <link rel="stylesheet" type="text/css" href="./css/bootstrap.css" />
 <link rel="stylesheet" type="text/css"
 	href="./css/teacherPersonalShow.css" />
-	<script type="text/javascript">
-	$("#imgcode").click(function(){
-		 reloadcode();
+<script type="text/javascript">
+	$("#imgcode").click(function() {
+		reloadcode();
 	})
-	$(".changeOne").click(function(){
-		 reloadcode();
+	$(".changeOne").click(function() {
+		reloadcode();
 	})
-	function reloadcode(){
-		$("#imgcode").attr("src","checkcode.jsp?random="+Math.random());
+	function reloadcode() {
+		$("#imgcode").attr("src", "checkcode.jsp?random=" + Math.random());
 	}
-	
-	</script>
+</script>
 <title>老师主页</title>
 </head>
 <body>
@@ -37,29 +36,32 @@
 			</ul>
 		</div> -->
 		<nav class="navbar navbar-default" id="navbarStyle">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#" id="PersonalPageName">杨春明个人主页</a>
-    </div>
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#" id="PersonalPageName">杨春明个人主页</a>
+				</div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-left">
-        <li ><a href="# " >基本信息</a></li>
-				<li><a href="#">研究方向</a></li>
-				<li><a href="#">科研团队</a></li>
-				<li><a href="# ">科研项目</a></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse"
+					id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-left">
+						<#list teacherDataContent as column >
+
+						<li><a href="./teacherPersonalShow?data=${column.data_name}">${column.data_name}</a></li>
+						</#list>
+					</ul>
+				</div>
+				<!-- /.navbar-collapse -->
+			</div>
+			<!-- /.container-fluid -->
+		</nav>
 		<div class="col-md-3">
 			<div class="panel panel-default">
 				<div class="panel-heading">
@@ -75,36 +77,40 @@
 							<label>姓名：</label><span>${teacherBasicInfo.user_name}</span>
 						</p>
 						<p>
-							<label>职称：</label><span>副教授</span>
+							<label>职称：</label><span>${teacherBasicInfo.basic_info_title}</span>
 						</p>
 						<p>
 							<label>学院：</label><span>计算机科学以技术</span>
 						</p>
 						<p>
-							<label>学位：</label><span>副教授</span>
+							<label>学位：</label><span>${teacherBasicInfo.basic_info_degree}</span>
 						</p>
 						<p>
-							<label>邮箱地址：</label><span>136276473@sina.cn</span>
+							<label>邮箱地址：</label><span>${teacherBasicInfo.basic_info_email}</span>
 						</p>
 						<p>
-							<label>电话：</label><span>1352653728</span>
+							<label>电话：</label><span>${teacherBasicInfo.basic_info_phone}</span>
 						</p>
 						<p>
-							<label>主要研究方向：</label><span>数据挖掘</span>
+							<label>主要研究方向：</label><span>${teacherBasicInfo.basic_info_research}</span>
 						</p>
 
 					</div>
+					
+					
 					<div>
-						<button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#leaveMess">留言</button>
+						<button type="button" class="btn btn-success btn-block"
+							data-toggle="modal" data-target="#leaveMess">留言</button>
 					</div>
+					
 				</div>
 			</div>
 		</div>
 		<div class="col-md-9">
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<p>杨春明，硕士，副教授，西南科技大学“师德标兵”、“优秀教师”，知识工程与教育技术教学科研团队负责人，ACM集训队教练。近五年发表论文十余篇，获四川省科技进步三等奖。主要研究方向为数据挖掘，自然语言处理。
-					</p>
+					<p>${teacherDataContent[0].data_name}</p>
+
 				</div>
 			</div>
 		</div>
@@ -113,32 +119,48 @@
 		</div>
 	</div>
 	<!--留言模态框  -->
-<div class="modal fade" id="leaveMess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">留言</h4>
-      </div>
-      <div class="modal-body">
-<form>
-<p class="form-inline"><label >用户名：</label><input type="text" class="form-control" style="width:250px;" required></p>
-<p class="form-inline"><label >${teacherBasicInfo.basic_info_email}：</label><input type="text" class="form-control" style="width:250px;" required></p>
-<p class="form-inline"><label >留&nbsp;&nbsp;言：</label><textarea rows="3"  class="form-control" style="width:250px;" required></textarea> </p>
-<p class="form-inline"><label >验证码：</label><input type="text" class="form-control" placeholder="验证码"
-				id="authcode" required> <img
-				id="imgcode" src="checkcode.jsp" alt="验证码"> <span>看不清？<a
-				href="javascript:void(0)" class="changeOne">换一张</a></span> <label
-				id="authcode_succeed" class="blank invisible"></label> <label
-				id="authcode_error" class="hide"></label></p>
-</form>
-      </div>
-      <div class="modal-footer">  
-        <button type="button" class="btn btn-primary">留言</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-      </div>
-    </div>
-  </div>
-</div>
+	<div class="modal fade" id="leaveMess" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">留言</h4>
+				</div>
+				<div class="modal-body">
+					<form>
+						<p class="form-inline">
+							<label>用户名：</label><input type="text" class="form-control"
+								style="width: 250px;" required>
+						</p>
+						<p class="form-inline">
+							<label>邮箱：</label><input type="text" class="form-control"
+								style="width: 250px;" required>
+						</p>
+						<p class="form-inline">
+							<label>留&nbsp;&nbsp;言：</label>
+							<textarea rows="3" class="form-control" style="width: 250px;"
+								required></textarea>
+						</p>
+						<p class="form-inline">
+							<label>验证码：</label><input type="text" class="form-control"
+								placeholder="验证码" id="authcode" required> <img
+								id="imgcode" src="checkcode.jsp" alt="验证码"> <span>看不清？<a
+								href="javascript:void(0)" class="changeOne">换一张</a></span> <label
+								id="authcode_succeed" class="blank invisible"></label> <label
+								id="authcode_error" class="hide"></label>
+						</p>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary">留言</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

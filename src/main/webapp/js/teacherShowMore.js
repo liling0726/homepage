@@ -56,9 +56,11 @@ function retrieve() {
 				html +=  '<div class="col-lg-2dot4">'
 		               + '	<div class="thumbnail">'
                        + '     <a href="' + res[i].user_url + '">'
-	                   + '     <img src="../img/person' + (i%10+1) + '.jpg" alt="..." title="系别：' +  res[i].dept_name + '&#10;学院：' + res[i].acad_name + '"></a>'
+	                   + '     <img src="../img/mould.png" alt="..." title="系别：' +  res[i].dept_name + '&#10;学院：' + res[i].acad_name + '"></a>'
                 	   + '	    <div id="user" class="caption">'
-	                   + '		   <a href="' + res[i].user_url + '">' + res[i].user_name + '</a><br />'
+	                   + '		   <a href="' + res[i].user_url + '">' + res[i].user_name + '</a><br />系别:'
+													+ cat(res[i].dept_name) + '<br />学院:'
+													+ cat(res[i].acad_name) + '<br />'
 	                   + '	    </div>'
 	                   + '	</div>'
 	                   + '</div>';
@@ -75,4 +77,12 @@ function retrieve() {
 			console.log("出错啦->" + e.message);
 		}
 	});
+}
+
+function cat(str) {
+	if (str.length > 3) {
+		str = str.substr(0, 3);
+		str += '...';
+	}
+	return str;
 }

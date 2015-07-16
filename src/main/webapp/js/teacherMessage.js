@@ -40,7 +40,7 @@ $(document).ready(function(){
 			
 				}
 				$("#mainUl").html(html);
-				$("label[name='saw']").each(function(){
+				/*$("label[name='saw']").each(function(){
 					var spanHtml;
 					spanHtml=$(this).html();
 					if(spanHtml=="已查看")
@@ -69,9 +69,9 @@ $(document).ready(function(){
 							async : false,
 							success : function(result) {
 								$("#alertdiv").show();
-								var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
-										"<span aria-hidden=\"true\">&times;</span></button>标记成功！";
-								$("#alertdiv").html(html);
+								var html=
+										"标记成功！";
+								$("#alertdiv p").html(html);
 							},
 							error : function(e) {
 								console
@@ -79,7 +79,7 @@ $(document).ready(function(){
 												+ e.message);
 							}
 						});
-					}
+					}*/
 					/*if(spanHtml=="已查看"){
 						$(this).html("未查看");
 						$(this).css("color","red");
@@ -99,17 +99,17 @@ $(document).ready(function(){
 												+ e.message);
 							}
 						});
-					}*/
+					}
 					
-				});
-				$("#mainUl li").find("button[name='deletex']").hide();
+				});*/
+				$("#mainUl li").find("label[name='deletex']").hide();
 				$("#mainUl li").mouseover(function() {
-					$(this).find("button[name='deletex']").show();
+					$(this).find("label[name='deletex']").show();
 				});
 				$("#mainUl li").mouseleave(function() {
-					$(this).find("button[name='deletex']").hide();
+					$(this).find("label[name='deletex']").hide();
 				});
-				$("button[name='deletex']").click(function() {
+				$("label[name='deletex']").click(function() {
 					var id;
 					id=$(this).parents("li").attr("id");
 					$.ajax({
@@ -121,9 +121,9 @@ $(document).ready(function(){
 						async : "false",
 						success : function(result) {
 							$("#alertdiv").show();
-							var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
-									"<span aria-hidden=\"true\">&times;</span></button>" +result.result;
-							$("#alertdiv").html(html);
+							var html=
+									"" +result.result;
+							$("#alertdiv p").html(html);
 							initial();
 							
 						},
@@ -148,17 +148,16 @@ $(document).ready(function(){
 		var gotopage=$("#gotoPage").val();
 		if(!gotopage.match("^\\d+$")){//判断是否为数字
 			$("#alertdiv").show();
-			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
-					"<span aria-hidden=\"true\">&times;</span></button>请输入规范的页码！";
-			$("#alertdiv").html(html);
+			var html="请输入规范的页码！";
+			$("#alertdiv p").html(html);
 			return;
 		}
 		if(gotopage<1||gotopage>totalNum)
 		{
 			$("#alertdiv").show();
-			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
-					"<span aria-hidden=\"true\">&times;</span></button>超出总页数！";
-			$("#alertdiv").html(html);
+			var html=
+					"超出总页数！";
+			$("#alertdiv p").html(html);
 			return false;
 		}
 		else
@@ -178,9 +177,9 @@ $(document).ready(function(){
 		}
 		else{
 			$("#alertdiv").show();
-			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
-					"<span aria-hidden=\"true\">&times;</span></button>超出总页数！";
-			$("#alertdiv").html(html);
+			var html=
+					"超出总页数！";
+			$("#alertdiv p").html(html);
 			return;
 		}
 
@@ -194,9 +193,8 @@ $(document).ready(function(){
 		}
 		else{
 			$("#alertdiv").show();
-			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
-					"<span aria-hidden=\"true\">&times;</span></button>小于总页数！";
-			$("#alertdiv").html(html);
+			var html="小于总页数！";
+			$("#alertdiv p").html(html);
 			return;
 		}
 
@@ -206,9 +204,9 @@ $(document).ready(function(){
 		if(currentPage==1)
 		{
 			$("#alertdiv").show();
-			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
-					"<span aria-hidden=\"true\">&times;</span></button>已经第一页了！";
-			$("#alertdiv").html(html);
+			var html=
+					"已经第一页了！";
+			$("#alertdiv p").html(html);
 			return false;
 		}
 		else{
@@ -221,9 +219,9 @@ $(document).ready(function(){
 		if(currentPage==totalNum)
 		{
 			$("#alertdiv").show();
-			var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
-					"<span aria-hidden=\"true\">&times;</span></button>已经是最后页了！";
-			$("#alertdiv").html(html);
+			var html=
+					"已经是最后页了！";
+			$("#alertdiv p").html(html);
 			return false;
 		}
 		else{
@@ -236,11 +234,11 @@ $(document).ready(function(){
 		maxPage=$("#max").val();
 		currentPage=1;
 		$("#alertdiv").show();
-		var html="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
-				"<span aria-hidden=\"true\">&times;</span></button>每页显示"
+		var html=
+				"每页显示"
 					+maxPage
 					+"条！";
-		$("#alertdiv").html(html);
+		$("#alertdiv p").html(html);
 		initial();
 	});
 

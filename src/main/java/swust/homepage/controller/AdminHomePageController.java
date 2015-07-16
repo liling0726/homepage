@@ -6,10 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import swust.homepage.model.BrowseLog;
-import swust.homepage.model.Feedback;
-import swust.homepage.model.LoginLog;
-import swust.homepage.model.User;
+import swust.homepage.model.*;
 
 import com.jfinal.core.Controller;
 
@@ -102,5 +99,13 @@ public class AdminHomePageController extends Controller{
 		
 		
 	}
-	
+
+	/**
+	 * 操作日志
+	 * Jin Long
+	 */
+	public void opLog() {
+		List<OpLog> opLogs = OpLog.dao.get5Log();
+		renderJson("result", opLogs);
+	}
 }
