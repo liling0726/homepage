@@ -193,8 +193,7 @@ $(document).ready(function(){
 		}
 		else{
 			$("#alertdiv").show();
-			var html=
-					"小于总页数！";
+			var html="小于总页数！";
 			$("#alertdiv p").html(html);
 			return;
 		}
