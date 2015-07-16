@@ -1,6 +1,10 @@
 package swust.homepage.model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import Freeze.Map;
 
 import com.jfinal.plugin.activerecord.Model;
 
@@ -27,6 +31,23 @@ public class Acad extends Model<Acad> {
 		}
 		return Acad.dao.find("select dept_name, acad_name from dept, acad where dept_acad_id = acad_id");
 	}
+	
+	/**
+	 * @author ZengDan
+	 * @return 含有acad表内所有学院以及dept表内对应学院包含的专业的对象集
+	 * */
+	public HashMap<Acad, List<Acad>> acadInfoDept() {//学院 -> 专业
+		List<Acad> acadList = new ArrayList<Acad>();
+		List<Acad> deptList = new ArrayList<Acad>();
+		HashMap<Acad, List<Acad>> acadMap = new HashMap<Acad, List<Acad>>();
+		acadList = Acad.dao.find("select acad_name from acad");
+		for(int i=0; i<acadList.size(); i++){
+			deptList.addAll(Acad.dao.find("select dept_name, acad_name from dept, acad where acad_name = "+acadList.get(i)));
+			acadMap.put(acadList.get(i), deptList);
+		}
+		return acadMap;
+	}
+	
 	/**
 	 * @author BinJian
 	 * @param key 
