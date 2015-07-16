@@ -19,15 +19,13 @@ import com.jfinal.plugin.activerecord.Db;
 
 public class TeacherIndexController extends Controller {
 	public void index() {
-		setSessionAttr("user_id", 4);
-		renderJson("teacherMessage", Message.dao.teacherMessage(getParaToInt(0, 1), getParaToInt(1, 10), getSessionAttr("user_id")));
-		
+
 	}
 
 	public void message() {
 		renderJson("message", Message.dao.teacherMessage(
 				getParaToInt("pageNumber", 1), getParaToInt("pageSize", 3),
-				getParaToInt("userId",5)));
+				getParaToInt("userId")));
 	}
 
 	public void feedback() {

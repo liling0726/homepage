@@ -40,7 +40,7 @@ $(document).ready(function(){
 			
 				}
 				$("#mainUl").html(html);
-				$("label[name='saw']").each(function(){
+				/*$("label[name='saw']").each(function(){
 					var spanHtml;
 					spanHtml=$(this).html();
 					if(spanHtml=="已查看")
@@ -79,7 +79,7 @@ $(document).ready(function(){
 												+ e.message);
 							}
 						});
-					}
+					}*/
 					/*if(spanHtml=="已查看"){
 						$(this).html("未查看");
 						$(this).css("color","red");
@@ -99,17 +99,17 @@ $(document).ready(function(){
 												+ e.message);
 							}
 						});
-					}*/
+					}
 					
-				});
-				$("#mainUl li").find("button[name='deletex']").hide();
+				});*/
+				$("#mainUl li").find("label[name='deletex']").hide();
 				$("#mainUl li").mouseover(function() {
-					$(this).find("button[name='deletex']").show();
+					$(this).find("label[name='deletex']").show();
 				});
 				$("#mainUl li").mouseleave(function() {
-					$(this).find("button[name='deletex']").hide();
+					$(this).find("label[name='deletex']").hide();
 				});
-				$("button[name='deletex']").click(function() {
+				$("button[name='label']").click(function() {
 					var id;
 					id=$(this).parents("li").attr("id");
 					$.ajax({
