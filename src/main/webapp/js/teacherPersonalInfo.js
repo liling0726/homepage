@@ -7,35 +7,7 @@ $(function(){
 	//获取老师个性域名的前缀
 	var host1=location.host;
 $("#preSpecialName").text(host1+"/homepage/html/");
-	//查出登录的老师信息
-	$.ajax({
-		type:"post",
-		content:"application/x-www-from-urlencoded;charset=UTF-8",
-		dataType:"json",
-		url:"../teacherPersonInfo",
-		async:false,
-		success:function(result){
-			result=result.basicInfo;
-			$("#teaInfoId").val(result.basic_info_id);
-			$("#name").val(result.user_name);
-			$("#occupation").val(result.basic_info_title);
-			$("#acaddegree").val(result.basic_info_degree);
-			$("#acad").val(result.dept_name);
-			$("#email").val(result.basic_info_email);
-			$("#phone").val(result.basic_info_phone);
-			$("#address").val(result.basic_info_address);
-			$("#way").val(result.basic_info_research);
-			$("#specialName").val(result.user_url);//个性域名
-$("input[name='isMessage']").each(function(){
-	/*alert($(this).val()==result.basic_info_allow_message);*/
-	if($(this).val()==result.basic_info_allow_message)
-		{
-		$(this).attr("checked","checked");
-		}
-})
-			
-		}
-	})
+init();
 	//修改老师信息
 	/*
 	*还没完成
@@ -80,8 +52,40 @@ $("input[name='isMessage']").each(function(){
 			},
 			async:false,
 			success:function(result){
+				init();
 				}
 	})
 	
 })
 })
+function init(){
+	//查出登录的老师信息
+	$.ajax({
+		type:"post",
+		content:"application/x-www-from-urlencoded;charset=UTF-8",
+		dataType:"json",
+		url:"../teacherPersonInfo",
+		async:false,
+		success:function(result){
+			result=result.basicInfo;
+			$("#teaInfoId").val(result.basic_info_id);
+			$("#name").val(result.user_name);
+			$("#occupation").val(result.basic_info_title);
+			$("#acaddegree").val(result.basic_info_degree);
+			$("#acad").val(result.dept_name);
+			$("#email").val(result.basic_info_email);
+			$("#phone").val(result.basic_info_phone);
+			$("#address").val(result.basic_info_address);
+			$("#way").val(result.basic_info_research);
+			$("#specialName").val(result.user_url);//个性域名
+$("input[name='isMessage']").each(function(){
+	/*alert($(this).val()==result.basic_info_allow_message);*/
+	if($(this).val()==result.basic_info_allow_message)
+		{
+		$(this).attr("checked","checked");
+		}
+})
+			
+		}
+	})
+}
