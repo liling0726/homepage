@@ -10,6 +10,6 @@ import com.jfinal.core.Controller;
 public class AcadInfoMoreController extends Controller{
 	
 	public void index() {
-		renderJson("acadInfoMore", Acad.dao.acadInfoMore());
+		renderJson("acadInfoMore", Acad.dao.acadInfoDept());
 	}
 }
