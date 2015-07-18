@@ -1,12 +1,11 @@
 package swust.homepage.controller;
 
 import java.util.Optional;
-
 import com.jfinal.aop.Before;
 import swust.homepage.OpInterceptor;
 import swust.homepage.model.Acad;
 import swust.homepage.model.User;
-import swust.homepage.service.LoginService;
+import swust.homepage.LoginService;
 import swust.homepage.HomePageController;
 import com.jfinal.core.ActionKey;
 
@@ -17,8 +16,8 @@ public class IndexController extends HomePageController {
         if (url == null || url.equals(""))
             redirect("/html/homePage.html");
         else {
-            // 设置参数
-            render("/html/teacherPersonalShow.html"); // 默认使用FreeMarker模板渲染
+            System.out.println(getPara(0));
+            renderText("kkk");
         }
     }
 
