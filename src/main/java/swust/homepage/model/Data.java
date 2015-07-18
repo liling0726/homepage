@@ -32,9 +32,21 @@ public class Data extends Model<Data> {
 	 *            teacherId, 对应教师的id
 	 * @return
 	 */
-	public List<Data> getDataContent(int dataUserId) {
-		return find("select data_name, data_content from data where data_user_id = "
+	public List<Data> getDataName(int dataUserId) {
+		return find("select data_id, data_name from data where data_user_id = "
 				+ dataUserId);
+	}
+
+	/**
+	 * @author zengdan
+	 * 
+	 * @param dataUserId
+	 *            teacherId, 对应教师的id
+	 * @return
+	 */
+	public List<Data> getDataContent(int dataId) {
+		return find("select data_content from data where data_user_id = "
+				+ dataId);
 	}
 
 	/**

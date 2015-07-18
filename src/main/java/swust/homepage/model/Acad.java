@@ -1,6 +1,10 @@
 package swust.homepage.model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import Freeze.Map;
 
 import com.jfinal.plugin.activerecord.Model;
 
@@ -27,6 +31,38 @@ public class Acad extends Model<Acad> {
 		}
 		return Acad.dao.find("select dept_name, acad_name from dept, acad where dept_acad_id = acad_id");
 	}
+	
+	/**
+	 * @author ZengDan
+	 * @return 含有acad表内所有学院以及dept表内对应学院包含的专业的对象集
+	 * */
+	public HashMap<String, List<String>> acadInfoDept() {//学院 -> 专业
+		List<Acad> list = new ArrayList<Acad>();
+		HashMap<String, List<String>> acadMap = new HashMap<String, List<String>>();
+		
+		list =  Acad.dao.find("select acad_id from acad");
+		for(int i=0; i<list.size(); i++){
+			List<Acad> acadList = new ArrayList<Acad>();
+			List<Acad> acadNameList = new ArrayList<Acad>();
+			List<String> deptList = new ArrayList<String>();
+			
+			//System.out.println("list"+i+"---------"+list.get(i).get("acad_id"));
+			acadList = Acad.dao.find("select dept_name from dept, acad where dept_acad_id = acad_id and acad_id = "+list.get(i).get("acad_id"));
+			
+			for(int j=0; j<acadList.size(); j++){
+				deptList.add(acadList.get(j).getStr("dept_name"));
+				//System.out.println("acadList.dept_name--------"+acadList.get(j).getStr("dept_name"));
+			}
+			
+			acadNameList = Acad.dao.find("select acad_name from acad where acad_id = "+list.get(i).get("acad_id"));
+			acadMap.put(acadNameList.get(0).getStr("acad_name"), deptList);
+			//System.out.println("acadName--------"+acadNameList.get(0).getStr("acad_name"));
+			//System.out.println("deptList--------"+deptList);
+			//System.out.println("acadMap---------"+acadMap);
+		}
+		return acadMap;
+	}
+	
 	/**
 	 * @author BinJian
 	 * @param key 
