@@ -17,6 +17,9 @@ public class TeacherPersonalShowController extends Controller {
 		setSessionAttr("user_id", 4);
 		setAttr("teacherBasicInfo", BasicInfo.dao.teacherPersonalShow(getSessionAttr("user_id")).get(0));
 		setAttr("teacherDataName", Data.dao.getDataName(getSessionAttr("user_id")));
+		if(Data.dao.getDataContent(getParaToInt(1)).get(0).get("data_content")==null){
+			setAttr("teacherDataContent", Data.dao.getDataContent(1));
+		}
 		render("/html/teacherPersonalShow.html");
 	}
 	
