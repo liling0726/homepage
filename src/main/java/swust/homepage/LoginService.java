@@ -1,4 +1,4 @@
-package swust.homepage.service;
+package swust.homepage;
 
 import    java.util.Optional;
 

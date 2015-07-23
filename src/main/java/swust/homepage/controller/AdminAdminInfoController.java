@@ -20,7 +20,7 @@ public class AdminAdminInfoController extends Controller {
 	// 添加
 	// 判断添加管理员的工号是否重复
 	public void save() {
-		setSessionAttr("adminNum", 123456);
+		//setSessionAttr("adminNum", 123456);
 		// System.out.println(Admin.dao.isSame(getSessionAttr("adminNum")));
 		if (!Admin.dao.isSame(getSessionAttr("adminNum"))) {
 			if (getModel(Admin.class).save()) {
@@ -48,7 +48,7 @@ public class AdminAdminInfoController extends Controller {
 	// 将用户修改后的数据更新至数据库中
 	// 判断管理员修改后工号是否与他人相同
 	public void update() {
-		setSessionAttr("admiNum", 123456);
+		//setSessionAttr("admiNum", 123456);
 		if (!Admin.dao.isSame(getSessionAttr("adminNum"))) {
 			if (getModel(Admin.class).update()) {
 				renderJson("result", "更新成功");

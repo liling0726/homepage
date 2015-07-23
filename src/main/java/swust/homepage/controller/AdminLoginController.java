@@ -2,10 +2,8 @@ package swust.homepage.controller;
 
 import java.util.Optional;
 
-import javax.servlet.http.HttpSession;
-
 import swust.homepage.model.Admin;
-import swust.homepage.service.LoginService;
+import swust.homepage.LoginService;
 
 import com.jfinal.core.Controller;
 

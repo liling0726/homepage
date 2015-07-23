@@ -14,11 +14,18 @@ import com.jfinal.core.Controller;
 public class TeacherPersonalShowController extends Controller {
 	
 	public void index(){
-	//	int user_id=getSessionAttr("user_id");
-		setSessionAttr("user_id", 4);
-		//renderJson("teacherPersonalShow",  BasicInfo.dao.teacherPersonalShow(getSessionAttr("user_id")));
+		//setSessionAttr("user_id", 4);
 		setAttr("teacherBasicInfo", BasicInfo.dao.teacherPersonalShow(getSessionAttr("user_id")).get(0));
-		setAttr("teacherDataContent", Data.dao.getDataContent(getSessionAttr("user_id")));
+		setAttr("teacherDataName", Data.dao.getDataName(getSessionAttr("user_id")));
+		//System.out.println(Data.dao.getDataName(getSessionAttr("user_id")));
+		if(Data.dao.getDataContent(getParaToInt(1))==null){
+			setAttr("teacherDataContent", Data.dao.getDataContent(1));
+		}
+		render("/html/teacherPersonalShow.html");
+	}
+	
+	public void dataContent(){
+		setAttr("teacherDataContent", Data.dao.getDataContent(getParaToInt(1)));
 		render("/html/teacherPersonalShow.html");
 	}
 	

@@ -9,6 +9,6 @@ public class BasicInfo extends Model<BasicInfo> {
 	public static final BasicInfo dao = new BasicInfo();
 	
 	public List<BasicInfo> teacherPersonalShow(int userId){
-		return find("select basic_info.*,`user`.user_name from basic_info, user where basic_info_user_id = user_id and user_id  = " + userId);
+		return find("select basic_info.*, user_name, user_url from basic_info, user where basic_info_user_id = user_id and user_id  = " + userId);
 	}
 }
