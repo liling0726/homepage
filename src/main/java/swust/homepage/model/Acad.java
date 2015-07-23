@@ -50,12 +50,12 @@ public class Acad extends Model<Acad> {
 			acadList = Acad.dao.find("select dept_name from dept, acad where dept_acad_id = acad_id and acad_id = "+list.get(i).get("acad_id"));
 			
 			for(int j=0; j<acadList.size(); j++){
-				deptList.add(acadList.get(j).getStr("dept_name"));
+				deptList.add("deptName:"+acadList.get(j).getStr("dept_name"));
 				//System.out.println("acadList.dept_name--------"+acadList.get(j).getStr("dept_name"));
 			}
 			
 			acadNameList = Acad.dao.find("select acad_name from acad where acad_id = "+list.get(i).get("acad_id"));
-			acadMap.put(acadNameList.get(0).getStr("acad_name"), deptList);
+			acadMap.put("acadName:"+acadNameList.get(0).getStr("acad_name"), deptList);
 			//System.out.println("acadName--------"+acadNameList.get(0).getStr("acad_name"));
 			//System.out.println("deptList--------"+deptList);
 			//System.out.println("acadMap---------"+acadMap);
