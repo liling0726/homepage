@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.jfinal.aop.Before;
+
 import swust.homepage.AuthInterceptor;
 import swust.homepage.model.Acad;
 import swust.homepage.model.Dept;
@@ -17,6 +18,13 @@ import com.jfinal.core.Controller;
  * @author CDK
  *
  */
+/*public List<Acad> acadInfoMore() {//学院 -> 专业
+		for(int i=0 ;i<Acad.dao.find("select dept_name, acad_name from dept, acad where dept_acad_id = acad_id").size();i++)
+		{
+			System.out.println(Acad.dao.find("select dept_name, acad_name from dept, acad where dept_acad_id = acad_id").get(i));
+		}
+		return Acad.dao.find("select dept_name, acad_name from dept, acad where dept_acad_id = acad_id");
+	}*/
 @Before(AuthInterceptor.class)
 public class AdminAcadInfoController extends Controller{
 	public void index()
