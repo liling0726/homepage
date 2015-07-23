@@ -12,7 +12,6 @@ public class AdminHomePageQuestionController extends Controller{
 	public void answered()
 	{
 		
-		
 		renderJson("answered",Feedback.dao.find("select feedback_id,feedback_content,feedback_anser_content,feedback_update_time from feedback where feedback_is_ansered=0"));
 	}
 	public void noAnswered()
