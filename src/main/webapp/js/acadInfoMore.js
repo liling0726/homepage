@@ -3,27 +3,32 @@ $(function(){
 		type : "get",
 		content : "application/x-www-from-urlencoded;charset=UTF-8",
 		dataType : "json",
-		url : "../acadInfoMore/index",
+		url : "../acad/index",
 		async : false,
 		success : function(result) {
-			var data = result.acadInfoMore;
-			alert(data[0]);
+			var data = result.result;
+			alert(data[0][2]);
+			
 			var html = "";
+			var htm = "";
 			for(var j=0;j<data.length;j++){
+				
 			html+="<div class='col-md-3'><div class='panel panel-danger'><div class='panel-heading'>"
 				+"<center><label>"
-				+计算机科学与技术学院
+				+data[j][2]
 				+"</label></center></div><div class='panel-body'><table  class='table'><tr>";
-			for(var i = 0;i<data[j].length;i++){
+			for(var i = 0;i<data[j][3].length;i++){
 				html+="<td><a href='#'>"
-					+计算机工程系
+					+data[j][3][i].dept_name
 					+"</a></td>";
-				if(i==3){
+				if((i+1)%3==0){
 					html+="</tr><tr>";
 				}
 			}
 			html+="</tr></table></div></div></div>";
+			
 			}
+			$("#mainRow").html(html);
 		},
 		error : function(e) {
 			console.log("错误：" + e.message);
