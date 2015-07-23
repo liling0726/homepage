@@ -26,6 +26,7 @@ public class Config extends JFinalConfig {
 
 	@Override
 	public void configHandler(Handlers a) {
+		a.add(new UHandler()); // 用于老师个人页面显示
 	}
 
 	// 此处添加全局拦截器
