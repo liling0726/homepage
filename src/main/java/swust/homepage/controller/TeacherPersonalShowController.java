@@ -14,7 +14,7 @@ import com.jfinal.core.Controller;
 public class TeacherPersonalShowController extends Controller {
 	
 	public void index(){
-		setSessionAttr("user_id", 4);
+		//setSessionAttr("user_id", 4);
 		setAttr("teacherBasicInfo", BasicInfo.dao.teacherPersonalShow(getSessionAttr("user_id")).get(0));
 		setAttr("teacherDataName", Data.dao.getDataName(getSessionAttr("user_id")));
 		//System.out.println(Data.dao.getDataName(getSessionAttr("user_id")));
