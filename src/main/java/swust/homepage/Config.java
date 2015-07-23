@@ -1,8 +1,34 @@
 package swust.homepage;
 
-import sun.rmi.runtime.Log;
-import swust.homepage.controller.*;
-import swust.homepage.model.*;
+import swust.homepage.controller.AcadInfoMoreController;
+import swust.homepage.controller.AdminAcadInfoController;
+import swust.homepage.controller.AdminAdminInfoController;
+import swust.homepage.controller.AdminHomePageController;
+import swust.homepage.controller.AdminHomePageQuestionController;
+import swust.homepage.controller.AdminLoginController;
+import swust.homepage.controller.AdminTeacherInfoController;
+import swust.homepage.controller.AdminTeacherOperationLogController;
+import swust.homepage.controller.IndexController;
+import swust.homepage.controller.TeacherColumnManageController;
+import swust.homepage.controller.TeacherFeedbackController;
+import swust.homepage.controller.TeacherIndexController;
+import swust.homepage.controller.TeacherMessageController;
+import swust.homepage.controller.TeacherNewsManageController;
+import swust.homepage.controller.TeacherPersonalInfoController;
+import swust.homepage.controller.TeacherPersonalShowController;
+import swust.homepage.controller.TeacherShowMoreController;
+import swust.homepage.model.Acad;
+import swust.homepage.model.Admin;
+import swust.homepage.model.BasicInfo;
+import swust.homepage.model.BrowseLog;
+import swust.homepage.model.Data;
+import swust.homepage.model.Dept;
+import swust.homepage.model.Feedback;
+import swust.homepage.model.LoginLog;
+import swust.homepage.model.Message;
+import swust.homepage.model.News;
+import swust.homepage.model.OpLog;
+import swust.homepage.model.User;
 
 import com.jfinal.config.Constants;
 import com.jfinal.config.Handlers;
@@ -26,6 +52,7 @@ public class Config extends JFinalConfig {
 
 	@Override
 	public void configHandler(Handlers a) {
+		a.add(new UHandler()); // 用于老师个人页面显示
 	}
 
 	// 此处添加全局拦截器
@@ -73,6 +100,7 @@ public class Config extends JFinalConfig {
 		a.add("/show",TeacherPersonalShowController.class); //老师页面显示
 		a.add("/teacherIndex",TeacherIndexController.class); //老师页面显示
 		a.add("/AdminHomePageController",AdminHomePageController.class);
+		a.add("/AdminHomePageQuestionController",AdminHomePageQuestionController.class);
 		a.add("/opLog", AdminTeacherOperationLogController.class);
 	}
 	
