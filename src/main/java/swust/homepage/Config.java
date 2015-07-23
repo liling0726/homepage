@@ -87,7 +87,7 @@ public class Config extends JFinalConfig {
 		// 路由 对应的Controller对象
 		a.add("/index", IndexController.class); // 首页
 		a.add("/adminLogin", AdminLoginController.class); // 管理员登陆
-		a.add("/acadInfoMore", AcadInfoMoreController.class);
+		a.add("/acad", AcadInfoMoreController.class);
 		a.add("/adminAdminInfo", AdminAdminInfoController.class);
 		a.add("/adminTeacherInfo", AdminTeacherInfoController.class);
 		a.add("/adminacadinfo", AdminAcadInfoController.class);
@@ -97,7 +97,7 @@ public class Config extends JFinalConfig {
 		a.add("/teacherFeedback", TeacherFeedbackController.class);
 		a.add("/teacherNewsManage",TeacherNewsManageController.class);
 		a.add("/teacherPersonInfo",TeacherPersonalInfoController.class);
-		a.add("/show",TeacherPersonalShowController.class); //老师页面显示
+		a.add("/u",TeacherPersonalShowController.class); //老师页面显示
 		a.add("/teacherIndex",TeacherIndexController.class); //老师页面显示
 		a.add("/AdminHomePageController",AdminHomePageController.class);
 		a.add("/AdminHomePageQuestionController",AdminHomePageQuestionController.class);

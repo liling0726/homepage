@@ -9,11 +9,11 @@ import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.Page;
 import swust.homepage.AuthInterceptor;
 import swust.homepage.model.Data;
-import swust.homepage.HomePageController;
+import swust.homepage.HPController;
 
 /** @author jinlong */
 @Before(AuthInterceptor.class)
-public class TeacherColumnManageController extends HomePageController {
+public class TeacherColumnManageController extends HPController {
 	/**
      * 新建栏目
      * 需要提供的字段 data_name(栏目名称) data_content(栏目内容) data_order(栏目排序) data_url(栏目别名)

@@ -2,11 +2,14 @@ package swust.homepage.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import Freeze.Map;
 
 import com.jfinal.plugin.activerecord.Model;
+import swust.homepage.util.Tuple2;
+import swust.homepage.util.Tuple3;
 
 public class Acad extends Model<Acad> {
 	private static final long serialVersionUID = 1897136132127624748L;
@@ -61,6 +64,19 @@ public class Acad extends Model<Acad> {
 			//System.out.println("acadMap---------"+acadMap);
 		}
 		return acadMap;
+	}
+
+	public List<Tuple3<Integer, String, List<Dept>>> acadWithDept() {
+		List<Acad> acads = find("select * from acad");
+
+		List<Tuple3<Integer, String, List<Dept>>> result = new ArrayList<>();
+		for (Acad acad : acads) {
+			List<Dept> depts = Dept.dao
+					.find("select * from dept where dept_acad_id=" + acad.get("acad_id"));
+			result.add(new Tuple3<>(acad.get("acad_id"), acad.get("acad_name"), depts));
+		}
+
+		return result;
 	}
 	
 	/**
