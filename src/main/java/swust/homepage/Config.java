@@ -7,7 +7,7 @@ import swust.homepage.controller.AdminHomePageController;
 import swust.homepage.controller.AdminHomePageQuestionController;
 import swust.homepage.controller.AdminLoginController;
 import swust.homepage.controller.AdminTeacherInfoController;
-import swust.homepage.controller.AdminTeacherOperationLogController;
+import swust.homepage.controller.AdminOpLogController;
 import swust.homepage.controller.IndexController;
 import swust.homepage.controller.TeacherColumnManageController;
 import swust.homepage.controller.TeacherFeedbackController;
@@ -101,7 +101,7 @@ public class Config extends JFinalConfig {
 		a.add("/teacherIndex",TeacherIndexController.class); //老师页面显示
 		a.add("/AdminHomePageController",AdminHomePageController.class);
 		a.add("/AdminHomePageQuestionController",AdminHomePageQuestionController.class);
-		a.add("/opLog", AdminTeacherOperationLogController.class);
+		a.add("/opLog", AdminOpLogController.class);
 	}
 	
 	/**
