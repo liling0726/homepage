@@ -148,6 +148,7 @@ $(document).ready(function(){
 		var gotopage=$("#gotoPage").val();
 		if(!gotopage.match("^\\d+$")){//判断是否为数字
 			$("#alertdiv").show();
+			$("#alertdiv").attr("class","alert alert-warning alert-dismissible");
 			var html="请输入规范的页码！";
 			$("#alertdiv p").html(html);
 			return;
@@ -155,8 +156,8 @@ $(document).ready(function(){
 		if(gotopage<1||gotopage>totalNum)
 		{
 			$("#alertdiv").show();
-			var html=
-					"超出总页数！";
+			$("#alertdiv").attr("class","alert alert-warning alert-dismissible");
+			var html="超出总页数！";
 			$("#alertdiv p").html(html);
 			return false;
 		}
@@ -177,8 +178,8 @@ $(document).ready(function(){
 		}
 		else{
 			$("#alertdiv").show();
-			var html=
-					"超出总页数！";
+			$("#alertdiv").attr("class","alert alert-warning alert-dismissible");
+			var html="超出总页数！";
 			$("#alertdiv p").html(html);
 			return;
 		}
@@ -193,6 +194,7 @@ $(document).ready(function(){
 		}
 		else{
 			$("#alertdiv").show();
+			$("#alertdiv").attr("class","alert alert-warning alert-dismissible");
 			var html="小于总页数！";
 			$("#alertdiv p").html(html);
 			return;
@@ -204,6 +206,7 @@ $(document).ready(function(){
 		if(currentPage==1)
 		{
 			$("#alertdiv").show();
+			$("#alertdiv").attr("class","alert alert-warning alert-dismissible");
 			var html="已经第一页了！";
 			$("#alertdiv p").html(html);
 			return false;
@@ -219,6 +222,7 @@ $(document).ready(function(){
 		{
 			$("#alertdiv").show();
 			$("#alertdiv").class();
+			$("#alertdiv").attr("class","alert alert-warning alert-dismissible");
 			var html="已经是最后页了！";
 			$("#alertdiv p").html(html);
 			return false;
@@ -233,8 +237,7 @@ $(document).ready(function(){
 		maxPage=$("#max").val();
 		currentPage=1;
 		$("#alertdiv").show();
-		var html=
-				"每页显示"
+		var html="每页显示"
 					+maxPage
 					+"条！";
 		$("#alertdiv p").html(html);
