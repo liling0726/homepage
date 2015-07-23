@@ -6,22 +6,16 @@ import swust.homepage.OpInterceptor;
 import swust.homepage.model.Acad;
 import swust.homepage.model.User;
 import swust.homepage.LoginService;
-import swust.homepage.HomePageController;
+import swust.homepage.HPController;
 import com.jfinal.core.ActionKey;
 
-public class IndexController extends HomePageController {
+public class IndexController extends HPController {
     @ActionKey("/")
     public void index() {
-        String url = getPara(0);
-        if (url == null || url.equals(""))
-            redirect("/html/homePage.html");
-        else {
-            System.out.println(getPara(0));
-            renderText("kkk");
-        }
+        redirect("/html/homePage.html");
     }
 
-    /* jinlong */
+    /* Jin Long */
     public void random() {
         renderJson("user", User.dao.randomUser());
     }
@@ -84,9 +78,6 @@ public class IndexController extends HomePageController {
      * @author chendekai
      */
     public void searchFlesh() {
-
         renderJson("Searchs", User.dao.userFlesh());
-
-
     }
 }

@@ -8,8 +8,8 @@ import com.jfinal.core.Controller;
  * ZengDan
  */
 public class AcadInfoMoreController extends Controller{
-	
+
 	public void index() {
-		renderJson("acadInfoMore", Acad.dao.acadInfoDept());
+		renderJson("result", Acad.dao.acadWithDept());
 	}
 }

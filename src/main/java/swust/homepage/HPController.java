@@ -5,8 +5,8 @@ import com.jfinal.core.Controller;
 import java.util.List;
 import java.util.Map;
 
-/** @author jinlong */
-public class HomePageController extends Controller {
+/** @author Jin Long */
+public class HPController extends Controller {
     private static final String SUCCESS = "成功", FAIL = "失败";
 
     public void trueOrFalse(boolean bool) {
