@@ -72,7 +72,7 @@ public class Acad extends Model<Acad> {
 		List<Tuple3<Integer, String, List<Dept>>> result = new ArrayList<>();
 		for (Acad acad : acads) {
 			List<Dept> depts = Dept.dao
-					.find("select * from dept where dept_acad_id=" + acad.get("acad_id"));
+					.find("select dept_id, dept_name from dept where dept_acad_id=" + acad.get("acad_id"));
 			result.add(new Tuple3<>(acad.get("acad_id"), acad.get("acad_name"), depts));
 		}
 
