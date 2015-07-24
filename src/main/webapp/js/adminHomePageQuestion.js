@@ -1,10 +1,12 @@
+/*author:binjian
+ * */
 var myDate = new Date();
-var index = 0;//用来使得collapse div和li一一对应。
-var someBefore = 0;//用来判断是否是第一个li
+var index = 0;// 用来使得collapse div和li一一对应。
+var someBefore = 0;// 用来判断是否是第一个li
 $(document)
 		.ready(
 				function() {
-//添加第一种已经回复了的。
+					// 添加第一种已经回复了的。
 					$
 							.ajax({
 								type : "get",
@@ -27,8 +29,9 @@ $(document)
 													+ index
 													+ "'>"
 													+ data[j].feedback_content
-													+ "<span>"
+													+ "<span>&nbsp;&nbsp;&nbsp;&nbsp;"
 													+ data[j].feedback_update_time
+															.substring(0, 10)
 													+ "</span></a><div id='collapse"
 													+ index
 													+ "' class='panel-collapse collapse in'role='tabpanel' aria-labelledby='heading1'>"
@@ -45,8 +48,9 @@ $(document)
 													+ index
 													+ "'>"
 													+ data[j].feedback_content
-													+ "<span>"
+													+ "<span>&nbsp;&nbsp;&nbsp;&nbsp;"
 													+ data[j].feedback_update_time
+															.substring(0, 10)
 													+ "</span></a><div id='collapse"
 													+ index
 													+ "' class='panel-collapse collapse'role='tabpanel' aria-labelledby='heading1'>"
@@ -61,7 +65,7 @@ $(document)
 									console.log("错误：" + e.message);
 								}
 							});
-//添加未回复的消息
+					// 添加未回复的消息
 					$
 							.ajax({
 								type : "get",
@@ -72,7 +76,6 @@ $(document)
 								success : function(result) {
 									var data = result.noanswered;
 									var html = "";
-									alert(data);
 									for (var j = 0; j < data.length; j++) {
 										index++;
 										if (j == 0 && someBefore == 0) {
@@ -84,8 +87,9 @@ $(document)
 													+ index
 													+ "'>"
 													+ data[j].feedback_content
-													+ "<span>"
+													+ "<span>&nbsp;&nbsp;&nbsp;&nbsp;"
 													+ data[j].feedback_update_time
+															.substring(0, 10)
 													+ "</span></a><div id='collapse"
 													+ index
 													+ "' class='panel-collapse collapse in'role='tabpanel' aria-labelledby='heading1'>"
@@ -93,7 +97,7 @@ $(document)
 													+ "<textarea class='form-control' rows='3'></textarea><div class='buttoncenter'><button id='commitbuttom' type='button'"
 													+ "class='btn btn-warning btn-block'>提交</button></div></div></div></div></li>"
 										}
-										
+
 										else {
 											html += "<li id='"
 													+ data[j].feedback_id
@@ -103,8 +107,9 @@ $(document)
 													+ index
 													+ "'>"
 													+ data[j].feedback_content
-													+ "<span>"
+													+ "<span>&nbsp;&nbsp;&nbsp;&nbsp;"
 													+ data[j].feedback_update_time
+															.substring(0, 10)
 													+ "</span></a><div id='collapse"
 													+ index
 													+ "' class='panel-collapse collapse'role='tabpanel' aria-labelledby='heading1'>"
@@ -119,7 +124,7 @@ $(document)
 									console.log("错误：" + e.message);
 								}
 							});
-//添加回复函数
+					// 添加回复函数
 					function addData(feedbackId, answercontent) {
 						$
 								.ajax({
@@ -142,11 +147,11 @@ $(document)
 									}
 								});
 					}
-//点击×删除回复
+					// 点击×删除回复
 					$("div").delegate("#delete×", "click", function() {
 						$(this).parent("li").remove();
 					});
-//点击添加按钮添加一条回复。
+					// 点击添加按钮添加一条回复。
 					$(".panel-body div button")
 							.on(
 									"click",
@@ -156,31 +161,35 @@ $(document)
 										var text = $(this).parents(
 												".panel-body").find('textarea')
 												.val();
+										if (text == "") {
+											alert("您未输入任何字符！");
+										} else {
+											addData(dataId, text);
 
-										addData(dataId, text);
-
-										$(this)
-												.parents('.panel-body')
-												.find('ul')
-												.append(
-														"<li>"
-																+ text
-																+ "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label id='delete×'>×</label>"
-																+ "<span>"
-																+ myDate
-																		.getFullYear()
-																+ "-"
-																+ (myDate
-																		.getMonth() + 1)
-																+ "-"
-																+ myDate
-																		.getDate()
-																+ "</span>"
-																+ "<span>"
-																+ "id"
-																+ "</span>"
-																+ "</li>");
-
+											$(this)
+													.parents('.panel-body')
+													.find('ul')
+													.append(
+															"<li>"
+																	+ text
+																	+ "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label id='delete×'>×</label>"
+																	+ "<span>"
+																	+ myDate
+																			.getFullYear()
+																	+ "-"
+																	+ (myDate
+																			.getMonth() + 1)
+																	+ "-"
+																	+ myDate
+																			.getDate()
+																	+ "</span>"
+																	// +
+																	// "<span>"
+																	// + "id"
+																	// +
+																	// "</span>"
+																	+ "</li>");
+										}
 									});
 
 				});
