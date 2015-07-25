@@ -20,7 +20,7 @@ public class TeacherPersonalShowController extends Controller {
 		setAttr("teacherDataName", Data.dao.getDataName(getSessionAttr("user_id")));
 		//System.out.println(Data.dao.getDataName(getSessionAttr("user_id")));
 		if(Data.dao.getDataContent(getParaToInt(1))==null){
-			setAttr("teacherDataContent", Data.dao.getDataContent(1));
+			setAttr("teacherDataContent", Data.dao.getFaultDataContent());
 		}
 		render("/html/teacherPersonalShow.html");
 	}

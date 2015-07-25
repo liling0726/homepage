@@ -39,8 +39,8 @@ public class Data extends Model<Data> {
 		Map<Integer, String> map = new HashMap<Integer, String>();
 		List<Data> listAll = new ArrayList<Data>();
 		List<Data> list = new ArrayList<Data>();
-		listAll = find("select data_id, data_name from data where data_user_id = "+dataUserId+" and data_order!=0 ORDER BY data_order");
-		list = find("select data_id, data_name from data where data_user_id = "+dataUserId+" and data_order=0 ORDER BY data_id");
+		listAll = find("select data_id, data_name, data_url from data where data_user_id = "+dataUserId+" and data_order!=0 ORDER BY data_order");
+		list = find("select data_id, data_name, data_url from data where data_user_id = "+dataUserId+" and data_order=0 ORDER BY data_id");
 		for(int i=0; i<listAll.size(); i++){
 			map.put(listAll.get(i).getInt("data_id"), listAll.get(i).getStr("data_name"));
 		}
@@ -63,6 +63,10 @@ public class Data extends Model<Data> {
 				+ dataId);
 	}
 
+	public List<Data> getFaultDataContent() {
+		return find("select data_content from data where data_order != 0 ORDER BY data_order");
+	}
+	
 	/**
 	 * 按点击量排序查找所有栏目
 	 * 
