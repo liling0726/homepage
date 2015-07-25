@@ -31,24 +31,52 @@ public class Data extends Model<Data> {
 	/**
 	 * @author zengdan
 	 * 
-	 * @param dataUserId
-	 *            teacherId, 对应教师的id
+	 * @param userUrl 用户url 
+	 * @param dataUserUrl 用户对应栏目的url
 	 * @return
 	 */
-	public Map<Integer, String> getDataName(int dataUserId) {
-		Map<Integer, String> map = new HashMap<Integer, String>();
-		List<Data> listAll = new ArrayList<Data>();
-		List<Data> list = new ArrayList<Data>();
-		listAll = find("select data_id, data_name, data_url from data where data_user_id = "+dataUserId+" and data_order!=0 ORDER BY data_order");
-		list = find("select data_id, data_name, data_url from data where data_user_id = "+dataUserId+" and data_order=0 ORDER BY data_id");
-		for(int i=0; i<listAll.size(); i++){
-			map.put(listAll.get(i).getInt("data_id"), listAll.get(i).getStr("data_name"));
+	public List<List<Data>> getDataContent(String userUrl, String dataUserUrl) {
+		//Map<Integer, String> map = new HashMap<Integer, String>();
+		List<Data> list1 = new ArrayList<Data>();
+		List<Data> list2 = new ArrayList<Data>();
+		//listAll = find("select data_id, data_name, data_url from data where data_user_id = "+dataUserId+" and data_order!=0 ORDER BY data_order");
+		//list = find("select data_id, data_name, data_url from data where data_user_id = "+dataUserId+" and data_order=0 ORDER BY data_id");
+		list1 = find("select data_content from data"
+				+ " where data_user_id=(select user_id from user where user_url = "+userUrl
+				+ " and data_url = "+dataUserUrl+" and data_order!=0 ORDER BY data_order");
+		list2 = find("select data_content from data"
+				+ " where data_user_id=(select user_id from user where user_url = "+userUrl
+				+ " and data_url = "+dataUserUrl+" and data_order=0 ORDER BY data_id");
+		/*for(int i=0; i<list1.size(); i++){
+			map.put(list1.get(i).getInt("data_id"), list1.get(i).getStr("data_name"));
 		}
-		for(int i=0; i<list.size(); i++){
-			map.put(list.get(i).getInt("data_id"), list.get(i).getStr("data_name"));
-		}
+		for(int i=0; i<list2.size(); i++){
+			map.put(list2.get(i).getInt("data_id"), list2.get(i).getStr("data_name"));
+		}*/
+		List<List<Data>> list = new ArrayList<List<Data>>();
+		list.add(list1);
+		list.add(list2);
 		//System.out.println(map);
-		return map;
+		return list;
+	}
+	
+	public List<Data> getDefaultDataContent(String userUrl) {
+		List<Data> list1 = new ArrayList<Data>();
+		List<Data> list2 = new ArrayList<Data>();
+		list1 = find("select data_content from data"
+				+ " where data_user_id=(select user_id from user where user_url = "+userUrl
+				+ " and data_order!=0 ORDER BY data_order limit 1");
+		list2 = find("select data_content from data"
+				+ " where data_user_id=(select user_id from user where user_url = "+userUrl
+				+ " and data_order=0 ORDER BY data_id limit 1");
+		List<List<Data>> list = new ArrayList<List<Data>>();
+		list.add(list1);
+		list.add(list2);
+		if(!list1.isEmpty()){
+			return list1;
+		}else{
+			return list2;
+		}
 	}
 
 	/**
@@ -58,14 +86,14 @@ public class Data extends Model<Data> {
 	 * @param teacherId, 对应教师的id
 	 * @return
 	 */
-	public List<Data> getDataContent(int dataId) {
+	/*public List<Data> getDataContent(int dataId) {
 		return find("select data_content from data where data_id = "
 				+ dataId);
 	}
 
 	public List<Data> getFaultDataContent() {
 		return find("select data_content from data where data_order != 0 ORDER BY data_order");
-	}
+	}*/
 	
 	/**
 	 * 按点击量排序查找所有栏目
