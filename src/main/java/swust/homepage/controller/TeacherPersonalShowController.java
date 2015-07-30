@@ -95,7 +95,7 @@ public class TeacherPersonalShowController extends Controller {
 					"from basic_info, user where basic_info_user_id = user_id and user_url = '" + getPara(0) + "'");
 			setAttr("basicInfo", basicInfo);
 
-			long dataID = Db.queryLong("select data_id from data where" +
+			Integer dataID = Db.queryInt("select data_id from data where" +
 					" data_user_id=(select user_id from user where user_url = '" + getPara(0) +
 					"') and data_url = '" + getPara(1) + "'");
 
