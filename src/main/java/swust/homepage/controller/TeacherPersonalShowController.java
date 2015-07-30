@@ -2,7 +2,9 @@ package swust.homepage.controller;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
@@ -11,6 +13,7 @@ import swust.homepage.model.BasicInfo;
 import swust.homepage.model.Data;
 
 import com.jfinal.core.Controller;
+import swust.homepage.util.Tuple2;
 
 /**
  * 
@@ -79,7 +82,8 @@ public class TeacherPersonalShowController extends Controller {
 			if (dataContent.getInt("data_type") == 1) { // 如果是新闻则返回新闻列表
 				List<Record> newsList = Db.find("select news_title, news_num, news_create_time, news_update_time, news_istop" +
 						" from news where news_data_id=" + dataContent.get("data_id"));
-				setAttr("dataContent", newsList);
+				setAttr("dataContent", dataContent);
+				setAttr("newsList", newsList);
 			} else
 				setAttr("dataContent", dataContent);
 
