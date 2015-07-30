@@ -17,9 +17,9 @@ public class UHandler extends Handler {
             String[] strs = target.split("/");
             String newTarget = "";
             if (strs.length == 4)
-                newTarget = "/u/" + strs[2] + "-" +strs[3];
+                newTarget = "/u/view/" + strs[2] + "-" +strs[3];
             else if (strs.length == 3)
-                newTarget = "/u/" + strs[2];
+                newTarget = "/u/view/" + strs[2];
 
 //            System.out.println("new target:" + newTarget);
             nextHandler.handle(newTarget, request, response, isHandled);
