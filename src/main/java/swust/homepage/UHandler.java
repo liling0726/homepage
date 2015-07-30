@@ -15,7 +15,12 @@ public class UHandler extends Handler {
 //        System.out.println("####[" + target + "]####");
         if (target.startsWith("/u")) {
             String[] strs = target.split("/");
-            String newTarget = "/u/" + strs[2] + "-" +strs[3];
+            String newTarget = "";
+            if (strs.length == 4)
+                newTarget = "/u/" + strs[2] + "-" +strs[3];
+            else if (strs.length == 3)
+                newTarget = "/u/" + strs[2];
+
 //            System.out.println("new target:" + newTarget);
             nextHandler.handle(newTarget, request, response, isHandled);
         }

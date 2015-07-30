@@ -11,7 +11,7 @@ import java.util.List;
 public class OpLog extends Model<OpLog> {
 
     public static final OpLog dao = new OpLog();
-    private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     /** 查找前5条操作日志 */
     public List<OpLog> get5Log() {
