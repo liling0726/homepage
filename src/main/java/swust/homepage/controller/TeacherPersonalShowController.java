@@ -77,7 +77,7 @@ public class TeacherPersonalShowController extends Controller {
 					"') and data_url = '" + getPara(1) + "'");
 
 			if (dataContent.getInt("data_type") == 1) { // 如果是新闻则返回新闻列表
-				List<Record> newsList = Db.find("select news_title, news_create_time, news_update_time, news_istop" +
+				List<Record> newsList = Db.find("select news_title, news_num, news_create_time, news_update_time, news_istop" +
 						" from news where news_data_id=" + dataContent.get("data_id"));
 				setAttr("dataContent", newsList);
 			} else
