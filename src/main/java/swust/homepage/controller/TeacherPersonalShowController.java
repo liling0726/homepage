@@ -75,7 +75,7 @@ public class TeacherPersonalShowController extends Controller {
 					"from basic_info, user where basic_info_user_id = user_id and user_url = '" + getPara(0) + "'");
 			setAttr("basicInfo", basicInfo);
 
-			Record dataContent = Db.findFirst("select data_id, data_content, data_type from data" +
+			Record dataContent = Db.findFirst("select data_id, data_content, data_type, data_url from data" +
 					" where data_user_id=(select user_id from user where user_url = '" + getPara(0) +
 					"') and data_url = '" + getPara(1) + "'");
 
@@ -108,6 +108,8 @@ public class TeacherPersonalShowController extends Controller {
 			List<Record> urlInfo = Db.find("select data_name, data_url, data_type, data_nature from data, user" +
 					" where data_user_id = user_id and user_url = '" + getPara(0) + "' order by data_order");
 			setAttr("urlInfo", urlInfo);
+
+			setAttr("detail", true);
 		} else {
 			return;
 		}
