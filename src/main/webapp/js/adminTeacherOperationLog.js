@@ -20,8 +20,43 @@ $(function(){
 	 */
 	$("#searchByTime").click(function(){
 		currentPage=1;
-		selectByOption();
+		startTime=$("#startTime").val();
+		endTime=$("#endTime").val();
+		if(startTime==""&&endTime=="")
+			selectLog();
+		else selectByOption();
 	});
+	/*
+	 * 查看昨天的操作日志
+	 * @param startTime(开始时间)
+	 *        endTime(结束时间)
+	 *        pageMax(每页显示最大条数)
+	 *        currentPage（当前页）
+	 */
+	$("#yesterdayLog").click(function(){
+		
+		var startTime=GetDateStr(-1);
+		var endTime=startTime;
+		alert(startTime);
+		selectByOption();
+		
+		
+	})
+	/*
+	 * 查看今天的操作日志
+	 * @param startTime(开始时间)
+	 *        endTime(结束时间)
+	 *        pageMax(每页显示最大条数)
+	 *        currentPage（当前页）
+	 */
+	$("#todayLog").click(function(){
+		var startTime=GetDateStr(0);
+		var endTime=startTime;
+		selectByOption();
+		
+		
+	})
+	
 	/*
 	 * 上一页
 	 * @param startTime(开始时间)
@@ -135,9 +170,8 @@ function selectLog(){
 	});
 }
 function selectByOption(){
-	startTime=$("#startTime").val();
-	endTime=$("#endTime").val();
-	//alert(endTime);
+	
+	alert(endTime);
 	$.ajax({
 		type:"post",
 		content:"application/x-www-from-urlencoded;charset=UTF-8",
@@ -151,6 +185,7 @@ function selectByOption(){
 		},
 		async:false,
 		success:function(result){
+			
 			var totalNum=result.result["1"];//返回的日志信息
 			pageNum=parseInt(result.result["2"]);//总条数
 			var html="";
@@ -169,7 +204,20 @@ function selectByOption(){
 			$("#currentPage").html(currentPage);
 			$("#totalPage").html(totalPage);
 			$("#pageNum").html(pageNum);
+			alert("查询");
 			return;
 		}
 	})
+}
+/*
+ * 获取某天的时间
+ * @param AddDayCount(距离今天相隔的天数)
+ */
+function GetDateStr(AddDayCount) {
+    var dd = new Date();
+    dd.setDate(dd.getDate()+AddDayCount);//获取AddDayCount天后的日期
+    var y = dd.getFullYear();
+    var m = dd.getMonth()+1;//获取当前月份的日期
+    var d = dd.getDate();
+    return y+"-"+m+"-"+d;
 }
