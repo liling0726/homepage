@@ -35,9 +35,9 @@ $(function(){
 	 */
 	$("#yesterdayLog").click(function(){
 		
-		var startTime=GetDateStr(-1);
-		var endTime=startTime;
-		alert(startTime);
+		 startTime=GetDateStr(-1);
+		 endTime=startTime;
+		//alert(startTime);
 		selectByOption();
 		
 		
@@ -50,8 +50,8 @@ $(function(){
 	 *        currentPage（当前页）
 	 */
 	$("#todayLog").click(function(){
-		var startTime=GetDateStr(0);
-		var endTime=startTime;
+		 startTime=GetDateStr(0);
+		 endTime=startTime;
 		selectByOption();
 		
 		
@@ -171,7 +171,7 @@ function selectLog(){
 }
 function selectByOption(){
 	
-	alert(endTime);
+	//alert(endTime);
 	$.ajax({
 		type:"post",
 		content:"application/x-www-from-urlencoded;charset=UTF-8",
@@ -204,7 +204,7 @@ function selectByOption(){
 			$("#currentPage").html(currentPage);
 			$("#totalPage").html(totalPage);
 			$("#pageNum").html(pageNum);
-			alert("查询");
+			//alert("查询");
 			return;
 		}
 	})

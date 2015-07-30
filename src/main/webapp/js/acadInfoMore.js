@@ -12,8 +12,10 @@ $(function() {
 					var data = result.result;
 					var html = "";//内层，装4个div就套一个壳子，放到htm中
 					var htm = "";
+					var classArray=["panel-danger","panel-success","panel-warning","panel-primary"];
 					for (var j = 0; j < data.length; j++) {
-						html += "<div class='col-md-3'><div class='panel panel-danger'><div class='panel-heading'>"
+						var panelClass=classArray[parseInt(Math.random()*j%4)];
+						html += "<div class='col-md-3'><div class='panel "+panelClass+"'><div class='panel-heading'>"
 								+ "<center><label>"
 								+ data[j][2]
 								+ "</label></center></div><div class='panel-body'><table  class='table'><tr>";

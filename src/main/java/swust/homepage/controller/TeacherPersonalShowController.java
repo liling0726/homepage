@@ -48,34 +48,34 @@ public class TeacherPersonalShowController extends Controller {
 		if (getPara(1) == null) { // 只有一个参数
 
 			Record basicInfo = Db.findFirst("select basic_info.*, user_name, user_url " +
-					"from basic_info, user where basic_info_user_id = user_id and user_url = " + getPara(0));
+					"from basic_info, user where basic_info_user_id = user_id and user_url = '" + getPara(0) + "'");
 			setAttr("basicInfo", basicInfo);
 			System.out.println(basicInfo);
 
 			Record dataContent = Db.findFirst("select data_content from data" +
-					" where data_user_id=(select user_id from user where user_url = " + getPara(0) +
-					") order by data_order limit 1");
+					" where data_user_id=(select user_id from user where user_url = '" + getPara(0) +
+					"') order by data_order limit 1");
 			setAttr("dataContent", dataContent);
 			System.out.println(dataContent);
 
 			List<Record> urlInfo = Db.find("select data_name, data_url from data, user" +
-					" where data_user_id = user_id and user_url = " + getPara(0) + " order by data_order");
+					" where data_user_id = user_id and user_url = '" + getPara(0) + "' order by data_order");
 			setAttr("urlInfo", urlInfo);
 			System.out.println(urlInfo);
 
 		} else if (getPara(2) == null) { // 只有两个参数
 
 			Record basicInfo = Db.findFirst("select basic_info.*, user_name, user_url " +
-					"from basic_info, user where basic_info_user_id = user_id and user_url = " + getPara(0));
+					"from basic_info, user where basic_info_user_id = user_id and user_url = '" + getPara(0) + "'");
 			setAttr("basicInfo", basicInfo);
 
 			Record dataContent = Db.findFirst("select data_content from data" +
-					" where data_user_id=(select user_id from user where user_url = " + getPara(0) +
-					") and data_url = " + getPara(1));
+					" where data_user_id=(select user_id from user where user_url = '" + getPara(0) +
+					"') and data_url = '" + getPara(1) + "'");
 			setAttr("dataContent", dataContent);
 
 			List<Record> urlInfo = Db.find("select data_name, data_url from data, user" +
-					" where data_user_id = user_id and user_url = " + getPara(0) + " order by data_order");
+					" where data_user_id = user_id and user_url = '" + getPara(0) + "' order by data_order");
 			setAttr("urlInfo", urlInfo);
 		}
 

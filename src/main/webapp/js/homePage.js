@@ -41,7 +41,7 @@ $.ajax({
     var html="";
     for(var i=0;i<data.length;i++)
     	{
-    	html+="<li><a href='#' id='"+data[i].user_id+"' class='col-md-4'>"+data[i].user_name+"</a></li>"
+    	html+="<li><a href='#' id='"+data[i].user_id+"' class='col-md-4'> "+data[i].user_name+"</a></li>"
     	
     	}
     $("#teacherRankByCount").append(html);
@@ -64,9 +64,9 @@ $.ajax({
 		for(var i=0;i<data.length;i++){
 		 if(i!=0&&(i+1)%3==0&&i!=data.length-1)
 			 {
-				html+="<td><a href='#'><img src='../img/sign.png' />"+data[i].acad_name+"</a></td></tr><tr>";
+				html+="<td><a href='#'><span class='glyphicon glyphicon-globe'></span>&nbsp;&nbsp;"+data[i].acad_name+"</a></td></tr><tr>";
 			 }
-			else html+="<td><a href='#'><img src='../img/sign.png' />"+data[i].acad_name+"</a></td>"
+			else html+="<td><a href='#'><span class='glyphicon glyphicon-globe'></span>&nbsp;&nbsp;"+data[i].acad_name+"</a></td>"
 					
 		}
 		html+="</tr>";

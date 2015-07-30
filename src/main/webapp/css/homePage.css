@@ -74,3 +74,10 @@ margin-top:-10px;
 height:30px;
 text-align: center;
 }
+#acadNameShow{
+	width:100%;
+	overflow: hide;
+}
+#acadNameShow span{
+	color:#66CC66;
+}
