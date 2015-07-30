@@ -48,21 +48,21 @@ public class TeacherPersonalShowController extends Controller {
 		if (getPara(1) == null) { // 只有一个参数
 			List<Record> basicInfo = Db.find("select basic_info.*, user_name, user_url " +
 					"from basic_info, user where basic_info_user_id = user_id and user_url = " + getPara(0));
-			System.out.println(basicInfo);
-			setAttr("teacherbasicInfo", basicInfo);
+//			System.out.println(basicInfo);
+			setAttr("basicInfo", basicInfo);
 			List<Record> dataContent = Db.find("select data_content from data" +
 					" where data_user_id=(select user_id from user where user_url = " + getPara(0) +
 					") order by data_order limit 1");
-			System.out.println(dataContent);
-			setAttr("teacherDataContent", dataContent);
+//			System.out.println(dataContent);
+			setAttr("dataContent", dataContent);
 		} else if (getPara(2) == null) { // 只有两个参数
 			List<Record> basicInfo = Db.find("select basic_info.*, user_name, user_url " +
 					"from basic_info, user where basic_info_user_id = user_id and user_url = " + getPara(0));
-			setAttr("teacherbasicInfo", basicInfo);
+			setAttr("basicInfo", basicInfo);
 			List<Record> dataContent = Db.find("select data_content from data" +
 					" where data_user_id=(select user_id from user where user_url = " + getPara(0) +
 					") and data_url = " + getPara(1));
-			setAttr("teacherDataContent", dataContent);
+			setAttr("dataContent", dataContent);
 		}
 
 		render("/html/teacherPersonalShow.html");
