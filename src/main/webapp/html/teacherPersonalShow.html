@@ -128,19 +128,19 @@ $(function(){
 				<div class="panel-heading">
 				<#if dataContent.data_type=0>
 					<p>${dataContent.data_content}</p>
-<#elseif dataContent.data_type=1>
+					</#if>
+<#if dataContent.data_type=1 && (detail??)=false>
 <ul id="newsList">
 <#list newsList as news>
-<li><a href="${news.news_num}">${news.news_title}<span>${news.news_update_time}</span></a></li>
+<li><a href="${dataContent.data_url}/${news.news_num}">${news.news_title}<span>${news.news_update_time}</span></a></li>
 </#list>
 </ul>
-<#else dataContent.data_type=1 && detail=true>
-<ul id="newsList">
-<#list newsList as news>
-<li><a href="${news.news_num}">${news.news_title}<span>${news.news_update_time}</span></a></li>
-</#list>
-</ul>
-</#else>
+
+<#elseif dataContent.data_type=1 && detail=true>
+<h1>${newsContent.news_title}</h1>
+<p> ${newsContent.news_content}</p>
+
+
 </#if>
 				</div>
 			</div>
