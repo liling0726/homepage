@@ -8,14 +8,18 @@
 <link rel="stylesheet" type="text/css"
 	href="/homepage/css/teacherPersonalShow.css" />
 <script type="text/javascript">
+$(function(){
+	
 	$("#imgcode").click(function() {
 		reloadcode();
 	})
 	$(".changeOne").click(function() {
 		reloadcode();
 	})
+})
+	
 	function reloadcode() {
-		$("#imgcode").attr("src", "checkcode.jsp?random=" + Math.random());
+		$("#imgcode").attr("src", "/homepage/html/checkcode.jsp?random=" + Math.random());
 	}
 </script>
 <title>老师主页</title>
@@ -55,8 +59,14 @@
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-left">
 						<#list urlInfo as column >
-
+                         <#if column.data_nature=1> 
+                         
+						<li><a href="${column.data_url}">${column.data_name}</a></li>
+						</#if>
+						<#if column.data_nature=0> 
+                         
 						<li><a href="/homepage/u/${basicInfo.user_url}/${column.data_url}">${column.data_name}</a></li>
+						</#if>
 						</#list>
 					</ul>
 				</div>
@@ -67,7 +77,7 @@
 		</div>
 		</div>
 		<div class="col-md-3">
-			<div class="panel panel-default">
+			<div class="panel panel-info">
 				<div class="panel-heading">
 					<div class="row">
 						<div class="col-md-8 col-md-offset-1">
@@ -114,10 +124,24 @@
 			</div>
 		</div>
 		<div class="col-md-9">
-			<div class="panel panel-info">
+			<div class="panel panel-default">
 				<div class="panel-heading">
+				<#if dataContent.data_type=0>
 					<p>${dataContent.data_content}</p>
-
+<#elseif dataContent.data_type=1>
+<ul id="newsList">
+<#list newsList as news>
+<li><a href="${news.news_num}">${news.news_title}<span>${news.news_update_time}</span></a></li>
+</#list>
+</ul>
+<#else dataContent.data_type=1 && detail=true>
+<ul id="newsList">
+<#list newsList as news>
+<li><a href="${news.news_num}">${news.news_title}<span>${news.news_update_time}</span></a></li>
+</#list>
+</ul>
+</#else>
+</#if>
 				</div>
 			</div>
 		</div>
@@ -155,8 +179,8 @@
 						<p class="form-inline">
 							<label>验证码：</label><input type="text" class="form-control"
 								placeholder="验证码" id="authcode" required> <img
-								id="imgcode" src="checkcode.jsp" alt="验证码"> <span>看不清？<a
-								href="javascript:void(0)" class="changeOne">换一张</a></span> <label
+								id="imgcode" src="/homepage/html/checkcode.jsp" alt="验证码"> <span>看不清？<a
+								href="javascript:void(0)" class="changeOne" >换一张</a></span> <label
 								id="authcode_succeed" class="blank invisible"></label> <label
 								id="authcode_error" class="hide"></label>
 						</p>

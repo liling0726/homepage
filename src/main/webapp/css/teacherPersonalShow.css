@@ -1,19 +1,34 @@
 * {
 	margin: 0px;
 	padding: 0px;
+	font-size:16px;
 }
+body{
+	background-color:#e3eefd;
+}
+.navbar-default {
+  background-color: gray;
+  
+}
+
 #header {
 	height: 150px; 
 	overflow: hidden;
 }
 #navbarStyle{
-margin-top:-15px;	
+margin-top:-17px;	
 	
 }
 #PersonalPageName{
 	font-weight:bold;
-	color:#000080;
+color:#fff;
 	
+}
+#bs-example-navbar-collapse-1 ul li a{
+	color:#fff;
+}
+#bs-example-navbar-collapse-1 ul li a:focus,#bs-example-navbar-collapse-1 ul li a:hover{
+	color:#FF9900;
 }
 #navigation {
 	background-color: #66CCFF;
@@ -59,7 +74,17 @@ margin-top:-15px;
 #basicInfo {
 	margin-left: 5px;
 }
+#newsList{
+list-style: none;
 
+}
+#newsList li{
+	line-height:30px;
+	font-size:18px;
+}
+#newsList li span{
+	float:right;
+}
 #footer {
 	text-align: center;
 	width: 100%;
