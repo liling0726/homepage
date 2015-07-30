@@ -95,15 +95,16 @@ public class TeacherPersonalShowController extends Controller {
 					"from basic_info, user where basic_info_user_id = user_id and user_url = '" + getPara(0) + "'");
 			setAttr("basicInfo", basicInfo);
 
-			Integer dataID = Db.queryInt("select data_id from data where" +
+			Record dataContent = Db.findFirst("select data_id, data_content, data_type, data_url from data where" +
 					" data_user_id=(select user_id from user where user_url = '" + getPara(0) +
 					"') and data_url = '" + getPara(1) + "'");
+			setAttr("dataContent", dataContent);
 
 			// 查询新闻内容
-			Record dataContent = Db.findFirst("select news_title, news_content, news_create_time, news_update_time" +
+			Record newsContent = Db.findFirst("select news_title, news_content, news_create_time, news_update_time" +
 					" from news where news_user_id=" + basicInfo.get("user_id") +
-					" and news_data_id=" + dataID + " and news_num=" + getPara(2));
-			setAttr("dataContent", dataContent);
+					" and news_data_id=" + dataContent.get("data_id") + " and news_num=" + getPara(2));
+			setAttr("newsContent", newsContent);
 
 			List<Record> urlInfo = Db.find("select data_name, data_url, data_type, data_nature from data, user" +
 					" where data_user_id = user_id and user_url = '" + getPara(0) + "' order by data_order");
