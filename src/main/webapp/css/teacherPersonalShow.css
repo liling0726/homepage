@@ -5,10 +5,11 @@
 }
 body{
 	background-color:#e3eefd;
+	
 }
 .navbar-default {
   background-color: gray;
-  
+  border-color:gray;
 }
 
 #header {
@@ -28,7 +29,7 @@ color:#fff;
 	color:#fff;
 }
 #bs-example-navbar-collapse-1 ul li a:focus,#bs-example-navbar-collapse-1 ul li a:hover{
-	color:#FF9900;
+	color:#cefbda;
 }
 #navigation {
 	background-color: #66CCFF;
@@ -84,6 +85,17 @@ list-style: none;
 }
 #newsList li span{
 	float:right;
+}
+.newsTitle{
+	
+	text-align:center;
+}
+.newsTime{
+	text-align:center;
+	color:gray;
+}
+.newsContent{
+	text-indent: 2em;
 }
 #footer {
 	text-align: center;

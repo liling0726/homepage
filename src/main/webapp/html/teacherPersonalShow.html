@@ -137,10 +137,9 @@ $(function(){
 </ul>
 
 <#elseif dataContent.data_type=1 && detail=true>
-<h1>${newsContent.news_title}</h1>
-<p> ${newsContent.news_content}</p>
-
-
+<h3 class="newsTitle">${newsContent.news_title}</h3>
+<div class="newsTime"><span>编辑于${newsContent.news_update_time}</span></div>
+<p class="newsContent"> ${newsContent.news_content}</p>
 </#if>
 				</div>
 			</div>
@@ -168,11 +167,11 @@ $(function(){
 								style="width: 250px;" required>
 						</p>
 						<p class="form-inline">
-							<label>邮箱：</label><input type="text" class="form-control"
+							<label>邮&nbsp;&nbsp;&nbsp;箱：</label><input type="text" class="form-control"
 								style="width: 250px;" required>
 						</p>
 						<p class="form-inline">
-							<label>留&nbsp;&nbsp;言：</label>
+							<label>留&nbsp;&nbsp;&nbsp;言：</label>
 							<textarea rows="3" class="form-control" style="width: 250px;"
 								required></textarea>
 						</p>
