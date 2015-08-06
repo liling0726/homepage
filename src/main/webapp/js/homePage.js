@@ -19,7 +19,7 @@ $.ajax({
       +"<a href='#'><img src='../img/mould.png' alt='...'></a>"
     +"</div>"
     +"<div class='personName'>"
-    +"<a title='...' href='"+result[i].user_url +"'>"+result[i].user_name
+    +"<a title='...' href='../u/"+result[i].user_url +"'>"+result[i].user_name
     +"</a></div>"
     +"</div>";
 			}  
